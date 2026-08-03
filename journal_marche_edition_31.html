@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Édition #31 | Le Journal du Marché</title>
+<style>
+  :root{
+    --bg:#15130f;
+    --paper:#1c1916;
+    --gold:#c9a35a;
+    --gold-dim:#9a7c42;
+    --ink:#e8e2d6;
+    --ink-dim:#a89f8f;
+    --line:#3a342b;
+    --danger:#c96a5a;
+    --ok:#7ba05b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.7;padding:24px 16px;}
+  .paper{max-width:860px;margin:0 auto;background:var(--paper);border:1px solid var(--line);padding:48px 56px;}
+  @media(max-width:640px){.paper{padding:28px 20px;}}
+  .masthead{text-align:center;border-bottom:3px double var(--gold);padding-bottom:20px;margin-bottom:8px;}
+  .masthead .kicker{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold-dim);}
+  .masthead h1{font-size:2rem;letter-spacing:.08em;color:var(--gold);font-weight:normal;margin:6px 0 2px;}
+  .masthead .tagline{font-size:.8rem;font-style:italic;color:var(--ink-dim);}
+  .dateline{text-align:center;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:36px;}
+  h2.title{font-size:2rem;line-height:1.2;color:var(--ink);font-weight:normal;margin-bottom:8px;}
+  .subtitle{font-size:1.05rem;font-style:italic;color:var(--gold);margin-bottom:26px;}
+  .lede{font-size:1.02rem;color:var(--ink);border-left:3px solid var(--gold);padding-left:18px;margin-bottom:40px;font-style:italic;}
+  h3.section{font-size:.85rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);border-top:1px solid var(--line);padding-top:26px;margin:40px 0 16px;font-family:Arial,sans-serif;}
+  h3.section .num{color:var(--gold-dim);margin-right:10px;}
+  h4.subsection{color:var(--gold);font-size:.95rem;margin:18px 0 8px;}
+  p{margin-bottom:14px;font-size:.98rem;}
+  strong{color:var(--gold);font-weight:bold;}
+  em{color:var(--ink);}
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:.9rem;}
+  th{font-family:Arial,sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim);text-align:left;padding:8px 10px;border-bottom:2px solid var(--gold-dim);}
+  td{padding:8px 10px;border-bottom:1px solid var(--line);color:var(--ink);}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  tr.hl td{color:var(--gold);font-weight:bold;}
+  td.pos,span.pos{color:var(--ok);font-weight:600;}
+  td.neg,span.neg{color:var(--danger);font-weight:600;}
+  .callout{border-left:3px solid var(--gold);padding:12px 18px;margin:18px 0;background:rgba(201,163,90,.05);font-size:.95rem;}
+  .callout.warn{border-left-color:var(--danger);background:rgba(201,106,90,.06);}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0;}
+  @media(max-width:640px){.grid3{grid-template-columns:1fr;}}
+  .sources{font-size:.78rem;color:var(--ink-dim);font-style:italic;margin-top:30px;padding-top:14px;border-top:1px solid var(--line);}
+  .footer{text-align:center;margin-top:36px;padding-top:20px;border-top:3px double var(--gold);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-dim);}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <div class="kicker">Monde 8 · Édition hebdomadaire</div>
+    <h1>LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information économique indépendante de Monde 8</div>
+  </div>
+  <div class="dateline">Édition #31 · 22 juillet 2026</div>
+
+  <h2 class="title">Les zones dominent, le résidentiel de luxe s'envole</h2>
+  <div class="subtitle">Réseau de métro et centres de recherche en tête côté entreprise, complexes résidentiels palacium au sommet côté perso</div>
+
+  <p class="lede">Nouvelle journée de relevés post-reset sur Monde 8. Aucune rubrique de suivi de recommandation aujourd'hui, faute d'historique disponible pour comparer — la rubrique reprendra dès que le suivi quotidien sera rétabli. Place donc directement aux classements du jour.</p>
+
+  <h3 class="section">🏢 Secteur entreprise — vue d'ensemble</h3>
+  <p>Le transport (3,13%) et le commerce (3,12%) tirent leur épingle du jeu en moyenne, devant l'industriel (2,86%), les bureaux (2,85%) et les zones (2,42%). C'est pourtant dans les zones — secteur le plus hétérogène — que se trouvent plusieurs des meilleurs ROI individuels du jour, notamment sur les centres de recherche et les plateformes pétrolières.</p>
+  <table>
+    <thead><tr><th>Secteur</th><th class="num">ROI moyen</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>Transport</td><td class="num">3,13%</td></tr>
+      <tr><td>Commerciaux</td><td class="num">3,12%</td></tr>
+      <tr><td>Industriels</td><td class="num">2,86%</td></tr>
+      <tr><td>Bureaux</td><td class="num">2,85%</td></tr>
+      <tr><td>Zones</td><td class="num">2,42%</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section">🏆 Top 20 ROI — Entreprise</h3>
+  <table>
+    <thead><tr><th>#</th><th>Bien</th><th class="num">Niveau</th><th class="num">ROI</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>1</td><td>Réseau de métro 4 lignes</td><td class="num">3</td><td class="num">4,58%</td></tr>
+      <tr><td>2</td><td>Centre de recherche régional</td><td class="num">1</td><td class="num">4,53%</td></tr>
+      <tr><td>3</td><td>Plate-forme pétrolière améliorée</td><td class="num">2</td><td class="num">4,47%</td></tr>
+      <tr><td>4</td><td>1300m² de bureaux tout équipés</td><td class="num">2</td><td class="num">4,32%</td></tr>
+      <tr><td>5</td><td>Plate-forme pétrolière aménagée</td><td class="num">1</td><td class="num">4,26%</td></tr>
+      <tr><td>6</td><td>Réseau de bus 50 arrêts</td><td class="num">2</td><td class="num">4,23%</td></tr>
+      <tr><td>7</td><td>Centre de recherche national</td><td class="num">2</td><td class="num">4,00%</td></tr>
+      <tr><td>8</td><td>Plate-forme pétrolière high-tech</td><td class="num">3</td><td class="num">3,87%</td></tr>
+      <tr><td>9</td><td>Réseau FreeCycl' 15 arrêts</td><td class="num">2</td><td class="num">3,79%</td></tr>
+      <tr><td>10</td><td>Centre de recherche international</td><td class="num">3</td><td class="num">3,79%</td></tr>
+      <tr><td>11</td><td>Réseau FreeCycl' 10 arrêts</td><td class="num">1</td><td class="num">3,71%</td></tr>
+      <tr><td>12</td><td>Gare avec 4 terminaux</td><td class="num">1</td><td class="num">3,70%</td></tr>
+      <tr><td>13</td><td>Zone portuaire internationale</td><td class="num">3</td><td class="num">3,65%</td></tr>
+      <tr><td>14</td><td>Zone aérospatiale internationale</td><td class="num">3</td><td class="num">3,58%</td></tr>
+      <tr><td>15</td><td>Zone nucléaire régionale</td><td class="num">1</td><td class="num">3,56%</td></tr>
+      <tr><td>16</td><td>Zone portuaire régionale</td><td class="num">1</td><td class="num">3,51%</td></tr>
+      <tr><td>17</td><td>Local de haut standing</td><td class="num">3</td><td class="num">3,50%</td></tr>
+      <tr><td>18</td><td>Zone portuaire nationale</td><td class="num">2</td><td class="num">3,49%</td></tr>
+      <tr><td>19</td><td>Grand local aménagé</td><td class="num">1</td><td class="num">3,48%</td></tr>
+      <tr><td>20</td><td>2100m² de bureaux grand standing</td><td class="num">3</td><td class="num">3,47%</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section">🎚️ Top 3 par niveau — Entreprise</h3>
+  <div class="grid3">
+    <div><h4 class="subsection">Niveau 1</h4><table><tbody>
+      <tr><td>1</td><td>Centre de recherche régional</td><td class="num">4,53%</td></tr>
+      <tr><td>2</td><td>Plate-forme pétrolière aménagée</td><td class="num">4,26%</td></tr>
+      <tr><td>3</td><td>Réseau FreeCycl' 10 arrêts</td><td class="num">3,71%</td></tr>
+    </tbody></table></div>
+    <div><h4 class="subsection">Niveau 2</h4><table><tbody>
+      <tr><td>1</td><td>Plate-forme pétrolière améliorée</td><td class="num">4,47%</td></tr>
+      <tr><td>2</td><td>1300m² de bureaux tout équipés</td><td class="num">4,32%</td></tr>
+      <tr><td>3</td><td>Réseau de bus 50 arrêts</td><td class="num">4,23%</td></tr>
+    </tbody></table></div>
+    <div><h4 class="subsection">Niveau 3</h4><table><tbody>
+      <tr><td>1</td><td>Réseau de métro 4 lignes</td><td class="num">4,58%</td></tr>
+      <tr><td>2</td><td>Plate-forme pétrolière high-tech</td><td class="num">3,87%</td></tr>
+      <tr><td>3</td><td>Centre de recherche international</td><td class="num">3,79%</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <h3 class="section">🏠 Secteur personnel — vue d'ensemble</h3>
+  <p>Le résidentiel personnel reste globalement moins rentable que l'entreprise en moyenne, mais les complexes résidentiels haut de gamme (titanium, palacium) sortent très largement du lot, promotions à l'appui.</p>
+  <table>
+    <thead><tr><th>Secteur</th><th class="num">ROI moyen</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>Quartier</td><td class="num">3,15%</td></tr>
+      <tr><td>Complexe</td><td class="num">2,76%</td></tr>
+      <tr><td>Appartement</td><td class="num">2,08%</td></tr>
+      <tr><td>Maison</td><td class="num">2,00%</td></tr>
+      <tr><td>Chambre</td><td class="num">1,93%</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section">🏆 Top 20 ROI — Personnel</h3>
+  <table>
+    <thead><tr><th>#</th><th>Bien</th><th class="num">Niveau</th><th class="num">ROI</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td>1</td><td>Complexe résidentiel palacium tout confort</td><td class="num">2</td><td class="num">7,15%</td></tr>
+      <tr><td>2</td><td>Complexe résidentiel palacium habitable</td><td class="num">1</td><td class="num">4,96%</td></tr>
+      <tr><td>3</td><td>Complexe résidentiel titanium tout confort</td><td class="num">2</td><td class="num">4,92%</td></tr>
+      <tr><td>4</td><td>Complexe résidentiel palacium luxueux</td><td class="num">3</td><td class="num">4,16%</td></tr>
+      <tr><td>5</td><td>Complexe résidentiel titanium habitable</td><td class="num">1</td><td class="num">3,67%</td></tr>
+      <tr><td>6</td><td>Grand complexe résidentiel habitable</td><td class="num">1</td><td class="num">3,18%</td></tr>
+      <tr><td>7</td><td>Tour résidentielle prestige luxueuse</td><td class="num">3</td><td class="num">3,15%</td></tr>
+      <tr><td>8</td><td>Tour résidentielle prestige tout confort</td><td class="num">2</td><td class="num">3,15%</td></tr>
+      <tr><td>9</td><td>Tour résidentielle prestige aménagée</td><td class="num">1</td><td class="num">3,15%</td></tr>
+      <tr><td>10</td><td>Complexe résidentiel géant tout confort</td><td class="num">2</td><td class="num">3,09%</td></tr>
+      <tr><td>11</td><td>Complexe résidentiel géant habitable</td><td class="num">1</td><td class="num">3,04%</td></tr>
+      <tr><td>12</td><td>Complexe résidentiel titanium luxueux</td><td class="num">3</td><td class="num">2,91%</td></tr>
+      <tr><td>13</td><td>Complexe résidentiel millenium habitable</td><td class="num">1</td><td class="num">2,82%</td></tr>
+      <tr><td>14</td><td>Res. 12 T2 grand luxe</td><td class="num">3</td><td class="num">2,80%</td></tr>
+      <tr><td>15</td><td>Grand complexe résidentiel tout confort</td><td class="num">2</td><td class="num">2,76%</td></tr>
+      <tr><td>16</td><td>Grand complexe résidentiel luxueux</td><td class="num">3</td><td class="num">2,70%</td></tr>
+      <tr><td>17</td><td>Res. 12 T2 habitables</td><td class="num">1</td><td class="num">2,59%</td></tr>
+      <tr><td>18</td><td>Double complexe résidentiel géant habitable</td><td class="num">1</td><td class="num">2,57%</td></tr>
+      <tr><td>19</td><td>Res. 6 chambres habitables</td><td class="num">1</td><td class="num">2,55%</td></tr>
+      <tr><td>20</td><td>Res. 6 T2 habitables</td><td class="num">1</td><td class="num">2,54%</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section">🎚️ Top 3 par niveau — Personnel</h3>
+  <div class="grid3">
+    <div><h4 class="subsection">Niveau 1</h4><table><tbody>
+      <tr><td>1</td><td>Complexe résidentiel palacium habitable</td><td class="num">4,96%</td></tr>
+      <tr><td>2</td><td>Complexe résidentiel titanium habitable</td><td class="num">3,67%</td></tr>
+      <tr><td>3</td><td>Grand complexe résidentiel habitable</td><td class="num">3,18%</td></tr>
+    </tbody></table></div>
+    <div><h4 class="subsection">Niveau 2</h4><table><tbody>
+      <tr><td>1</td><td>Complexe résidentiel palacium tout confort</td><td class="num">7,15%</td></tr>
+      <tr><td>2</td><td>Complexe résidentiel titanium tout confort</td><td class="num">4,92%</td></tr>
+      <tr><td>3</td><td>Tour résidentielle prestige tout confort</td><td class="num">3,15%</td></tr>
+    </tbody></table></div>
+    <div><h4 class="subsection">Niveau 3</h4><table><tbody>
+      <tr><td>1</td><td>Complexe résidentiel palacium luxueux</td><td class="num">4,16%</td></tr>
+      <tr><td>2</td><td>Tour résidentielle prestige luxueuse</td><td class="num">3,15%</td></tr>
+      <tr><td>3</td><td>Complexe résidentiel titanium luxueux</td><td class="num">2,91%</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <h3 class="section">🌍 Terrains</h3>
+  <p>Rappel : les terrains ne génèrent aucun loyer, seulement charges et impôts. Leur intérêt est spéculatif ou stratégique, pas locatif.</p>
+  <table>
+    <thead><tr><th>Terrain</th><th class="num">Valeur</th></tr></thead>
+    <tbody>
+      <tr><td>Petit terrain</td><td class="num">57 744 Ø</td></tr>
+      <tr><td>Terrain moyen</td><td class="num">53 409 Ø</td></tr>
+      <tr><td>Grand terrain</td><td class="num">56 389 Ø</td></tr>
+      <tr><td>Parc</td><td class="num">68 022 Ø</td></tr>
+      <tr><td>Grand parc</td><td class="num">121 334 Ø</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section">🏭 Matières premières et usines</h3>
+  <p><strong>Prix du jour :</strong> Béton 227,03 Ø/m³ · Acier 880,41 Ø/tonne · Bois 46,93 Ø/m² · Brique 666,71 Ø/m³ · Verre 207,29 Ø/m²</p>
+
+  <h3 class="section">🔔 Alerte marché — Deux vagues de promotions simultanées</h3>
+  <p>Deux séries de réductions groupées repérées sur les relevés du jour, une par secteur.</p>
+  <p>Côté entreprise, promotion de <strong>-16%</strong> sur quatre biens de types différents :</p>
+  <table>
+    <thead><tr><th>Bien</th><th class="num">Promotion</th></tr></thead>
+    <tbody>
+      <tr><td>1300m² de bureaux tout équipés</td><td class="num neg">-16%</td></tr>
+      <tr><td>Réseau de métro 4 lignes</td><td class="num neg">-16%</td></tr>
+      <tr><td>Zone aérospatiale internationale</td><td class="num neg">-16%</td></tr>
+      <tr><td>Technopôle titanium régional</td><td class="num neg">-16%</td></tr>
+    </tbody>
+  </table>
+  <p>Côté personnel, promotion de <strong>-14%</strong> sur quatre biens, dont trois complexes résidentiels haut de gamme :</p>
+  <table>
+    <thead><tr><th>Bien</th><th class="num">Promotion</th></tr></thead>
+    <tbody>
+      <tr><td>Res. 6 T2 non-aménagés</td><td class="num neg">-14%</td></tr>
+      <tr><td>Triple complexe résidentiel géant luxueux</td><td class="num neg">-14%</td></tr>
+      <tr><td>Complexe résidentiel titanium tout confort</td><td class="num neg">-14%</td></tr>
+      <tr><td>Complexe résidentiel palacium tout confort</td><td class="num neg">-14%</td></tr>
+    </tbody>
+  </table>
+  <p>Contrairement au Suivi de recommandation habituel, qui cible un bien isolé en perte de valeur à loyer stable, il s'agit ici d'un rabais à l'achat identique appliqué simultanément à plusieurs biens sans lien de catégorie évident.</p>
+  <div class="callout">📌 <strong>À vérifier :</strong> ces promotions touchent directement deux des meilleurs ROI du jour (Réseau de métro 4 lignes et Complexe résidentiel palacium tout confort) — la fenêtre d'achat semble particulièrement favorable tant que le rabais reste actif.</div>
+
+  <h3 class="section">📌 Pour les nouveaux joueurs</h3>
+  <p>Le ROI affiché dans ce Journal se calcule ainsi : (Loyer − Charges − Impôts) ÷ Prix d'achat × 100, en tenant compte des promotions en cours le cas échéant. Un ROI élevé ne veut pas dire un bien accessible : beaucoup des meilleures performances du jour concernent des biens de plusieurs milliards, voire davantage. Pour débuter, mieux vaut comparer les ROI au sein d'un même niveau et d'un même budget plutôt que viser directement le sommet du Top 20.</p>
+
+  <div class="sources">Données du 22 juillet 2026 — export post-reset 03h14. ROI = (Loyer − Charges − Impôts) ÷ Prix d'achat × 100. Rubriques à historique (suivi de recommandation, tendance 7 jours, champions de la semaine, ce qui n'a pas bougé) suspendues faute de snapshots antérieurs disponibles.</div>
+
+  <div class="footer">Le Journal du Marché · Monde 8 · Édition #31</div>
+
+</div>
+</body>
+</html>
