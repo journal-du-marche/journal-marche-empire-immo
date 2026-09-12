@@ -95,17 +95,27 @@ def construire_embeds(html: str):
 
 
 def envoyer(titre_edition, embeds):
+    print(f"Webhook utilisé (début) : {WEBHOOK_JOURNAL[:50]}...")
+
     # Message d'en-tête
-    requests.post(WEBHOOK_JOURNAL, json={"content": f"📰 **{titre_edition}**"})
+    r = requests.post(WEBHOOK_JOURNAL, json={"content": f"📰 **{titre_edition}**"})
+    print(f"Envoi en-tête -> statut {r.status_code} : {r.text[:300]}")
+    if r.status_code >= 300:
+        raise SystemExit(f"❌ Échec de l'envoi du message d'en-tête : {r.status_code} {r.text}")
     time.sleep(1)
+
+    if not embeds:
+        print("⚠️ Aucune section détectée dans le fichier HTML — vérifie le parsing.")
+        return
 
     # Discord accepte jusqu'à 10 embeds par message -> on envoie par paquets de 5
     # pour rester lisible (un message = quelques sections groupées).
     for i in range(0, len(embeds), 5):
         paquet = embeds[i:i + 5]
         r = requests.post(WEBHOOK_JOURNAL, json={"embeds": paquet})
+        print(f"Envoi paquet {i} ({len(paquet)} embeds) -> statut {r.status_code} : {r.text[:300]}")
         if r.status_code >= 300:
-            print(f"⚠️ Erreur envoi paquet {i}: {r.status_code} {r.text}")
+            raise SystemExit(f"❌ Erreur envoi paquet {i}: {r.status_code} {r.text}")
         time.sleep(1)  # évite le rate-limit Discord
 
 
