@@ -73,6 +73,20 @@ def extraire_titre_edition(html: str) -> str:
     return strip_tags(m.group(1)) if m else "Le Journal du Marché"
 
 
+# Sections à ne PAS poster sur Discord (trop génériques, redondantes, ou déjà
+# couvertes par le Journal de la Construction publié séparément à la suite).
+SECTIONS_EXCLUES = {
+    "🌍 Terrains",
+    "🏗️ Construction",
+    "🧮 Repère devis du jour",
+    "📰 À lire aussi dans le Journal",
+    "📌 Pour les nouveaux joueurs",
+    "🤝 Rejoindre la communauté",
+    "⚡ Coin des petits chiffres",
+    "👀 Liste de surveillance — promotions longue durée",
+}
+
+
 def construire_embeds(html: str):
     titre_edition = extraire_titre_edition(html)
     sections = extraire_sections(html)
@@ -80,6 +94,8 @@ def construire_embeds(html: str):
 
     for titre_brut, contenu_html in sections:
         titre = strip_tags(titre_brut)
+        if titre in SECTIONS_EXCLUES:
+            continue
         emoji = titre.split(" ")[0] if titre else ""
         texte = strip_tags(contenu_html)
         if not texte:
