@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Constitution — Empire Immo</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.x/dist/tabler-icons.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f4f3ef;color:#1a1a1a;min-height:100vh}
+header{background:#1a1a2e;color:#fff;padding:2rem 1rem 1.5rem;text-align:center}
+header h1{font-size:1.8rem;font-weight:600;margin-bottom:0.3rem}
+header p{font-size:0.95rem;opacity:0.7}
+.container{max-width:860px;margin:0 auto;padding:1.5rem 1rem 3rem}
+.search-bar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #ddd;border-radius:12px;padding:10px 16px;margin-bottom:1.2rem;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.search-bar i{font-size:18px;color:#888}
+.search-bar input{border:none;background:transparent;outline:none;font-size:15px;color:#1a1a1a;width:100%;font-family:inherit}
+.search-bar input::placeholder{color:#aaa}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.2rem}
+.tab{padding:6px 14px;border-radius:20px;border:1px solid #ddd;font-size:13px;cursor:pointer;color:#555;background:#fff;transition:all 0.15s;user-select:none}
+.tab:hover{background:#f0ede8;border-color:#bbb}
+.tab.active{background:#1a1a2e;color:#fff;border-color:#1a1a2e;font-weight:500}
+.results-count{font-size:13px;color:#888;margin-bottom:0.8rem}
+.section-card{background:#fff;border:1px solid #e5e3de;border-radius:12px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
+.section-header{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;transition:background 0.15s;user-select:none}
+.section-header:hover{background:#f9f8f5}
+.section-icon{font-size:20px;width:32px;text-align:center;color:#1a1a2e}
+.section-title{font-size:15px;font-weight:500;color:#1a1a1a;flex:1}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;font-weight:500;margin-left:6px;vertical-align:middle}
+.badge.immo{background:#E1F5EE;color:#0F6E56}
+.badge.finance{background:#E6F1FB;color:#185FA5}
+.badge.ville{background:#EEEDFE;color:#534AB7}
+.badge.social{background:#FAEEDA;color:#854F0B}
+.badge.entreprise{background:#FAECE7;color:#993C1D}
+.badge.jeu{background:#F1EFE8;color:#5F5E5A}
+.badge.tech{background:#EAF3DE;color:#3B6D11}
+.chevron{font-size:16px;color:#aaa;transition:transform 0.2s}
+.chevron.open{transform:rotate(180deg)}
+.section-body{padding:0 18px;max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.35s}
+.section-body.open{max-height:9999px;padding:0 18px 18px}
+.section-summary{font-size:14px;color:#666;line-height:1.7;margin-bottom:12px}
+.rule-block{background:#f9f8f5;border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.rule-block:last-child{margin-bottom:0}
+.rule-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.rule-title::before{content:'';display:inline-block;width:3px;height:14px;background:#1a1a2e;border-radius:2px}
+.rule-block ul{padding-left:18px}
+.rule-block ul li{font-size:13px;color:#444;line-height:1.7;margin-bottom:3px}
+.highlight{background:#fde68a;color:#1a1a1a;border-radius:2px;padding:0 2px}
+.no-results{text-align:center;padding:3rem 1rem;color:#aaa;font-size:14px}
+.no-results i{font-size:36px;display:block;margin-bottom:10px;color:#ccc}
+footer{text-align:center;font-size:12px;color:#aaa;padding:1rem;margin-top:1rem}
+@media(max-width:600px){header h1{font-size:1.4rem}.tab{font-size:12px;padding:5px 10px}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1><i class="ti ti-building-estate"></i> Empire Immo</h1>
+  <p>Constitution officielle — Monde 8 — Version interactive — mise à jour 7 sept. 2026 (v4.46.0)</p>
+</header>
+
+<div class="container">
+  <div class="search-bar">
+    <i class="ti ti-search"></i>
+    <input type="text" id="searchInput" placeholder="Rechercher dans la constitution... (loyer, devis, liquidation, mairie...)" autocomplete="off">
+  </div>
+  <div class="tabs" id="tabs">
+    <div class="tab active" data-cat="all">Tout</div>
+    <div class="tab" data-cat="immo">Immobilier</div>
+    <div class="tab" data-cat="finance">Finances</div>
+    <div class="tab" data-cat="ville">Ville</div>
+    <div class="tab" data-cat="entreprise">Entreprises</div>
+    <div class="tab" data-cat="social">Communauté</div>
+    <div class="tab" data-cat="jeu">Jeu</div>
+    <div class="tab" data-cat="tech">Technique</div>
+  </div>
+  <div class="results-count" id="resultsCount"></div>
+  <div id="sections"></div>
+  <footer>Constitution Empire Immo Monde 8 &mdash; Généré pour usage personnel</footer>
+</div>
+
+<script>
+const DATA=[
+{id:1,cat:"immo",icon:"ti-building-estate",title:"Les propriétés",summary:"Tout sur l'achat, la location, la rénovation et la construction de biens immobiliers.",content:[
+{title:"Types de propriétés",items:["Chambres simples, appartements, maisons, terrains, complexes","4 niveaux : inhabitable, habitable, équipée, luxueux","Valeur fluctue selon l'offre et la demande du marché","Maximum de 500 000 000 propriétés au total (mis à jour v4.46.0, 7 sept 2026 — anciennement 100 000 000, puis 10 000 000 avant ça)","Nouveau bien personnel (v4.46.0, 7 sept 2026) : Tours résidentielles Jumelles"]},
+{title:"Acheter en agence nationale",items:["Agence gérée par le Gouvernement — prix de référence garantis","Promotions de 5% à 20% changent chaque mois","Agence municipale : biens exclusifs aux habitants de la ville"]},
+{title:"Petites annonces (entre joueurs)",items:["Système d'enchères ou vente directe","Volume d'affaires max par mois selon niveau : 40% capital (niv.0) → 5% capital (niv.10)","Achat impossible avec joueurs sur le même ordinateur","Indicateurs pour comparer avec le prix de l'agence","VIP : +20% de volume d'affaires autorisé"]},
+{title:"Restriction par niveau",items:["Niveaux 0-7 : chambres, T2 simples, résidences 6 chambres/T2, petites/moyennes/grandes maisons, maisons écolo et typiques","Niveaux 0-9 : résidences 12 chambres et 12 T2","Entreprises : niveaux 0-4 pour centres industriels/commerciaux/gratte-ciel"]},
+{title:"Louer un bien",items:["Locataires fictifs trouvés immédiatement","Revenus perçus chaque mois de jeu (= 1 jour réel)","Arrêt de bail = frais équivalents à 3 mois de loyer","Ne peut pas louer un bien inhabitable, en vente, en embellissement ou en construction"]},
+{title:"Rénover un bien",items:["120 points de vie par niveau à l'achat","Perte d'1 point de vie par mois (sauf terrains et biens en travaux)","Rénovation à 25%, 50%, 75% ou 100% disponible","Coût : 0,05% de la valeur du bien par point à rénover (6% par niveau)","Si vie = 0, le bien perd un niveau; si déjà inhabitable, il reste inhabitable"]},
+{title:"Embellir un bien",items:["Monte le niveau d'un bien (ex: habitable → équipé)","L'embellissement ne modifie pas les points de vie","Coût fixé par bien, payé intégralement au départ","Assurance basée sur le niveau AVANT embellissement pendant les travaux"]},
+{title:"Vendre un bien",items:["Enchère publique : prix de départ fixé par le vendeur","Vente directe : au prix du marché, transaction immédiate","Vente aux promoteurs : 70-94% de la valeur, taux changeant 6x/jour","Plus-value taxée à 30%"]},
+{title:"Construire",items:["Nécessite un terrain libre (pas en location/vente/travaux)","La propriété apparaît dans le parc uniquement à la fin de la construction","Acompte de 30% à la validation du devis, solde de 70% à la livraison","Pénalité de retard si l'entreprise dépasse le délai indiqué"]},
+{title:"Démolir / Détruire",items:["Destruction d'un bien endommagé : gratuit (bien perdu définitivement)","Démolition pour récupérer un terrain : coût = valeur du bâtiment / 7","Le terrain récupéré est identifié dans la liste des constructions"]},
+]},
+{id:2,cat:"immo",icon:"ti-shield-check",title:"Les assurances",summary:"Protection obligatoire pour tous vos biens — amendes, sinistres et remboursements.",content:[
+{title:"Règles de base",items:["Assurance OBLIGATOIRE pour tous les biens","Amende de 2% de la valeur du bien non assuré","Assurance minimale (protection civile et tiers) : 0,05% du prix du bien","Contrats plus complets : remboursement partiel ou total en cas de sinistre"]},
+{title:"Sinistres couverts",items:["Cambriolage (8%), Incendie (7%), Orage violent (3,5%), Inondation (2,5%), Tremblement de terre (1,5%)","Remboursement versé à la FIN des travaux de réparation","Assurance calculée sur la valeur AVANT embellissement si sinistre pendant les travaux","Remboursement plafonné à la valeur actuelle du bien"]},
+{title:"Contracter / Modifier / Résilier",items:["Changement d'offre gratuit à tout moment","Résiliation possible : frais de dossier","IMPOSSIBLE si le bien est endommagé, en attente de devis, en travaux ou en réparation","L'assurance est figée jusqu'à la fin des réparations"]},
+]},
+{id:3,cat:"finance",icon:"ti-landmark",title:"Les banques",summary:"Emprunts, livrets I et comptes épargne dans les banques d'ImmoState.",content:[
+{title:"Types de banques",items:["Banque Nationale : publique, accessible à tous, financée par les impôts","Banques Municipales (6) : réservées aux habitants de chaque ville, gérées par le maire","Plafond d'emprunts accordés par une banque : max 2x ses capitaux propres"]},
+{title:"Les emprunts",items:["Durée : 6 à 48 mois","Taux d'intérêt minimal : 2% (mise à jour v4.44.3)","ImmoStatien : mensualité ≤ ratio des revenus (loyers + 50% primes, ratio défini par la banque)","Entreprise : mensualité ≤ 1% de la valeur de l'entreprise (min 20 000 Ø)","Remboursement anticipé possible : pénalité de 6 mois d'intérêt sur le capital remboursé","Taux fixes et annuels : capital × taux × durée (en années)","Bouton \"Max\" disponible pour les VIP/SAPHIR (mise à jour v4.44.3)"]},
+{title:"Livret I",items:["Durée 12 mois, taux fixe annuel","Arrêt anticipé = intérêts au prorata du temps écoulé","Nombre illimité, plafond cumulé possible selon la banque","Exemple : 20 000 Ø à 5% sur 12 mois = 1 000 Ø d'intérêts"]},
+{title:"Compte épargne",items:["Apport initial + versements mensuels sur 12 mois","Non modifiable une fois ouvert","Pénalité d'arrêt = capital total placé × 5% (mise à jour v4.44.3 — anciennement basé sur le taux d'intérêt du compte)","Intérêts calculés sur le total progressif chaque mois"]},
+{title:"Niveaux structurels des banques",items:["Niveau 1 (Locale) : 0 Ø — 0% surcoût","Niveau 2 (Régionale) : 1 GØ — +30%","Niveau 3 (Structurante) : 10 TØ — +80%","Niveau 4 (Dominante) : 100 PØ — +200%","Niveau 5 (Systémique) : 1 EØ — +500%"]},
+{title:"Contributions",items:["Don volontaire et définitif (non remboursable)","80% à la Banque Municipale, 20% à la Banque Nationale","Récompenses honorifiques : médailles et liste des mécènes"]},
+]},
+{id:4,cat:"finance",icon:"ti-chart-pie",title:"Les finances personnelles",summary:"Revenus, dépenses, impôts et santé financière de votre empire immobilier.",content:[
+{title:"Sources de revenus",items:["Loyers des propriétés en location","Primes versées par votre entreprise (décidées par le DRH)","Aide de la caisse solidaire (si inscrit et ville l'ayant construite)","Indemnités de fonction : maire, conseiller, barman, directeur de BM","Retraite politique : anciens maires (moyenne indemnités × nombre de mandats)"]},
+{title:"Impôt foncier",items:["Lié à la valeur de toutes vos propriétés","La ville peut modifier de -50% à +100%","Une partie reversée à la ville, le reste à ImmoState"]},
+{title:"Impôt sur la fortune",items:["Progressif à partir de 1 MØ de capital immobilier","Taux de 0,10% (1 MØ) à 0,28% (1 PØ)","Reversé en totalité à ImmoState"]},
+{title:"Impôt sur primes et dividendes",items:["Progressif de 2% (à partir de 1 Ø) jusqu'à 20% (au-delà de 25 ZØ)","Prélevé mensuellement sur les primes","Prélevé au moment du versement des dividendes"]},
+{title:"Découvert et agios",items:["Découvert autorisé = niveau³ × 10 000 Ø","Agios = découvert × 2,5% si solde négatif après revenus du mois","Banqueroute si découvert > 6 698,71 EØ pendant 12 mois consécutifs","Pot de départ : 250 000 Ø offerts à l'inscription"]},
+]},
+{id:5,cat:"jeu",icon:"ti-alert-circle",title:"Les événements",summary:"Événements aléatoires positifs et négatifs qui ponctuent votre vie d'investisseur.",content:[
+{title:"Événements positifs (exemples)",items:["Erreur bancaire en votre faveur — 20% de chance, 4% des joueurs","Héritage d'un bien correspondant à votre niveau — 20%","Héritage financier — 20%","Loterie — 10%"]},
+{title:"Événements négatifs (exemples)",items:["Cambriolage : dégâts à réparer — 8%, 5% des propriétés","Incendie : dégâts à réparer — 7%, 5% des propriétés","Orage violent — 3,5%, 10% des propriétés","Inondation — 2,5%, 10% des propriétés","Tremblement de terre — 1,5%, 15% des propriétés","Défaut d'assurance : amende 2% de la valeur du bien — 20%"]},
+{title:"Règles importantes",items:["Jamais deux événements négatifs le même mois","Nouveaux joueurs protégés pendant les 30 premiers mois","Événements actifs : action requise dans un délai imparti (sinon pénalité majorée)","Événements informatifs : simple notification, rien à faire"]},
+]},
+{id:6,cat:"ville",icon:"ti-building-community",title:"Les villes",summary:"Gouvernance, élections, constructions et finances des 6 villes d'ImmoState.",content:[
+{title:"Les 6 villes",items:["Baselis, Capitoria, Expanseia, Holdenor, Pionera, Regentor","Attribution aléatoire à l'inscription","Déménagement possible dès niveau 3 (min 18 mois entre deux déménagements)","Coût déménagement : 1% valeur des biens + 35% supplémentaires à chaque nouveau déménagement"]},
+{title:"Élections",items:["Mandat de 63 mois, période électorale de 5 mois","Candidature : niveau 3 minimum + 15 000 Ø d'inscription","Liste obligatoire de 3 conseillers pour valider la candidature","Corruption interdite sous peine de disqualification (votes annulés)","Destitution possible : référendum à 50% de OUI, frais avocat 15 000 Ø"]},
+{title:"Finances de la ville",items:["Revenus : impôts fonciers habitants (3% reversés par l'État) + impôts entreprises (1,5%)","La ville peut moduler l'impôt foncier entre -50% et +100%","Faillite si découvert > 35,3 GØ pendant 4 semaines de suite","Indemnités de la municipalité plafonnées à 5% des taxes perçues"]},
+{title:"Indicateurs de ville (8 taux)",items:["Accès aux transports, niveau de pollution, sécurité sanitaire, attractivité","Éducation, imposition, chômage, criminalité","Mis à jour chaque semaine (lundi nuit)","Bonus Top 3 : +5% (1er), proportionnel (2e, 3e) — Malus Bottom 2 : -5% (dernier), proportionnel (avant-dernier)"]},
+{title:"Constructions municipales",items:["Décidées par le maire et le conseiller en urbanisme","Chaque bâtiment apporte des points de développement à la ville","Destruction : coût de 10% de la valeur initiale du bâtiment","La mairie et la banque municipale ne peuvent pas être détruites"]},
+{title:"Caisse solidaire",items:["Aide mensuelle aux habitants selon leur niveau","Plafond = revenus moyens de tous les joueurs (minimum garanti)","Remise à 0 si la ville n'a plus les moyens de payer"]},
+{title:"Bar municipal",items:["Budget alloué par la ville pour des jeux avec gains","Règles : annonce publique sur le forum, résultats publiés","Gain maximum : 3 Tokens Chance par gagnant et par concours"]},
+{title:"Holding municipale",items:["Entièrement détenue par la ville, ne peut être renommée ni dissoute","Maire nomme le PDG — pas de cumul de mandats","Filiales limitées par le Centre de Gouvernance Économique (CGE)","Dividendes versés à la ville si bénéfices"]},
+]},
+{id:7,cat:"finance",icon:"ti-chart-candle",title:"La bourse",summary:"Achat, vente d'actions et dividendes sur le marché boursier d'ImmoState.",content:[
+{title:"Jouer en bourse",items:["Devenir actionnaire : création d'entreprise, levée de fonds ou achat sur le marché","Ordres d'achat et de vente : prix + quantité","Transaction si les ordres se correspondent (partielle possible)","Variation max d'un ordre : ±30% de la valeur réelle de l'action"]},
+{title:"Fiscalité boursière",items:["Taxe sur plus-values : 10% du gain à chaque vente","Impôt sur dividendes : progressif de 2% à 20%"]},
+{title:"Split d'actions",items:["Division par 2, 5 ou 10 si valeur > 200 Ø","Ne change pas la valeur totale du portefeuille","Améliore la liquidité : plus facile d'acheter/vendre à petits montants","PDG ou directeur financier peut déclencher le split"]},
+{title:"Dividendes",items:["Définis par PDG ou directeur financier, soumis au vote des actionnaires","Maximum 15% du patrimoine de l'entreprise","Versés uniquement si les bénéfices reportés le permettent"]},
+]},
+{id:8,cat:"jeu",icon:"ti-robot",title:"Les assistants",summary:"Services automatisés pour gérer votre parc immobilier en masse.",content:[
+{title:"Services disponibles",items:["Location de masse : 2% de commission sur les loyers des biens loués","Rénovation auto à 100% si vie < 50% : 1% | < 65% : 2% | < 80% : 3% | < 90% : 4%","Construction massive : 4% de commission (gratuit pour VIP/SAPHIR)","Embellissement massif : 4% de commission (gratuit pour VIP/SAPHIR)","Assurance massive : 2% du contrat annuel (gratuit pour VIP/SAPHIR)"]},
+]},
+{id:9,cat:"entreprise",icon:"ti-briefcase",title:"Les entreprises (général)",summary:"Règles communes à toutes les entreprises : création, postes, actionnaires, liquidation.",content:[
+{title:"Créer une entreprise",items:["1 à 6 fondateurs, chacun apporte un capital initial","Capital de départ : 500 000 Ø à 2 000 000 000 Ø (2 GØ) — correction 7 sept 2026, anciennement noté par erreur 2 000 NØ","5 000 Ø de frais fixes non remboursables","Si non validée en 12 mois, l'entreprise est supprimée et les apports rendus","Valeur d'entreprise plafonnée à 20 DØ (20 decillions) — au-delà, achat/vente/location bloqués pour raisons techniques (source : constitution officielle, 7 sept 2026)"]},
+{title:"Postes de direction",items:["PDG : superviseur général, accès à presque toutes les actions","Directeur Général (DG) : bras droit du PDG, mêmes droits sauf poste PDG","Directeur Financier : budgets journaliers, primes, emprunts — Prime max = capital × 2%","DRH : recrutements, licenciements, échanges de postes"]},
+{title:"Actionnaires & votes",items:["Vote proportionnel au % d'actions détenues","Majorité absolue requise (ou relative après 7 jours)","Levée de fonds plafonnée à 20 DØ par entreprise","Frais de dossier levée de fonds : 0,5% de la participation"]},
+{title:"Impôt sur les bénéfices",items:["Calculé chaque lundi matin — 3 jours pour payer","Retard de paiement : majoration de 40%","Progressif de 4% (dès 1 Ø) à 40% (au-delà de 50 EØ)"]},
+{title:"Liquidation & Cessation",items:["Cessation à la majorité des actionnaires (pas avant 7 mois d'existence)","Faillite : résultat net négatif ET bénéfices reportés négatifs 3 semaines de suite","Biens vendus à 75% lors de la liquidation","Inactivité sans direction de 14 mois = liquidation automatique"]},
+{title:"Fond de soutien",items:["Les directeurs peuvent convertir leurs GOLD en soutien financier","Créance du joueur sur l'entreprise (dette enregistrée)","Remboursé en priorité lors d'une liquidation","Vote majoritaire requis pour tout remboursement"]},
+{title:"Non fair-play",items:["Vider la trésorerie intentionnellement : INTERDIT","Détournements via filiales ou travaux fictifs : INTERDIT","Audit possible au Tribunal Économique Suprême (TES)","Sanction : remboursement + amende 30% — Récidive : gel 15 jours — Multi-récidive : ban"]},
+]},
+{id:10,cat:"entreprise",icon:"ti-building-store",title:"Entreprises commerciales",summary:"Immobilier B2B : acquisition de biens, contrats clients et marketing.",content:[
+{title:"Postes spécifiques",items:["Directeur des Achats : gère bureaux, bâtiments commerciaux, industriels, transports, zones","Directeur Commercial : soumet des contrats aux entreprises clientes fictives","Directeur Marketing : campagnes pub, enquêtes, image de marque, news"]},
+{title:"Les contrats",items:["Acceptés selon : prix de l'offre vs marché ET image de l'entreprise","Validation chaque jour à 3h après charges et impôts","Plusieurs offres au même client se font concurrence entre elles","Rapport d'acceptation/refus disponible dans les données commerciales"]},
+{title:"Marketing",items:["Investissements réguliers plus efficaces qu'un effort unique","Rendements décroissants : petits investissements proportionnellement meilleurs","Perception décroît chaque semaine sans investissement","Classement relatif vs concurrents du même niveau"]},
+{title:"Restrictions niveaux (entreprise)",items:["Niveaux 0-1 : 500m² bureaux, 1300m² bureaux, atelier, entrepôts, local","Niveaux 0-2 : grand local, 2100/3000m² bureaux, réseau FreeCycl'","Niveaux 0-3 : usine, espace commercial, immeuble d'entreprise, réseau de bus","Niveaux 0-4 : centre industriel, centre commercial, gratte-ciel","Niveaux 0-5 : réseau de métro, gare, aéroport, plate-forme pétrolière, centre de recherche (ajouté)","Nouveau bien (v4.46.0, 7 sept 2026) : Mégapôle titanium — niveau requis non encore confirmé","Achats dans Business > Immobilisation, stocks évoluant tout au long de la journée, limite globale 500 000 000 biens (mis à jour v4.46.0 — anciennement 100 000 000)"]},
+]},
+{id:11,cat:"entreprise",icon:"ti-crane",title:"Entreprises de construction",summary:"Réaliser les travaux des particuliers et des entreprises commerciales.",content:[
+{title:"Postes spécifiques",items:["Directeur Commercial : émet des devis en réponse aux demandes de travaux","Directeur Travaux : gère les stocks de matières premières et lance les travaux"]},
+{title:"Les devis",items:["Montant : ±30% du prix du marché","Durée de livraison définie par le constructeur (peut différer de la durée réelle des travaux)","Durée de validité du devis : 3 à 12 mois (confirmé sur la page officielle des règles, 7 sept 2026)","Acompte entre 20% et 100%, taux de pénalité de retard entre 0,001% et 5%","Acompte perçu à la validation, solde à la livraison","Devis 'interne' possible pour les filiales d'une holding"]},
+{title:"Régulation des devis",items:["Devis max : 150% des capitaux propres du constructeur","Balance travaux max : 250% des capitaux propres","Client : ne peut accepter un devis > 70% de son capital"]},
+{title:"Matières premières",items:["Prix de référence (7 sept 2026, indicatifs — évoluent chaque jour selon l'offre/demande, un peu plus dynamiquement depuis v4.46.0) : Béton ~243 Ø/m³ — Acier ~938 Ø/t — Bois ~50 Ø/m² — Brique ~713 Ø/m³ — Verre ~221 Ø/m²","Production propre possible via des usines (max 500 000 000, mis à jour v4.46.0 — anciennement 100 000 000, puis 10 000 000)","Niveau 4 d'usine de production ajouté en v4.46.0 (niveau max précédent : 3)","CUMP (Coût Unitaire Moyen Pondéré) pour estimer les devis","Vente au promoteur : 70-85%, quota journalier limité à 90% du stock début de mois"]},
+{title:"Annulations et retards",items:["Client annule sans devis validé : sans conséquence","Client annule avec devis (< 3 mois) : perd l'acompte","Constructeur annule avec devis validé : rembourse l'acompte + 6 mois de pénalité","Retard constructeur : indemnité par mois de retard selon taux du devis","Retard paiement client : indemnité de 3 mois au constructeur"]},
+{title:"ECTN (État)",items:["Entreprise de Construction Nationale gérée par l'État","Sert les joueurs jusqu'au niveau 6","Active les 30 premiers jours du monde pour toutes les entreprises"]},
+]},
+{id:12,cat:"entreprise",icon:"ti-building-skyscraper",title:"Les holdings",summary:"Maison mère qui détient et gère des filiales à 100%.",content:[
+{title:"Fonctionnement général",items:["La holding est actionnaire unique de ses filiales (toujours 100%)","Limite : 500 filiales maximum","Valeur plafonnée à 8 900 DØ","Levée de fonds possible jusqu'à 8 900 DØ"]},
+{title:"Filiales",items:["Création de zéro ou achat d'une entreprise existante","Seule la holding peut injecter du capital (pas de levée de fonds filiale)","Filiale hérite de la perception marketing de la holding","PDG nommé par la holding sans vote","Vente d'une filiale : 100% des parts vendues d'un coup"]},
+{title:"Finances de la holding",items:["Frais de gestion prélevés aux filiales (définis par la holding)","Coûts comptables/juridiques progressifs selon capital (0% à 0,1%)","Coûts informatiques/IA selon nb de biens dans les filiales","Impôt sur dividendes filiales : 0,5% des dividendes reçus"]},
+{title:"Cessation / Liquidation",items:["Toutes les filiales liquidées en premier","Remboursement des emprunts","Distribution aux actionnaires","Plus-values sur ventes de filiales soumises à l'impôt sur bénéfices"]},
+]},
+{id:13,cat:"social",icon:"ti-chart-bar",title:"Les classements",summary:"Comment sont calculés les classements joueurs, entreprises, villes et boursiers.",content:[
+{title:"Classement joueurs",items:["Capital = immobilier + financier + boursier − dettes","Points = capital / 5 000","La valeur immobilière tient compte de l'état de rénovation (ex: 80% de vie = 80% des points)","Montée de niveau : TOP 15% du niveau actuel — Descente : FLOP 15%"]},
+{title:"Classement rentabilité",items:["Renta = (capital / 150 000) ^ (1 / jours depuis inscription)","Récompense la croissance régulière dans le temps"]},
+{title:"Classement entreprises",items:["5 niveaux, mêmes critères que joueurs","Montée/descente : TOP/FLOP 15%","Grève en cours : seulement 50% des points comptabilisés"]},
+{title:"Classement villes",items:["4 critères : Habitants, Développement, Concours, Bonus/Malus","Chaque catégorie ramenée sur une échelle 0-2 000","Mis à jour en temps réel"]},
+{title:"Classement boursiers",items:["Points = nb actions × (prix vente − prix achat)","Points uniquement valables dans ce classement"]},
+]},
+{id:14,cat:"social",icon:"ti-messages",title:"La communication",summary:"Forum, tchat, messagerie et Discord — les règles à respecter.",content:[
+{title:"Règles de base",items:["Politesse et courtoisie obligatoires — ni vulgarité, ni injure, ni diffamation","Pas de langage SMS ni fautes volontaires","Pas de flood (sauf partie dédiée au forum)","Liens externes autorisés si liés au jeu, interdits si inappropriés","Interdiction de partager ses coordonnées personnelles","Usage excessif des majuscules interdit","Ne pas remettre en cause le staff publiquement"]},
+{title:"Moyens de communication",items:["Forum : annonces officielles, discussions jeu, ville, flood, OpenSpace","Tchat : général, ville, entreprise, mairie (si élu), presse (si journaliste)","Messagerie privée : joueurs, entreprises, groupes","Discord officiel : discord.gg/KE9bwS8cZT"]},
+{title:"Contacter le staff",items:["Via messagerie en écrivant à 'Staff'","Le staff ne répond qu'aux questions d'ordre privé","Forum pour toutes les questions générales","Bugs et failles : privé au staff uniquement"]},
+]},
+{id:15,cat:"social",icon:"ti-gavel",title:"La modération",summary:"Règles du jeu, sanctions possibles et rôle des modérateurs.",content:[
+{title:"Règles principales",items:["Comportement respectueux envers tous","Respecter les règles du forum et du tchat","Interdiction formelle de multicomptes","Reporter les bugs sans les exploiter (messagerie Staff)","Pas de bots ni macros — navigateur grand public uniquement","Pas de dons de compte","Parler en français (monde 8)"]},
+{title:"Sanctions possibles",items:["Amende financière : buguse ou transaction anormale","Compte muet : flood excessif ou propos hors-cadre","Gel du compte : durée déterminée ou permanente","Tous les acteurs d'une entreprise peuvent être sanctionnés selon leur implication"]},
+{title:"Rôle des modérateurs",items:["Nommés par les administrateurs — rôle bénévole","Niveaux d'intervention : observation, avertissement verbal, avertissement officiel, mute, signalement au staff","Ne règlent pas les litiges commerciaux ni les bugs techniques","Ne contestent pas publiquement les décisions du staff"]},
+]},
+{id:16,cat:"jeu",icon:"ti-user-circle",title:"Personnage & niveaux",summary:"Niveaux de progression, récompenses et création de votre personnage virtuel.",content:[
+{title:"Les 10 niveaux et récompenses",items:["Niv.1 Apprenti : 25 000 Ø + 2 500 GOLD + 1 Token + module Banque","Niv.2 Nouvel Investisseur : 50 000 Ø + 5 000 GOLD + 2 Tokens","Niv.3 Junior : 75 000 Ø + 7 500 GOLD + 3 Tokens + module Ville","Niv.4 Gestionnaire : 100 000 Ø + 10 000 GOLD + 4 Tokens + module Assistants","Niv.5 Maître : 125 000 Ø + 12 500 GOLD + 5 Tokens + Entreprise Commerciale + Bourse","Niv.6 Magnat : 150 000 Ø + 15 000 GOLD + 6 Tokens","Niv.7 Entrepreneur : 175 000 Ø + 17 500 GOLD + 7 Tokens + Entreprise de Construction","Niv.8 Visionnaire : 200 000 Ø + 20 000 GOLD + 8 Tokens","Niv.9 Confirmé : 225 000 Ø + 22 500 GOLD + 9 Tokens + module Holding","Niv.10 Magnat des Affaires : 250 000 Ø + 25 000 GOLD + 10 Tokens"]},
+{title:"Personnage & options",items:["Avatar personnalisable (image uploadée depuis votre ordinateur)","Histoire de personnage libre à rédiger dans votre profil","Mode Expert : débloque tous les modules immédiatement (requiert niveau 10 sur un autre monde)","Mot de passe : 12+ caractères recommandés, ne jamais partager"]},
+]},
+{id:17,cat:"jeu",icon:"ti-alert-triangle",title:"Événements — tableau complet",summary:"Probabilités et effets de tous les événements du jeu.",content:[
+{title:"Tableau des événements",items:["Fin de bail (90%) : 5% propriétés louées — locataires quittent le bien","Erreur bancaire (20%) : 4% joueurs — somme reçue selon niveau","Héritage d'un bien (20%) : 4% joueurs — bien correspondant au niveau","Héritage financier (20%) : 4% joueurs — somme selon niveau","Défaut assurance entreprise (20%) : 10% biens non assurés — amende 2%","Défaut assurance (20%) : 10% biens non assurés — amende 2%","Loterie (10%) : 4% joueurs — somme selon niveau","Insalubrité (10%) : 20% propriétés louées — locataires quittent","Cambriolage (8%) : 5% propriétés — dégâts à réparer","Incendie (7%) : 5% propriétés — dégâts à réparer","Orage violent (3,5%) : 10% propriétés — dégâts à réparer","Inondation (2,5%) : 10% propriétés — dégâts à réparer","Tremblement de terre (1,5%) : 15% propriétés — dégâts à réparer","Lutte contre pauvreté (1%) : 100% entreprises — prélèvement 0,5% du capital","Grand froid (1%) : 100% entreprises — prélèvement 1% du capital","Canicule (1%) : 100% entreprises — prélèvement 1% du capital","Remboursement dette (0,5%) : 100% entreprises — prélèvement 1% du capital"]},
+]},
+{id:18,cat:"tech",icon:"ti-refresh",title:"Les mises à jour",summary:"Ordre et fréquence des mises à jour quotidiennes et hebdomadaires.",content:[
+{title:"Mises à jour quotidiennes (3h Paris)",items:["1. Actions actionnaires — levées de fonds — votes","2. Charges, impôts fonciers, assurances des entreprises","3. Contrats entreprises (acceptation/refus)","4. Revenus joueurs et entreprises, primes, dividendes","5. Stocks de matières premières produits","6. Statut des joueurs (inactifs, fins de gel)","7. Gestion multicomptes automatique","8. Épargnes et emprunts (notifications + transferts)","9. Revenus de chaque joueur calculés et versés","10. Événements aléatoires","11. Petites annonces (fins de ventes) + conjoncture immobilière","12. Classements mis à jour"]},
+{title:"Mises à jour hebdomadaires (lundi)",items:["Bilan comptable des entreprises (dimanche 23h45)","Suppression des entreprises non validées ou sans direction","Faillites d'entreprises détectées et traitées","Perception marketing mise à jour","Taux des villes + coûts d'entretien calculés","Faillites des villes traitées","Tableau d'évolution VIP/SAPHIR mis à jour","Évolution des prix des biens","Montées/descentes de niveaux entreprises"]},
+]},
+{id:19,cat:"tech",icon:"ti-diamond",title:"GOLD & abonnements",summary:"La monnaie premium optionnelle, ses usages et les systèmes de fidélité.",content:[
+{title:"Usages des GOLD",items:["Échange contre de l'argent in-game (taux indexé sur la masse monétaire)","Boost de travaux : durée ÷ 2 — tarif de 4 000 GOLD (1 bien) à 20 GOLD (≥ 1 M biens)","Boost de production d'usines de matières premières","Activation espace VIP : 1 mois d'accès à des fonctionnalités avancées","Activation espace SAPHIR pour votre entreprise/holding"]},
+{title:"Avantages VIP/SAPHIR",items:["Achats groupés sans limite de stock","Tableau d'évolution de l'empire et statistiques détaillées","Rénovations 2x plus rapides (entreprises de construction)","Production +20% pour les entreprises de construction SAPHIR","Signature personnalisée sur le forum","Assurance spéciale VIP","Annulation des commissions des assistants (construction, embellissement, assurance)"]},
+{title:"Fidélité & bonus",items:["5% GOLD bonus (premier achat) jusqu'à 30% (si 6 MØ achetés sur 30 jours)","Bonus de change : +2%/million converti jusqu'à 10 M, +1%/million jusqu'à 50 M","Abonnements : engagement 3 mois minimum, renouvelés automatiquement","Upgrade immédiat — Downgrade à la fin du mois en cours","Premier achat : satisfait ou remboursé sous 14 jours (100%)"]},
+]},
+{id:20,cat:"tech",icon:"ti-users-group",title:"Multicomptes & options",summary:"Règles des multicomptes et paramétrages de votre compte joueur.",content:[
+{title:"Règles multicomptes",items:["Un seul compte par personne physique — violation = gel des comptes","Système automatique de détection évolué","Plusieurs joueurs du même foyer : enregistrement nécessaire auprès du staff","Gel minimal d'une semaine — le staff ne peut pas agir sur le système automatique"]},
+{title:"Interactions bloquées entre comptes enregistrés",items:["Ventes par annonces impossibles entre eux","Pas de directeurs dans la même entreprise","Pas de déménagements entre villes impliquant les deux joueurs","Un seul vote possible au total entre joueurs enregistrés","Une seule candidature à la mairie possible"]},
+{title:"Options de compte",items:["Mot de passe : 12+ caractères, mélange lettres/chiffres/symboles recommandé","Mode Expert : débloque tous les modules immédiatement (nécessite niveau 10 sur un autre monde)","VPN/proxy/TOR jouent en défaveur en cas de suspicion de multicomptes"]},
+]},
+{id:21,cat:"tech",icon:"ti-api",title:"API publique",summary:"Accédez automatiquement aux données du jeu via l'API officielle.",content:[
+{title:"Données disponibles",items:["API Bâtiments : nom, valeur, loyer, charge, impôt, promotion, coûts construction/embellissement/réparation","API Matériaux : matières premières (nom, prix, unité) et usines (production, valeur, charge)","API Joueurs : pseudo, points, classement, niveau, ville","Formats : JSON et CSV"]},
+{title:"Accès et fréquence",items:["Bâtiments JSON : monde8.empireimmo.com/api/buildings.json","Matériaux JSON : monde8.empireimmo.com/api/materials.json","Joueurs JSON : monde8.empireimmo.com/api/players.json","Mise à jour toutes les 4 heures"]},
+]},
+{id:22,cat:"social",icon:"ti-award",title:"Rôles spécifiques",summary:"Fonctionnalités supplémentaires pour les maires, conseillers, journalistes et modérateurs.",content:[
+{title:"Maires et conseillers",items:["Maire : constructions municipales, emprunts pour la ville, nomination des conseillers et du barman","Conseiller finances : transferts entre banque, caisse solidaire et comptes ville","Conseiller urbanisme : lancer constructions et destructions de bâtiments","Conseiller communication : messages collectifs, tutoriel, nomination du barman","Barman : organise des jeux avec gains dans le bar municipal"]},
+{title:"Directeurs de banque",items:["Définissent les taux, plafonds et conditions d'accès aux emprunts et épargnes","Directeur BN : membre du staff","Directeurs BM : nommés par les maires, deviennent automatiquement conseillers"]},
+{title:"Journalistes",items:["Accès à des données exclusives sur la conjoncture et les élections","Pour devenir journaliste : contacter un rédacteur en chef","Pour devenir rédacteur en chef : candidature au staff via messagerie"]},
+{title:"Symboles monétaires",items:["K = mille | M = million | G = milliard | T = billion | P = billiard","E = trillion | Z = trilliard | Y = quadrillion | R = quadrilliard","Q = quintillion | U = quintilliard | S = sextillion | N = septillion"]},
+]},
+];
+
+let activeTab="all";let searchQuery="";
+
+function badge(cat){const map={immo:"Immobilier",finance:"Finances",ville:"Ville",entreprise:"Entreprises",social:"Communauté",jeu:"Jeu",tech:"Technique"};return`<span class="badge ${cat}">${map[cat]||cat}</span>`}
+function hl(text,q){if(!q)return text;const re=new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');return text.replace(re,'<span class="highlight">$1</span>')}
+
+function render(){
+const q=searchQuery.toLowerCase().trim();
+const sections=DATA.filter(s=>{
+if(activeTab!=="all"&&s.cat!==activeTab)return false;
+if(!q)return true;
+if(s.title.toLowerCase().includes(q)||s.summary.toLowerCase().includes(q))return true;
+return s.content.some(b=>b.title.toLowerCase().includes(q)||b.items.some(i=>i.toLowerCase().includes(q)));
+});
+document.getElementById("resultsCount").textContent=sections.length===DATA.length?`${DATA.length} sections disponibles`:`${sections.length} section${sections.length>1?"s":""} trouvée${sections.length>1?"s":""}`;
+const cont=document.getElementById("sections");
+if(sections.length===0){cont.innerHTML=`<div class="no-results"><i class="ti ti-search-off"></i>Aucun résultat pour "${searchQuery}"<br><small>Essaie d'autres mots-clés</small></div>`;return;}
+cont.innerHTML=sections.map(s=>{
+const matchesBody=q&&s.content.some(b=>b.title.toLowerCase().includes(q)||b.items.some(i=>i.toLowerCase().includes(q)));
+const open=q&&matchesBody;
+return`<div class="section-card">
+<div class="section-header" onclick="toggle(${s.id})">
+<i class="ti ${s.icon} section-icon"></i>
+<span class="section-title">${hl(s.title,q)}${badge(s.cat)}</span>
+<i class="ti ti-chevron-down chevron${open?" open":""}" id="ch-${s.id}"></i>
+</div>
+<div class="section-body${open?" open":""}" id="body-${s.id}">
+<p class="section-summary">${hl(s.summary,q)}</p>
+${s.content.map(b=>`<div class="rule-block"><div class="rule-title">${hl(b.title,q)}</div><ul>${b.items.map(i=>`<li>${hl(i,q)}</li>`).join("")}</ul></div>`).join("")}
+</div>
+</div>`}).join("");
+}
+
+function toggle(id){
+const body=document.getElementById("body-"+id);
+const ch=document.getElementById("ch-"+id);
+ch.classList.toggle("open",body.classList.toggle("open"));
+}
+
+document.getElementById("searchInput").addEventListener("input",e=>{searchQuery=e.target.value;render();});
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{
+activeTab=t.dataset.cat;
+document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+t.classList.add("active");render();
+}));
+render();
+</script>
+</body>
+</html>
