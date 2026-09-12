@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Archives — Le Journal du Marché</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 1.6em; margin-bottom: 4px; }
+  .sub { color: #9aa0a6; margin-bottom: 24px; }
+  input#recherche { width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 1em; border-radius: 8px; border: 1px solid #333; background: #1a1d24; color: #e6e6e6; margin-bottom: 20px; }
+  h2 { font-size: 1.1em; border-bottom: 1px solid #2a2d34; padding-bottom: 6px; margin-top: 32px; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li { margin: 0; }
+  a.edition-link { display: block; padding: 10px; border-radius: 6px; color: #8ab4f8; text-decoration: none; }
+  a.edition-link:hover { background: #1a1d24; }
+  .num { color: #e6e6e6; font-weight: 600; }
+  .date { color: #9aa0a6; font-size: 0.85em; margin-left: 6px; }
+  .accroche { display: block; color: #b8bcc4; font-size: 0.88em; margin-top: 2px; font-weight: 400; }
+  .count { color: #6b7078; font-size: 0.85em; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <h1>📰 Archives — Le Journal du Marché</h1>
+  <div class="sub">Toutes les éditions publiées, du plus récent au plus ancien.</div>
+
+  <input id="recherche" type="text" placeholder="Rechercher un numéro d'édition (ex: 81)...">
+
+  <h2>📚 Éditions (2 à 82)</h2>
+  <ul id="liste-editions"></ul>
+  <div class="count" id="compteur"></div>
+
+  <h2>📊 Bilans hebdomadaires</h2>
+  <ul>
+    <li><a class="edition-link" href="bilan-semaine-4.html">Bilan — Semaine 4</a></li>
+    <li><a class="edition-link" href="bilan-semaine-3.html">Bilan — Semaine 3</a></li>
+    <li><a class="edition-link" href="bilan_semaine_2.html">Bilan — Semaine 2</a></li>
+    <li><a class="edition-link" href="journal_marche_bilan_semaine_01.html">Bilan — Semaine 1</a></li>
+  </ul>
+
+<script>
+// Fichiers d'édition : 2 -> edition-2.html, 3-37 -> journal_marche_edition_NN.html,
+// 38-52 -> edition-NN.html, 53-55 -> journal_marche_edition_NN.html, 56-82 -> edition-NN.html
+function fichierPour(n) {
+  if (n === 2) return "edition-2.html";
+  if (n >= 3 && n <= 37) return "journal_marche_edition_" + String(n).padStart(2, "0") + ".html";
+  if (n >= 38 && n <= 52) return "edition-" + n + ".html";
+  if (n >= 53 && n <= 55) return "journal_marche_edition_" + n + ".html";
+  if (n >= 56 && n <= 82) return "edition-" + n + ".html";
+  return null;
+}
+
+// Accroches ajoutées au fur et à mesure (titre/date + résumé de l'intro).
+// Éditions non encore renseignées : affichage du numéro seul.
+const ACCROCHES = {
+  2: { date: "21 juin 2026", texte: "Semaine calme : le marché bouge peu d'un reset à l'autre." },
+  3: { date: "22 juin 2026", texte: "Le marché se réveille : 204 biens sur 204 ont varié cette nuit, le reset le plus actif à ce jour." },
+  4: { date: "23 juin 2026", texte: "Retour au calme après le reset agité de l'édition précédente." },
+  5: { date: "24 juin 2026", texte: "Un nouveau leader côté entreprise : le Centre de recherche national bondit à 4,95% de ROI." },
+  6: { date: "25 juin 2026", texte: "Record historique : le Centre de recherche régional atteint 5,88% de ROI." },
+  7: { date: "26 juin 2026", texte: "Le retour du pendule : ce qui descend fort remonte fort, et inversement." },
+  8: { date: "27 juin 2026", texte: "Deux nouveaux entrants dans les Top 5 entreprise et personnel." },
+  9: { date: "28 juin 2026", texte: "Alerte séisme : un tremblement de terre frappe M8, coûts de réparation en hausse." },
+  63: { date: "23 août 2026", texte: "Imperial compagny rachète 18 sociétés pour 58,27 YØ — titanium tout confort en tête à 49,73%." },
+  64: { date: "24-25 août 2026", texte: "Phénix-Céleste absorbe ses 4 filiales Le petit Québécois pour 72,51 YØ — Tour prestige aménagée à 46,68%." },
+  65: { date: "25-26 août 2026", texte: "Zone aérospatiale nationale explose à 53,50%, un record toutes catégories confondues." },
+  66: { date: "26-27 août 2026", texte: "Rotation totale des promos : Complexe palacium luxueux atteint 62,03%, record de la saison." },
+  67: { date: "27-28 août 2026", texte: "Escura dépasse Killian17320 et prend la 1ère place mondiale." },
+  68: { date: "28-29 août 2026", texte: "2100m² de bureaux aménagés mène à 53,99% — Skull Private Asset bondit de 64 rangs." },
+  69: { date: "28-29 août 2026", texte: "Centre de recherche international mène à 54,83% — calme en tête, mouvement chez les holdings." },
+  70: { date: "29-30 août 2026", texte: "Le top 8 mondial stable pour la 3e édition consécutive — Skyline By Escura Group prend la tête des holdings." },
+};
+
+const liste = document.getElementById("liste-editions");
+const compteur = document.getElementById("compteur");
+const editions = [];
+for (let n = 82; n >= 2; n--) {
+  const f = fichierPour(n);
+  if (f) editions.push({ n, f });
+}
+
+function afficher(filtre) {
+  liste.innerHTML = "";
+  const filtrees = editions.filter(e => String(e.n).includes(filtre));
+  filtrees.forEach(e => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.className = "edition-link";
+    a.href = e.f;
+    const info = ACCROCHES[e.n];
+    if (info) {
+      a.innerHTML = '<span class="num">Édition ' + e.n + '</span><span class="date">' + info.date + '</span><span class="accroche">' + info.texte + '</span>';
+    } else {
+      a.innerHTML = '<span class="num">Édition ' + e.n + '</span>';
+    }
+    li.appendChild(a);
+    liste.appendChild(li);
+  });
+  compteur.textContent = filtrees.length + " édition(s)";
+}
+
+document.getElementById("recherche").addEventListener("input", (e) => afficher(e.target.value.trim()));
+afficher("");
+</script>
+</body>
+</html>
