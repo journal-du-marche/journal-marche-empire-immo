@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Archives — Le Journal du Marché</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 720px; margin: 0 auto; padding: 24px 16px 64px; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 1.6em; margin-bottom: 4px; }
+  .sub { color: #9aa0a6; margin-bottom: 24px; }
+  input#recherche { width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 1em; border-radius: 8px; border: 1px solid #333; background: #1a1d24; color: #e6e6e6; margin-bottom: 20px; }
+  h2 { font-size: 1.1em; border-bottom: 1px solid #2a2d34; padding-bottom: 6px; margin-top: 32px; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li { margin: 0; }
+  a.edition-link { display: block; padding: 8px 10px; border-radius: 6px; color: #8ab4f8; text-decoration: none; }
+  a.edition-link:hover { background: #1a1d24; }
+  .count { color: #6b7078; font-size: 0.85em; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <h1>📰 Archives — Le Journal du Marché</h1>
+  <div class="sub">Toutes les éditions publiées, du plus récent au plus ancien.</div>
+
+  <input id="recherche" type="text" placeholder="Rechercher un numéro d'édition (ex: 81)...">
+
+  <h2>📚 Éditions (2 à 82)</h2>
+  <ul id="liste-editions"></ul>
+  <div class="count" id="compteur"></div>
+
+  <h2>📊 Bilans hebdomadaires</h2>
+  <ul>
+    <li><a class="edition-link" href="bilan-semaine-4.html">Bilan — Semaine 4</a></li>
+    <li><a class="edition-link" href="bilan-semaine-3.html">Bilan — Semaine 3</a></li>
+    <li><a class="edition-link" href="bilan_semaine_2.html">Bilan — Semaine 2</a></li>
+    <li><a class="edition-link" href="journal_marche_bilan_semaine_01.html">Bilan — Semaine 1</a></li>
+  </ul>
+
+<script>
+// Fichiers d'édition : 2 -> edition-2.html, 3-37 -> journal_marche_edition_NN.html,
+// 38-52 -> edition-NN.html, 53-55 -> journal_marche_edition_NN.html, 56-82 -> edition-NN.html
+function fichierPour(n) {
+  if (n === 2) return "edition-2.html";
+  if (n >= 3 && n <= 37) return "journal_marche_edition_" + String(n).padStart(2, "0") + ".html";
+  if (n >= 38 && n <= 52) return "edition-" + n + ".html";
+  if (n >= 53 && n <= 55) return "journal_marche_edition_" + n + ".html";
+  if (n >= 56 && n <= 82) return "edition-" + n + ".html";
+  return null;
+}
+
+const liste = document.getElementById("liste-editions");
+const compteur = document.getElementById("compteur");
+const editions = [];
+for (let n = 82; n >= 2; n--) {
+  const f = fichierPour(n);
+  if (f) editions.push({ n, f });
+}
+
+function afficher(filtre) {
+  liste.innerHTML = "";
+  const filtrees = editions.filter(e => String(e.n).includes(filtre));
+  filtrees.forEach(e => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.className = "edition-link";
+    a.href = e.f;
+    a.textContent = "Édition " + e.n;
+    li.appendChild(a);
+    liste.appendChild(li);
+  });
+  compteur.textContent = filtrees.length + " édition(s)";
+}
+
+document.getElementById("recherche").addEventListener("input", (e) => afficher(e.target.value.trim()));
+afficher("");
+</script>
+</body>
+</html>
