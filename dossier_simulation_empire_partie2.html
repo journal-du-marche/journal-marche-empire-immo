@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Dossier Spécial — L'Empire Méridian, Partie 2</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:40px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  h4.subsection{color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;font-size:13px;margin-top:22px;margin-bottom:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .callout.good{border-left-color:var(--ok);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:420px;}
+  .keybox .num{color:var(--gold);font-size:32px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo · Dossier Spécial — Simulation, Partie 2</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">DOSSIER SPÉCIAL — L'EMPIRE MÉRIDIAN, PARTIE 2 — 19 AOÛT 2026</div>
+
+  <h3 class="section">📰 D'un empire rentable à un empire qui rend des comptes</h3>
+  <p>La semaine dernière, notre dossier simulait la mécanique d'un oubli de réglage à l'échelle d'un empire à huit filiales : 1 096 339 biens, un résultat net cumulé de 75,87 Y Ø sur six semaines, et un seul seuil de vente mal réglé capable de coûter des dizaines de Y à lui seul. Beaucoup de lecteurs nous ont posé la même question depuis : d'accord, l'empire est rentable — mais à qui appartient-il vraiment, et qui décide de ce qu'on fait de l'argent ?</p>
+  <p>Cette semaine, Méridian change de statut : elle devient officiellement une <b>holding</b>, avec des actionnaires, un conseil de direction, et les obligations qui vont avec — vote, levées de fonds plafonnées, primes encadrées, dividendes votés. Comme la première partie, ce dossier reste une pure simulation. Mais chaque règle appliquée ici — plafonds, pourcentages, procédures de vote — est reprise telle quelle de la Constitution officielle du jeu et du barème des formules, pas inventée pour les besoins du récit. Le détail des sources est en fin d'article.</p>
+
+  <div class="keybox">
+    <div style="color:var(--gold-dim);font-size:13px;text-transform:uppercase;letter-spacing:1px;">Levée de fonds lancée cette semaine par Méridian Holding</div>
+    <div class="num">4 200 DØ</div>
+    <div style="font-size:14px;margin-top:6px;">Pour financer la 9ᵉ filiale — encore loin du plafond légal de 8 900 DØ</div>
+  </div>
+
+  <h3 class="section">🏛️ Méridian devient une holding</h3>
+  <p>Sur M8, une holding est actionnaire unique à 100% de chacune de ses filiales — jamais de capital croisé, jamais de minoritaires au niveau filiale. Elle peut en détenir jusqu'à 500. Point important pour la suite : seule la holding a le droit de lever des fonds ou d'injecter du capital ; une filiale, elle, ne peut pas organiser sa propre levée de fonds. Tout l'argent frais qui entre dans l'empire Méridian doit donc transiter par la maison mère.</p>
+  <div class="callout warn"><b>Le plafond qui borne tout.</b> La valeur d'une holding (trésorerie + livrets + épargne − emprunts + capital des filiales) est plafonnée à 8 900 DØ. Au-delà, la loi du jeu bloque à la fois les nouvelles levées de fonds et les achats de filiales supplémentaires — un empire ne peut pas grossir indéfiniment par cette voie.</div>
+
+  <h3 class="section">💰 La levée de fonds pour la 9ᵉ filiale</h3>
+  <p>Pour financer l'acquisition d'une neuvième filiale, le PDG et le Directeur Financier de Méridian Holding proposent une levée de fonds de <b>4 200 DØ</b> — un choix éditorial pour ce dossier, resté volontairement bien en dessous du plafond de 8 900 DØ afin de garder une marge de manœuvre pour de futures levées.</p>
+  <div class="callout"><b>Frais de dossier — règle réelle du jeu</b><br>Frais = participation × 0,5%, payés par chaque participant, non remboursables en cas d'annulation.</div>
+  <table>
+    <tr><th>Participant</th><th class="num">Participation</th><th class="num">Frais (0,5%)</th></tr>
+    <tr><td>PDG (fondateur historique)</td><td class="num">1 470 DØ</td><td class="num">7,35 DØ</td></tr>
+    <tr><td>Directeur Financier (co-fondateur)</td><td class="num">1 260 DØ</td><td class="num">6,30 DØ</td></tr>
+    <tr><td>Actionnaire externe A</td><td class="num">840 DØ</td><td class="num">4,20 DØ</td></tr>
+    <tr><td>Actionnaire externe B</td><td class="num">630 DØ</td><td class="num">3,15 DØ</td></tr>
+    <tr><td><b>Total</b></td><td class="num"><b>4 200 DØ</b></td><td class="num"><b>21,00 DØ</b></td></tr>
+  </table>
+  <p>21 DØ de frais de dossier pour 4 200 DØ levés — l'équivalent, à cette échelle, d'un péage minime comparé au capital injecté. Mais la règle est stricte : même si un actionnaire se rétracte le lendemain, ces frais restent acquis.</p>
+
+  <h3 class="section">🗳️ Le vote des actionnaires</h3>
+  <p>Avant que la levée de fonds soit validée, elle doit passer au vote — <b>proportionnel au pourcentage d'actions détenues</b>, avec majorité absolue requise, ou majorité relative si aucune décision n'est prise au bout de 7 jours.</p>
+  <table>
+    <tr><th>Actionnaire</th><th class="num">Parts</th><th>Vote</th></tr>
+    <tr><td>PDG</td><td class="num">35%</td><td class="pos">Pour</td></tr>
+    <tr><td>Directeur Financier</td><td class="num">28%</td><td class="pos">Pour</td></tr>
+    <tr><td>Actionnaire externe A</td><td class="num">20%</td><td class="pos">Pour</td></tr>
+    <tr><td>Actionnaire externe B</td><td class="num">17%</td><td class="neg">Contre</td></tr>
+  </table>
+  <p>83% de « Pour » dès le premier jour : la majorité absolue est atteinte immédiatement, pas besoin d'attendre le délai de 7 jours pour basculer sur une majorité relative. La levée de fonds est validée sans ambiguïté — un cas simple, mais qui montre bien que la mécanique de vote n'a rien de cosmétique : un actionnaire externe avec 17% des parts ne peut rien bloquer seul, mais aurait pu faire basculer le résultat s'il avait été rejoint par un deuxième minoritaire.</p>
+
+  <h3 class="section">🎖️ Les primes de directeur — deux plafonds qui se superposent</h3>
+  <p>Prenons Méridian Delta-08, la plus grosse filiale de l'empire (226 334 biens, 3,76 Y Ø de résultat net en semaine 6 — chiffres de la Partie 1). Pour ce dossier, on lui attribue des capitaux propres de <b>340 Y Ø</b> (hypothèse éditoriale, non mesurée en jeu — aucun rapport financier réel de cette ampleur n'a été communiqué au Journal). Son Directeur Financier a droit à une prime.</p>
+  <div class="callout"><b>Prime maximale par directeur — règle réelle du jeu</b><br>Prime max = capitaux propres de l'entreprise × 2% (minimum garanti : 5 000 Ø).<br>Mais un joueur, tous postes et entreprises confondus, ne peut pas recevoir plus de 10% de son capital personnel en primes cumulées (minimum garanti : 250 000 Ø).</div>
+  <table>
+    <tr><th>Plafond</th><th class="num">Montant</th><th>Détail</th></tr>
+    <tr><td>Côté entreprise</td><td class="num">6,80 Y Ø</td><td>340 Y Ø × 2% — ce que Delta-08 a le droit de verser en théorie.</td></tr>
+    <tr><td>Côté joueur</td><td class="num neg">5,00 Y Ø</td><td>Capital personnel du Directeur Financier : 50 Y Ø (hypothèse éditoriale) → 10% = 5 Y Ø max, toutes primes cumulées.</td></tr>
+  </table>
+  <p>Résultat : la prime réellement versée est <b>5 Y Ø</b>, pas 6,8 Y Ø — c'est le plafond le plus bas des deux qui s'applique. Un directeur qui cumule plusieurs postes dans plusieurs filiales de l'empire peut donc se retrouver bloqué par son propre plafond personnel bien avant que sa filiale n'ait épuisé le sien.</p>
+
+  <h3 class="section">📤 Les dividendes — encore un vote</h3>
+  <p>Les dividendes sont définis par le PDG ou le Directeur Financier, mais soumis au vote des actionnaires, avec un double garde-fou : maximum 15% du patrimoine de l'entreprise, et versement possible uniquement si les bénéfices reportés le permettent.</p>
+  <p>Pour Delta-08 (340 Y Ø de capitaux propres, hypothèse éditoriale), la direction propose un dividende prudent de <b>4% du patrimoine</b>, soit 13,6 Y Ø à répartir entre les actionnaires — largement sous le plafond de 15% (51 Y Ø), pour garder de la trésorerie disponible en cas de semaine plus difficile, comme celle vécue par Delta-07 avant la correction du réglage de vente.</p>
+  <div class="callout good"><b>Le fil rouge de la série.</b> Un empire à l'échelle de Méridian n'est jamais géré par une seule personne qui appuie sur un bouton : chaque levée de fonds, chaque prime, chaque dividende repasse par un vote proportionnel aux parts détenues. La mécanique qui a coûté 9,66 Y par semaine à Delta-07 dans la Partie 1 n'était qu'un réglage technique oublié — celle qui gouverne l'argent des actionnaires, elle, ne pardonne pas les décisions prises sans majorité.</div>
+
+  <h3 class="section">📰 À lire aussi dans le Journal</h3>
+  <p>Partie 1 de ce dossier : « L'Empire Méridian — d'un oubli de réglage à un empire à 8 filiales », publiée le 18 août 2026.</p>
+
+  <h3 class="section">🔬 Méthodologie — ce qui est réel, ce qui est fictif</h3>
+  <p>Méridian Holding et ses filiales restent entièrement fictives : aucune structure de ce nom n'existe sur M8. Ce qui est réel, en revanche, ce sont les règles appliquées — reprises telles quelles de la Constitution officielle du jeu et du barème des formules : plafond de valeur d'une holding (8 900 DØ), interdiction pour une filiale de lever des fonds elle-même, frais de dossier de 0,5% sur toute levée de fonds, règle de vote proportionnel avec majorité absolue ou relative après 7 jours, formule de prime maximale par directeur (capitaux propres × 2%, plafond personnel de 10% du capital du joueur), et plafond de dividendes à 15% du patrimoine de l'entreprise.</p>
+  <p style="font-size:13px;color:var(--ink-dim);">Les chiffres eux-mêmes — montant de la levée de fonds (4 200 DØ), répartition des parts entre actionnaires, capitaux propres de Delta-08 (340 Y Ø), capital personnel du Directeur Financier (50 Y Ø) — sont des hypothèses éditoriales choisies pour illustrer clairement les mécanismes, et non des mesures effectuées sur une entreprise réelle du serveur. La Partie 1 s'appuyait sur deux rapports financiers réels communiqués par un lecteur pour ses ratios de charges/produits ; cette Partie 2 porte sur des mécanismes de gouvernance (actionnariat, votes, primes) pour lesquels aucune donnée financière réelle équivalente n'a été communiquée au Journal à ce jour. Nomenclature : Y = quadrillion (10²⁴). Le symbole « DØ » utilisé pour les plafonds de levée de fonds et de valeur de holding est un palier propre au barème du jeu ; en l'absence de confirmation de son rang exact dans la liste officielle des préfixes (K, M, G, T, P, E, Z, Y, R, Q, U, S, N), le Journal l'a repris tel quel, sans tenter de le convertir en Y, pour ne pas introduire de chiffre non vérifié.</p>
+
+  <div class="sources">
+    Simulation illustrative, Partie 2 sur les mécanismes réels d'actionnariat, de levée de fonds et de primes de directeur. Aucune filiale « Méridian » n'existe réellement sur M8.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8 — Dossier Spécial</div>
+
+</div>
+</body>
+</html>

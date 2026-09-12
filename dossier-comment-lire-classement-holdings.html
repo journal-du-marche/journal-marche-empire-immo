@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Comment lire un classement de holdings</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:32px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">DOSSIER PÉDAGOGIQUE — 5 AOÛT 2026</div>
+
+  <h3 class="section">📰 Pourquoi ce dossier</h3>
+  <p>Le classement des holdings est un des tableaux les plus regardés du jeu — et un des moins expliqués. Filiales, niveau, PDG, Directeur Général, points... on lit vite les chiffres, mais on comprend rarement ce qu'ils veulent dire vraiment. Ce dossier donne les clés pour lire ce classement comme un vrai analyste, sans jargon inutile.</p>
+
+  <h3 class="section">🏢 Holding, filiale, quelle différence ?</h3>
+  <p>Une <b>holding</b> ne possède pas de biens elle-même : elle possède des <b>filiales</b>, qui sont les vraies entreprises (immeubles, usines, terrains...). Le classement "Holdings" additionne les points de toutes les filiales d'un même groupe. Le nombre de filiales affiché n'est donc pas un score en soi — c'est un dénominateur. Deux holdings peuvent avoir le même total de points avec des structures complètement différentes : l'une avec 3 grosses filiales, l'autre avec 100 petites.</p>
+
+  <h3 class="section">🔢 Le niveau, c'est quoi exactement ?</h3>
+  <p>Chaque filiale affiche un niveau, de 0 à 6. Ce chiffre reflète le degré de développement du bien : un niveau 0 correspond souvent à une filiale brute — récemment créée, non aménagée, ou en attente de construction — alors qu'un niveau 6 signale une filiale pleinement développée et optimisée. Plus une holding aligne de filiales à niveau élevé, plus sa valeur totale grimpe vite, indépendamment du nombre de filiales. C'est un deuxième axe de lecture, à croiser avec le ratio points/filiale : deux holdings avec le même ratio peuvent avoir des profils de niveau très différents (beaucoup de filiales moyennes vs peu de filiales maximisées).</p>
+
+  <h3 class="section">🎯 PDG contre Directeur Général : qui possède quoi ?</h3>
+  <p>C'est le point le plus mal compris. Dans une holding, le <b>PDG</b> est la personne qui a créé la structure — c'est lui (ou elle) qui en reste propriétaire, sauf s'il cède ou vend des parts. Les autres postes (<b>Directeur Général</b>, Directeur Marketing, Directeur Commercial...) sont des rôles de gestion attribués par le PDG. Occuper un de ces postes ne donne <i>aucune part automatique du capital</i> — c'est une fonction, pas une propriété.</p>
+  <div class="callout">La seule façon de savoir qui possède réellement une part d'une holding, c'est de consulter l'onglet <b>Actionnaires</b> sur sa fiche — et cet onglet n'existe que pour les holdings <b>en bourse</b>. Pour les holdings privées, la répartition du capital reste invisible aux autres joueurs.</div>
+
+  <h3 class="section">🧮 Le ratio points par filiale</h3>
+  <p>Une fois qu'on a ces deux notions, on peut calculer un indicateur simple : <b>points totaux ÷ nombre de filiales</b>. Ça donne une idée de la "densité" de valeur du holding — est-ce que sa richesse vient de quelques biens exceptionnels, ou d'un grand nombre de petits biens ? Voici quelques exemples réels du classement actuel :</p>
+  <table>
+    <tr><th>Holding</th><th class="num">Filiales</th><th class="num">Points</th><th class="num">Ratio / filiale</th></tr>
+    <tr><td>Phénix Zénith</td><td class="num">3</td><td class="num">15,76 ZØ</td><td class="num">5,25 ZØ</td></tr>
+    <tr><td>MMS Group</td><td class="num">28</td><td class="num">30,92 ZØ</td><td class="num">1,10 ZØ</td></tr>
+    <tr><td>Amundi</td><td class="num">37</td><td class="num">11,72 ZØ</td><td class="num">316,81 EØ</td></tr>
+    <tr><td>Le petit Québecois</td><td class="num">32</td><td class="num">6,03 ZØ</td><td class="num">188,30 EØ</td></tr>
+    <tr><td>Starlux Corp by le pigeon</td><td class="num">106</td><td class="num">8,32 ZØ</td><td class="num">78,47 EØ</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Phénix Zénith a un ratio nettement plus élevé que MMS Group ou Amundi — simplement parce qu'elle concentre sa valeur sur 3 filiales au lieu de 28 ou 37. Rien d'anormal : certains joueurs préfèrent quelques biens de très haut niveau, d'autres préfèrent multiplier les filiales de niveau plus modeste. Les deux stratégies existent et sont valides.</p>
+  <div class="callout warn">⚠️ Piège à éviter : un ratio élevé ou bas, seul, ne prouve absolument rien. Ce n'est qu'un point de départ pour poser de meilleures questions — jamais une conclusion.</div>
+  <p style="font-size:13px;color:var(--ink-dim);">Autre nuance à connaître : le total de points affiché sur la fiche d'un holding n'est pas la simple somme des filiales listées — il inclut aussi la trésorerie du holding (son "coffre"). Concrètement : Points du holding = (trésorerie + valeur cumulée des filiales) ÷ 5 000. Un holding qui garde beaucoup de cash en réserve aura donc plus de points que ce que sa liste de filiales seule ne laisse penser.</p>
+
+  <h3 class="section">📈 Le "+/-" : l'évolution de rang</h3>
+  <p>La colonne "+/-" (ou "evol") affichée à côté de chaque ligne du classement indique le nombre de places gagnées ou perdues depuis la dernière mise à jour — pas une variation de points. Un holding qui gagne 5 places peut avoir vu ses points bouger très peu si ses concurrents directs ont chuté davantage. À l'inverse, un gros gain de points peut ne rapporter qu'une seule place si le holding était déjà loin devant.</p>
+
+  <h3 class="section">🔍 Signaux qui méritent qu'on creuse</h3>
+  <p>Aucun de ces signaux, pris seul, ne prouve quoi que ce soit — mais réunis, ils justifient qu'on pose des questions plutôt que de prendre le classement au pied de la lettre :</p>
+  <table>
+    <tr><th>Signal</th><th>Pourquoi ça interroge</th></tr>
+    <tr><td>Plusieurs filiales à valeurs quasi identiques (écart de quelques % seulement)</td><td>Une croissance organique produit rarement des valeurs aussi uniformes — ça ressemble plus à une série créée en bloc</td></tr>
+    <tr><td>Sauts de rang de plusieurs dizaines de places d'un coup</td><td>Une progression normale se construit ligne par ligne ; un bond énorme et soudain casse ce schéma</td></tr>
+    <tr><td>Un PDG qui explose au classement joueurs alors que ses Directeurs Généraux stagnent</td><td>Si la réussite était vraiment collective, on s'attendrait à voir l'entourage progresser aussi, même modestement</td></tr>
+    <tr><td>Impossible de vérifier l'actionnariat (holding non cotée en bourse)</td><td>Ça ne veut pas dire qu'il y a un problème — juste qu'on ne peut pas confirmer la répartition réelle du capital</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Ces critères sont des outils de lecture, pas des accusations. Beaucoup de holdings parfaitement légitimes cochent une ou deux de ces cases sans qu'il n'y ait rien à signaler — c'est la combinaison de plusieurs signaux, sur la durée, qui change la donne.</p>
+
+  <h3 class="section">📌 Ce qu'il faut retenir</h3>
+  <p>Le classement des holdings donne un total, pas une explication. Pour vraiment comprendre ce qu'on regarde, il faut croiser trois choses : qui est PDG (donc probablement propriétaire), combien de filiales composent la structure, et si possible l'onglet Actionnaires quand il existe. Avec ces trois clés, un tableau de chiffres devient une vraie histoire d'entreprise.</p>
+
+  <div class="sources">
+    Exemples chiffrés issus du classement public des holdings du 4 août 2026. Article pédagogique, sans lien avec une situation ou un joueur en particulier.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Dossier : VIP, SAPHIR, GOLD</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:34px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dossier-label{display:inline-block;background:var(--gold);color:#15130f;font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:2px;margin-bottom:10px;}
+  h2.guide-title{color:var(--gold);font-size:26px;margin:6px 0;}
+  .guide-sub{font-style:italic;color:var(--gold-dim);margin-bottom:20px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:460px;}
+  .keybox .num{color:var(--gold);font-size:28px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+
+  <div class="dossier-label">Dossier hebdomadaire n°1</div>
+  <h2 class="guide-title">VIP, SAPHIR, GOLD : ce qui vaut vraiment le coût, chiffré</h2>
+  <div class="guide-sub">Tous les prix réels, décortiqués pour savoir où va votre argent</div>
+
+  <h3 class="section">📰 Pourquoi ce dossier</h3>
+  <p>VIP, SAPHIR, GOLD, Abonnements... l'offre payante du jeu est riche, mais peu de joueurs comparent vraiment ce que chaque option coûte à l'usage. Ce dossier réunit les prix réels (captures d'écran de la boutique) et calcule, pour chaque profil de joueur, ce qui est réellement avantageux.</p>
+
+  <h3 class="section">💳 Les prix, tous réunis</h3>
+  <table>
+    <tr><th>Offre</th><th class="num">Prix</th><th>Contenu</th></tr>
+    <tr><td>Forfait Starter</td><td class="num">9,98€/mois</td><td>500 000 GOLD + Espace VIP + 1 Token Chance/jour</td></tr>
+    <tr><td>Forfait Millenium</td><td class="num">19,99€/mois</td><td>1 100 000 GOLD + VIP + 2 Tokens/j + 5% bonus packs + priorité assistants</td></tr>
+    <tr><td>Forfait Titanium</td><td class="num">49,99€/mois</td><td>2 875 000 GOLD + VIP + 3 Tokens/j + 10% bonus + priorité + Espace SAPHIR</td></tr>
+    <tr><td>Forfait Saphir (seul)</td><td class="num">19,99€/mois</td><td>Espace SAPHIR + priorité assistants (sans GOLD ni VIP)</td></tr>
+    <tr><td>Pack GOLD Maxi</td><td class="num">9,98€</td><td>500 000 GOLD, one-shot</td></tr>
+    <tr><td>Pack GOLD Mega</td><td class="num">19,99€</td><td>1 100 000 GOLD (+10% bonus), one-shot</td></tr>
+    <tr><td>Pack GOLD Ultimate</td><td class="num">49,99€</td><td>2 875 000 GOLD (+15% bonus), one-shot</td></tr>
+    <tr><td>Pack GOLD Platine</td><td class="num">99,98€</td><td>6 000 000 GOLD (+20% bonus), one-shot</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Tous les abonnements ont un engagement de 3 mois mais sont résiliables à tout moment. Les taux Constitution : engagements identiques, taux d'intérêt bancaires non liés à ces offres.</p>
+
+  <h3 class="section">🔑 Le calcul qui change tout : abonnement ou pack, même prix ?</h3>
+  <p>En comparant chaque abonnement à son pack GOLD équivalent au même prix affiché, le montant de GOLD est identique — l'abonnement ajoute VIP, Tokens Chance, priorité et bonus <b>gratuitement</b> :</p>
+  <table>
+    <tr><th>Prix</th><th>Pack GOLD seul</th><th>Abonnement au même prix</th><th>Bonus offert par l'abonnement</th></tr>
+    <tr><td>9,98€</td><td>500 000 GOLD</td><td>Starter : 500 000 GOLD</td><td class="pos">+ VIP + 1 Token/j</td></tr>
+    <tr><td>19,99€</td><td>1 100 000 GOLD</td><td>Millenium : 1 100 000 GOLD</td><td class="pos">+ VIP + 2 Tokens/j + priorité</td></tr>
+    <tr><td>49,99€</td><td>2 875 000 GOLD</td><td>Titanium : 2 875 000 GOLD</td><td class="pos">+ VIP + 3 Tokens/j + priorité + Espace SAPHIR</td></tr>
+  </table>
+  <div class="callout">Conséquence directe : si vous comptiez de toute façon acheter du GOLD, prendre l'abonnement équivalent revient au même prix mais avec VIP (et pour Titanium, SAPHIR) inclus gratuitement. Le Titanium à 49,99€/mois revient donc à payer le pack Ultimate seul (49,99€) tout en récupérant gratuitement un Espace SAPHIR qui coûterait 19,99€/mois à part.</div>
+
+  <h3 class="section">⭐ Ce que VIP donne vraiment</h3>
+  <p>D'après l'espace VIP en jeu : Tableau d'évolution de l'empire, Comparez-vous aux autres joueurs, Trader Box (alertes et ordres bourse), Vos statistiques de propriétés, Vos annonces centralisées, Signature personnalisée, Achats en lot sans limite de stock, Évolution des prix dans le temps.</p>
+  <p>VIP peut aussi s'activer seul avec du GOLD : <b>7 jours pour 50 000 GOLD</b> (≈7 143 GOLD/jour) ou <b>30 jours pour 150 000 GOLD</b> (≈5 000 GOLD/jour, nettement plus avantageux). Avec le meilleur taux GOLD (pack Platine, ≈0,0167€/1000 GOLD), 30 jours de VIP acheté seul reviennent à environ <b>2,50€</b> — bien moins cher que d'ajouter VIP via un abonnement dédié.</p>
+
+  <h3 class="section">💎 Ce que SAPHIR donne vraiment</h3>
+  <p>D'après la Constitution et confirmé par capture réelle : durées de travaux réduites de moitié, rénovations 2x plus rapides pour les ETC, production +20% pour les usines d'une ETC SAPHIR, priorité dans la file des assistants, et surtout — confirmé en direct sur un compte SAPHIR — <b>annulation totale des commissions des assistants</b> (location, rénovation, construction, embellissement, assurance).</p>
+  <div class="callout warn">Sans SAPHIR, les commissions des assistants tournent entre 1% et 4% selon le service (ex : rénovation automatique 1% à 4% selon le seuil de dégradation choisi). Avec SAPHIR, c'est 0% — sur toutes les entreprises, holdings et filiales où des actionnaires abonnés détiennent plus de 50% du capital.</div>
+
+  <h3 class="section">🧮 SAPHIR vaut-il le coup face au GOLD à l'unité ?</h3>
+  <p>Le boost de travaux via GOLD coûte de 4 000 GOLD (1 bien) à 20 GOLD (≥ 1 million de biens) pour diviser la durée par 2 — exactement l'effet SAPHIR sur les travaux. Au meilleur taux GOLD, 4 000 GOLD ≈ 0,067€ par bien boosté : pour un joueur avec un petit parc, booster ponctuellement via GOLD reste largement moins cher que 19,99€/mois de SAPHIR.</p>
+  <p>Là où SAPHIR devient rentable, c'est pour une ETC active avec un volume important de travaux et de commissions d'assistants : l'annulation totale des commissions (1 à 4% sur potentiellement des millions ou milliards de Ø de travaux) dépasse vite les 19,99€/mois en valeur, sans compter le gain de temps de la priorité dans la file.</p>
+
+  <h3 class="section">📌 Le verdict selon votre profil</h3>
+  <table>
+    <tr><th>Profil</th><th>Meilleur choix</th></tr>
+    <tr><td>Joueur casual, peu de biens</td><td>Pack GOLD seul (Maxi ou Mega) + VIP activé ponctuellement avec le GOLD — pas besoin d'abonnement</td></tr>
+    <tr><td>Joueur régulier qui achète du GOLD de toute façon</td><td>Millenium — même prix que le pack Mega, VIP et priorité en plus</td></tr>
+    <tr><td>ETC active, gros volume de travaux/commissions</td><td>Titanium ou Saphir seul — l'annulation des commissions d'assistants compense vite le prix</td></tr>
+    <tr><td>Gros joueur avec grosses réserves GOLD nécessaires</td><td>Titanium — inclut SAPHIR "gratuitement" au prix du pack GOLD équivalent</td></tr>
+  </table>
+
+  <div class="sources">
+    Dossier basé sur des captures d'écran réelles de la boutique du jeu (Monde 8, 24-25 juillet 2026) et sur la Constitution officielle (section GOLD & abonnements).
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>

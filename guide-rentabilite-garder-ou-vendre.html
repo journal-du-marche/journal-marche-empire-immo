@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Garder ou vendre : rentabilité</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:32px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">GUIDE PÉDAGOGIQUE — 16 AOÛT 2026</div>
+
+  <h3 class="section">📰 Pourquoi ce guide</h3>
+  <p>La question revient souvent dans le chat général : "à partir d'un certain niveau, quelle propriété n'est plus rentable ? Vaut mieux que je la vende ?" C'est une vraie question stratégique, et la réponse n'est pas la même pour tout le monde — elle dépend de ce que vous cherchez à optimiser. Ce guide donne la méthode pour trancher.</p>
+
+  <h3 class="section">🧮 Calculer le rendement d'un bien</h3>
+  <p>Le calcul de base est simple : <b>rendement annuel (%) = (loyer mensuel × 12) ÷ valeur du bien × 100</b>. Ce chiffre permet de comparer des biens de tailles très différentes sur une base commune. Un petit studio à faible valeur peut très bien avoir un meilleur rendement % qu'un immeuble de luxe, même si ce dernier rapporte beaucoup plus en Ø bruts chaque mois.</p>
+  <p style="font-size:13px;color:var(--ink-dim);">Règle générale : plus un bien est haut de gamme (villas, complexes de luxe), plus son rendement % a tendance à baisser avec le temps — sa valeur augmente souvent plus vite que son loyer. Les biens plus modestes gardent généralement un meilleur ratio.</p>
+
+  <h3 class="section">⚖️ Le vrai arbitrage : rendement % ou capacité d'emprunt ?</h3>
+  <p>C'est le point que beaucoup de joueurs oublient. Depuis le correctif 4.45, la capacité d'emprunt à la Banque Municipale n'est plus basée sur votre patrimoine ni sur le rendement de vos biens — elle est basée sur <b>les loyers réellement perçus sur les 6 derniers mois</b>. Concrètement, votre mensualité maximale autorisée est plafonnée à 50% de vos revenus, toutes banques confondues.</p>
+  <div class="callout">Ça change complètement la question "garder ou vendre" : maximiser le rendement % n'est pas la même stratégie que maximiser sa capacité d'emprunt.</div>
+  <table>
+    <tr><th>Objectif</th><th>Stratégie</th></tr>
+    <tr><td>Maximiser le rendement %</td><td>Vendre les biens à faible rendement, réinvestir dans des biens à ratio loyer/valeur plus élevé</td></tr>
+    <tr><td>Maximiser la capacité d'emprunt (effet de levier)</td><td>Garder ou viser des biens à <span class="pos">gros loyer absolu</span>, même si leur rendement % est modeste — c'est le loyer perçu qui compte, pas le %</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Un bien à 2% de rendement mais avec un loyer élevé peut donc valoir plus la peine d'être gardé qu'un bien à 8% de rendement mais avec un loyer faible en valeur absolue — si votre but est d'emprunter davantage.</p>
+
+  <h3 class="section">📊 Exemple chiffré (illustratif)</h3>
+  <table>
+    <tr><th>Bien</th><th class="num">Valeur</th><th class="num">Loyer/mois</th><th class="num">Rendement</th></tr>
+    <tr><td>Petite maison luxueuse</td><td class="num">500 KØ</td><td class="num">2,5 KØ</td><td class="num pos">6,0%</td></tr>
+    <tr><td>Villa de prestige</td><td class="num">4 MØ</td><td class="num">12 KØ</td><td class="num neg">3,6%</td></tr>
+    <tr><td>Complexe résidentiel</td><td class="num">15 MØ</td><td class="num">30 KØ</td><td class="num neg">2,4%</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Sur le seul critère du rendement %, la petite maison est "meilleure". Mais si l'objectif est d'emprunter, la villa et le complexe rapportent 5 à 12 fois plus de loyer en Ø bruts chaque mois — donc bien plus de capacité d'emprunt, malgré leur rendement % plus faible. Ni l'un ni l'autre n'a "tort" : ça dépend de votre stratégie du moment.</p>
+
+  <h3 class="section">🏗️ Et les entreprises de construction ?</h3>
+  <p>Autre question fréquente dans le chat : comment être rentable en tant qu'entreprise de construction ? Le modèle économique repose sur les commandes passées par les joueurs (constructions, rénovations) plutôt que sur des loyers. La rentabilité dépend surtout du volume de commandes traitées et de la gestion des coûts de structure — un sujet qui mériterait son propre dossier si l'intérêt est là.</p>
+
+  <h3 class="section">📌 Ce qu'il faut retenir</h3>
+  <p>Il n'y a pas de seuil universel "en dessous de X%, vendez". La bonne question n'est pas "ce bien est-il rentable ?" mais "rentable pour quoi ?". Si vous optimisez le rendement pur, vendez les biens à faible %. Si vous construisez votre capacité d'emprunt, gardez les biens à gros loyer absolu, même modestement rentables en %.</p>
+
+  <div class="sources">
+    Chiffres d'exemple illustratifs, à but pédagogique. Basé sur une question posée dans le chat général et les règles de capacité d'emprunt confirmées par le staff (correctif 4.45).
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>

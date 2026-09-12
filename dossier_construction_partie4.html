@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Journal du Marché — Empire Immo M8 — Dossier Construction 4/4</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --paper-raised:#221e19;
+    --ink:#e8e0d0; --ink-dim:#a89a82; --ink-faint:#756a58;
+    --rule:#3a342a; --gold:#c9a35a; --green:#7a9b6e; --red:#b8614f;
+    --orange:#c97a2a; --blue:#5a85c9;
+    --serif:Georgia,'Times New Roman',serif; --sans:'Segoe UI',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.55;padding:32px 16px;}
+  .sheet{max-width:760px;margin:0 auto;background:var(--paper);border:1px solid var(--rule);}
+  .masthead{padding:28px 32px 18px;border-bottom:3px double var(--gold);text-align:center;}
+  .kicker{font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin:0 0 10px;}
+  .masthead h1{font-size:32px;margin:0;letter-spacing:1px;font-weight:700;}
+  .masthead .sub{font-family:var(--sans);font-size:12px;color:var(--ink-dim);margin-top:10px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
+  .edito{padding:26px 32px 8px;border-bottom:1px solid var(--rule);}
+  .edito h2{font-family:var(--sans);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin:0 0 14px;}
+  .edito p{font-size:16px;margin:0 0 16px;color:var(--ink);}
+  .edito p:first-of-type::first-letter{font-size:46px;float:left;line-height:0.8;padding:6px 8px 0 0;color:var(--gold);font-weight:700;}
+  .section{padding:26px 32px;border-bottom:1px solid var(--rule);}
+  .section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;}
+  .section-head .icon{font-size:20px;}
+  .section-head h2{font-size:21px;margin:0;letter-spacing:0.3px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0 18px;font-family:var(--sans);font-size:13px;}
+  th{text-align:left;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-faint);font-weight:600;padding:6px 10px;border-bottom:1px solid var(--rule);}
+  td{padding:8px 10px;border-bottom:1px solid var(--rule);color:var(--ink-dim);}
+  tr:last-child td{border-bottom:none;}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .hl{color:var(--gold);font-weight:700;}
+  .up{color:var(--green);}
+  .analysis{font-size:15px;margin:0 0 16px;}
+  .analysis strong{color:var(--gold);}
+  .formula{background:var(--paper-raised);border-left:3px solid var(--blue);padding:16px 20px;margin:18px 0;font-family:var(--sans);font-size:15px;color:var(--ink);}
+  .formula strong{color:var(--gold);display:block;margin-bottom:8px;font-size:12px;letter-spacing:1px;text-transform:uppercase;}
+  .formula code{display:block;font-family:'Courier New',monospace;font-size:16px;color:var(--ink);padding:4px 0;}
+  .callout{background:var(--paper-raised);border-left:3px solid var(--gold);padding:14px 18px;margin:18px 0;font-size:14.5px;color:var(--ink-dim);}
+  .callout.good{border-left-color:var(--green);}
+  .callout strong{color:var(--ink);}
+
+  /* CALCULATEUR INTERACTIF */
+  .calculator{background:var(--paper-raised);border:2px solid var(--gold);padding:24px;margin:20px 0;border-radius:4px;}
+  .calculator h3{font-family:var(--sans);font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin:0 0 16px;text-align:center;}
+  .calc-input{margin-bottom:18px;}
+  .calc-input label{display:block;font-family:var(--sans);font-size:12px;color:var(--ink-dim);margin-bottom:6px;}
+  .calc-input input{width:100%;background:var(--paper);border:1px solid var(--rule);color:var(--ink);font-family:var(--sans);font-size:18px;padding:10px 14px;border-radius:4px;}
+  .calc-input input:focus{outline:none;border-color:var(--gold);}
+  .calc-results{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;}
+  .calc-result{background:var(--paper);padding:14px;text-align:center;border-radius:4px;}
+  .calc-result .label{font-family:var(--sans);font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;}
+  .calc-result .value{font-family:var(--sans);font-size:17px;font-weight:700;color:var(--gold);}
+  .calc-result.min .value{color:var(--red);}
+  .calc-result.max .value{color:var(--green);}
+  .calc-slider-wrap{margin-top:18px;}
+  .calc-slider-wrap label{display:flex;justify-content:space-between;font-family:var(--sans);font-size:12px;color:var(--ink-dim);margin-bottom:8px;}
+  .calc-slider-wrap input[type=range]{width:100%;accent-color:var(--gold);}
+  .calc-marge-result{text-align:center;margin-top:14px;font-family:var(--sans);font-size:22px;color:var(--gold);font-weight:700;}
+
+  .methodology{padding:26px 32px;background:var(--paper-raised);}
+  .methodology h2{font-family:var(--sans);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-faint);margin:0 0 14px;}
+  .methodology p{font-size:13.5px;color:var(--ink-dim);margin:0 0 12px;}
+  .colophon{padding:22px 32px 30px;text-align:center;font-family:var(--sans);font-size:11px;color:var(--ink-faint);letter-spacing:0.3px;}
+  .colophon .rule{width:60px;height:1px;background:var(--gold);margin:0 auto 16px;}
+  @media(max-width:600px){
+    .masthead h1{font-size:24px;}
+    .section,.edito,.methodology{padding:20px 18px;}
+    table{font-size:11.5px;} th,td{padding:6px 6px;}
+    .calc-results{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="masthead">
+    <p class="kicker">Dossier Spécial — Construction · Partie 4 sur 4</p>
+    <h1>Journal du Marché</h1>
+    <div class="sub">
+      <span>Empire Immo · Monde 8</span>
+      <span>Dossier Construction (4/4)</span>
+      <span>30 juin 2026</span>
+    </div>
+  </div>
+
+  <div class="edito">
+    <h2>L'édito — Calculer son devis comme un pro</h2>
+    <p>Quatrième et dernier volet du dossier Construction : un guide pratique pour calculer soi-même la fourchette d'un devis, que vous soyez constructeur ou client souhaitant vérifier la cohérence d'une offre reçue.</p>
+  </div>
+
+  <!-- FORMULE -->
+  <div class="section">
+    <div class="section-head"><span class="icon">🧮</span><h2>La formule de base</h2></div>
+
+    <p class="analysis">La Constitution fixe la fourchette de devis à ±30% autour du prix de marché. Cela donne deux formules simples :</p>
+
+    <div class="formula">
+      <strong>Devis minimum</strong>
+      <code>= Prix marché × 0,70</code>
+      <strong style="margin-top:14px;">Devis maximum</strong>
+      <code>= Prix marché × 1,30</code>
+      <strong style="margin-top:14px;">Devis à X% de marge (0 ≤ X ≤ 30)</strong>
+      <code>= Prix marché × (1 + X/100)</code>
+    </div>
+  </div>
+
+  <!-- CALCULATEUR INTERACTIF -->
+  <div class="section">
+    <div class="section-head"><span class="icon">🖥️</span><h2>Calculateur interactif</h2></div>
+
+    <div class="calculator">
+      <h3>Calculez votre fourchette de devis</h3>
+      <div class="calc-input">
+        <label for="prixMarche">Prix de marché (Ø)</label>
+        <input type="number" id="prixMarche" value="18544005" oninput="calculer()">
+      </div>
+      <div class="calc-results">
+        <div class="calc-result min">
+          <div class="label">Devis minimum (−30%)</div>
+          <div class="value" id="resMin">—</div>
+        </div>
+        <div class="calc-result max">
+          <div class="label">Devis maximum (+30%)</div>
+          <div class="value" id="resMax">—</div>
+        </div>
+      </div>
+      <div class="calc-slider-wrap">
+        <label><span>Marge appliquée</span><span id="margeLabel">15%</span></label>
+        <input type="range" id="margeSlider" min="0" max="30" value="15" oninput="calculer()">
+      </div>
+      <div class="calc-marge-result" id="resMarge">—</div>
+    </div>
+
+    <script>
+      function formatNombre(n) {
+        return Math.round(n).toLocaleString('fr-FR') + ' Ø';
+      }
+      function calculer() {
+        var prixMarche = parseFloat(document.getElementById('prixMarche').value) || 0;
+        var marge = parseFloat(document.getElementById('margeSlider').value);
+        document.getElementById('margeLabel').textContent = marge + '%';
+        document.getElementById('resMin').textContent = formatNombre(prixMarche * 0.70);
+        document.getElementById('resMax').textContent = formatNombre(prixMarche * 1.30);
+        document.getElementById('resMarge').textContent = 'À ' + marge + '% : ' + formatNombre(prixMarche * (1 + marge/100));
+      }
+      calculer();
+    </script>
+  </div>
+
+  <!-- EXEMPLES -->
+  <div class="section">
+    <div class="section-head"><span class="icon">📊</span><h2>Exemples chiffrés</h2></div>
+
+    <table>
+      <tr><th>Chantier</th><th class="num">Prix marché</th><th class="num">Min (−30%)</th><th class="num">Max (+30%)</th></tr>
+      <tr><td>Petit chantier</td><td class="num">500 000 Ø</td><td class="num">350 000 Ø</td><td class="num up">650 000 Ø</td></tr>
+      <tr><td>Chantier moyen</td><td class="num">18 544 005 Ø</td><td class="num">12 980 804 Ø</td><td class="num up">24 107 206 Ø</td></tr>
+      <tr><td>Gros chantier</td><td class="num">500 000 000 Ø</td><td class="num">350 000 000 Ø</td><td class="num up">650 000 000 Ø</td></tr>
+    </table>
+
+    <div class="callout good">
+      <strong>✅ Vérification.</strong> Peu importe la taille du chantier, le ratio reste toujours identique — 70% à 130% du prix marché. Seuls les montants changent, jamais les proportions.
+    </div>
+  </div>
+
+  <!-- VÉRIFIER UN DEVIS -->
+  <div class="section">
+    <div class="section-head"><span class="icon">💡</span><h2>Pour les clients — vérifier un devis reçu</h2></div>
+
+    <p class="analysis">Si vous recevez un devis, vous pouvez vérifier sa cohérence en faisant le calcul inverse :</p>
+
+    <div class="formula">
+      <strong>Marge appliquée</strong>
+      <code>= (Montant du devis ÷ Prix marché − 1) × 100</code>
+    </div>
+
+    <p class="analysis">Si le résultat est négatif ou dépasse 30%, le devis est soit particulièrement avantageux, soit hors des clous fixés par la Constitution — auquel cas il sera automatiquement refusé par le système avant même validation.</p>
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="section">
+    <div class="section-head"><span class="icon">📌</span><h2>En conclusion</h2></div>
+    <p class="analysis">Ce guide clôt le dossier Construction du Journal du Marché. Quatre volets, une seule conclusion : la mécanique des devis sur M8 est rigoureusement encadrée et entièrement prévisible une fois la formule maîtrisée — un atout pour quiconque veut négocier ou proposer ses prix en toute confiance.</p>
+    <p class="analysis">Le Journal du Marché remercie ses lecteurs d'avoir suivi ce dossier complet.</p>
+  </div>
+
+  <!-- COLOPHON -->
+  <div class="colophon">
+    <div class="rule"></div>
+    Journal du Marché — Monde 8 · Dossier Construction (4/4) · 30 juin 2026<br>
+    Dédié à la rigueur et à l'analyse factuelle.
+  </div>
+
+</div>
+</body>
+</html>

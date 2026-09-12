@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Le Punch du samedi — 29 août 2026</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:36px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  h4.subsection{color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;font-size:13px;margin-top:22px;margin-bottom:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:460px;}
+  .keybox .num{color:var(--gold);font-size:28px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo · Édition spéciale hebdomadaire</div>
+    <h1 class="title">LE PUNCH DU SAMEDI</h1>
+    <div class="tagline">L'éditorial mordant du Journal du Marché, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">29 AOÛT 2026 — HORS-SÉRIE, EN COMPLÉMENT DE L'ÉDITION QUOTIDIENNE N°69</div>
+
+  <h3 class="section">📰 Le principe</h3>
+  <p>Deuxième numéro du Punch du samedi. Après les usines dans le rouge le 22 août, cette semaine on descend au fond du classement des biens niveau ≥1 : ceux dont la rentabilité positive est la plus faible du marché, et depuis combien de temps ils y restent. Le ton reste factuel envers les joueurs qui détiennent ces biens — l'objectif est de vérifier ce que disent les chiffres suivis édition après édition, pas de pointer qui que ce soit du doigt.</p>
+
+  <h3 class="section">🔻 La lanterne rouge ne bouge presque plus</h3>
+  <p><b>Res. 24 T2 habitables</b> occupe la dernière place du classement niveau ≥1 dans <b>15 des 17 éditions</b> où l'historique de rentabilité a été sauvegardé (édition 50 du 11 août à l'édition 69 du 29 août) — et dans les deux seules éditions où il n'est pas dernier (50 et 52), il est deuxième dernier. Sa rentabilité oscille entre 10,1% et 11,0% depuis trois semaines, actuellement <span class="neg">10,40%</span> à l'édition 69, quand la médiane de tous les biens niveau ≥1 suivis ce soir-là est à <span class="pos">30,57%</span> — soit moins d'un tiers.</p>
+
+  <h3 class="section">📊 Les 10 plus faibles rentabilités positives (édition 69, 29 août)</h3>
+  <table>
+    <tr><th>Bien</th><th class="num">Rentabilité</th><th class="num">Retour (jours)</th></tr>
+    <tr><td>Res. 24 T2 habitables</td><td class="num neg">10,40%</td><td class="num">3 511</td></tr>
+    <tr><td>Technopôle millenium régional</td><td class="num neg">11,24%</td><td class="num">3 246</td></tr>
+    <tr><td>Technopôle millenium national</td><td class="num neg">12,76%</td><td class="num">2 860</td></tr>
+    <tr><td>Quadruple complexe résidentiel géant tout confort</td><td class="num neg">13,02%</td><td class="num">2 803</td></tr>
+    <tr><td>Technopôle palacium international</td><td class="num neg">13,17%</td><td class="num">2 772</td></tr>
+    <tr><td>Mégapôle millenium régional</td><td class="num neg">13,39%</td><td class="num">2 727</td></tr>
+    <tr><td>500m² de bureaux aménagés</td><td class="num neg">13,77%</td><td class="num">2 651</td></tr>
+    <tr><td>Technopôle palacium national</td><td class="num neg">14,21%</td><td class="num">2 569</td></tr>
+    <tr><td>Mégapôle millenium national</td><td class="num neg">14,70%</td><td class="num">2 483</td></tr>
+    <tr><td>Technopôle titanium régional</td><td class="num neg">14,72%</td><td class="num">2 480</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Retour = 36 500 ÷ rentabilité (jours pour récupérer la mise via le loyer net, hors variation de valeur). Pour comparaison, un bien à la médiane du marché (30,57%) se rembourse en 1 194 jours — trois fois plus vite que le dernier de ce tableau.</p>
+
+  <h3 class="section">🧮 Ce que ça veut dire, et ce que ça ne veut pas dire</h3>
+  <p>Une rentabilité de production/location faible ne signifie pas un mauvais achat : la valeur d'un bien peut progresser indépendamment de son rendement locatif, et plusieurs biens de ce tableau (les Technopôles, les Mégapôles) restent des biens de très haute valeur avec un statut probablement recherché pour d'autres raisons que le rendement pur. Ce que confirment les 17 éditions suivies, c'est que l'écart de rentabilité entre le bas et la médiane du classement est stable et large depuis au moins trois semaines — pas un accident d'un soir.</p>
+  <div class="callout warn"><b>Pour les propriétaires de ces biens :</b> si l'objectif est le rendement locatif pur, ces biens sont structurellement en dessous du marché depuis longtemps et ne montrent pas de signe de rattrapage dans les données suivies. Si l'objectif est autre (prestige, classement, filiale complète d'une catégorie), le chiffre de rentabilité seul ne dit rien sur la pertinence de la détention — à chacun de vérifier sa propre stratégie.</div>
+
+  <h3 class="section">🔁 La suite du format</h3>
+  <p>Le Punch du samedi change d'angle à chaque parution. Prochain sujet envisagé : les pièges de promo récurrents — des biens niveau 0 remis en promotion sans possibilité de loyer, donc sans rentabilité malgré le rabais affiché. Sujet à confirmer selon l'actualité des données de la semaine prochaine.</p>
+
+  <h3 class="section">🧾 Méthodologie et sources</h3>
+  <p style="font-size:13px;color:var(--ink-dim);">Données extraites de <code>rentabilite_historique.json</code>, fichier canonique de suivi des rentabilités (biens niveau ≥1) alimenté à chaque édition du Journal depuis l'édition 50 (11 août 2026). Rentabilité et rang recalculés sur les 17 éditions disponibles dans l'historique (50, 51, 52, puis 56 à 69 — les éditions 53 à 55 n'ont pas été historisées dans ce fichier). Aucun nouvel export de jeu n'a été fourni spécifiquement pour cet éditorial — l'analyse s'appuie entièrement sur les données déjà suivies au moment de la rédaction.</p>
+
+  <div class="sources">
+    Le Punch du samedi — 29 août 2026. Données : rentabilite_historique.json, éditions 50-69. Tous les calculs sont reproductibles à partir des exports officiels du jeu.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>

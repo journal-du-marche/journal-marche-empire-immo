@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Journal du Marché — Empire Immo M8 — Dossier Construction 3/3</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --paper-raised:#221e19;
+    --ink:#e8e0d0; --ink-dim:#a89a82; --ink-faint:#756a58;
+    --rule:#3a342a; --gold:#c9a35a; --green:#7a9b6e; --red:#b8614f;
+    --orange:#c97a2a; --blue:#5a85c9;
+    --serif:Georgia,'Times New Roman',serif; --sans:'Segoe UI',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.55;padding:32px 16px;}
+  .sheet{max-width:760px;margin:0 auto;background:var(--paper);border:1px solid var(--rule);}
+  .masthead{padding:28px 32px 18px;border-bottom:3px double var(--gold);text-align:center;}
+  .kicker{font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin:0 0 10px;}
+  .masthead h1{font-size:32px;margin:0;letter-spacing:1px;font-weight:700;}
+  .masthead .sub{font-family:var(--sans);font-size:12px;color:var(--ink-dim);margin-top:10px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
+  .edito{padding:26px 32px 8px;border-bottom:1px solid var(--rule);}
+  .edito h2{font-family:var(--sans);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin:0 0 14px;}
+  .edito p{font-size:16px;margin:0 0 16px;color:var(--ink);}
+  .edito p:first-of-type::first-letter{font-size:46px;float:left;line-height:0.8;padding:6px 8px 0 0;color:var(--gold);font-weight:700;}
+  .section{padding:26px 32px;border-bottom:1px solid var(--rule);}
+  .section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;}
+  .section-head .icon{font-size:20px;}
+  .section-head h2{font-size:21px;margin:0;letter-spacing:0.3px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0 18px;font-family:var(--sans);font-size:13px;}
+  th{text-align:left;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-faint);font-weight:600;padding:6px 10px;border-bottom:1px solid var(--rule);}
+  td{padding:8px 10px;border-bottom:1px solid var(--rule);color:var(--ink-dim);}
+  tr:last-child td{border-bottom:none;}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .hl{color:var(--gold);font-weight:700;}
+  .up{color:var(--green);}
+  .dn{color:var(--red);}
+  .analysis{font-size:15px;margin:0 0 16px;}
+  .analysis strong{color:var(--gold);}
+  .subblock{margin:18px 0;}
+  .subblock-title{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:0.5px;margin-bottom:9px;}
+  .subblock ul{list-style:none;margin:0;padding:0;font-size:14.5px;}
+  .subblock li{padding:7px 0 7px 16px;border-left:2px solid var(--rule);margin-bottom:6px;color:var(--ink-dim);}
+  .callout{background:var(--paper-raised);border-left:3px solid var(--red);padding:14px 18px;margin:18px 0;font-size:14.5px;color:var(--ink-dim);}
+  .callout.good{border-left-color:var(--green);}
+  .callout.neutral{border-left-color:var(--gold);}
+  .callout strong{color:var(--ink);}
+  .record{background:var(--paper-raised);border:2px solid var(--gold);padding:18px 22px;margin:18px 0;font-size:15px;color:var(--ink-dim);text-align:center;}
+  .record .big{font-size:34px;color:var(--gold);font-weight:700;font-family:var(--serif);display:block;margin:6px 0;}
+  .record .label{font-family:var(--sans);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-faint);}
+  .methodology{padding:26px 32px;background:var(--paper-raised);}
+  .methodology h2{font-family:var(--sans);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-faint);margin:0 0 14px;}
+  .methodology p{font-size:13.5px;color:var(--ink-dim);margin:0 0 12px;}
+  .colophon{padding:22px 32px 30px;text-align:center;font-family:var(--sans);font-size:11px;color:var(--ink-faint);letter-spacing:0.3px;}
+  .colophon .rule{width:60px;height:1px;background:var(--gold);margin:0 auto 16px;}
+  @media(max-width:600px){
+    .masthead h1{font-size:24px;}
+    .section,.edito,.methodology{padding:20px 18px;}
+    table{font-size:11.5px;} th,td{padding:6px 6px;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="masthead">
+    <p class="kicker">Dossier Spécial — Construction · Partie 3 sur 3</p>
+    <h1>Journal du Marché</h1>
+    <div class="sub">
+      <span>Empire Immo · Monde 8</span>
+      <span>Dossier Construction (3/3)</span>
+      <span>30 juin 2026</span>
+    </div>
+  </div>
+
+  <div class="edito">
+    <h2>L'édito — Théorie vs réalité</h2>
+    <p>Dernier volet du dossier Construction : confronter les règles écrites dans la Constitution aux données réelles du marché. Globalement, le texte officiel tient remarquablement bien — mais un angle mort mérite d'être souligné.</p>
+  </div>
+
+  <!-- CE QUI COLLE -->
+  <div class="section">
+    <div class="section-head"><span class="icon">✅</span><h2>Ce qui colle parfaitement</h2></div>
+
+    <p class="analysis">La règle de la fourchette de devis (±30% autour du prix marché) fonctionne exactement comme annoncé.</p>
+
+    <div class="record">
+      <span class="label">Devis réel observé cette semaine</span>
+      <span class="big">−30,0% / +30,0%</span>
+      Prix de marché : 18 544 005 Ø — Fourchette : 12 980 804 Ø à 24 107 206 Ø
+    </div>
+
+    <p class="analysis">Aucun écart, aucune approximation : la mécanique du jeu applique la règle au chiffre près.</p>
+
+    <p class="analysis">Les prix des matières premières aussi restent fidèles au texte fondateur :</p>
+
+    <table>
+      <tr><th>Matière</th><th class="num">Constitution</th><th class="num">Réel (30 juin)</th><th class="num">Écart</th></tr>
+      <tr><td>Béton</td><td class="num">219 Ø</td><td class="num hl">220,74 Ø</td><td class="num up">+0,79 %</td></tr>
+      <tr><td>Acier</td><td class="num">846 Ø</td><td class="num hl">853,21 Ø</td><td class="num up">+0,85 %</td></tr>
+      <tr><td>Bois</td><td class="num">45 Ø</td><td class="num hl">45,60 Ø</td><td class="num up">+1,33 %</td></tr>
+      <tr><td>Brique</td><td class="num">641 Ø</td><td class="num hl">646,36 Ø</td><td class="num up">+0,84 %</td></tr>
+      <tr><td>Verre</td><td class="num">200 Ø</td><td class="num hl">201,41 Ø</td><td class="num up">+0,70 %</td></tr>
+    </table>
+
+    <p class="analysis">Des mois après la rédaction du texte, le système de régulation des prix continue de fonctionner exactement comme prévu — un signe de solidité du design économique sur ce point précis.</p>
+  </div>
+
+  <!-- ANGLE MORT -->
+  <div class="section">
+    <div class="section-head"><span class="icon">⚠️</span><h2>L'angle mort : la rentabilité des usines</h2></div>
+
+    <p class="analysis">Là où la Constitution reste silencieuse, c'est sur la garantie de rentabilité des investissements industriels qu'elle encadre pourtant en détail (coûts de construction, charges, production). Le texte définit précisément comment fonctionne une usine — mais ne garantit en rien qu'elle soit rentable.</p>
+
+    <div class="callout">
+      <strong>Sur 10 usines disponibles, 5 sont aujourd'hui déficitaires</strong>, dont les deux versions de l'Acierie, qui perdent de l'argent peu importe l'investissement consenti. Rien dans la Constitution n'indique de mécanisme correcteur automatique pour ce genre de situation.
+    </div>
+
+    <p class="analysis">Ce n'est pas un défaut de conception en soi : un jeu économique réaliste implique forcément des filières qui deviennent temporairement non rentables. Mais le contraste est frappant avec la précision quasi parfaite de la règle des devis — là où le texte encadre strictement, le résultat colle exactement; là où il reste silencieux, le marché peut dériver sans limite définie.</p>
+  </div>
+
+  <!-- TABLEAU D'ENSEMBLE -->
+  <div class="section">
+    <div class="section-head"><span class="icon">📊</span><h2>Le tableau d'ensemble du dossier</h2></div>
+
+    <p class="analysis">Ce dossier en trois parties aura permis de couvrir :</p>
+
+    <div class="subblock">
+      <ul>
+        <li><strong>1.</strong> Comment fonctionne le métier de constructeur (devis, approvisionnement, pénalités)</li>
+        <li><strong>2.</strong> L'état réel du marché des matériaux et usines aujourd'hui</li>
+        <li><strong>3.</strong> Où les règles officielles tiennent, et où elles laissent le marché livré à lui-même</li>
+      </ul>
+    </div>
+
+    <p class="analysis">Le constat global : la Constitution d'Empire Immo encadre avec précision tout ce qui touche aux transactions (devis, prix, pénalités), mais laisse le marché des investissements productifs (usines) évoluer librement, sans biais de protection contre les filières structurellement déficitaires.</p>
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="section">
+    <div class="section-head"><span class="icon">📌</span><h2>En conclusion</h2></div>
+
+    <p class="analysis">Pour un constructeur ou un investisseur industriel sur M8, la leçon de ce dossier est simple : <strong>la Constitution garantit l'équité des transactions, pas la rentabilité des choix d'investissement.</strong> Cette dernière reste, et restera, une affaire de lecture attentive du marché — exactement la mission que s'est donnée le Journal du Marché depuis sa première édition.</p>
+
+    <p class="analysis">Le Journal du Marché remercie ses lecteurs d'avoir suivi ce dossier en trois parties. D'autres analyses approfondies suivront dans les prochaines semaines.</p>
+  </div>
+
+  <!-- COLOPHON -->
+  <div class="colophon">
+    <div class="rule"></div>
+    Journal du Marché — Monde 8 · Dossier Construction (3/3) · 30 juin 2026<br>
+    Dédié à la rigueur et à l'analyse factuelle.
+  </div>
+
+</div>
+</body>
+</html>

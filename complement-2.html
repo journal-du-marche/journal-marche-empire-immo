@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Complément n°2</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:34px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dossier-label{display:inline-block;background:var(--gold);color:#15130f;font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:2px;margin-bottom:10px;}
+  h2.guide-title{color:var(--gold);font-size:26px;margin:6px 0;}
+  .guide-sub{font-style:italic;color:var(--gold-dim);margin-bottom:20px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:460px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+
+  <div class="dossier-label">Complément n°2</div>
+  <h2 class="guide-title">Trois nouveaux devis, les prix matières sur 6 mois, et vos questions</h2>
+  <div class="guide-sub">Le compagnon pratique du Journal, dédié aux ETC</div>
+
+  <h3 class="section">📰 Au sommaire</h3>
+  <p>Deuxième numéro du Complément : trois nouveaux exemples réels de devis (Construction, Embellissement, Réparation), un coup d'œil sur l'historique des prix matières et du taux promoteur, et deux vraies questions du tchat, vérifiées contre la Constitution officielle.</p>
+
+  <h3 class="section">📊 Exemple 1 — Construire 1x "500m² de bureaux aménagés"</h3>
+  <table>
+    <tr><th></th><th class="num">Valeur</th></tr>
+    <tr><td>Fourchette acceptée</td><td class="num">207 877 Ø – 386 057 Ø</td></tr>
+    <tr><td>Prix du marché</td><td class="num">296 967 Ø</td></tr>
+    <tr><td>Votre coût de revient</td><td class="num">297 934 Ø</td></tr>
+    <tr><td>Écart coût de revient / prix du marché</td><td class="num neg">+0,33%</td></tr>
+  </table>
+  <p>Premier exemple réel de Construction (les deux précédents compléments n'avaient que Embellissement et Réparation) — même principe de fourchette ±30%, mais un écart coût de revient plus faible que d'habitude : +0,33% seulement.</p>
+
+  <h3 class="section">📊 Exemple 2 — Embellir 1x "Res. 48 T2 équipés"</h3>
+  <table>
+    <tr><th></th><th class="num">Valeur</th></tr>
+    <tr><td>Fourchette acceptée</td><td class="num">1 787 233 Ø – 3 319 145 Ø</td></tr>
+    <tr><td>Prix du marché</td><td class="num">2 553 189 Ø</td></tr>
+    <tr><td>Votre coût de revient</td><td class="num">2 598 310 Ø</td></tr>
+    <tr><td>Écart coût de revient / prix du marché</td><td class="num neg">+1,77%</td></tr>
+  </table>
+
+  <h3 class="section">📊 Exemple 3 — Réparer 2x "Res. 6 chambres habitables"</h3>
+  <table>
+    <tr><th></th><th class="num">Valeur</th></tr>
+    <tr><td>Fourchette acceptée</td><td class="num">25 476 Ø – 47 310 Ø</td></tr>
+    <tr><td>Prix du marché</td><td class="num">36 393 Ø</td></tr>
+    <tr><td>Votre coût de revient</td><td class="num">36 968 Ø</td></tr>
+    <tr><td>Écart coût de revient / prix du marché</td><td class="num neg">+1,58%</td></tr>
+  </table>
+
+  <h3 class="section">🔑 Ce que ces six exemples confirment (cumul complément 1 + 2)</h3>
+  <p>
+  1. La fourchette ±30% du prix du marché est vérifiée sur les six demandes, tous types de travaux confondus (Construction, Embellissement, Réparation).<br>
+  2. L'écart coût de revient / prix du marché varie plus qu'on ne le pensait au départ : de +0,33% à +1,77% selon les cas, pas toujours "environ 1%" comme suggéré dans le numéro précédent — à retenir comme fourchette réaliste plutôt qu'un chiffre fixe.<br>
+  3. Toujours aucun exemple réel de Démolition — le principe reste probablement identique, mais on attend un cas concret pour confirmer.
+  </p>
+
+  <h3 class="section">📈 Prix matières et taux promoteur : ce que montre l'historique</h3>
+  <p>Le jeu conserve un historique consultable du taux promoteur et des prix matières. Sur le dernier mois, le taux promoteur a oscillé entre 70% et 85% sans sortir de cette fourchette — utile pour savoir si le taux du jour est haut ou bas par rapport à la normale récente.</p>
+  <p>Côté matières premières, sur les 6 derniers mois, les prix (surtout Acier et Brique) ont suivi une tendance globalement baissière depuis janvier, avec un épisode marquant : une chute brutale de toutes les matières vers le 15 juin, suivie d'une remontée tout aussi rapide en quelques jours. Nous n'avons pas encore d'explication confirmée pour cet épisode — à surveiller si le motif se reproduit.</p>
+  <div class="callout">Aujourd'hui (25 juillet) : Béton 228,08 Ø/m³ · Acier 884,43 Ø/t · Bois 47,14 Ø/m² · Brique 669,77 Ø/m³ · Verre 208,25 Ø/m². Pour une ETC, suivre cette tendance est utile : un devis calculé un jour de prix bas peut se retrouver plus serré si les matériaux remontent avant la fin du chantier.</div>
+  <p style="font-size:13px;color:var(--ink-dim);">Bonne nouvelle pour la suite : à partir de lundi, le Journal archive un export quotidien complet (dossier de suivi 7 jours). On pourra bientôt publier un vrai historique chiffré des promotions et des prix, comme LedoubleJ le demandait récemment dans le tchat.</p>
+
+  <h3 class="section">💬 Vos questions du tchat</h3>
+  <div class="callout">
+  <b>Nathom demande :</b> "Si on demande la cessation d'une entreprise en tant qu'unique actionnaire, qu'est-ce qu'on récupère comme argent ? L'équivalent du capital ou uniquement les fonds disponibles ?"<br><br>
+  <b>Réponse confirmée par la Constitution :</b> les fonds disponibles, plus 75% de la valeur de l'immobilier, moins les crédits en cours et les dettes éventuelles. Les biens ne sont donc pas remboursés à 100% de leur valeur lors d'une liquidation.
+  </div>
+  <div class="callout">
+  <b>Mamamagna demande :</b> "Comment vendre qu'une partie de ma société à une holding ?"<br><br>
+  <b>Réponse confirmée par la Constitution :</b> impossible de vendre partiellement. Une holding est toujours actionnaire à 100% de ses filiales, et la vente d'une filiale se fait en une seule fois, pour la totalité des parts. C'est tout ou rien.
+  </div>
+  <div class="callout">
+  <b>Xhinoa demande :</b> "J'arrive pas à comprendre comment sont faites les limites des travaux... J'ai 31M en cash 6M de gains quotidien mais je ne peux pas lancer mes travaux de 5M."<br><br>
+  <b>Réponse confirmée par la Constitution :</b> ce n'est pas le nouveau devis seul qui compte, mais la balance travaux totale (tous les devis en cours et en attente cumulés), plafonnée à 100% du capital — et un devis ne peut de toute façon pas dépasser 70% du capital à lui seul. Solution donnée dans le tchat par Tom_Wreck : annuler les devis en attente qui ne sont plus utiles pour libérer de la marge.
+  </div>
+
+  <h3 class="section">📌 Vous avez une question ?</h3>
+  <p>Cette rubrique reviendra dans chaque complément. Si vous avez une question sur les devis, les usines, les holdings ou toute autre mécanique du jeu, elle pourrait faire l'objet du prochain numéro.</p>
+
+  <div class="sources">
+    Complément n°2 — exemples de devis basés sur de vraies demandes reçues sur Monde 8, noms de clients anonymisés. Questions du tchat vérifiées contre la Constitution officielle du jeu.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Complément n°2</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:34px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dossier-label{display:inline-block;background:var(--gold);color:#15130f;font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:2px;margin-bottom:10px;}
+  h2.guide-title{color:var(--gold);font-size:26px;margin:6px 0;}
+  .guide-sub{font-style:italic;color:var(--gold-dim);margin-bottom:20px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:460px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+
+  <div class="dossier-label">Complément n°2</div>
+  <h2 class="guide-title">Trois mois d'attente : la demande d'historique détaillé des transactions</h2>
+  <p class="guide-sub">Une amélioration réclamée depuis mai, soutenue par la communauté, toujours sans suite concrète.</p>
+
+  <h3 class="section">📰 Le fil qu'on a retrouvé</h3>
+  <p>Sur le forum, un fil intitulé "Historique détaillé des transactions" traîne depuis le 21 mai. La demande est simple : donner aux joueurs qui gèrent des holdings à plusieurs filiales une vraie visibilité sur ce qui se passe dans leurs comptes, au lieu de devoir naviguer filiale par filiale pour deviner où va l'argent.</p>
+
+  <h3 class="section">📋 Ce qui est demandé</h3>
+  <p>La proposition initiale tenait en sept points : filtres par type de transaction (loyers, ventes, charges, réparations, levées de fonds, impôts), filtres par période, filtres par filiale, recherche avancée, export CSV/PDF, graphiques de progression des revenus, et — le point revenu le plus souvent dans les échanges — des <b>alertes automatiques quand une filiale tombe en découvert</b>.</p>
+
+  <h3 class="section">📈 Une chronologie qui s'étire</h3>
+  <table>
+    <tr><th>Date</th><th>Étape</th></tr>
+    <tr><td>21 mai</td><td>Publication de la demande — accueil favorable, +13 karma</td></tr>
+    <tr><td>4 juin</td><td>Première relance, sans réponse d'Elmut</td></tr>
+    <tr><td>5 juin</td><td>Plusieurs joueurs se rallient, dont Killian17320</td></tr>
+    <tr><td>7 juillet</td><td>Deuxième relance</td></tr>
+    <tr><td>8 juillet</td><td>Elmut répond enfin : la Vue financière permet déjà de voir les découverts filiale par filiale, et demande des précisions sur les filtres souhaités</td></tr>
+    <tr><td>15 juillet</td><td>Troisième relance, priorités clarifiées (alertes de découvert en premier) — aucune suite depuis</td></tr>
+  </table>
+  <p>Près de trois mois entre la première demande et aujourd'hui, pour une fonctionnalité qui ne change aucune mécanique de jeu — seulement la visibilité sur des données qui existent déjà.</p>
+
+  <div class="callout">Ce qui ressort des échanges avec Elmut : la Vue financière au niveau holding donne déjà un aperçu global (Résultat NET, bénéfices/pertes par filiale), mais rien ne permet de <b>consulter les relevés détaillés de toutes ses filiales depuis le holding</b> sans cliquer filiale par filiale, ni de recevoir une alerte automatique dès qu'une filiale bascule à découvert.</p></div>
+
+  <h3 class="section">💬 Un besoin qui dépasse un seul joueur</h3>
+  <p>D'autres demandes du forum vont dans le même sens : un joueur proposait récemment d'ajouter une simple colonne "revenu du mois" à côté de la trésorerie dans la Vue financière, pour vérifier si les frais de gestion sont bien ajustés. Le constat est le même à chaque fois : plus une holding grossit, plus il devient difficile de savoir ce qui s'y passe réellement sans tout vérifier à la main.</p>
+
+  <h3 class="section">📌 Ce qu'il faut retenir</h3>
+  <p>Cette fonctionnalité rendrait service à tout le monde — des nouveaux joueurs qui veulent comprendre leurs erreurs, jusqu'aux gros holdings multi-filiales qui naviguent aujourd'hui à l'aveugle. Le Journal du Marché suivra ce dossier et republiera une mise à jour si Elmut y donne suite.</p>
+
+  <div class="sources">
+    Sources : forum Empire Immo, fil "Historique détaillé des transactions" (21 mai – 15 juillet 2026).
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>

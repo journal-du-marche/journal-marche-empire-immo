@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Guide : Comment on calcule tout</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:34px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dossier-label{display:inline-block;background:var(--gold);color:#15130f;font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:2px;margin-bottom:10px;}
+  h2.guide-title{color:var(--gold);font-size:26px;margin:6px 0;}
+  .guide-sub{font-style:italic;color:var(--gold-dim);margin-bottom:20px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:460px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+
+  <div class="dossier-label">Guide pratique</div>
+  <h2 class="guide-title">Comment on calcule tout dans le Journal du Marché</h2>
+  <div class="guide-sub">Chaque formule, expliquée et vérifiable par vous-même</div>
+
+  <h3 class="section">📰 Pourquoi ce guide</h3>
+  <p>Des lecteurs ont récemment douté que les chiffres publiés correspondent vraiment à ce qu'ils voient en jeu. C'est une question légitime — voici donc, une fois pour toutes, l'ensemble des formules utilisées dans le Journal, avec les sources et la méthode. Rien n'est caché : tout est reproductible à partir des exports CSV officiels du jeu, que n'importe qui peut obtenir.</p>
+
+  <h3 class="section">🧮 Rentabilité (formule officielle, Constitution/FAQ)</h3>
+  <div class="callout warn"><b>Correction importante :</b> les premières éditions du Journal utilisaient un calcul simplifié (Loyer ÷ Valeur × 100), qui ne correspond pas à la vraie formule du jeu. À partir de cette édition, on utilise la formule officielle ci-dessous.</div>
+  <div class="callout">
+  Assurance minimale (mensuelle) = Valeur × 0,05%<br>
+  Bénéfice mensuel net = Loyer − Charges − Impôts − Assurance minimale<br>
+  Rentabilité annuelle % = (Bénéfice mensuel net × 12) ÷ Valeur × 100
+  </div>
+  <p>Le "Loyer" des exports CSV correspond à un mois de jeu, puisqu'un mois de jeu = un jour réel (confirmé par la Constitution, section rénovation : "chaque mois de jeu (= jour réel), le bien perd 1 point de vie"). D'où le ×12 pour obtenir une rentabilité annuelle. L'assurance minimale n'est pas dans les CSV : elle est estimée avec la formule officielle (0,05% de la valeur par mois), donc c'est une approximation prudente, pas un chiffre exact du jeu.</p>
+
+  <h3 class="section">⏱️ Retour sur investissement (en jours)</h3>
+  <div class="callout">Retour (en jours réels) = Valeur ÷ Bénéfice mensuel net</div>
+  <p>Puisqu'un mois de jeu équivaut à un jour réel, le nombre de "mois" pour rembourser l'achat correspond directement à un nombre de jours réels. Le bénéfice mensuel net utilisé est le même que pour la Rentabilité ci-dessus (loyer moins charges, impôts, assurance estimée).</p>
+
+  <h3 class="section">📐 Écart secteur</h3>
+  <div class="callout">Écart secteur = Rentabilité du bien − Rentabilité moyenne du secteur (ou du type, côté personnel)</div>
+  <p>La Rentabilité moyenne du secteur est calculée en faisant la moyenne de la Rentabilité (formule officielle ci-dessus) de tous les biens de la même catégorie qui génèrent effectivement du loyer. Un écart positif signifie que le bien fait mieux que la moyenne de sa catégorie ce jour-là — pas mieux que l'ensemble du marché.<br><br>
+  <span class="neg">Non officiel</span> — cet indicateur est une invention du Journal, pas une formule de la Constitution ou de la FAQ. Il sert uniquement à comparer un bien à ses pairs.</p>
+
+  <h3 class="section">⚠️ Risque : stable ou volatile</h3>
+  <div class="callout">Risque = "volatile" si valeur &gt; 100 milliards Ø, sinon "stable"</div>
+  <p><span class="neg">Non officiel</span> — comme l'écart secteur, c'est un repère maison, pas une formule du jeu. Les biens de très haute valeur (zones, technopôles, mégapôles) ont des variations de valeur en Ø beaucoup plus marquées d'un jour à l'autre, même si leur Rentabilité en % reste comparable. Le tag rappelle qu'une bonne rentabilité sur un bien à 500 quadrillions Ø ne se comporte pas comme sur un bien à 500 000 Ø.</p>
+
+  <h3 class="section">🏭 Profit et ROI d'une usine</h3>
+  <div class="callout">Profit = (Production × Prix du matériau du jour) − Charge − Impôt<br>ROI usine% = Profit ÷ Valeur × 100</div>
+  <p>Les prix matières changeant chaque jour, ce calcul est refait à chaque édition avec les prix du jour — jamais avec des prix d'un jour précédent.</p>
+
+  <h3 class="section">🧾 Devis ETC : prix du marché et coût de revient</h3>
+  <p>
+  Prix du marché = calculé directement à partir des colonnes "construction", "embellissement" ou "reparation" du fichier officiel des bâtiments, selon le type de travail demandé et la quantité.<br>
+  Fourchette de devis acceptée = ±30% du Prix du marché (vérifié au chiffre près sur plusieurs vraies demandes reçues).<br>
+  Coût de revient = le vrai coût du joueur qui exécute le devis ; sans stock de matières, il dépasse généralement le Prix du marché d'environ 1 à 1,3%.<br>
+  Marge affichée par le jeu = (Montant du devis − Prix du marché) ÷ Prix du marché × 100 — donc relative au Prix du marché, pas au coût de revient réel.
+  </p>
+  <div class="callout warn">La Rénovation suit une logique différente : c'est le propriétaire qui rénove lui-même son bien selon son taux de dégradation, ce n'est pas un devis d'ETC. La Démolition (devis ETC) suit le même principe que les autres devis, mais reste plus rare à documenter avec de vrais exemples.</div>
+  <p style="font-size:13px;color:var(--ink-dim);">Acompte officiel (Constitution) : à la validation d'un devis, l'acompte versé = 30% du montant, le solde de 70% étant payé à la livraison. Si le client annule après acceptation, l'acompte est perdu.</p>
+
+  <h3 class="section">🏚️ Rénovation d'un bien (formule officielle)</h3>
+  <div class="callout">
+  Points de vie = 120 × niveau du bien (perd 1 point par jour réel)<br>
+  Coût de rénovation = Valeur du bien × 0,05% × nombre de points à rénover
+  </div>
+  <p>Choix possible de rénover à 25%, 50%, 75% ou 100% des points manquants. Exemple : un bien à 100 000 Ø avec 60 points à rénover coûte 100 000 × 0,0005 × 60 = 3 000 Ø. À distinguer du coût de démolition officiel pour récupérer un terrain : Valeur du bâtiment ÷ 7 (différent du devis "Démolition" d'une ETC).</p>
+
+  <h3 class="section">📊 Classements (Top 20, Top 3 par niveau)</h3>
+  <p>Simple tri décroissant par Rentabilité% parmi les biens qui génèrent du loyer, séparé par secteur entreprise / type personnel, puis par niveau pour les Top 3. Aucune pondération cachée.</p>
+
+  <h3 class="section">🗓️ D'où viennent les données</h3>
+  <p>Chaque édition est basée sur les exports CSV officiels du jeu (bâtiments entreprise, personnel, terrains, matériaux, usines), figés au moment du reset quotidien — 3h du matin heure française, 21h la veille au Québec. Si vous consultez vos propres biens plus tard dans la journée, un léger écart est normal : les valeurs et loyers évoluent en continu entre deux resets. Un écart important et injustifié, en revanche, mérite d'être signalé — dites-nous précisément quel bien et quel chiffre, et on vérifie.</p>
+
+  <div class="sources">
+    Guide de référence pour toutes les éditions et compléments du Journal du Marché, Monde 8.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>

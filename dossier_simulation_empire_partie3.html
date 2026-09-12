@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Dossier Spécial — L'Empire Méridian, Partie 3</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:40px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  h4.subsection{color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;font-size:13px;margin-top:22px;margin-bottom:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .callout.good{border-left-color:var(--ok);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:420px;}
+  .keybox .num{color:var(--gold);font-size:32px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo · Dossier Spécial — Simulation, Partie 3</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">DOSSIER SPÉCIAL — L'EMPIRE MÉRIDIAN, PARTIE 3 — 20 AOÛT 2026</div>
+
+  <h3 class="section">📰 Un empire rentable, mais jamais à l'abri</h3>
+  <p>Les deux premières parties ont montré un empire qui tourne : 1 096 339 biens, 75,87 Y Ø de résultat net cumulé sur six semaines, une gouvernance actionnariale qui vote levées de fonds, primes et dividendes. Ce soir, on retourne le miroir : combien de cet argent l'État en prélève-t-il réellement, et à quel point Méridian a-t-elle frôlé le pire pendant les trois semaines où Delta-07 tournait avec un seuil de vente mal réglé ?</p>
+  <p>Comme les deux parties précédentes, ce dossier reste une <b>simulation</b>. Mais le barème d'impôt, la règle de faillite et les coûts de gestion appliqués ici sont repris tels quels de la Constitution officielle et du barème des formules — rien n'est inventé pour dramatiser l'histoire.</p>
+
+  <div class="keybox">
+    <div style="color:var(--gold-dim);font-size:13px;text-transform:uppercase;letter-spacing:1px;">Marge restante avant faillite technique pour Delta-07, fin de la semaine 3</div>
+    <div class="num">5,92 Y Ø</div>
+    <div style="font-size:14px;margin-top:6px;">Une semaine de plus au seuil 0%, et les deux conditions de faillite étaient réunies</div>
+  </div>
+
+  <h3 class="section">🧾 L'impôt sur les bénéfices — un barème qui plafonne vite</h3>
+  <p>Le barème officiel de l'impôt sur les bénéfices d'entreprise est progressif, de 4% dès le premier Ø de bénéfice jusqu'à 40% au-delà de 50 EØ (10¹⁸). Calculé chaque lundi matin, avec 3 jours pour payer.</p>
+  <div class="callout"><b>Barème réel du jeu</b><br>≥ 1 Ø → 4% · ≥ 5 KØ → 8% · ≥ 500 KØ → 12% · ≥ 50 MØ → 16% · ≥ 5 GØ → 20% · ≥ 500 GØ → 24% · ≥ 50 TØ → 28% · ≥ 5 PØ → 32% · ≥ 500 PØ → 36% · ≥ 50 EØ → 40%</div>
+  <p>Voici le détail qui surprend : la tranche la plus haute du barème s'arrête à 50 EØ (10¹⁸). Les huit filiales de Méridian dégagent, en semaine 6, des bénéfices de l'ordre du Y Ø (10²⁴) — six ordres de grandeur au-dessus du dernier palier. Résultat : à l'échelle d'un empire comme Méridian, <b>chaque filiale paie systématiquement le taux plafond de 40%</b>, sans exception. Le barème progressif, pensé pour des entreprises en démarrage, devient un impôt à taux unique une fois l'échelle dépassée.</p>
+  <table>
+    <tr><th>Filiale</th><th class="num">Bénéfice avant impôt (S6)</th><th class="num">Impôt (40%)</th><th class="num">Bénéfice net</th></tr>
+    <tr><td>Méridian Delta-01</td><td class="num">0,83 Y</td><td class="num neg">0,33 Y</td><td class="num pos">0,50 Y</td></tr>
+    <tr><td>Méridian Delta-02</td><td class="num">1,25 Y</td><td class="num neg">0,50 Y</td><td class="num pos">0,75 Y</td></tr>
+    <tr><td>Méridian Delta-03</td><td class="num">1,69 Y</td><td class="num neg">0,68 Y</td><td class="num pos">1,01 Y</td></tr>
+    <tr><td>Méridian Delta-04</td><td class="num">2,02 Y</td><td class="num neg">0,81 Y</td><td class="num pos">1,21 Y</td></tr>
+    <tr><td>Méridian Delta-05</td><td class="num">2,48 Y</td><td class="num neg">0,99 Y</td><td class="num pos">1,49 Y</td></tr>
+    <tr><td>Méridian Delta-06</td><td class="num">2,90 Y</td><td class="num neg">1,16 Y</td><td class="num pos">1,74 Y</td></tr>
+    <tr><td>Méridian Delta-07</td><td class="num">3,30 Y</td><td class="num neg">1,32 Y</td><td class="num pos">1,98 Y</td></tr>
+    <tr><td>Méridian Delta-08</td><td class="num">3,76 Y</td><td class="num neg">1,50 Y</td><td class="num pos">2,26 Y</td></tr>
+    <tr><td><b>Total empire</b></td><td class="num"><b>18,23 Y</b></td><td class="num neg"><b>7,29 Y</b></td><td class="num pos"><b>10,94 Y</b></td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Bénéfices avant impôt repris directement des résultats nets de la Partie 1 (semaine 6). Impôt = bénéfice × 40% (taux plafond, seule tranche pertinente à cette échelle).</p>
+
+  <h3 class="section">⏰ Le retard qui coûte cher</h3>
+  <p>Trois jours pour payer après le calcul du lundi matin — au-delà, majoration de 40% sur le montant dû. Dans notre scénario, un problème de trésorerie ponctuel au niveau de la holding (frais de gestion prélevés en retard à Delta-03) retarde le paiement de son impôt au-delà du délai.</p>
+  <table>
+    <tr><th>Filiale</th><th class="num">Impôt dû</th><th class="num">Majoration (40%)</th><th class="num">Total payé</th></tr>
+    <tr><td>Méridian Delta-03 (paiement en retard)</td><td class="num">0,68 Y</td><td class="num neg">0,27 Y</td><td class="num neg">0,95 Y</td></tr>
+  </table>
+  <p>0,27 Y Ø perdus pour un simple retard administratif — sur une filiale qui, elle, avait un bénéfice net positif. La règle ne fait pas de différence entre une filiale en difficulté et une filiale simplement mal synchronisée avec sa maison mère.</p>
+
+  <h3 class="section">🏗️ Les coûts cachés d'une holding</h3>
+  <p>Au-delà de l'impôt, une holding supporte des coûts que les filiales isolées n'ont pas : des frais de gestion qu'elle prélève elle-même à ses filiales, des coûts comptables/juridiques progressifs selon le capital (de 0% à 0,1%), et des coûts informatiques/IA qui augmentent avec le nombre de biens gérés dans les filiales.</p>
+  <div class="callout warn"><b>Non chiffrable ici.</b> Le barème exact du taux appliqué par palier de capital (comptable/juridique) et le tarif exact des coûts informatiques par bien ne sont pas détaillés dans nos sources actuelles — le Journal ne les invente pas. On peut situer Méridian Holding en haut de la fourchette 0-0,1% vu sa taille (340 Y Ø de capitaux propres rien que pour Delta-08, hypothèse éditoriale posée en Partie 2), mais un chiffre précis nécessiterait une confirmation.</div>
+
+  <h3 class="section">⚠️ Le seuil de faillite — Delta-07 a frôlé la ligne rouge</h3>
+  <p>La règle est claire : une entreprise tombe en faillite si son résultat net ET ses bénéfices reportés sont négatifs, trois semaines de suite. Delta-07, pendant les semaines 1 à 3, a justement enchaîné trois semaines de résultat net négatif (-6,24 Y, -6,36 Y, -6,49 Y — voir Partie 1), exactement la durée du seuil.</p>
+  <p>Ce qui a sauvé Delta-07, c'est l'historique : avant l'oubli de réglage, la filiale avait accumulé des bénéfices reportés positifs, estimés à <b>25 Y Ø</b> (hypothèse éditoriale, non mesurée). Trois semaines de pertes cumulées (-19,08 Y) ont rongé cette réserve sans l'épuiser :</p>
+  <table>
+    <tr><th>Étape</th><th class="num">Bénéfices reportés</th></tr>
+    <tr><td>Avant l'oubli (hypothèse éditoriale)</td><td class="num pos">25,00 Y</td></tr>
+    <tr><td>Après S1 (-6,24 Y)</td><td class="num pos">18,76 Y</td></tr>
+    <tr><td>Après S2 (-6,36 Y)</td><td class="num pos">12,40 Y</td></tr>
+    <tr><td>Après S3 (-6,49 Y)</td><td class="num pos">5,92 Y</td></tr>
+  </table>
+  <div class="callout warn"><b>À une semaine près.</b> Si le réglage à 0% avait duré une semaine de plus au même rythme de pertes (~-6,49 Y), les bénéfices reportés seraient passés sous zéro <i>en même temps</i> que le résultat net restait négatif — les deux conditions de la faillite réunies simultanément. Delta-07 n'a pas été sauvée par une bonne décision prise pendant la crise, mais par des réserves constituées avant elle.</div>
+
+  <h3 class="section">⚖️ Le Tribunal Économique Suprême</h3>
+  <p>Le jeu prévoit un garde-fou pour les dérives volontaires : vider intentionnellement la trésorerie d'une entreprise ou détourner des fonds via des filiales ou des travaux fictifs est interdit, avec audit possible au Tribunal Économique Suprême (TES). Sanction en cas de faute avérée : remboursement + amende de 30% ; en cas de récidive, gel de 15 jours ; en cas de multi-récidive, bannissement. Un garde-fou distinct du risque de faillite « normal » de Delta-07 : ici, on parle de fraude volontaire, pas d'un réglage oublié.</p>
+
+  <h3 class="section">📰 À lire aussi dans le Journal</h3>
+  <p>Partie 1 : « L'Empire Méridian — d'un oubli de réglage à un empire à 8 filiales », publiée le 18 août 2026. Partie 2 : « Les actionnaires entrent en scène », publiée le 19 août 2026. La série se conclut dans une Partie 4, où Méridian approche ses plafonds structurels (500 filiales, 8 900 DØ) et doit choisir entre grossir encore, distribuer plus, ou geler l'expansion.</p>
+
+  <h3 class="section">🔬 Méthodologie — ce qui est réel, ce qui est fictif</h3>
+  <p>Le barème d'impôt sur les bénéfices (paliers et taux), la règle de majoration de retard (40%), la condition de faillite (résultat net et bénéfices reportés négatifs 3 semaines de suite) et la sanction du TES (remboursement + amende 30%, gel 15 jours, ban en cas de récidive) sont repris tels quels de la Constitution officielle et du barème des formules du jeu.</p>
+  <p style="font-size:13px;color:var(--ink-dim);">Les chiffres appliqués à Méridian — bénéfices avant impôt (repris directement des résultats nets calculés en Partie 1), scénario de retard de paiement de Delta-03, et surtout le montant des bénéfices reportés de Delta-07 avant l'oubli (25 Y Ø) — sont des hypothèses éditoriales construites pour illustrer les règles, non des mesures réelles. Nomenclature : E = trillion (10¹⁸), Y = quadrillion (10²⁴), conformément à la Constitution officielle du jeu.</p>
+
+  <div class="sources">
+    Simulation illustrative, Partie 3 sur la fiscalité, les coûts de gestion et le risque de faillite. Aucune filiale « Méridian » n'existe réellement sur M8.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8 — Dossier Spécial</div>
+
+</div>
+</body>
+</html>

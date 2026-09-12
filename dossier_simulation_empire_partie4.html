@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Dossier Spécial — L'Empire Méridian, Partie 4</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:40px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  h4.subsection{color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;font-size:13px;margin-top:22px;margin-bottom:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .callout.good{border-left-color:var(--ok);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:420px;}
+  .keybox .num{color:var(--gold);font-size:32px;}
+  .compare{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:18px 0;}
+  .compare-card{background:rgba(201,163,90,0.05);border:1px solid var(--line);padding:14px 16px;}
+  .compare-card h4{font-family:Georgia,serif;font-size:14px;color:var(--gold);margin:0 0 8px;}
+  .compare-card p{font-size:13px;color:var(--ink-dim);margin:0 0 6px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+  @media(max-width:600px){.compare{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo · Dossier Spécial — Simulation, Partie 4 (finale)</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">DOSSIER SPÉCIAL — L'EMPIRE MÉRIDIAN, PARTIE 4 (FINALE) — 21 AOÛT 2026</div>
+
+  <h3 class="section">📰 Grossir, distribuer, ou s'arrêter</h3>
+  <p>Trois parties, un empire qui s'est construit sous nos yeux : un réglage de vente oublié qui coûtait 9,66 Y Ø par semaine (Partie 1), une gouvernance actionnariale avec levées de fonds et primes de directeur (Partie 2), un empire qui a frôlé la faillite technique à une semaine près et qui paie systématiquement le taux d'impôt plafond de 40% (Partie 3). Pour cette dernière partie, Méridian Holding arrive à un carrefour que tout empire de cette taille finit par rencontrer : elle approche ses limites structurelles, et les actionnaires doivent choisir une direction.</p>
+  <p>Comme les trois parties précédentes, ce dossier reste une <b>simulation</b>. Les plafonds et règles de vote appliqués ici sont réels ; les chiffres de Méridian restent des hypothèses éditoriales construites pour illustrer les mécanismes.</p>
+
+  <div class="keybox">
+    <div style="color:var(--gold-dim);font-size:13px;text-transform:uppercase;letter-spacing:1px;">Délai avant que Méridian Holding atteigne son plafond légal de valeur</div>
+    <div class="num">~7 mois</div>
+    <div style="font-size:14px;margin-top:6px;">Au rythme actuel de croissance — pile au moment où elle devient éligible à un vote de cessation</div>
+  </div>
+
+  <h3 class="section">🧱 Les deux plafonds structurels de Méridian</h3>
+  <p>Une holding sur M8 est bornée par deux règles bien distinctes : un plafond de <b>500 filiales</b>, et un plafond de <b>valeur totale à 8 900 DØ</b> (trésorerie + livrets + épargne − emprunts + capital des filiales). Au-delà de ce dernier, toute nouvelle levée de fonds et tout nouvel achat de filiale sont bloqués — même si le nombre de filiales reste loin du maximum.</p>
+  <table>
+    <tr><th>Plafond</th><th class="num">Situation actuelle de Méridian</th><th class="num">Délai avant d'atteindre le plafond</th></tr>
+    <tr><td>500 filiales</td><td class="num">9 filiales (hypothèse éditoriale, au rythme d'environ 1 nouvelle filiale / 10 semaines)</td><td class="num">~94 ans</td></tr>
+    <tr><td>8 900 DØ de valeur</td><td class="num">≈ 6 200 DØ (hypothèse éditoriale, après la levée de fonds de la Partie 2)</td><td class="num neg">~7 mois</td></tr>
+  </table>
+  <div class="callout warn"><b>Le plafond qui compte vraiment.</b> À l'échelle de Méridian, le plafond de valeur arrive des décennies avant le plafond de filiales. Un empire n'est jamais vraiment limité par le nombre de structures qu'il peut posséder — il est limité par ce qu'il vaut. C'est une leçon qui vaut pour n'importe quelle holding sur M8, pas seulement pour notre simulation.</div>
+
+  <h3 class="section">📈 Option A — continuer de grossir</h3>
+  <p>Méridian pourrait pousser jusqu'au plafond : de nouvelles levées de fonds (jusqu'à épuiser la marge des 8 900 DØ), une 10ᵉ puis une 11ᵉ filiale. Mais chaque filiale de plus signifie aussi plus de coûts de gestion prélevés par la holding (comptables/juridiques, informatiques — Partie 3), plus de votes à organiser, et des primes de directeur plus souvent bloquées par le plafond personnel du joueur plutôt que par celui de l'entreprise (Partie 2). La croissance n'est jamais gratuite administrativement.</p>
+
+  <h3 class="section">📤 Option B — redistribuer davantage aux actionnaires</h3>
+  <p>Rappel de la règle : dividendes votés, maximum 15% du patrimoine de l'entreprise, versés uniquement si les bénéfices reportés le permettent. En Partie 2, Delta-08 avait choisi un dividende prudent de 4% (13,6 Y Ø). Voici ce que donnerait un choix plus généreux, toujours dans les clous du plafond légal :</p>
+  <table>
+    <tr><th>Scénario</th><th class="num">% du patrimoine</th><th class="num">Dividende versé</th></tr>
+    <tr><td>Choisi en Partie 2 (prudent)</td><td class="num">4%</td><td class="num">13,6 Y Ø</td></tr>
+    <tr><td>Scénario alternatif (généreux)</td><td class="num">12%</td><td class="num pos">40,8 Y Ø</td></tr>
+    <tr><td>Plafond légal absolu</td><td class="num">15%</td><td class="num">51,0 Y Ø</td></tr>
+  </table>
+  <p>Le compromis à 12% laisserait encore 3 points de marge sous le plafond légal — de quoi garder une réserve si une semaine tourne mal, comme Delta-07 l'a vécu en Partie 1. Distribuer plus aujourd'hui, c'est mécaniquement moins de trésorerie disponible pour amortir un choc demain.</p>
+
+  <h3 class="section">🛑 Option C — geler l'expansion, ou envisager la cessation</h3>
+  <p>La règle de cessation d'une entreprise sur M8 : vote à la majorité des actionnaires, mais impossible avant 7 mois d'existence. Si l'on fixe (hypothèse éditoriale) la fondation de Méridian Holding au début de cette série, elle devient éligible à un vote de cessation à peu près au même moment où elle atteindrait, au rythme actuel, son plafond de valeur. Une convergence qui n'est pas anodine : c'est précisément le moment où les actionnaires sont à la fois <i>capables</i> de voter l'arrêt et <i>obligés</i> de décider quoi faire de la croissance bloquée.</p>
+  <div class="callout"><b>Ce que dirait une cessation, en règles réelles.</b> Toutes les filiales seraient liquidées en premier, les emprunts remboursés, puis distribution du reste aux actionnaires — avec impôt sur les plus-values de vente des filiales. Les biens vendus en liquidation le sont à 75% de leur valeur, pas au prix plein : un empire qu'on démantèle perd mécaniquement de la valeur par rapport à un empire qu'on continue d'exploiter.</div>
+
+  <h3 class="section">🗳️ Le choix final de Méridian</h3>
+  <p>Mis au vote (hypothèse éditoriale, pour conclure la série) : PDG et Directeur Financier (63% des parts à eux deux) proposent un compromis entre les options A et B — pas de nouvelle filiale dans l'immédiat, mais un dividende relevé à 10% du patrimoine (34 Y Ø), le reste de la marge sous le plafond de valeur étant gardé en réserve plutôt qu'investi. Résultat du vote : 81% pour, 19% contre (les actionnaires externes qui auraient préféré pousser la croissance jusqu'au plafond).</p>
+  <div class="callout good"><b>Le vrai enseignement de toute la série.</b> Un empire à l'échelle de Méridian n'est jamais gouverné par un seul levier. Rentabilité opérationnelle (Partie 1), gouvernance actionnariale (Partie 2), fiscalité et risque de faillite (Partie 3), plafonds structurels (Partie 4) — les quatre s'imbriquent, et ignorer l'un pour se concentrer sur un autre finit toujours par coûter cher. C'est vrai pour un empire fictif à 1 096 339 biens. C'est tout aussi vrai pour la plus petite filiale à cinq immeubles qui a inspiré ce dossier au tout début.</div>
+
+  <h3 class="section">📊 Bilan de la série en un coup d'œil</h3>
+  <table>
+    <tr><th>Partie</th><th>Sujet</th><th class="num">Chiffre-clé</th></tr>
+    <tr><td>1</td><td>Rentabilité opérationnelle, seuil de vente</td><td class="num">+9,66 Y Ø/semaine (Delta-07 corrigée)</td></tr>
+    <tr><td>2</td><td>Actionnariat, levée de fonds, primes</td><td class="num">4 200 DØ levés, prime plafonnée à 5 Y Ø</td></tr>
+    <tr><td>3</td><td>Fiscalité, coûts, risque de faillite</td><td class="num">40% d'impôt plafond, 5,92 Y Ø de marge avant faillite</td></tr>
+    <tr><td>4</td><td>Croissance, plafonds structurels</td><td class="num">~7 mois avant le plafond de valeur (8 900 DØ)</td></tr>
+  </table>
+
+  <h3 class="section">📰 À lire aussi dans le Journal</h3>
+  <p>La série complète : Partie 1 (18 août 2026), Partie 2 (19 août 2026), Partie 3 (20 août 2026), et cette Partie 4 qui conclut le dossier. Toutes reposent sur les mêmes règles vérifiées dans la Constitution officielle et le barème des formules de M8.</p>
+
+  <h3 class="section">🔬 Méthodologie — ce qui est réel, ce qui est fictif</h3>
+  <p>Le plafond de 500 filiales, le plafond de valeur d'une holding (8 900 DØ), la règle de cessation (vote majoritaire, pas avant 7 mois d'existence), le déroulé d'une liquidation (filiales liquidées en premier, emprunts remboursés, biens vendus à 75%) et le plafond de dividendes (15% du patrimoine) sont repris tels quels de la Constitution officielle du jeu.</p>
+  <p style="font-size:13px;color:var(--ink-dim);">Les chiffres appliqués à Méridian — nombre de filiales actuel, valeur actuelle de la holding en DØ, rythme de croissance, date de fondation fixée au début de la série, résultat du vote final — sont des hypothèses éditoriales construites pour la démonstration, non des mesures réelles. Comme dans les parties précédentes, le Journal n'a pas converti les DØ en Y faute de confirmation du rang exact de ce palier dans le barème officiel du jeu ; les deux échelles sont donc restées séparées tout au long de la série plutôt que d'être mélangées sans certitude.</p>
+
+  <div class="sources">
+    Simulation illustrative, Partie 4 (finale) sur les plafonds structurels et les choix stratégiques d'un empire immobilier. Aucune filiale « Méridian » n'existe réellement sur M8.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8 — Dossier Spécial</div>
+
+</div>
+</body>
+</html>

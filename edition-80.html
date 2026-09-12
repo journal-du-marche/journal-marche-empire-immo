@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Édition 80</title>
+<!--
+  ⚠️ Exports : toujours télécharger quelques minutes après la fin du reset quotidien (~03h15, pas juste après 03h00),
+  sinon les promotions capturées peuvent encore être celles de la veille en transition.
+
+  🔒 Confidentialité : le Journal est public. Ne jamais mentionner l'enquête wash-trading, ni nommer les entités
+  suspectées de transferts anormaux, ni même décrire discrètement le même schéma sans le nommer. Si des cessions
+  ou transferts inhabituels apparaissent dans les Actualités, la section "Activité boursière du jour" reste
+  factuelle et simple — pas d'explication ni de reconciliation de chiffres qui laisserait deviner un problème.
+
+  💰 Format Valeur pour un bien en promo (depuis l'édition 49, suite à une confusion lecteur) : toujours afficher
+  "[Valeur d'origine, prix agence] → [Valeur effective après promo] -X%", jamais la valeur effective seule.
+  La "Valeur d'origine" = le champ brut "valeur" de l'export (= ce que le joueur voit en agence). La "Valeur
+  effective" = Valeur d'origine × (1 − promo/100), utilisée pour calculer la Rentabilité. Afficher les deux
+  évite qu'un lecteur pense que le prix affiché est faux ou que la promo est appliquée deux fois.
+
+  ⚠️ Anti-hallucination (leçon de l'édition 55) : ne JAMAIS citer de mémoire un nombre de guides/articles
+  existants ou une liste de titres — l'édition 55 a publié "cinq guides du Journal" avec des titres inventés
+  (il n'en existait que 2 à ce moment-là). Vérifier les vrais fichiers (ls/Glob du dossier Dossier claude\)
+  avant de citer un guide, un titre ou un total.
+
+  📅 Cette version web doit TOUJOURS être produite en même temps que la version couleur (gabarit-edition-
+  couleur.html) — jamais l'une sans l'autre, même si Patrick ne redemande pas explicitement celle-ci.
+
+  🏆 Champions de la semaine : alimenter Dossier claude\Json a conserver\rentabilite_historique.json à CHAQUE
+  édition et l'utiliser pour cette rubrique — ne plus jamais écrire "rubrique indisponible" dès qu'au moins
+  deux éditions sont historisées (voir INSTRUCTIONS-JOURNAL-DU-MARCHE.md).
+
+  🕐 Activité boursière du jour : vérifier la vraie plage de dates/heures de l'export Actualités de ce soir
+  (ne jamais recopier celle de l'édition précédente) — se caler sur l'horaire réel de collecte de Patrick
+  (~20h55 heure locale, voir INSTRUCTIONS-JOURNAL-DU-MARCHE.md).
+-->
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:40px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  h4.subsection{color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;font-size:13px;margin-top:22px;margin-bottom:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:400px;}
+  .keybox .num{color:var(--gold);font-size:32px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">Nouvelle promo -18% : le Centre de recherche international grimpe à 56,09% et prend la 1ère place. Plate-forme pétrolière améliorée perd sa promo, retombe à 50,42%.</div>
+  </div>
+  <div class="dateline">ÉDITION N°80 — 10 SEPTEMBRE 2026</div>
+
+  <h3 class="section">📰 Introduction</h3>
+  <p>Édition 80, basée sur l'export post-reset du 10 septembre 2026 (03h21, taux promoteur 83-84%). Grand bouleversement en tête du classement toutes catégories : après deux éditions consécutives au sommet grâce à une promotion relevée à -15%, Plate-forme pétrolière améliorée voit sa promo disparaître cette nuit et retombe à la 3e place (50,42%). C'est Centre de recherche international qui en profite, avec une toute nouvelle promotion de -18% qui le propulse à 56,09%, sa meilleure performance depuis le début du suivi.</p>
+
+  <h3 class="section">🎯 Suivi de recommandation</h3>
+  <p>Suivi de recommandation : 20 signaux publiés, 20 vérifiés depuis le lancement de la rubrique — 100% de réussite. Le signal de l'édition 79, Plate-forme pétrolière améliorée, reste confirmé malgré la perte de sa promo : rentabilité toujours solide à 50,42%, simplement redescendue au 3e rang après la fin de sa promotion.</p>
+  <table>
+    <tr><th>Édition</th><th>Signal</th><th>Résultat</th></tr>
+    <tr><td>79</td><td>Plate-forme pétrolière améliorée</td><td class="pos">confirmé, rentabilité solide à 50,42%, perd la 1ère place après la fin de sa promo -15%</td></tr>
+    <tr><td>78</td><td>Plate-forme pétrolière améliorée</td><td class="pos">confirmé, avait conservé la 1ère place à 59,41%</td></tr>
+    <tr><td>77</td><td>Réseau de bus 50 arrêts</td><td class="pos">confirmé, rentabilité stable autour de 51%</td></tr>
+  </table>
+
+  <h3 class="section">💎 Achat du jour</h3>
+  <div class="keybox">
+    <div style="color:var(--gold-dim);font-size:13px;text-transform:uppercase;letter-spacing:1px;">Centre de recherche international</div>
+    <div class="num" style="font-size:20px;">71 991 372 507 Ø → 59 032 925 456 Ø <span class="neg">-18%</span></div>
+    <div style="font-size:14px;margin-top:6px;">Rentabilité 56,09% · retour en 651 jours · écart secteur +23,47 pts · promo en cours</div>
+  </div>
+  <p>Prend la 1ère place toutes catégories dès sa première nuit en promotion, avec le taux le plus élevé (-18%) observé ce soir.</p>
+
+  <h3 class="section">🔔 Alerte marché — promotions officielles du jour</h3>
+  <p style="font-size:13px;color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;">Entreprise (3 biens)</p>
+  <table>
+    <tr><th>Description</th><th class="num">Prix d'origine</th><th class="num">Prix effectif</th><th class="num">Loyer</th><th class="num">Charges</th><th class="num">Impôts</th><th class="num">Promotion</th></tr>
+<tr><td>500m² de bureaux grand standing (niv.3)</td><td class="num">428 362 Ø</td><td class="num">351 257 Ø</td><td class="num">15 147 Ø</td><td class="num">2 134 Ø</td><td class="num">726 Ø</td><td class="num neg">-18%</td></tr>
+<tr><td>Centre de recherche international (niv.3)</td><td class="num">71 991 372 507 Ø</td><td class="num">59 032 925 456 Ø</td><td class="num">3 766 970 596 Ø</td><td class="num">667 036 270 Ø</td><td class="num">311 283 594 Ø</td><td class="num neg">-18%</td></tr>
+<tr><td>Mégapôle millenium international (niv.3)</td><td class="num">4 664 233 948 298 905 387 008 Ø</td><td class="num">3 824 671 837 605 102 878 720 Ø</td><td class="num">93 841 812 835 549 003 776 Ø</td><td class="num">18 994 900 060 295 999 488 Ø</td><td class="num">9 497 450 030 147 999 744 Ø</td><td class="num neg">-18%</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;">Personnel (3 biens)</p>
+  <table>
+    <tr><th>Description</th><th class="num">Prix d'origine</th><th class="num">Prix effectif</th><th class="num">Loyer</th><th class="num">Charges</th><th class="num">Impôts</th><th class="num">Promotion</th></tr>
+<tr><td>Quadruple complexe résidentiel géant tout confort (niv.2)</td><td class="num">335 254 361 Ø</td><td class="num">301 728 925 Ø</td><td class="num">5 110 548 Ø</td><td class="num">804 904 Ø</td><td class="num">410 444 Ø</td><td class="num neg">-10%</td></tr>
+<tr><td>Grande maison habitable (niv.1)</td><td class="num">143 849 Ø</td><td class="num">129 464 Ø</td><td class="num">4 076 Ø</td><td class="num">428 Ø</td><td class="num">160 Ø</td><td class="num neg">-10%</td></tr>
+<tr><td>Grande maison équipée (niv.2)</td><td class="num">153 231 Ø</td><td class="num">137 908 Ø</td><td class="num">4 671 Ø</td><td class="num">490 Ø</td><td class="num">184 Ø</td><td class="num neg">-10%</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Rotation quasi-complète des promos cette nuit : les 6 biens en promo hier soir sont tous sortis, remplacés par 6 nouveaux — dont Centre de recherche international, qui cumule promo et 1ère place toutes catégories.</p>
+
+  <h3 class="section">🏢 Secteur entreprise</h3>
+  <h4 class="subsection">Vue d'ensemble</h4>
+  <table>
+    <tr><th>Secteur</th><th class="num">Rentabilité moyenne</th></tr>
+<tr><td>Zones</td><td class="num pos">29,56%</td></tr>
+<tr><td>Transport</td><td class="num pos">35,41%</td></tr>
+<tr><td>Bureaux</td><td class="num pos">33,74%</td></tr>
+<tr><td>Industriels</td><td class="num pos">32,43%</td></tr>
+<tr><td>Commerciaux</td><td class="num pos">36,02%</td></tr>
+    <tr><td><b>Moyenne toutes catégories</b></td><td class="num pos"><b>32.61%</b></td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Rentabilité = (Loyer − Charges − Impôts − Assurance min.) × 12 ÷ Valeur × 100 (formule officielle Constitution/FAQ, assurance min. = 0,05% de la valeur/mois). Moyennes calculées sur les biens niveau ≥1.</p>
+
+  <h4 class="subsection">Meilleur bien par catégorie et par niveau</h4>
+  <table>
+    <tr><th>Catégorie</th><th>Niveau 1</th><th>Niveau 2</th><th>Niveau 3</th></tr>
+<tr><td>Zones</td><td>Centre de recherche régional — 49,32%</td><td>Plate-forme pétrolière améliorée — 50,42%</td><td>Centre de recherche international — 56,09%</td></tr>
+<tr><td>Transport</td><td>Gare avec 4 terminaux — 45,16%</td><td>Réseau de bus 50 arrêts — 51,10%</td><td>Réseau FreeCycl' 20 arrêts — 40,39%</td></tr>
+<tr><td>Bureaux</td><td>Gratte-ciel aménagé — 38,76%</td><td>2100m² de bureaux tout équipés — 41,58%</td><td>2100m² de bureaux grand standing — 45,32%</td></tr>
+<tr><td>Industriels</td><td>Centre industriel utilisable — 39,61%</td><td>Centre industriel tout équipé — 35,76%</td><td>Entrepôt intégralement optimisé — 43,13%</td></tr>
+<tr><td>Commerciaux</td><td>Espace commercial aménagé — 37,34%</td><td>Grand local tout équipé — 38,73%</td><td>Local de haut standing — 42,75%</td></tr>
+  </table>
+
+  <h4 class="subsection">Top 20</h4>
+  <table>
+    <tr><th>#</th><th>Bien</th><th>Niv.</th><th class="num">Rentabilité</th><th class="num">Valeur</th><th class="num">Écart secteur</th><th class="num">Retour</th><th>Risque</th></tr>
+<tr><td>1</td><td>Centre de recherche international</td><td>3</td><td class="num pos">56,09%</td><td class="num">71 991 372 507 Ø → 59 032 925 456 Ø <span class="neg">-18%</span></td><td class="num">+23,47 pts</td><td class="num">651 jours</td><td><span class="neg">volatile</span></td></tr>
+<tr><td>2</td><td>Réseau de bus 50 arrêts</td><td>2</td><td class="num pos">51,10%</td><td class="num">13 011 499 Ø</td><td class="num">+18,49 pts</td><td class="num">714 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>3</td><td>Plate-forme pétrolière améliorée</td><td>2</td><td class="num pos">50,42%</td><td class="num">32 072 110 261 Ø</td><td class="num">+17,81 pts</td><td class="num">724 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>4</td><td>Centre de recherche régional</td><td>1</td><td class="num pos">49,32%</td><td class="num">20 008 289 493 Ø</td><td class="num">+16,71 pts</td><td class="num">740 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>5</td><td>Plate-forme pétrolière aménagée</td><td>1</td><td class="num pos">47,95%</td><td class="num">16 535 801 603 Ø</td><td class="num">+15,34 pts</td><td class="num">761 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>6</td><td>Plate-forme pétrolière high-tech</td><td>3</td><td class="num pos">46,70%</td><td class="num">56 489 141 389 Ø</td><td class="num">+14,09 pts</td><td class="num">782 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>7</td><td>2100m² de bureaux grand standing</td><td>3</td><td class="num pos">45,32%</td><td class="num">767 972 Ø</td><td class="num">+12,71 pts</td><td class="num">805 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>8</td><td>Gare avec 4 terminaux</td><td>1</td><td class="num pos">45,16%</td><td class="num">879 494 037 Ø</td><td class="num">+12,55 pts</td><td class="num">808 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>9</td><td>Réseau FreeCycl' 15 arrêts</td><td>2</td><td class="num pos">44,77%</td><td class="num">2 753 204 Ø</td><td class="num">+12,15 pts</td><td class="num">815 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>10</td><td>Centre de recherche national</td><td>2</td><td class="num pos">44,54%</td><td class="num">45 524 118 350 Ø</td><td class="num">+11,93 pts</td><td class="num">819 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>11</td><td>Zone nucléaire internationale</td><td>3</td><td class="num pos">43,97%</td><td class="num">2 530 819 990 191 Ø</td><td class="num">+11,35 pts</td><td class="num">830 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>12</td><td>Réseau FreeCycl' 10 arrêts</td><td>1</td><td class="num pos">43,36%</td><td class="num">2 104 922 Ø</td><td class="num">+10,75 pts</td><td class="num">842 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>13</td><td>Entrepôt intégralement optimisé</td><td>3</td><td class="num pos">43,13%</td><td class="num">559 068 Ø</td><td class="num">+10,52 pts</td><td class="num">846 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>14</td><td>Zone portuaire internationale</td><td>3</td><td class="num pos">42,80%</td><td class="num">506 202 450 732 Ø</td><td class="num">+10,19 pts</td><td class="num">853 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>15</td><td>Local de haut standing</td><td>3</td><td class="num pos">42,75%</td><td class="num">439 732 Ø</td><td class="num">+10,13 pts</td><td class="num">854 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>16</td><td>Zone nucléaire régionale</td><td>1</td><td class="num pos">41,96%</td><td class="num">1 124 963 604 125 Ø</td><td class="num">+9,35 pts</td><td class="num">870 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>17</td><td>Zone aérospatiale nationale</td><td>2</td><td class="num pos">41,69%</td><td class="num">8 435 942 582 607 Ø</td><td class="num">+9,07 pts</td><td class="num">876 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>18</td><td>Zone nucléaire nationale</td><td>2</td><td class="num pos">41,68%</td><td class="num">1 687 259 446 567 Ø</td><td class="num">+9,07 pts</td><td class="num">876 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>19</td><td>2100m² de bureaux tout équipés</td><td>2</td><td class="num pos">41,58%</td><td class="num">587 385 Ø</td><td class="num">+8,96 pts</td><td class="num">878 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>20</td><td>Zone portuaire régionale</td><td>1</td><td class="num pos">41,41%</td><td class="num">224 956 838 094 Ø</td><td class="num">+8,80 pts</td><td class="num">881 jours</td><td><span class="pos">stable</span></td></tr>
+  </table>
+
+  <h3 class="section">🏠 Secteur personnel</h3>
+  <h4 class="subsection">Vue d'ensemble</h4>
+  <table>
+    <tr><th>Type</th><th class="num">Rentabilité moyenne</th></tr>
+<tr><td>Complexe</td><td class="num pos">30,07%</td></tr>
+<tr><td>Quartier</td><td class="num pos">36,03%</td></tr>
+<tr><td>Appartement</td><td class="num pos">27,03%</td></tr>
+<tr><td>Chambre</td><td class="num pos">24,02%</td></tr>
+<tr><td>Maison</td><td class="num pos">27,95%</td></tr>
+    <tr><td><b>Moyenne toutes catégories</b></td><td class="num pos"><b>28.48%</b></td></tr>
+  </table>
+
+  <h4 class="subsection">Meilleur bien par catégorie et par niveau</h4>
+  <table>
+    <tr><th>Catégorie</th><th>Niveau 1</th><th>Niveau 2</th><th>Niveau 3</th></tr>
+<tr><td>Complexe</td><td>Complexe résidentiel palacium habitable — 42,40%</td><td>Complexe résidentiel géant tout confort — 41,85%</td><td>Complexe résidentiel palacium luxueux — 40,99%</td></tr>
+<tr><td>Quartier</td><td>Tours résidentielles jumelles aménagées — 47,02%</td><td>Tours résidentielles jumelles tout confort — 41,06%</td><td>Tours résidentielles jumelles luxueuses — 48,29%</td></tr>
+<tr><td>Appartement</td><td>Res. 12 T2 habitables — 36,41%</td><td>Res. 12 T2 équipés — 35,01%</td><td>Res. 12 T2 grand luxe — 36,98%</td></tr>
+<tr><td>Chambre</td><td>Res. 6 chambres habitables — 32,22%</td><td>Res. 6 chambres équipées — 30,56%</td><td>Res. 12 chambres tout confort — 30,26%</td></tr>
+<tr><td>Maison</td><td>Grande maison habitable — 31,73%</td><td>Grande maison équipée — 34,18%</td><td>Maison moyenne luxueuse — 32,55%</td></tr>
+  </table>
+
+  <h4 class="subsection">Top 20</h4>
+  <table>
+    <tr><th>#</th><th>Bien</th><th>Niv.</th><th class="num">Rentabilité</th><th class="num">Valeur</th><th class="num">Écart secteur</th><th class="num">Retour</th><th>Risque</th></tr>
+<tr><td>1</td><td>Tours résidentielles jumelles luxueuses</td><td>3</td><td class="num pos">48,29%</td><td class="num">34 412 499 552 367 042 560 Ø</td><td class="num">+19,82 pts</td><td class="num">756 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>2</td><td>Tours résidentielles jumelles aménagées</td><td>1</td><td class="num pos">47,02%</td><td class="num">22 489 074 478 024 503 296 Ø</td><td class="num">+18,54 pts</td><td class="num">776 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>3</td><td>Complexe résidentiel palacium habitable</td><td>1</td><td class="num pos">42,40%</td><td class="num">2 382 389 405 217 522 Ø</td><td class="num">+13,93 pts</td><td class="num">861 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>4</td><td>Complexe résidentiel géant tout confort</td><td>2</td><td class="num pos">41,85%</td><td class="num">42 423 921 Ø</td><td class="num">+13,37 pts</td><td class="num">872 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>5</td><td>Tours résidentielles jumelles tout confort</td><td>2</td><td class="num pos">41,06%</td><td class="num">27 819 517 154 636 529 664 Ø</td><td class="num">+12,59 pts</td><td class="num">889 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>6</td><td>Complexe résidentiel palacium luxueux</td><td>3</td><td class="num pos">40,99%</td><td class="num">4 116 358 179 590 326 Ø</td><td class="num">+12,51 pts</td><td class="num">890 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>7</td><td>Complexe résidentiel titanium tout confort</td><td>2</td><td class="num pos">40,52%</td><td class="num">4 101 631 866 242 Ø</td><td class="num">+12,04 pts</td><td class="num">901 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>8</td><td>Complexe résidentiel palacium tout confort</td><td>2</td><td class="num pos">39,41%</td><td class="num">3 638 299 086 033 780 Ø</td><td class="num">+10,94 pts</td><td class="num">926 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>9</td><td>Grand complexe résidentiel habitable</td><td>1</td><td class="num pos">38,77%</td><td class="num">15 684 567 Ø</td><td class="num">+10,30 pts</td><td class="num">941 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>10</td><td>Complexe résidentiel titanium habitable</td><td>1</td><td class="num pos">37,27%</td><td class="num">3 554 257 315 480 Ø</td><td class="num">+8,79 pts</td><td class="num">979 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>11</td><td>Res. 12 T2 grand luxe</td><td>3</td><td class="num pos">36,98%</td><td class="num">525 037 Ø</td><td class="num">+8,51 pts</td><td class="num">987 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>12</td><td>Complexe résidentiel titanium luxueux</td><td>3</td><td class="num pos">36,95%</td><td class="num">5 390 225 526 376 Ø</td><td class="num">+8,47 pts</td><td class="num">988 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>13</td><td>Res. 12 T2 habitables</td><td>1</td><td class="num pos">36,41%</td><td class="num">403 007 Ø</td><td class="num">+7,93 pts</td><td class="num">1003 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>14</td><td>Grand complexe résidentiel tout confort</td><td>2</td><td class="num pos">35,90%</td><td class="num">19 254 394 Ø</td><td class="num">+7,43 pts</td><td class="num">1017 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>15</td><td>Complexe résidentiel géant habitable</td><td>1</td><td class="num pos">35,59%</td><td class="num">40 176 140 Ø</td><td class="num">+7,11 pts</td><td class="num">1026 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>16</td><td>Res. 12 T2 équipés</td><td>2</td><td class="num pos">35,01%</td><td class="num">503 465 Ø</td><td class="num">+6,54 pts</td><td class="num">1043 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>17</td><td>Grand complexe résidentiel luxueux</td><td>3</td><td class="num pos">34,64%</td><td class="num">26 890 928 Ø</td><td class="num">+6,16 pts</td><td class="num">1054 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>18</td><td>Grande maison équipée</td><td>2</td><td class="num pos">34,18%</td><td class="num">153 231 Ø → 137 908 Ø <span class="neg">-10%</span></td><td class="num">+5,70 pts</td><td class="num">1068 jours</td><td><span class="neg">volatile</span></td></tr>
+<tr><td>19</td><td>Double complexe résidentiel géant habitable</td><td>1</td><td class="num pos">33,95%</td><td class="num">84 153 826 Ø</td><td class="num">+5,48 pts</td><td class="num">1075 jours</td><td><span class="pos">stable</span></td></tr>
+<tr><td>20</td><td>Complexe résidentiel millenium habitable</td><td>1</td><td class="num pos">33,74%</td><td class="num">36 417 870 262 Ø</td><td class="num">+5,26 pts</td><td class="num">1082 jours</td><td><span class="pos">stable</span></td></tr>
+  </table>
+
+  <h3 class="section">🌍 Terrains</h3>
+  <table>
+    <tr><th>Bien</th><th class="num">Valeur</th><th class="num">Charge</th><th class="num">Impôt</th></tr>
+<tr><td>Petit terrain</td><td class="num">72 290 Ø</td><td class="num">80 Ø</td><td class="num">30 Ø</td></tr>
+<tr><td>Terrain moyen</td><td class="num">61 579 Ø</td><td class="num">110 Ø</td><td class="num">50 Ø</td></tr>
+<tr><td>Grand terrain</td><td class="num">61 024 Ø</td><td class="num">219 Ø</td><td class="num">99 Ø</td></tr>
+<tr><td>Parc</td><td class="num">56 980 Ø</td><td class="num">380 Ø</td><td class="num">178 Ø</td></tr>
+<tr><td>Grand parc</td><td class="num">175 927 Ø</td><td class="num">490 Ø</td><td class="num">240 Ø</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Charges/impôts inchangés d'un jour à l'autre, seule la valeur bouge légèrement.</p>
+
+  <h3 class="section">🏗️ Construction</h3>
+  <h4 class="subsection">🏭 Matières premières et usines</h4>
+  <table>
+    <tr><th>Matière</th><th class="num">Prix unitaire</th></tr>
+    <tr><td>Béton</td><td class="num">243,94 Ø/m³</td></tr>
+    <tr><td>Acier</td><td class="num">936,42 Ø/t</td></tr>
+    <tr><td>Bois</td><td class="num">50,51 Ø/m²</td></tr>
+    <tr><td>Brique</td><td class="num">715,75 Ø/m³</td></tr>
+    <tr><td>Verre</td><td class="num">221,53 Ø/m²</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Usines les plus rentables (15 sur 20) : Fabrique de briques (+8,28%), Petite scierie (+6,82%), Usine de traitement du bois industrielle (+6,17%), Usine de briques industrielle (+5,66%), Usine de béton industrielle (+5,57%). <span class="neg">⚠️ 5 usines sur 20 restent déficitaires ce soir</span> — les 4 tiers d'aciérie et Petite usine de verre : Petite usine de verre (-0,17%), Complexe sidérurgique industriel (-0,45%), Complexe sidérurgique automatisé (-1,16%), Acierie avancée (-1,58%), Acierie (-2,78%).</p>
+
+  <h3 class="section">🚫 À éviter — le piège du jour</h3>
+  <div class="callout warn">Res. 24 T2 habitables (niv.1) — rentabilité 10,66%, la plus faible de tous les biens niveau≥1 ce soir, sans même être en promo. 7e édition consécutive à ce triste rang.</div>
+
+  <h3 class="section">👀 Liste de surveillance — promotions longue durée</h3>
+  <p>Grande maison habitable (secteur personnel) : 2e édition consécutive en promotion (13%→10%). Surveillez sa sortie de promo, la valeur bondit souvent significativement à la fin d'une série de plusieurs éditions.</p>
+
+  <h3 class="section">🏆 Champions de la semaine</h3>
+  <p>Comparaison avec l'édition 73 (2 septembre 2026, soit 8 jours en arrière — l'édition la plus proche disponible dans l'historique).</p>
+  <table>
+    <tr><th>Secteur</th><th>Bien</th><th class="num">Il y a 8 jours</th><th class="num">Ce soir</th><th class="num">Progression</th></tr>
+    <tr><td>Entreprise</td><td>Centre de recherche international</td><td class="num">47,49%</td><td class="num pos">56,09%</td><td class="num pos">+8,60 pts</td></tr>
+    <tr><td>Entreprise</td><td>500m² de bureaux grand standing</td><td class="num">35,27%</td><td class="num pos">41,38%</td><td class="num pos">+6,11 pts</td></tr>
+    <tr><td>Entreprise</td><td>1300m² de bureaux aménagés</td><td class="num">20,99%</td><td class="num pos">25,22%</td><td class="num pos">+4,23 pts</td></tr>
+    <tr><td>Personnel</td><td>Grande maison habitable</td><td class="num">27,10%</td><td class="num pos">31,73%</td><td class="num pos">+4,63 pts</td></tr>
+    <tr><td>Personnel</td><td>Grande maison équipée</td><td class="num">30,37%</td><td class="num pos">34,18%</td><td class="num pos">+3,81 pts</td></tr>
+    <tr><td>Personnel</td><td>Res. 6 T2 équipés</td><td class="num">26,48%</td><td class="num pos">30,38%</td><td class="num pos">+3,90 pts</td></tr>
+  </table>
+
+  <h3 class="section">📊 Activité boursière du jour</h3>
+  <table>
+    <tr><th>Indicateur</th><th class="num">Total</th></tr>
+    <tr><td>Entreprises et holdings vendus (échantillon suivi)</td><td class="num">7+</td></tr>
+    <tr><td>Levées de fonds et introductions en bourse</td><td class="num">2</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Calculé à partir des Actualités du 9 septembre 2026 (15h41 à 18h48). La plus grosse cession du jour : Midas Construction, cédée à Midas Capital pour 300 296 430 000 000 Ø. Côté levées, France_immobilier vise 500,00 P Ø pour tenter de tourner la page d'une crise récente, tandis qu'Yulik compagnie lève 1 000,00 M Ø lors de son introduction en bourse.</p>
+
+  <h3 class="section">🧮 Repère devis du jour</h3>
+  <p style="font-size:13px;color:var(--ink-dim);">Chaque devis reste plafonné à ±30% du "Prix du marché" affiché par le jeu — voir le guide "Coût de revient d'un chantier".</p>
+
+  <h3 class="section">📰 À lire aussi dans le Journal</h3>
+  <p>Le Journal de la Construction, publié séparément chaque jour, détaille les matières premières et les 20 usines de production. Une nouvelle édition Construction est en préparation maintenant que les données de référence des deux bâtiments du patch 4.46.0 sont enfin complètes.</p>
+
+  <h3 class="section">📌 Pour les nouveaux joueurs</h3>
+  <p>Depuis cette nuit, les deux bâtiments introduits par le patch 4.46.0 — Tours résidentielles jumelles (personnel) et Mégapôle titanium (entreprise) — figurent pour la première fois dans nos classements complets. Tours résidentielles jumelles aménagées et luxueuses se classent d'ailleurs très bien (47,02% et 48,29%), parmi les meilleurs biens personnels toutes catégories. Rappel : Rentabilité annuelle % = (Loyer − Charges − Impôts − Assurance min.) × 12 ÷ Valeur × 100, où Assurance min. = Valeur × 0,05%/mois.</p>
+
+  <h3 class="section">🤝 Rejoindre la communauté</h3>
+  <p>Envie d'échanger avec d'autres joueurs de votre ville ? Rejoignez le Discord de votre municipalité, posez vos questions sans hésiter et participez aux projets locaux. Les guides factuels du Journal sont aussi là pour approfondir les mécaniques du jeu à votre rythme.</p>
+
+  <h3 class="section">⚡ Coin des petits chiffres</h3>
+  <p style="font-style:italic;">Ce soir, les 1 ont dû pointer des heures supplémentaires pour aligner les 23 chiffres de la valeur de Mégapôle titanium international, tandis que les 0 se plaignaient d'être si nombreux qu'on ne les comptait même plus.</p>
+
+  <div class="sources">
+    Données du 10 septembre 2026 — export post-reset 03h21. Tous les calculs sont reproductibles à partir des exports CSV officiels du jeu.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>

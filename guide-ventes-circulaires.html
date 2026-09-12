@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier — Vente à soi-même : le classement qui ment | Le Journal du Marché</title>
+<style>
+  :root{
+    --bg:#15130f;
+    --paper:#1c1916;
+    --gold:#c9a35a;
+    --gold-dim:#9a7c42;
+    --ink:#e8e2d6;
+    --ink-dim:#a89f8f;
+    --line:#3a342b;
+    --danger:#c96a5a;
+    --ok:#7ba05b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:Georgia,'Times New Roman',serif;
+    line-height:1.7;
+    padding:24px 16px;
+  }
+  .paper{
+    max-width:860px;
+    margin:0 auto;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:48px 56px;
+  }
+  @media(max-width:640px){.paper{padding:28px 20px;}}
+
+  .masthead{text-align:center;border-bottom:3px double var(--gold);padding-bottom:20px;margin-bottom:8px;}
+  .masthead .kicker{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold-dim);}
+  .masthead h1{font-size:2rem;letter-spacing:.08em;color:var(--gold);font-weight:normal;margin:6px 0 2px;}
+  .masthead .tagline{font-size:.8rem;font-style:italic;color:var(--ink-dim);}
+  .dateline{text-align:center;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:36px;}
+
+  .dossier-label{display:inline-block;background:var(--gold);color:var(--bg);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;padding:4px 12px;margin-bottom:14px;font-family:Arial,sans-serif;font-weight:bold;}
+  h2.title{font-size:2.1rem;line-height:1.2;color:var(--ink);font-weight:normal;margin-bottom:8px;}
+  .subtitle{font-size:1.05rem;font-style:italic;color:var(--gold);margin-bottom:26px;}
+  .lede{font-size:1.02rem;color:var(--ink);border-left:3px solid var(--gold);padding-left:18px;margin-bottom:40px;font-style:italic;}
+
+  h3.section{
+    font-size:.85rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+    border-top:1px solid var(--line);padding-top:26px;margin:40px 0 16px;
+    font-family:Arial,sans-serif;
+  }
+  p{margin-bottom:14px;font-size:.98rem;}
+  strong{color:var(--gold);font-weight:bold;}
+  em{color:var(--ink);}
+
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:.9rem;}
+  th{font-family:Arial,sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim);text-align:left;padding:8px 10px;border-bottom:2px solid var(--gold-dim);}
+  td{padding:8px 10px;border-bottom:1px solid var(--line);color:var(--ink);}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  tr.hl td{color:var(--gold);font-weight:bold;}
+
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:.95rem;}
+  .callout.warn{border-left-color:var(--gold-dim);}
+
+  .keybox{border:2px solid var(--gold);padding:24px 28px;margin:30px 0;text-align:center;background:rgba(201,163,90,.05);}
+  .keybox .big{font-size:2rem;color:var(--gold);line-height:1.2;}
+  .keybox .cap{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);margin-top:6px;font-family:Arial,sans-serif;}
+
+  .resume{border-top:3px double var(--gold);margin-top:44px;padding-top:24px;}
+  .resume ul{list-style:none;}
+  .resume li{padding:7px 0 7px 26px;position:relative;font-size:.95rem;border-bottom:1px dotted var(--line);}
+  .resume li::before{content:"◆";color:var(--gold);position:absolute;left:0;font-size:.7rem;top:12px;}
+
+  .sources{font-size:.78rem;color:var(--ink-dim);font-style:italic;margin-top:30px;padding-top:14px;border-top:1px solid var(--line);}
+  .footer{text-align:center;margin-top:36px;padding-top:20px;border-top:3px double var(--gold);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-dim);}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <div class="kicker">Monde 8 · Édition spéciale</div>
+    <h1>LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information économique indépendante de Monde 8</div>
+  </div>
+  <div class="dateline">Dossier · Juillet 2026</div>
+
+  <span class="dossier-label">Dossier</span>
+  <h2 class="title">Vente à soi-même : le classement qui ment</h2>
+  <div class="subtitle">Comment des entreprises se revendent entre entités liées, à des prix qui grimpent tout seuls — et pourquoi ça ne change rien à la richesse réelle.</div>
+
+  <div class="callout warn">
+    <strong>Note.</strong> L'exemple chiffré de ce dossier est entièrement fictif, construit pour illustrer un mécanisme général observable sur n'importe quel serveur — aucune entreprise ni aucun joueur réel n'est visé ou décrit.</div>
+
+  <p class="lede">Toutes les cessions d'entreprises ne se ressemblent pas. Certaines viennent d'un vrai changement de main. D'autres ne sont qu'un aller-retour entre deux personnes ou une personne et son propre holding — et ça change tout sur ce qu'il faut en penser.</p>
+
+  <h3 class="section">🔁 Le mécanisme, en bref</h3>
+  <p>Rien n'empêche, techniquement, de vendre une entreprise à quelqu'un avec qui on est déjà lié — un associé, ou son propre holding. Le prix de vente est libre : les actionnaires fixent le montant qu'ils veulent. Le souci commence quand ce prix grimpe fortement d'une vente à l'autre, en quelques heures, sans qu'aucune activité économique réelle ne justifie ce bond — production, loyers encaissés, nouveaux contrats. Le prix devient alors un chiffre choisi pour l'effet qu'il produit sur les fiches, pas une évaluation réelle.</p>
+
+  <h3 class="section">📋 Exemple concret</h3>
+  <p>Voici la chronologie observée pour deux entreprises liées entre elles et à un même holding, sur une seule nuit de jeu :</p>
+  <table>
+    <tr><th>Heure</th><th>Opération</th><th class="num">Montant</th></tr>
+    <tr><td>22h10</td><td>Entreprise A vendue à l'Actionnaire 1</td><td class="num">7,00 septillions Ø</td></tr>
+    <tr><td>23h35</td><td>Entreprise B vendue à l'Actionnaire 2</td><td class="num">8,40 septillions Ø</td></tr>
+    <tr><td>00h50</td><td>Entreprise A revendue au Holding C (des deux mêmes actionnaires)</td><td class="num">13,00 septillions Ø</td></tr>
+    <tr><td>01h40</td><td>Entreprise B revendue au Holding C</td><td class="num">15,60 septillions Ø</td></tr>
+  </table>
+  <div class="callout">
+  <strong>Le détail qui ne trompe pas :</strong> les deux reventes affichent exactement le même bond de <strong>+85,71%</strong> par rapport à la vente précédente — un ratio identique au chiffre près sur deux transactions distinctes, à une heure d'écart. Une vraie évolution de marché ne produit jamais ce genre de coïncidence parfaite.
+  </div>
+  <p>Entre chaque étape, les deux actionnaires ont aussi repris eux-mêmes le poste de PDG des entreprises concernées — l'entreprise ne change donc jamais réellement de mains sur le plan opérationnel, seul le prix affiché change.</p>
+
+  <h3 class="section">🧮 Pourquoi ça gonfle un classement</h3>
+  <p>Le classement général se calcule à partir du capital total : immobilier + financier + boursier − dettes, divisé par 5000 pour obtenir les points. Quand une entreprise change de main à un prix gonflé, celui qui la vend encaisse ce montant en capital financier immédiat. Celui qui l'achète voit son capital financier baisser d'autant — sauf si l'acheteur est un holding détenu par les deux mêmes personnes : dans ce cas, la valeur de l'entreprise achetée à prix gonflé peut aussi se refléter dans la valorisation boursière du holding lui-même, si celui-ci est coté ou évalué sur la base de ses actifs déclarés.</p>
+  <p>Résultat possible : la même richesse se retrouve comptée deux fois — une fois comme capital encaissé par le vendeur, une fois comme actif détenu par le holding — sans qu'aucune nouvelle valeur n'ait été produite dans le jeu.</p>
+
+  <div class="keybox">
+    <div class="big">+85,71% deux fois de suite, au même chiffre près</div>
+    <div class="cap">Le signal qui distingue une hausse de marché d'un prix choisi à l'avance</div>
+  </div>
+
+  <h3 class="section">⚖️ Ce qui est réel, ce qui ne l'est pas</h3>
+  <p><strong>Réel</strong> : les entreprises A et B existent, elles produisent peut-être un vrai loyer ou une vraie activité, et leurs actionnaires ont parfaitement le droit de restructurer leur patrimoine entre holdings.</p>
+  <p><strong>Pas réel</strong> : le bond de valorisation lui-même. Aucun loyer supplémentaire, aucune nouvelle construction, aucun contrat gagné n'explique une hausse de +85,71% en une heure. C'est un chiffre choisi, pas un chiffre gagné — et c'est ce chiffre-là qui vient ensuite gonfler un classement que d'autres joueurs, eux, essaient d'atteindre honnêtement bien par bien.</p>
+
+  <h3 class="section">🔍 Comment le repérer vous-même</h3>
+  <p>Trois signaux, cumulables, dans les annonces publiques de l'Autorité des Marchés Financiers :</p>
+  <div class="resume">
+    <ul>
+      <li><strong>Même jour, même nuit</strong> : plusieurs cessions de la même entreprise, ou d'entreprises au nom visiblement lié, en quelques heures.</li>
+      <li><strong>Prix qui bondit sans activité</strong> : une hausse de plusieurs dizaines de pourcent d'une vente à l'autre, sans qu'un nouveau loyer, une nouvelle production ou un événement de marché ne l'explique.</li>
+      <li><strong>Le vendeur redevient PDG</strong> : la même personne accepte le poste de direction juste après la vente — signe que l'entreprise n'a jamais vraiment changé de mains sur le plan opérationnel.</li>
+    </ul>
+  </div>
+
+  <h3 class="section">📌 Pour les nouveaux joueurs</h3>
+  <p>Le classement général reste un bon repère, mais il vaut ce que valent les transactions qui le nourrissent. Un classement élevé bâti sur des ventes circulaires ne représente pas la même chose qu'un classement bâti bien par bien, loyer par loyer. Le Journal ne cherchera jamais à nommer qui que ce soit sur ce genre de mécanisme — mais si vous savez reconnaître le motif, vous saurez aussi quel poids donner à un classement affiché.</p>
+
+  <div class="sources">Exemple entièrement fictif, construit pour illustrer un mécanisme général — applicable à toute structure de Monde 8. Voir aussi : Reconnaître un holding gonflé avant d'investir.</div>
+
+  <div class="footer">Le Journal du Marché · Monde 8 · Série guides</div>
+
+</div>
+</body>
+</html>

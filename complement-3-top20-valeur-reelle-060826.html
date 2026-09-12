@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Complément n°3</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:34px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dossier-label{display:inline-block;background:var(--gold);color:#15130f;font-size:11px;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:2px;margin-bottom:10px;}
+  h2.guide-title{color:var(--gold);font-size:26px;margin:6px 0;}
+  .guide-sub{font-style:italic;color:var(--gold-dim);margin-bottom:20px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+
+  <div class="dossier-label">Complément n°3</div>
+  <h2 class="guide-title">Le vrai poids des holdings : top 20 en valeur réelle (Ø)</h2>
+  <p class="guide-sub">Les "points" du classement traduits en vraie monnaie du jeu — édition du 06/08.</p>
+
+  <h3 class="section">📰 Pourquoi cette conversion</h3>
+  <p>Le classement des holdings et celui des entreprises affichent des "points" — une unité qui ne dit rien en elle-même. Combien vaut réellement 1 point ? La Constitution du jeu donne la réponse dans sa formule de calcul du capital : chaque tranche de <b>5 000 Ø</b> de patrimoine net équivaut à <b>1 point</b> de classement. Autrement dit : <b>valeur réelle ≈ points × 5 000</b>.</p>
+  <p>On a testé cette formule sur 6 cas concrets (2 holdings de structures très différentes, 4 entreprises) en comparant le résultat du calcul à la valeur réellement affichée sur la fiche Actionnaires de chaque entité. Écart mesuré à chaque fois : entre 0,04% et 0,4%, cohérent avec le simple arrondi d'affichage à 2 décimales. Les montants ci-dessous sont donc de très bonnes estimations, pas des valeurs garanties au Ø près — le jeu n'affiche jamais ce calcul lui-même.</p>
+
+  <h3 class="section">🏆 Top 20 des holdings, en valeur réelle</h3>
+  <table>
+    <tr><th>#</th><th>Holding</th><th class="num">Filiales</th><th class="num">Points (classement)</th><th class="num">Valeur réelle estimée</th></tr>
+    <tr><td>1</td><td>P&S Side by Side</td><td class="num">93</td><td class="num">518 297 083 306 174 342 333 537</td><td class="num">2,59 RØ</td></tr>
+    <tr><td>2</td><td>AK974 PRIVATE</td><td class="num">41</td><td class="num">339 014 852 673 312 286 410 479</td><td class="num">1,70 RØ</td></tr>
+    <tr><td>3</td><td>SM2A</td><td class="num">1</td><td class="num">109 779 290 698 364 865 895 887</td><td class="num">548,90 YØ</td></tr>
+    <tr><td>4</td><td>MMS Group</td><td class="num">28</td><td class="num">75 843 823 074 146 396 195 857</td><td class="num">379,22 YØ</td></tr>
+    <tr><td>5</td><td>PARK INVEST</td><td class="num">3</td><td class="num">51 662 420 070 382 044 149 910</td><td class="num">258,31 YØ</td></tr>
+    <tr><td>6</td><td>La Compagnie des Indes</td><td class="num">3</td><td class="num">36 267 924 856 394 965 705 779</td><td class="num">181,34 YØ</td></tr>
+    <tr><td>7</td><td>Sakura Capital Inc.</td><td class="num">69</td><td class="num">26 272 857 819 020 218 259 392</td><td class="num">131,36 YØ</td></tr>
+    <tr><td>8</td><td>Phénix Zénith</td><td class="num">3</td><td class="num">23 705 572 322 817 419 049 993</td><td class="num">118,53 YØ</td></tr>
+    <tr><td>9</td><td>Amundi</td><td class="num">37</td><td class="num">16 627 801 401 431 156 861 889</td><td class="num">83,14 YØ</td></tr>
+    <tr><td>10</td><td>The Vanguard Group</td><td class="num">1</td><td class="num">13 834 030 046 999 150 627 758</td><td class="num">69,17 YØ</td></tr>
+    <tr><td>11</td><td>CAPITAL-HOLDING</td><td class="num">30</td><td class="num">12 809 908 255 243 826 545 644</td><td class="num">64,05 YØ</td></tr>
+    <tr><td>12</td><td>Starlux Corp by le pigeon</td><td class="num">106</td><td class="num">10 929 479 386 034 506 313 964</td><td class="num">54,65 YØ</td></tr>
+    <tr><td>13</td><td>Le petit Québecois</td><td class="num">32</td><td class="num">10 240 419 629 218 467 127 203</td><td class="num">51,20 YØ</td></tr>
+    <tr><td>14</td><td>AOM 13</td><td class="num">3</td><td class="num">6 594 710 591 105 938 760 566</td><td class="num">32,97 YØ</td></tr>
+    <tr><td>15</td><td>Phénix Céleste</td><td class="num">8</td><td class="num">6 532 871 985 696 708 006 198</td><td class="num">32,66 YØ</td></tr>
+    <tr><td>16</td><td>MetaPirate.404</td><td class="num">2</td><td class="num">5 111 756 398 960 589 463 653</td><td class="num">25,56 YØ</td></tr>
+    <tr><td>17</td><td>THE FIVE</td><td class="num">29</td><td class="num">2 359 424 990 551 332 445 104</td><td class="num">11,80 YØ</td></tr>
+    <tr><td>18</td><td>Carbonara</td><td class="num">7</td><td class="num">2 142 886 788 558 401 574 279</td><td class="num">10,71 YØ</td></tr>
+    <tr><td>19</td><td>BlackRock</td><td class="num">21</td><td class="num">1 724 746 292 110 642 135 729</td><td class="num">8,62 YØ</td></tr>
+    <tr><td>20</td><td>Matholding</td><td class="num">2</td><td class="num">1 606 322 773 479 884 774 532</td><td class="num">8,03 YØ</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Rappel d'échelle : Y = 10²⁴, R = 10²⁷. 1 RØ = 1 000 YØ. Les deux premiers holdings pèsent, à eux seuls, plus du double de l'ensemble des 18 suivants réunis. Entrée notable depuis le dernier relevé : SM2A grimpe à la 3e place avec une seule filiale.</p>
+
+  <h3 class="section">🏢 Top 20 des entreprises, en valeur réelle</h3>
+  <table>
+    <tr><th>#</th><th>Entreprise</th><th>Holding</th><th class="num">Points (classement)</th><th class="num">Valeur réelle estimée</th></tr>
+    <tr><td>1</td><td>AK974 PRIVATE Direction</td><td>AK974 PRIVATE</td><td class="num">106 689 936 291 609 392 434 400</td><td class="num">533,45 YØ</td></tr>
+    <tr><td>2</td><td>BODABA 1</td><td>—</td><td class="num">25 364 562 955 310 368 069 966</td><td class="num">126,82 YØ</td></tr>
+    <tr><td>3</td><td>La Compagnie PAV 1</td><td>La Compagnie des Indes</td><td class="num">16 994 139 225 715 152 273 348</td><td class="num">84,97 YØ</td></tr>
+    <tr><td>4</td><td>La Compagnie PAV 2</td><td>La Compagnie des Indes</td><td class="num">16 816 074 584 745 689 931 192</td><td class="num">84,08 YØ</td></tr>
+    <tr><td>5</td><td>PARK INVEST PAV</td><td>PARK INVEST</td><td class="num">12 580 791 175 510 051 578 489</td><td class="num">62,90 YØ</td></tr>
+    <tr><td>6</td><td>AK974 PRIVATE Ares 2</td><td>AK974 PRIVATE</td><td class="num">11 059 660 528 500 000 000 000</td><td class="num">55,30 YØ</td></tr>
+    <tr><td>7</td><td>Phénix Zénith-05</td><td>—</td><td class="num">9 708 033 940 200 000 000 000</td><td class="num">48,54 YØ</td></tr>
+    <tr><td>8</td><td>VG PAV 1</td><td>The Vanguard Group</td><td class="num">9 524 391 990 155 636 299 905</td><td class="num">47,62 YØ</td></tr>
+    <tr><td>9</td><td>P&S SylPom 02</td><td>P&S Side by Side</td><td class="num">9 181 657 376 848 025 805 804</td><td class="num">45,91 YØ</td></tr>
+    <tr><td>10</td><td>SM2A 01</td><td>SM2A</td><td class="num">9 122 260 642 320 373 694 444</td><td class="num">45,61 YØ</td></tr>
+    <tr><td>11</td><td>Phénix-Zénith-06</td><td>—</td><td class="num">9 020 101 295 160 000 000 000</td><td class="num">45,10 YØ</td></tr>
+    <tr><td>12</td><td>MMS 2</td><td>MMS Group</td><td class="num">8 172 843 914 694 079 984 663</td><td class="num">40,86 YØ</td></tr>
+    <tr><td>13</td><td>MMS 1</td><td>MMS Group</td><td class="num">8 152 222 385 260 249 071 004</td><td class="num">40,76 YØ</td></tr>
+    <tr><td>14</td><td>P&S SylPom</td><td>P&S Side by Side</td><td class="num">6 768 811 497 943 335 477 224</td><td class="num">33,84 YØ</td></tr>
+    <tr><td>15</td><td>AOM INVEST</td><td>AOM 13</td><td class="num">6 293 855 977 282 454 529 705</td><td class="num">31,47 YØ</td></tr>
+    <tr><td>16</td><td>AndroidoPirate.Alpha</td><td>MetaPirate.404</td><td class="num">5 106 830 881 821 243 480 334</td><td class="num">25,53 YØ</td></tr>
+    <tr><td>17</td><td>AK974 PRIVATE Creedex</td><td>AK974 PRIVATE</td><td class="num">4 454 085 201 640 000 000 000</td><td class="num">22,27 YØ</td></tr>
+    <tr><td>18</td><td>AK974 PRIVATE Gaara</td><td>AK974 PRIVATE</td><td class="num">4 453 663 254 840 000 000 000</td><td class="num">22,27 YØ</td></tr>
+    <tr><td>19</td><td>AK974 PRIVATE Meliodass</td><td>AK974 PRIVATE</td><td class="num">4 276 503 939 740 611 180 618</td><td class="num">21,38 YØ</td></tr>
+    <tr><td>20</td><td>AK974 PRIVATE FredMinou</td><td>AK974 PRIVATE</td><td class="num">4 276 098 523 339 782 552 104</td><td class="num">21,38 YØ</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">AK974 PRIVATE Direction représente environ 31% de la valeur totale du holding AK974 PRIVATE (41 filiales). Nouvelle entrée notable : BODABA 1 fait irruption directement en 2e place, sans holding identifié dans ce relevé.</p>
+
+  <h3 class="section">📐 La formule, en détail</h3>
+  <div class="callout">D'après la Constitution du jeu : <b>Points immobilier = valeur totale des propriétés ÷ 5 000</b>. Ce même principe (5 000 Ø de patrimoine net = 1 point) s'applique aussi bien au patrimoine d'un joueur qu'à la valeur d'une entreprise ou d'un holding — on l'a vérifié empiriquement sur plusieurs cas réels avant de publier ces tableaux.</div>
+  <p style="font-size:13px;color:var(--ink-dim);">Pour un holding, la "valeur totale" inclut sa trésorerie propre en plus de la valeur cumulée de ses filiales (voir le dossier "Comment lire un classement de holdings" pour le détail). C'est pour ça qu'on ne peut pas reconstituer la valeur d'un holding juste en additionnant ses filiales visibles — il faut le total, qu'on obtient ici via les points du classement.</p>
+
+  <h3 class="section">📌 Ce qu'il faut retenir</h3>
+  <p>Ces chiffres restent des <b>estimations basées sur une formule officielle</b>, pas des valeurs confirmées ligne par ligne par le jeu — on n'a pas accès à la fiche Actionnaires de chaque holding privé pour vérifier un par un. Mais la marge d'erreur mesurée sur nos cas-témoins (moins de 0,5%) donne une bonne confiance dans l'ordre de grandeur. De quoi enfin comparer les géants du classement en vraie monnaie plutôt qu'en points abstraits.</p>
+
+  <div class="sources">
+    Données du classement holdings/entreprises du 6 août 2026 (21h39). Formule de conversion issue de la Constitution officielle du jeu, vérifiée sur 6 cas réels (écart &lt;0,5%).
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>

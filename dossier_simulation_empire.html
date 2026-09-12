@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Dossier Spécial — L'Empire Méridian, Partie 1</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:40px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  h4.subsection{color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;font-size:13px;margin-top:22px;margin-bottom:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .callout.good{border-left-color:var(--ok);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:420px;}
+  .keybox .num{color:var(--gold);font-size:32px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo · Dossier Spécial — Simulation, Partie 1</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">DOSSIER SPÉCIAL — L'EMPIRE MÉRIDIAN — 18 AOÛT 2026</div>
+
+  <h3 class="section">📰 D'un oubli à cinq immeubles à un empire à huit filiales</h3>
+  <p>Cette semaine, un lecteur du Journal nous a montré le rapport financier d'une petite filiale immobilière tombée dans le rouge : -118 803 549 042 002 697 130 465 Ø de perte nette en une semaine. La cause ? Un réglage de vente resté à 0% au lieu du seuil habituel de +15%. Rien de dramatique à cette échelle — cinq immeubles, une semaine, un oubli vite corrigé.</p>
+  <p>Mais la question nous a travaillés : et si on prenait ce même mécanisme, ce même écart de rentabilité mesuré sur le terrain, et qu'on le poussait à l'échelle d'un véritable empire ? Combien pèserait, en vrai, un empire à huit filiales et plusieurs centaines de milliers de biens ? Et surtout : est-ce qu'un seul oubli, à cette échelle, resterait un détail — ou deviendrait un désastre ?</p>
+  <p>Ce dossier est une <b>simulation</b>, pas un vrai empire existant sur M8. Mais chaque ratio utilisé (charges par bien, produits par bien, effet du seuil de vente, agios de découvert) est calibré directement sur de vrais rapports financiers de la semaine — pas inventé au doigt mouillé. Détail de la méthode en fin d'article.</p>
+
+  <div class="keybox">
+    <div style="color:var(--gold-dim);font-size:13px;text-transform:uppercase;letter-spacing:1px;">Écart hebdomadaire — un seul réglage oublié, une seule filiale</div>
+    <div class="num">+9,66 Y Ø</div>
+    <div style="font-size:14px;margin-top:6px;">Grandeur réelle, pas d'exagération</div>
+  </div>
+
+  <h3 class="section">🏛️ Présentation de l'empire fictif : Méridian</h3>
+  <p>Huit filiales immobilières (« Méridian Delta-01 » à « Delta-08 »), montées sous des formes juridiques différentes pour illustrer la diversité qu'un vrai empire adopterait — SCI pour les plus jeunes, SARL immobilière une fois le parc plus consistant, Foncière pour les grosses structures, et une SCPI interne pour la filiale la plus mature. Le parc démarre à 45 000 biens sur la plus petite filiale et grimpe jusqu'à 205 000 sur la plus grosse, avec une croissance de 2%/semaine sur chacune (achats nets) pendant les six semaines simulées.</p>
+  <div class="callout">
+    <b>Pourquoi pas une compagnie de construction comme moteur de profit ?</b> Le Journal l'a déjà documenté dans son interview de Vincent_ : sur M8, la construction sert avant tout à entretenir son propre patrimoine, pas à générer du revenu par la vente de devis. L'empire Méridian intègre donc une division construction/usines pour son propre entretien (matières premières, chantiers internes) — mais le moteur de profit reste, comme dans la réalité du jeu, l'achat-revente immobilier des filiales.
+  </div>
+
+  <h3 class="section">📐 La règle qui change tout : le seuil de vente</h3>
+  <p>Toutes les filiales de l'empire respectent un seuil de vente à <b>+15%</b> au-dessus du prix du marché — sauf une. <b>Delta-07</b>, la septième filiale (180 000 biens au départ), a été volontairement configurée pour reproduire l'oubli réel qu'on vient de voir : seuil à 0% pendant les trois premières semaines, puis correction à partir de la semaine 4.</p>
+  <table>
+    <tr><th>Semaine</th><th class="num">Biens</th><th class="num">Produits</th><th class="num">Charges</th><th class="num">Résultat net</th></tr>
+    <tr><td>S1 — seuil 0%</td><td class="num">180 000</td><td class="num">18,50 Y</td><td class="num">24,66 Y</td><td class="num neg">-6,24 Y</td></tr>
+    <tr><td>S2 — seuil 0%</td><td class="num">183 600</td><td class="num">18,87 Y</td><td class="num">25,15 Y</td><td class="num neg">-6,36 Y</td></tr>
+    <tr><td>S3 — seuil 0%</td><td class="num">187 272</td><td class="num">19,25 Y</td><td class="num">25,66 Y</td><td class="num neg">-6,49 Y</td></tr>
+    <tr><td>S4 — seuil corrigé +15%</td><td class="num">191 017</td><td class="num">31,46 Y</td><td class="num">26,17 Y</td><td class="num pos">+3,17 Y</td></tr>
+    <tr><td>S5 — seuil +15%</td><td class="num">194 837</td><td class="num">32,09 Y</td><td class="num">26,69 Y</td><td class="num pos">+3,24 Y</td></tr>
+    <tr><td>S6 — seuil +15%</td><td class="num">198 733</td><td class="num">32,73 Y</td><td class="num">27,23 Y</td><td class="num pos">+3,30 Y</td></tr>
+  </table>
+  <h4 class="subsection">Avant / après correction</h4>
+  <table>
+    <tr><th>Période</th><th class="num">Résultat net moyen</th><th>Commentaire</th></tr>
+    <tr><td>Avant correction (S1-S3)</td><td class="num neg">-6,36 Y / semaine</td><td>Trois semaines de pertes cumulées : -19,08 Y, plus des agios sur découvert chaque semaine.</td></tr>
+    <tr><td>Après correction (S4-S6)</td><td class="num pos">+3,24 Y / semaine</td><td>Même filiale, même parc, un seul réglage changé. Plus aucun agios — la trésorerie repasse positive dès la semaine du changement.</td></tr>
+  </table>
+  <p>L'écart entre les deux régimes : environ <b>9,66 Y par semaine</b>, sur une seule filiale parmi huit. À l'échelle d'un an, cette seule filiale, mal réglée en continu, coûterait à l'empire l'équivalent de plusieurs centaines de Y qu'un simple réglage aurait suffi à récupérer.</p>
+
+  <h3 class="section">🏗️ La machine au complet — semaine 6</h3>
+  <p>Une fois toutes les filiales alignées sur le seuil +15% (la correction de Delta-07 prend effet dès la semaine 4), voici la photographie de l'empire à la fin de la simulation :</p>
+  <table>
+    <tr><th>Filiale</th><th>Forme</th><th class="num">Biens</th><th class="num">Produits</th><th class="num">Charges</th><th class="num">Résultat net</th></tr>
+    <tr><td>Méridian Delta-01</td><td>SCI</td><td class="num">49 683</td><td class="num">8,18 Y</td><td class="num">6,81 Y</td><td class="num pos">0,83 Y</td></tr>
+    <tr><td>Méridian Delta-02</td><td>SCI</td><td class="num">75 076</td><td class="num">12,37 Y</td><td class="num">10,29 Y</td><td class="num pos">1,25 Y</td></tr>
+    <tr><td>Méridian Delta-03</td><td>SARL immobilière</td><td class="num">101 573</td><td class="num">16,73 Y</td><td class="num">13,92 Y</td><td class="num pos">1,69 Y</td></tr>
+    <tr><td>Méridian Delta-04</td><td>SARL immobilière</td><td class="num">121 447</td><td class="num">20,00 Y</td><td class="num">16,64 Y</td><td class="num pos">2,02 Y</td></tr>
+    <tr><td>Méridian Delta-05</td><td>Foncière</td><td class="num">149 050</td><td class="num">24,55 Y</td><td class="num">20,42 Y</td><td class="num pos">2,48 Y</td></tr>
+    <tr><td>Méridian Delta-06</td><td>Foncière</td><td class="num">174 443</td><td class="num">28,73 Y</td><td class="num">23,90 Y</td><td class="num pos">2,90 Y</td></tr>
+    <tr><td>Méridian Delta-07</td><td>Foncière</td><td class="num">198 733</td><td class="num">32,73 Y</td><td class="num">27,23 Y</td><td class="num pos">3,30 Y</td></tr>
+    <tr><td>Méridian Delta-08</td><td>SCPI interne</td><td class="num">226 334</td><td class="num">37,28 Y</td><td class="num">31,01 Y</td><td class="num pos">3,76 Y</td></tr>
+  </table>
+  <p>Au total : <b>1 096 339 biens</b> sous gestion à travers les huit filiales, pour un résultat net cumulé de <b>18,22 Y en une seule semaine (S6)</b>.</p>
+
+  <h3 class="section">📈 La croissance de l'empire, semaine par semaine</h3>
+  <table>
+    <tr><th>Semaine</th><th class="num">Biens (total)</th><th class="num">Produits</th><th class="num">Charges</th><th class="num">Résultat net</th><th class="num">Cumul</th></tr>
+    <tr><td>S1</td><td class="num">993 000</td><td class="num">152,41 Y</td><td class="num">136,04 Y</td><td class="num pos">7,28 Y</td><td class="num">7,28 Y</td></tr>
+    <tr><td>S2</td><td class="num">1 012 860</td><td class="num">155,45 Y</td><td class="num">138,76 Y</td><td class="num pos">7,42 Y</td><td class="num">14,70 Y</td></tr>
+    <tr><td>S3</td><td class="num">1 033 116</td><td class="num">158,56 Y</td><td class="num">141,54 Y</td><td class="num pos">7,57 Y</td><td class="num">22,27 Y</td></tr>
+    <tr><td>S4</td><td class="num">1 053 774</td><td class="num">173,56 Y</td><td class="num">144,37 Y</td><td class="num pos">17,51 Y</td><td class="num">39,78 Y</td></tr>
+    <tr><td>S5</td><td class="num">1 074 846</td><td class="num">177,03 Y</td><td class="num">147,25 Y</td><td class="num pos">17,86 Y</td><td class="num">57,65 Y</td></tr>
+    <tr><td>S6</td><td class="num">1 096 339</td><td class="num">180,57 Y</td><td class="num">150,20 Y</td><td class="num pos">18,22 Y</td><td class="num"><b>75,87 Y</b></td></tr>
+  </table>
+  <div class="callout good"><b>Le vrai enseignement.</b> Le bond entre S3 et S4 (résultat net qui plus que double, de 7,57 Y à 17,51 Y) ne vient pas d'une nouvelle acquisition ni d'un coup de chance du marché — il vient exclusivement de la correction d'un seul réglage sur une seule filiale. C'est exactement la mécanique que notre lecteur a vécue en vrai, juste multipliée par l'échelle de l'empire.</div>
+
+  <h3 class="section">📰 À lire aussi dans le Journal</h3>
+  <p>Ce dossier se poursuit dans une <b>Partie 2</b> : Méridian devient une holding, ouvre son capital à des actionnaires, lève des fonds pour financer une neuvième filiale, et affronte les votes, primes de directeur et dividendes qui vont avec.</p>
+
+  <h3 class="section">🔬 Méthodologie — comment cette simulation a été calibrée</h3>
+  <p>Cette simulation est fictive (aucune filiale « Méridian » n'existe sur M8), mais ses ratios ne sont pas inventés : ils sont calculés directement à partir de deux rapports financiers réels de la semaine du 16 au 23 août 2026, communiqués par un lecteur.</p>
+  <div class="callout">
+    <b>Ratios utilisés</b><br>
+    Charges par bien : ~1,37 × 10²⁰ Ø/semaine (moyenne de deux filiales réelles, 72 585 et 75 029 biens).<br>
+    Produits par bien avec seuil de vente +15% : ~1,647 × 10²⁰ Ø/semaine (filiale réelle en bonne santé).<br>
+    Produits par bien avec seuil de vente 0% : ~1,028 × 10²⁰ Ø/semaine (filiale réelle avant correction) — soit environ 60% de produits en moins pour un parc de taille identique.<br>
+    Taux d'imposition sur le résultat : ~40%, observé sur le rapport réel.
+  </div>
+  <p style="font-size:13px;color:var(--ink-dim);">Nomenclature des unités (Constitution officielle du jeu, M8) : E = trillion (10¹⁸), Z = trilliard (10²¹), Y = quadrillion (10²⁴). Ces symboles sont propres au jeu et ne correspondent pas aux préfixes SI (le « Y » du jeu n'est pas le yotta). La croissance du parc (2%/semaine sur chaque filiale) et le nombre de filiales/formes juridiques sont des choix éditoriaux pour illustrer un empire plausible à grande échelle — aucun de ces deux paramètres n'a d'équivalent réel mesuré ce soir. Tout le reste (charges, produits, effet du seuil, agios) découle des ratios ci-dessus.</p>
+
+  <div class="sources">
+    Simulation illustrative construite à partir de ratios réels du 17-18 août 2026. Aucune filiale « Méridian » n'existe réellement sur M8.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8 — Dossier Spécial</div>
+
+</div>
+</body>
+</html>

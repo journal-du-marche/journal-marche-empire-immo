@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier — Le Tribunal Économique Suprême | Le Journal du Marché</title>
+<style>
+  :root{
+    --bg:#15130f;
+    --paper:#1c1916;
+    --gold:#c9a35a;
+    --gold-dim:#9a7c42;
+    --ink:#e8e2d6;
+    --ink-dim:#a89f8f;
+    --line:#3a342b;
+    --danger:#c96a5a;
+    --ok:#7ba05b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:Georgia,'Times New Roman',serif;
+    line-height:1.7;
+    padding:24px 16px;
+  }
+  .paper{
+    max-width:860px;
+    margin:0 auto;
+    background:var(--paper);
+    border:1px solid var(--line);
+    padding:48px 56px;
+  }
+  @media(max-width:640px){.paper{padding:28px 20px;}}
+
+  .masthead{text-align:center;border-bottom:3px double var(--gold);padding-bottom:20px;margin-bottom:8px;}
+  .masthead .kicker{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold-dim);}
+  .masthead h1{font-size:2rem;letter-spacing:.08em;color:var(--gold);font-weight:normal;margin:6px 0 2px;}
+  .masthead .tagline{font-size:.8rem;font-style:italic;color:var(--ink-dim);}
+  .dateline{text-align:center;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:36px;}
+
+  .dossier-label{display:inline-block;background:var(--gold);color:var(--bg);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;padding:4px 12px;margin-bottom:14px;font-family:Arial,sans-serif;font-weight:bold;}
+  h2.title{font-size:2.1rem;line-height:1.2;color:var(--ink);font-weight:normal;margin-bottom:8px;}
+  .subtitle{font-size:1.05rem;font-style:italic;color:var(--gold);margin-bottom:26px;}
+  .lede{font-size:1.02rem;color:var(--ink);border-left:3px solid var(--gold);padding-left:18px;margin-bottom:40px;font-style:italic;}
+
+  h3.section{
+    font-size:.85rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+    border-top:1px solid var(--line);padding-top:26px;margin:40px 0 16px;
+    font-family:Arial,sans-serif;
+  }
+  h3.section .num{color:var(--gold-dim);margin-right:10px;}
+  p{margin-bottom:14px;font-size:.98rem;}
+  strong{color:var(--gold);font-weight:bold;}
+  em{color:var(--ink);}
+
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:.9rem;}
+  th{font-family:Arial,sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim);text-align:left;padding:8px 10px;border-bottom:2px solid var(--gold-dim);}
+  td{padding:8px 10px;border-bottom:1px solid var(--line);color:var(--ink);}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  tr.hl td{color:var(--gold);font-weight:bold;}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:22px 0;}
+  @media(max-width:640px){.cards{grid-template-columns:1fr;}}
+  .card{border:1px solid var(--line);padding:20px 22px;background:rgba(0,0,0,.18);}
+  .card h4{font-family:Arial,sans-serif;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+  .card .type{font-size:.8rem;font-style:italic;color:var(--ink-dim);margin-bottom:14px;}
+  .card ul{list-style:none;}
+  .card li{padding:5px 0;border-bottom:1px dotted var(--line);font-size:.88rem;}
+
+  .keybox{border:2px solid var(--gold);padding:24px 28px;margin:30px 0;text-align:center;background:rgba(201,163,90,.05);}
+  .keybox .big{font-size:2.4rem;color:var(--gold);line-height:1.1;}
+  .keybox .cap{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);margin-top:6px;font-family:Arial,sans-serif;}
+
+  .pitfall{margin:20px 0;padding-left:18px;border-left:3px solid var(--gold-dim);}
+  .pitfall h5{font-family:Arial,sans-serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+
+  .resume{border-top:3px double var(--gold);margin-top:44px;padding-top:24px;}
+  .resume ul{list-style:none;}
+  .resume li{padding:7px 0 7px 26px;position:relative;font-size:.95rem;border-bottom:1px dotted var(--line);}
+  .resume li::before{content:"◆";color:var(--gold);position:absolute;left:0;font-size:.7rem;top:12px;}
+
+  .sources{font-size:.78rem;color:var(--ink-dim);font-style:italic;margin-top:30px;padding-top:14px;border-top:1px solid var(--line);}
+  .footer{text-align:center;margin-top:36px;padding-top:20px;border-top:3px double var(--gold);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-dim);}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <div class="kicker">Monde 8 · Édition spéciale</div>
+    <h1>LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information économique indépendante de Monde 8</div>
+  </div>
+  <div class="dateline">Dossier · 30 août 2026 (mise à jour : 1er septembre 2026)</div>
+
+  <span class="dossier-label">Dossier</span>
+  <h2 class="title">Le Tribunal Économique Suprême, rôle et bilan</h2>
+  <div class="subtitle">Ce que le TES juge, comment il juge — et ce que révèlent ses 20 premiers dossiers.</div>
+
+  <p class="lede">Le Tribunal Économique Suprême (TES) existe depuis le 21 janvier 2026 sur Monde 8. Beaucoup en ont entendu parler sans savoir exactement ce qu'il fait, ni jusqu'où va son mandat. Le Journal a passé en revue le règlement officiel et l'ensemble des demandes d'audit publiées à ce jour pour en dresser un portrait factuel — sans jamais entrer dans le détail d'une affaire précise ni nommer un joueur concerné.</p>
+
+  <h3 class="section"><span class="num">1</span>Le mandat — ce que le TES juge, et ce qu'il ne juge pas</h3>
+  <p>Le TES a un mandat précis : les <strong>abus de biens sociaux</strong>. Concrètement, il s'agit de comportements qui nuisent intentionnellement à l'intégrité économique d'une entreprise ou d'une holding — vider une trésorerie pour provoquer une faillite, transférer des capitaux via des boucles d'achat/revente de filiales, détourner des fonds par de faux travaux rapidement annulés, ou détruire volontairement des biens d'une entreprise. Cette liste peut être complétée à tout moment, avec effet rétroactif, si le staff estime qu'un comportement va à l'encontre de l'esprit du jeu.</p>
+  <div class="cards">
+    <div class="card">
+      <h4>Le TES juge</h4>
+      <div class="type">Des faits concrets, traçables, vérifiables</div>
+      <ul>
+        <li>Vidage de trésorerie provoquant une faillite</li>
+        <li>Boucles d'achat/revente de filiales</li>
+        <li>Travaux fictifs rapidement annulés</li>
+        <li>Destruction volontaire de biens d'entreprise</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Le TES ne juge pas</h4>
+      <div class="type">Hors de son mandat, par règlement</div>
+      <ul>
+        <li>Confiance, promesses, accords verbaux</li>
+        <li>Conflits RH ou de gestion interne</li>
+        <li>Conflits politiques sans conséquence économique</li>
+        <li>Comportement d'un maire ou d'un élu municipal</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="section"><span class="num">2</span>La procédure d'un audit</h3>
+  <p>Un joueur qui suspecte un abus peut demander un audit en créant un post dans la section forum dédiée, selon un format précis. Seuls les auditeurs et les parties concernées (présumé fautif et victime) peuvent alors échanger publiquement, dans le respect des règles de modération.</p>
+  <p>La victime doit répondre aux questions des auditeurs et fournir les preuves matérielles nécessaires. L'accusé a les mêmes obligations, avec un droit supplémentaire : désigner un avocat pour le représenter durant l'audit, à condition de le signaler rapidement pour que toutes les parties en soient informées.</p>
+  <p>Les auditeurs rendent ensuite un verdict à la majorité — ceux en conflit d'intérêt sont exclus du vote — soumis au staff (le « juge » du TES) pour validation finale. Deux issues possibles : relaxe, ou sanction pour abus de biens sociaux.</p>
+
+  <h3 class="section"><span class="num">3</span>Les sanctions</h3>
+  <p>Condamnation simple : restitution de la somme détournée + amende de 30% (plafonnée à 30% du patrimoine du joueur). Exemple officiel : pour un détournement de 1M Ø, le joueur rembourse 1M Ø et paie 300K Ø d'amende. Récidive : gel du compte pendant 15 jours. Multi-récidive : bannissement définitif du compte.</p>
+
+  <h3 class="section"><span class="num">4</span>Qui siège au TES</h3>
+  <p>Les auditeurs sont des joueurs expérimentés et de confiance. L'équipe a été constituée le 21 janvier 2026 avec quatre premiers membres. Depuis, sa composition a évolué (un départ en juin), et un poste d'Auditeur en chef a été créé fin août pour coordonner l'équipe, organiser la répartition des audits et faire le lien avec le staff — poste confié à Angelianora. Fin août, elle a élargi son équipe, désormais composée de sept auditeurs : PrinceOfDarkLions54, Sweetyshadoows, fb205953, Flaw, Franxois, Thim et Raoul_Sermac. Le staff garde en tout temps un droit de regard sur l'organisation et le dernier mot en cas de doute ou de conflit.</p>
+
+  <h3 class="section"><span class="num">5</span>Bilan chiffré — 20 dossiers depuis mars 2026</h3>
+  <p>En passant en revue l'ensemble des demandes d'audit publiées à ce jour, voici le portrait par statut — sans identifier aucun joueur :</p>
+  <table>
+    <tr><th>Statut</th><th class="num">Nombre</th></tr>
+    <tr><td>Résolu</td><td class="num">7</td></tr>
+    <tr><td>Clôturé / Clos</td><td class="num">6</td></tr>
+    <tr><td>Relaxe (aucun abus constaté)</td><td class="num">2</td></tr>
+    <tr><td>Non pris en charge (hors mandat du TES)</td><td class="num">2</td></tr>
+    <tr><td>Non lieu</td><td class="num">1</td></tr>
+    <tr><td>Doublon</td><td class="num">1</td></tr>
+    <tr class="hl"><td>En cours</td><td class="num">1</td></tr>
+  </table>
+
+  <div class="keybox">
+    <div class="big">20 dossiers en six mois</div>
+    <div class="cap">Une institution active, qui respecte scrupuleusement les limites de son propre mandat</div>
+  </div>
+
+  <p>Deux constats se dégagent. D'abord, le TES est loin d'être une coquille vide : 20 dossiers traités depuis le premier, ouvert début mars, c'est un rythme réel. Ensuite, les deux dossiers classés « non pris en charge » confirment que le Tribunal respecte ses propres limites — les litiges RH ou de gestion interne y sont écartés plutôt que jugés au fond, exactement comme le prévoit le règlement.</p>
+
+  <h3 class="section">Conclusion</h3>
+  <p>Le TES n'est ni un tribunal de la moralité ni un arbitre des relations humaines du jeu : c'est un mécanisme technique, borné à l'abus de biens sociaux, avec une procédure écrite, un droit de défense — avocat inclus — et une validation finale par le staff. Pour tout joueur qui gère une entreprise ou une holding avec des associés, connaître son existence, et ses limites, vaut la peine avant même d'en avoir besoin.</p>
+
+  <div class="sources">Dossier basé sur le règlement officiel du TES et la liste publique des demandes d'audit publiées sur le forum de Monde 8. Aucun nom de joueur ni détail d'affaire individuelle n'est repris dans cet article. Analyse indépendante du Journal du Marché.</div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>

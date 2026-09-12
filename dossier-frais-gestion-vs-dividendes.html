@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Frais de gestion ou dividendes ? — Le Journal du Marché</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:34px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">DOSSIER — FRAIS DE GESTION OU DIVIDENDES : QUELLE ROUTE CHOISIR ?</div>
+
+  <h3 class="section">📰 Une question de lecteur</h3>
+  <p>Loken nous a écrit cette semaine avec une question fiscale pointue : quel est le moyen optimal pour récupérer l'argent des filiales vers la holding — les frais de gestion, ou les dividendes ? Les deux routes sont soumises à des règles très différentes, alors on a sorti la calculatrice.</p>
+
+  <h3 class="section">🧮 Les deux routes, en bref</h3>
+  <p><b>Les dividendes</b> : la filiale paie d'abord son propre impôt sur les bénéfices (barème progressif de 4% à 40%, selon la Constitution), puis distribue ce qui reste. Ce montant est ensuite taxé à seulement <span class="pos">0,5%</span> côté holding — un des taux les plus bas de tout le jeu.</p>
+  <p><b>Les frais de gestion</b> : la holding prélève directement un montant à ses filiales (mécanisme confirmé dans la Constitution, section « Finances de la holding »). Ce montant, reçu par la holding, est bien un revenu comme un autre — soumis au même barème progressif de 4% à 40% que n'importe quel bénéfice d'entreprise.</p>
+  <div class="callout">Preuve à l'appui : sur une holding réelle du Monde 8, 80,90 ZØ de frais de gestion perçus un jour ont donné lieu, le lendemain, à un versement d'impôt sur les bénéfices de 32,15 ZØ — un ratio de <span class="neg">39,74%</span>, collé à la tranche max de 40%.</div>
+
+  <h3 class="section">📊 Le calcul, sur une filiale à 10 GØ de bénéfice</h3>
+  <table>
+    <tr><th>Route</th><th class="num">Net reçu par la holding</th></tr>
+    <tr><td>Dividendes</td><td class="num pos">8,16 GØ</td></tr>
+    <tr><td>Frais de gestion — holding petite (tranche 4%)</td><td class="num pos">9,60 GØ</td></tr>
+    <tr><td>Frais de gestion — holding géante (tranche max 40%)</td><td class="num neg">6,00 GØ</td></tr>
+  </table>
+  <p>Verdict : ça dépend de l'écart entre le taux d'imposition de la filiale et celui de la holding — pas seulement de la taille de la holding. Les frais de gestion ne font perdre de l'argent que si la holding est taxée à un taux nettement plus élevé que la filiale. Or le seuil de la tranche maximale (40%) est fixé à seulement 50 EØ de bénéfice — un montant que la plupart des filiales actives dépassent largement une fois développées. Résultat : une fois qu'une filiale est elle-même rendue dans la tranche à 40%, les frais de gestion ne coûtent plus rien de plus que les dividendes — ils reviennent même légèrement moins chers, puisqu'ils évitent le 0,5% additionnel prélevé sur les dividendes.</p>
+
+  <h3 class="section">📌 Ce qu'il faut retenir</h3>
+  <p>Le seuil de 50 EØ pour la tranche maximale est bas — la plupart des filiales bien développées l'ont déjà dépassé. Dans ce cas, les frais de gestion et les dividendes reviennent essentiellement au même coût fiscal (les frais de gestion étant même légèrement avantagés, car ils évitent la double taxation). Les dividendes ne deviennent clairement supérieurs que pour une filiale encore dans une tranche basse, adossée à une holding déjà rendue dans la tranche maximale — un cas plus rare une fois l'économie du serveur mature.</p>
+
+  <p class="sources">Question soumise par Loken. Calculs basés sur le barème officiel de l'impôt sur les bénéfices et l'impôt sur dividendes filiales (0,5%), tous deux confirmés dans la Constitution du jeu, et vérifiés avec des transactions réelles d'une holding du Monde 8.</p>
+
+  <div class="footer">LE JOURNAL DU MARCHÉ — MONDE 8</div>
+</div>
+</body>
+</html>

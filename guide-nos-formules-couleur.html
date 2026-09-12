@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Guide - Nos formules a copier</title>
+<style>
+  body{background:#fff;color:#000;font-family:Arial,sans-serif;font-size:15px;line-height:1.7;max-width:750px;margin:20px auto;padding:0 16px;}
+  .titre{color:#c9a35a;font-weight:bold;}
+  .pos{color:#2e7d32;font-weight:bold;}
+  .neg{color:#c62828;font-weight:bold;}
+  .instructions{background:#eee;padding:10px;margin-bottom:20px;font-size:13px;color:#333;}
+</style>
+</head>
+<body>
+<div class="instructions">Trois blocs à copier séparément dans le formulaire du jeu : Titre, Accroche, puis Article.</div>
+
+<p class="titre">TITRE (max 80 caractères)</p>
+<p id="titre">Comment on calcule tout dans le Journal du Marché</p>
+
+<p class="titre">ACCROCHE (max 250 caractères)</p>
+<p id="accroche">Des lecteurs ont douté des chiffres publiés — voici, une fois pour toutes, toutes les formules utilisées dans le Journal, avec les sources et la méthode. Rien n'est caché.</p>
+
+<div id="article">
+<p class="titre">📰 POURQUOI CE GUIDE</p>
+<p>Des lecteurs ont récemment douté que les chiffres publiés correspondent vraiment à ce qu'ils voient en jeu. C'est une question légitime — voici donc, une fois pour toutes, l'ensemble des formules utilisées dans le Journal, avec les sources et la méthode. Rien n'est caché : tout est reproductible à partir des exports CSV officiels du jeu, que n'importe qui peut obtenir.</p>
+
+<p class="titre">🧮 RENTABILITÉ (FORMULE OFFICIELLE, CONSTITUTION/FAQ)</p>
+<p><span class="neg">Correction importante</span> : les premières éditions du Journal utilisaient un calcul simplifié (Loyer ÷ Valeur × 100), qui ne correspond pas à la vraie formule du jeu. À partir de cette édition, on utilise la formule officielle ci-dessous.<br><br>
+Assurance minimale (mensuelle) = Valeur × 0,05%<br>
+Bénéfice mensuel net = Loyer − Charges − Impôts − Assurance minimale<br>
+Rentabilité annuelle % = (Bénéfice mensuel net × 12) ÷ Valeur × 100<br><br>
+Le "Loyer" des exports CSV correspond à un mois de jeu, puisqu'un mois de jeu = un jour réel (confirmé par la Constitution, section rénovation : "chaque mois de jeu (= jour réel), le bien perd 1 point de vie"). D'où le ×12 pour obtenir une rentabilité annuelle. L'assurance minimale n'est pas dans les CSV : elle est estimée avec la formule officielle (0,05% de la valeur par mois), donc c'est une approximation prudente, pas un chiffre exact du jeu.</p>
+
+<p class="titre">⏱️ RETOUR SUR INVESTISSEMENT (EN JOURS)</p>
+<p>Retour (en jours réels) = Valeur ÷ Bénéfice mensuel net<br>
+Puisqu'un mois de jeu équivaut à un jour réel, le nombre de "mois" pour rembourser l'achat correspond directement à un nombre de jours réels. Le bénéfice mensuel net utilisé est le même que pour la Rentabilité ci-dessus (loyer moins charges, impôts, assurance estimée).</p>
+
+<p class="titre">📐 ÉCART SECTEUR</p>
+<p>Écart secteur = Rentabilité du bien − Rentabilité moyenne du secteur (ou du type, côté personnel)<br>
+La Rentabilité moyenne du secteur est calculée en faisant la moyenne de la Rentabilité (formule officielle ci-dessus) de tous les biens de la même catégorie qui génèrent effectivement du loyer. Un écart positif signifie que le bien fait mieux que la moyenne de sa catégorie ce jour-là — pas mieux que l'ensemble du marché.<br><br>
+<span class="neg">Non officiel</span> — cet indicateur est une invention du Journal, pas une formule de la Constitution ou de la FAQ. Il sert uniquement à comparer un bien à ses pairs.</p>
+
+<p class="titre">⚠️ RISQUE : STABLE OU VOLATILE</p>
+<p>Risque = <span class="neg">"volatile"</span> si valeur &gt; 100 milliards Ø, sinon <span class="pos">"stable"</span><br>
+<span class="neg">Non officiel</span> — comme l'écart secteur, c'est un repère maison, pas une formule du jeu. Les biens de très haute valeur (zones, technopôles, mégapôles) ont des variations de valeur en Ø beaucoup plus marquées d'un jour à l'autre, même si leur Rentabilité en % reste comparable. Le tag rappelle qu'une bonne rentabilité sur un bien à 500 quadrillions Ø ne se comporte pas comme sur un bien à 500 000 Ø.</p>
+
+<p class="titre">🏭 PROFIT ET ROI D'UNE USINE</p>
+<p>Profit = (Production × Prix du matériau du jour) − Charge − Impôt<br>
+ROI usine% = Profit ÷ Valeur × 100<br>
+Les prix matières changeant chaque jour, ce calcul est refait à chaque édition avec les prix du jour — jamais avec des prix d'un jour précédent.</p>
+
+<p class="titre">🧾 DEVIS ETC : PRIX DU MARCHÉ ET COÛT DE REVIENT</p>
+<p>
+Prix du marché = calculé directement à partir des colonnes "construction", "embellissement" ou "reparation" du fichier officiel des bâtiments, selon le type de travail demandé et la quantité.<br>
+Fourchette de devis acceptée = ±30% du Prix du marché (vérifié au chiffre près sur plusieurs vraies demandes reçues).<br>
+Coût de revient = le vrai coût du joueur qui exécute le devis ; sans stock de matières, il dépasse généralement le Prix du marché d'environ 1 à 1,3%.<br>
+Marge affichée par le jeu = (Montant du devis − Prix du marché) ÷ Prix du marché × 100 — donc relative au Prix du marché, pas au coût de revient réel.<br><br>
+<span class="neg">À noter</span> : la Rénovation suit une logique différente : c'est le propriétaire qui rénove lui-même son bien selon son taux de dégradation, ce n'est pas un devis d'ETC. La Démolition (devis ETC) suit le même principe que les autres devis, mais reste plus rare à documenter avec de vrais exemples.<br><br>
+Acompte officiel (Constitution) : à la validation d'un devis, l'acompte versé = 30% du montant, le solde de 70% étant payé à la livraison. Si le client annule après acceptation, l'acompte est perdu.</p>
+
+<p class="titre">🏚️ RÉNOVATION D'UN BIEN (FORMULE OFFICIELLE)</p>
+<p>Points de vie = 120 × niveau du bien (perd 1 point par jour réel)<br>
+Coût de rénovation = Valeur du bien × 0,05% × nombre de points à rénover<br><br>
+Choix possible de rénover à 25%, 50%, 75% ou 100% des points manquants. Exemple : un bien à 100 000 Ø avec 60 points à rénover coûte 100 000 × 0,0005 × 60 = 3 000 Ø. À distinguer du coût de démolition officiel pour récupérer un terrain : Valeur du bâtiment ÷ 7 (différent du devis "Démolition" d'une ETC).</p>
+
+<p class="titre">📊 CLASSEMENTS (TOP 20, TOP 3 PAR NIVEAU)</p>
+<p>Simple tri décroissant par Rentabilité% parmi les biens qui génèrent du loyer, séparé par secteur entreprise / type personnel, puis par niveau pour les Top 3. Aucune pondération cachée.</p>
+
+<p class="titre">🗓️ D'OÙ VIENNENT LES DONNÉES</p>
+<p>Chaque édition est basée sur les exports CSV officiels du jeu (bâtiments entreprise, personnel, terrains, matériaux, usines), figés au moment du reset quotidien — 3h du matin heure française, 21h la veille au Québec. Si vous consultez vos propres biens plus tard dans la journée, un léger écart est normal : les valeurs et loyers évoluent en continu entre deux resets. Un écart important et injustifié, en revanche, mérite d'être signalé — dites-nous précisément quel bien et quel chiffre, et on vérifie.</p>
+
+<p style="font-style:italic;color:#555;font-size:13px;margin-top:24px;">Guide de référence pour toutes les éditions et compléments du Journal du Marché, Monde 8.</p>
+</div>
+</body>
+</html>

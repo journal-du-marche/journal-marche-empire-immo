@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Le Punch du samedi — 22 août 2026</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:36px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  h4.subsection{color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;font-size:13px;margin-top:22px;margin-bottom:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:460px;}
+  .keybox .num{color:var(--gold);font-size:28px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo · Édition spéciale hebdomadaire</div>
+    <h1 class="title">LE PUNCH DU SAMEDI</h1>
+    <div class="tagline">L'éditorial mordant du Journal du Marché, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">22 AOÛT 2026 — HORS-SÉRIE, EN COMPLÉMENT DE L'ÉDITION QUOTIDIENNE</div>
+
+  <h3 class="section">📰 Le principe</h3>
+  <p>Le Punch du samedi est un nouveau format ponctuel du Journal : un angle unique, traité à fond, sur des données déjà suivies édition après édition. Pas de série, pas de suite — chaque samedi son sujet. Cette semaine : les usines de matières premières qui tournent à perte. Le ton se veut incisif sur les chiffres, jamais sur les joueurs qui possèdent ces bâtiments — l'objectif est de vérifier ce qui se passe et de donner de quoi décider, pas de pointer du doigt.</p>
+
+  <h3 class="section">🏭 Quatre usines dans le rouge, deux soirs de suite</h3>
+  <p>Le suivi chiffré fiable des usines (production × prix du matériau du jour, moins charges et impôts, rapporté à la valeur) ne démarre qu'à l'édition 60 du 20 août — les tendances plus anciennes avaient été repérées ponctuellement mais sans recalcul complet ni sauvegarde précise, donc elles ne sont pas citées ici en chiffres exacts. Sur les deux seules éditions où l'on dispose de données recalculées et sauvegardées (60 et 61, les 20 et 21 août), le même quatuor reste déficitaire les deux soirs :</p>
+  <table>
+    <tr><th>Usine</th><th class="num">ROI éd. 60 (20/08)</th><th class="num">ROI éd. 61 (21/08)</th></tr>
+    <tr><td>Acierie</td><td class="num neg">-3,18%</td><td class="num neg">-3,16%</td></tr>
+    <tr><td>Acierie avancée</td><td class="num neg">-1,87%</td><td class="num neg">-1,85%</td></tr>
+    <tr><td>Complexe sidérurgique automatisé</td><td class="num neg">-1,48%</td><td class="num neg">-1,46%</td></tr>
+    <tr><td>Petite usine de verre</td><td class="num neg">-1,15%</td><td class="num neg">-1,11%</td></tr>
+  </table>
+  <p>Le reste du parc reste positif, avec un écart net entre familles : la brique et le bois dominent nettement (Fabrique de briques +6,63%, Petite scierie +5,68%, Usine de traitement du bois automatisée +4,49% à l'édition 61), pendant que les trois tailles d'aciérie et la Petite usine de verre restent seules dans le rouge. La Usine de verre moyenne s'en sort de justesse (+0,16%), signe que le problème touche surtout l'acier et le petit palier du verre, pas toute la filière verrière.</p>
+
+  <h3 class="section">📊 Le tableau complet des 15 usines suivies</h3>
+  <table>
+    <tr><th>Usine</th><th class="num">ROI éd. 61 (21/08)</th></tr>
+    <tr><td>Fabrique de briques</td><td class="num pos">6,63%</td></tr>
+    <tr><td>Petite scierie</td><td class="num pos">5,68%</td></tr>
+    <tr><td>Usine de traitement du bois automatisée</td><td class="num pos">4,49%</td></tr>
+    <tr><td>Usine de béton automatisée</td><td class="num pos">4,05%</td></tr>
+    <tr><td>Centrale à béton avancée</td><td class="num pos">3,43%</td></tr>
+    <tr><td>Scierie avancée</td><td class="num pos">3,34%</td></tr>
+    <tr><td>Usine de briques automatisée</td><td class="num pos">3,02%</td></tr>
+    <tr><td>Presse à briques</td><td class="num pos">2,50%</td></tr>
+    <tr><td>Centrale à béton</td><td class="num pos">1,21%</td></tr>
+    <tr><td>Grande usine de verre automatisée</td><td class="num pos">1,13%</td></tr>
+    <tr><td>Usine de verre moyenne</td><td class="num pos">0,16%</td></tr>
+    <tr><td>Petite usine de verre</td><td class="num neg">-1,11%</td></tr>
+    <tr><td>Complexe sidérurgique automatisé</td><td class="num neg">-1,46%</td></tr>
+    <tr><td>Acierie avancée</td><td class="num neg">-1,85%</td></tr>
+    <tr><td>Acierie</td><td class="num neg">-3,16%</td></tr>
+  </table>
+
+  <h3 class="section">🧮 Pourquoi ces usines-là</h3>
+  <p>Le calcul reste celui du reste du Journal : Profit = (Production × Prix du matériau du jour) − Charge − Impôt, puis ROI% = Profit ÷ Valeur × 100. La différence avec un bien locatif classique, c'est qu'il n'y a pas de loyer garanti — le revenu dépend entièrement du prix de marché du matériau produit ce soir-là. Sur les deux éditions suivies, le prix de l'acier n'a pas suffi à couvrir charges et impôts pour les trois paliers d'aciérie, ni celui du verre pour le plus petit palier de cette filière. Les deltas d'un soir à l'autre restent faibles (+0,02 à +0,04 point pour les quatre usines déficitaires), ce qui suggère une tendance de fond plutôt qu'un accident ponctuel de prix — mais deux éditions ne suffisent pas à le certifier statistiquement ; ce sera reconfirmé au fil des prochaines éditions.</p>
+  <div class="callout warn"><b>Pour les propriétaires de ces usines :</b> une aciérie ou une Petite usine de verre en déficit ne signifie pas qu'elle était un mauvais achat au départ — la valeur du bien peut continuer de progresser indépendamment du ROI de production. Mais tant que le ROI reste négatif, chaque soir de production coûte plus qu'il ne rapporte. Vaut le coup de vérifier sa propre fiche (production, charge, impôt) plutôt que de se fier uniquement à la moyenne ci-dessus, qui dépend du niveau exact du bâtiment.</div>
+
+  <h3 class="section">🔁 La suite du format</h3>
+  <p>Le Punch du samedi change d'angle à chaque parution pour rester utile. Prochains sujets envisagés, en alternance selon l'actualité des données : les biens à plus faible rentabilité positive du moment (bas du classement niveau ≥1), et les pièges de promo récurrents — des biens niveau 0 remis en promo sans possibilité de loyer, donc sans rentabilité malgré le rabais affiché.</p>
+
+  <h3 class="section">🧾 Méthodologie et sources</h3>
+  <p style="font-size:13px;color:var(--ink-dim);">Données extraites de <code>usines_historique.json</code> (éditions 60 et 61, exports post-reset des 20 et 21 août 2026), fichier canonique de suivi tenu à jour à chaque édition du Journal. Aucune donnée antérieure à l'édition 60 n'a été utilisée en chiffres, faute de recalcul complet sauvegardé pour ces éditions-là. Aucun nouvel export de jeu n'a été fourni spécifiquement pour cet éditorial — l'analyse s'appuie entièrement sur les données déjà suivies au moment de la rédaction.</p>
+
+  <div class="sources">
+    Le Punch du samedi — 22 août 2026. Données : usines_historique.json, éditions 60 et 61. Tous les calculs sont reproductibles à partir des exports CSV officiels du jeu.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>

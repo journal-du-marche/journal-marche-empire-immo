@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Journal du Marché — Empire Immo M8 — Dossier Construction 1/3</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --paper-raised:#221e19;
+    --ink:#e8e0d0; --ink-dim:#a89a82; --ink-faint:#756a58;
+    --rule:#3a342a; --gold:#c9a35a; --green:#7a9b6e; --red:#b8614f;
+    --orange:#c97a2a; --blue:#5a85c9;
+    --serif:Georgia,'Times New Roman',serif; --sans:'Segoe UI',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.55;padding:32px 16px;}
+  .sheet{max-width:760px;margin:0 auto;background:var(--paper);border:1px solid var(--rule);}
+  .masthead{padding:28px 32px 18px;border-bottom:3px double var(--gold);text-align:center;}
+  .kicker{font-family:var(--sans);font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin:0 0 10px;}
+  .masthead h1{font-size:32px;margin:0;letter-spacing:1px;font-weight:700;}
+  .masthead .sub{font-family:var(--sans);font-size:12px;color:var(--ink-dim);margin-top:10px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;}
+  .edito{padding:26px 32px 8px;border-bottom:1px solid var(--rule);}
+  .edito h2{font-family:var(--sans);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin:0 0 14px;}
+  .edito p{font-size:16px;margin:0 0 16px;color:var(--ink);}
+  .edito p:first-of-type::first-letter{font-size:46px;float:left;line-height:0.8;padding:6px 8px 0 0;color:var(--gold);font-weight:700;}
+  .section{padding:26px 32px;border-bottom:1px solid var(--rule);}
+  .section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;}
+  .section-head .icon{font-size:20px;}
+  .section-head h2{font-size:21px;margin:0;letter-spacing:0.3px;}
+  .analysis{font-size:15px;margin:0 0 16px;}
+  .analysis strong{color:var(--gold);}
+  .subblock{margin:18px 0;}
+  .subblock-title{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:0.5px;margin-bottom:9px;}
+  .subblock ul{list-style:none;margin:0;padding:0;font-size:14.5px;}
+  .subblock li{padding:7px 0 7px 16px;border-left:2px solid var(--rule);margin-bottom:6px;color:var(--ink-dim);}
+  .subblock li .val{color:var(--gold);font-weight:700;}
+  .callout{background:var(--paper-raised);border-left:3px solid var(--red);padding:14px 18px;margin:18px 0;font-size:14.5px;color:var(--ink-dim);}
+  .callout.good{border-left-color:var(--green);}
+  .callout.neutral{border-left-color:var(--gold);}
+  .callout.info{border-left-color:var(--blue);}
+  .callout strong{color:var(--ink);}
+  .formula{background:var(--paper-raised);border-left:3px solid var(--blue);padding:14px 20px;margin:16px 0;font-family:var(--sans);font-size:14px;color:var(--ink-dim);}
+  .formula strong{color:var(--gold);display:block;margin-bottom:6px;}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0;}
+  .compare-card{background:var(--paper-raised);border:1px solid var(--rule);padding:16px 18px;}
+  .compare-card h3{font-family:var(--sans);font-size:13px;color:var(--gold);margin:0 0 10px;letter-spacing:0.3px;}
+  .compare-card p{font-size:14px;color:var(--ink-dim);margin:0 0 8px;}
+  .compare-card p:last-child{margin:0;}
+  .methodology{padding:26px 32px;background:var(--paper-raised);}
+  .methodology h2{font-family:var(--sans);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-faint);margin:0 0 14px;}
+  .methodology p{font-size:13.5px;color:var(--ink-dim);margin:0 0 12px;}
+  .colophon{padding:22px 32px 30px;text-align:center;font-family:var(--sans);font-size:11px;color:var(--ink-faint);letter-spacing:0.3px;}
+  .colophon .rule{width:60px;height:1px;background:var(--gold);margin:0 auto 16px;}
+  @media(max-width:600px){
+    .masthead h1{font-size:24px;}
+    .section,.edito,.methodology{padding:20px 18px;}
+    .compare{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="masthead">
+    <p class="kicker">Dossier Spécial — Construction · Partie 1 sur 3</p>
+    <h1>Journal du Marché</h1>
+    <div class="sub">
+      <span>Empire Immo · Monde 8</span>
+      <span>Dossier Construction (1/3)</span>
+      <span>30 juin 2026</span>
+    </div>
+  </div>
+
+  <div class="edito">
+    <h2>L'édito — Comprendre le métier de constructeur</h2>
+    <p>Le Journal du Marché lance un dossier en trois parties consacré au secteur de la construction sur M8. Premier volet : comprendre les mécanismes de base du métier de constructeur, tels que définis par la Constitution officielle du jeu.</p>
+  </div>
+
+  <!-- DEVIS -->
+  <div class="section">
+    <div class="section-head"><span class="icon">📋</span><h2>Les devis — la base du métier</h2></div>
+
+    <p class="analysis">Tout commence par un devis. Un client (joueur ou entreprise) demande des travaux — construction, embellissement ou réparation — et les entreprises de construction peuvent y répondre. La rénovation, elle, suit un circuit distinct : gérée directement par le propriétaire du bien (automatique via assistants ou demande directe selon trésorerie), sans commission et sans passer par un devis d'entreprise.</p>
+
+    <p class="analysis">La Constitution encadre strictement le montant proposé : <strong>le devis doit se positionner dans une fourchette de ±30% autour du prix du marché.</strong> En pratique, l'interface du jeu affiche cette fourchette directement au constructeur, avec un curseur permettant d'ajuster sa marge entre 0% et 30% au-dessus de son coût de revient réel.</p>
+
+    <div class="callout neutral">
+      <strong>💡 Exemple concret.</strong> Pour un même chantier, le prix du marché peut être de 18,5 M Ø, avec une fourchette autorisée allant d'environ 13 M Ø à 24 M Ø selon la marge appliquée. Le constructeur doit aussi composer avec son coût de revient réel (matières premières + main d'œuvre), qui peut être légèrement supérieur ou inférieur au prix marché affiché — une marge à 0% ne garantit donc pas toujours une opération à l'équilibre.
+    </div>
+
+    <div class="subblock">
+      <div class="subblock-title">⚙️ Paramètres ajustables du devis</div>
+      <ul>
+        <li>Durée des travaux <span class="val">(en mois)</span></li>
+        <li>Acompte demandé — de <span class="val">20% à 100%</span>, perçu à la validation</li>
+        <li>Pénalités de retard — de <span class="val">0,001% à 5%</span></li>
+        <li>Durée de validité du devis avant expiration</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- APPROVISIONNEMENT -->
+  <div class="section">
+    <div class="section-head"><span class="icon">⚙️</span><h2>Deux façons de s'approvisionner</h2></div>
+
+    <p class="analysis">Pour honorer un devis, l'entreprise de construction a besoin de matières premières : béton, acier, bois, brique, verre. Deux stratégies existent, chacune avec ses compromis.</p>
+
+    <div class="compare">
+      <div class="compare-card">
+        <h3>🏭 Produire via des usines</h3>
+        <p>L'entreprise investit dans des centrales à béton, aciéries, scieries, fabriques de briques ou usines de verre, et produit son propre stock quotidiennement.</p>
+        <p><strong style="color:var(--green);">+</strong> Indépendance vis-à-vis des prix du marché</p>
+        <p><strong style="color:var(--red);">−</strong> Si le stock tombe à zéro, impossible d'honorer de nouveaux devis — sauf à utiliser du GOLD pour booster la production</p>
+      </div>
+      <div class="compare-card">
+        <h3>💰 Acheter au prix du marché</h3>
+        <p>L'entreprise se procure les matières premières au fur et à mesure, sans aucune limite de stock.</p>
+        <p><strong style="color:var(--green);">+</strong> Seule la trésorerie en compte limite la capacité à honorer des devis — pas de coûts fixes liés aux usines</p>
+        <p><strong style="color:var(--red);">−</strong> Exposition pleine et entière aux variations de prix du marché</p>
+      </div>
+    </div>
+
+    <p class="analysis">Aucune des deux approches n'est universellement supérieure : tout dépend du volume d'activité, de la stabilité des prix recherchée, et de la tolérance au risque de rupture de stock.</p>
+  </div>
+
+  <!-- PÉNALITÉS -->
+  <div class="section">
+    <div class="section-head"><span class="icon">⏱️</span><h2>Pénalités et annulations</h2></div>
+
+    <p class="analysis">Le système prévoit un encadrement précis des situations de retard ou d'annulation :</p>
+
+    <div class="subblock">
+      <ul>
+        <li>Client annule <strong>sans</strong> devis validé → aucune conséquence</li>
+        <li>Client annule <strong>avec</strong> devis validé (moins de 3 mois après) → il perd son acompte</li>
+        <li>Constructeur annule un devis validé → rembourse l'acompte + pénalité équivalente à <span class="val">6 mois</span> de retard</li>
+        <li>Retard de livraison du constructeur → indemnité calculée selon le taux de pénalité fixé dans le devis</li>
+        <li>Retard de paiement du client → indemnité de <span class="val">3 mois</span> versée au constructeur</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ECTN -->
+  <div class="section">
+    <div class="section-head"><span class="icon">🏛️</span><h2>L'ECTN — le filet de sécurité de l'État</h2></div>
+
+    <p class="analysis">Pour les joueurs en début de progression, l'État met à disposition l'<strong>ECTN</strong> (Entreprise de Construction Nationale), qui sert automatiquement tous les joueurs jusqu'au niveau 6. Elle est active sans interruption durant les 30 premiers jours du serveur pour l'ensemble des entreprises, garantissant qu'aucun joueur ne reste bloqué faute de constructeur disponible en début de partie.</p>
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="section">
+    <div class="section-head"><span class="icon">📌</span><h2>En conclusion</h2></div>
+    <p class="analysis">Le métier de constructeur sur M8 repose sur un équilibre permanent entre marge, risque de stock, et respect des délais. Dans le prochain volet de ce dossier, le Journal du Marché analysera l'état réel du marché des matériaux et des usines — où se trouvent les opportunités, et où se cachent les pièges.</p>
+  </div>
+
+  <!-- COLOPHON -->
+  <div class="colophon">
+    <div class="rule"></div>
+    Journal du Marché — Monde 8 · Dossier Construction (1/3) · 30 juin 2026<br>
+    Dédié à la rigueur et à l'analyse factuelle.
+  </div>
+
+</div>
+</body>
+</html>

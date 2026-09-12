@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier — Le bouton "max" des emprunts a-t-il un bug de calcul ? | Le Journal du Marché</title>
+<style>
+  :root{
+    --bg:#15130f;
+    --paper:#1c1916;
+    --gold:#c9a35a;
+    --gold-dim:#9a7c42;
+    --ink:#e8e2d6;
+    --ink-dim:#a89f8f;
+    --line:#3a342b;
+    --danger:#c96a5a;
+    --ok:#7ba05b;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.7;padding:24px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);border:1px solid var(--line);padding:48px 56px;}
+  @media(max-width:640px){.paper{padding:28px 20px;}}
+  .masthead{text-align:center;border-bottom:3px double var(--gold);padding-bottom:20px;margin-bottom:8px;}
+  .masthead .kicker{font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold-dim);}
+  .masthead h1{font-size:2rem;letter-spacing:.08em;color:var(--gold);font-weight:normal;margin:6px 0 2px;}
+  .masthead .tagline{font-size:.8rem;font-style:italic;color:var(--ink-dim);}
+  .dateline{text-align:center;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:36px;}
+  .dossier-label{display:inline-block;background:var(--gold);color:var(--bg);font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;padding:4px 12px;margin-bottom:14px;font-family:Arial,sans-serif;font-weight:bold;}
+  h2.title{font-size:1.9rem;line-height:1.25;color:var(--ink);font-weight:normal;margin-bottom:8px;}
+  .subtitle{font-size:1.05rem;font-style:italic;color:var(--gold);margin-bottom:26px;}
+  .lede{font-size:1.02rem;color:var(--ink);border-left:3px solid var(--gold);padding-left:18px;margin-bottom:40px;font-style:italic;}
+  h3.section{font-size:.85rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);border-top:1px solid var(--line);padding-top:26px;margin:40px 0 16px;font-family:Arial,sans-serif;}
+  h4.sub{font-size:1.1rem;color:var(--gold);font-weight:normal;margin:20px 0 8px;font-style:italic;}
+  p{margin-bottom:14px;font-size:.98rem;}
+  strong{color:var(--gold);font-weight:bold;}
+  em{color:var(--ink);}
+  code{font-family:'Courier New',monospace;background:rgba(201,163,90,0.08);padding:1px 5px;color:var(--gold);}
+  table{width:100%;border-collapse:collapse;margin:18px 0 24px;font-size:.88rem;}
+  th{font-family:Arial,sans-serif;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-dim);text-align:left;padding:7px 9px;border-bottom:2px solid var(--gold-dim);}
+  td{padding:7px 9px;border-bottom:1px solid var(--line);color:var(--ink);}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  tr.hl td{color:var(--gold);font-weight:bold;}
+  tr.ok td.num.res{color:var(--ok);}
+  tr.bad td.num.res{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:.95rem;}
+  .callout.warn{border-left-color:var(--gold-dim);}
+  .formula{border:1px solid var(--line);padding:18px 22px;margin:18px 0;background:rgba(201,163,90,.04);font-size:1rem;text-align:center;color:var(--gold);}
+  .keybox{border:2px solid var(--gold);padding:24px 28px;margin:30px 0;text-align:center;background:rgba(201,163,90,.05);}
+  .keybox .big{font-size:1.5rem;color:var(--gold);line-height:1.35;}
+  .keybox .cap{font-size:.76rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-dim);margin-top:8px;font-family:Arial,sans-serif;}
+  .resume{border-top:3px double var(--gold);margin-top:44px;padding-top:24px;}
+  .resume ul{list-style:none;}
+  .resume li{padding:7px 0 7px 26px;position:relative;font-size:.95rem;border-bottom:1px dotted var(--line);}
+  .resume li::before{content:"◆";color:var(--gold);position:absolute;left:0;font-size:.7rem;top:12px;}
+  .sources{font-size:.78rem;color:var(--ink-dim);font-style:italic;margin-top:30px;padding-top:14px;border-top:1px solid var(--line);}
+  .footer{text-align:center;margin-top:36px;padding-top:20px;border-top:3px double var(--gold);font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-dim);}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <div class="kicker">Monde 8 · Édition spéciale</div>
+    <h1>LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information économique indépendante de Monde 8</div>
+  </div>
+  <div class="dateline">Dossier · 30 Juillet 2026</div>
+
+  <span class="dossier-label">Dossier</span>
+  <h2 class="title">Le bouton "max" des emprunts a-t-il un vrai bug de calcul ?</h2>
+  <div class="subtitle">On a testé, chiffre par chiffre — et trouvé la limite exacte où le calcul déraille.</div>
+
+  <p class="lede">Cette semaine, "El Capit" publiait un article ("Emprunts bancaires") où plusieurs joueurs — Xelo, Akira93, Siiegfried — signalaient un comportement étrange du bouton "max" dans les fenêtres d'emprunt : une mensualité qui s'affiche en rouge, comme si elle dépassait la capacité autorisée. Le Journal du Marché a voulu vérifier ça avec de vrais chiffres, deux banques, et près de vingt tests. Résultat : un bug bien réel, et on a réussi à isoler la limite exacte où il apparaît.</p>
+
+  <h3 class="section">1️⃣ La vraie formule, vérifiée d'abord</h3>
+  <p>Avant de chercher un bug, il fallait confirmer la formule officielle. En tapant des montants ronds manuellement (pas avec le bouton "max"), sur deux banques et plusieurs paliers de taux, un seul calcul revient à chaque fois, avec une précision parfaite :</p>
+  <div class="formula">Mensualité = Montant × [r × (1+r)ⁿ] ÷ [(1+r)ⁿ − 1]<br><span style="font-size:.8rem;color:var(--ink-dim);">où r = taux annuel du palier ÷ 12, et n = durée en mois</span></div>
+  <p>Exemple : un emprunt de 1 MØ à la Banque Nationale (palier à 5%), sur 48 mois, donne 23 029,29 Ø en théorie — le jeu affiche exactement 23 029 Ø. Même chose à Régentor (palier à 2%) : 21 695,12 Ø calculés, 21 695 Ø affichés. Formule confirmée pour tout montant rond tapé à la main, peu importe sa taille — testé jusqu'à 52 ZØ (52 000 000 000 000 000 000 000 Ø) sans le moindre écart.</p>
+
+  <h3 class="section">2️⃣ Le tableau des paliers — deux banques, deux logiques</h3>
+  <table>
+    <tr><th>Banque de Régentor (municipale)</th><th class="num">Taux</th></tr>
+    <tr><td>0 Ø</td><td class="num">2,00%</td></tr>
+    <tr><td>200 000 000 000 000 000 001 Ø</td><td class="num">5,00%</td></tr>
+    <tr><td>300 000 000 000 000 000 001 Ø</td><td class="num">20,00%</td></tr>
+    <tr><td>400 000 000 000 000 000 001 Ø</td><td class="num">50,00%</td></tr>
+    <tr class="hl"><td>500 000 000 000 000 000 001 Ø</td><td class="num">100,00%</td></tr>
+  </table>
+  <table>
+    <tr><th>Banque Nationale (du gouverneur)</th><th class="num">Taux</th></tr>
+    <tr><td>0 Ø</td><td class="num">5,00%</td></tr>
+    <tr><td>300 000 000 000 000 Ø</td><td class="num">6,00%</td></tr>
+    <tr><td>500 000 000 000 000 Ø</td><td class="num">8,00%</td></tr>
+    <tr><td>750 000 000 000 000 Ø</td><td class="num">10,00%</td></tr>
+    <tr><td>1 000 000 000 000 000 Ø</td><td class="num">12,00%</td></tr>
+    <tr><td>2 500 000 000 000 000 Ø</td><td class="num">20,00%</td></tr>
+    <tr><td>5 000 000 000 000 000 Ø</td><td class="num">45,00%</td></tr>
+    <tr><td>10 000 000 000 000 000 Ø</td><td class="num">65,00%</td></tr>
+    <tr><td>15 000 000 000 000 000 Ø</td><td class="num">85,00%</td></tr>
+    <tr class="hl"><td>25 000 000 000 000 000 Ø</td><td class="num">100,00%</td></tr>
+  </table>
+
+  <h3 class="section">3️⃣ Le bug — un facteur ×10, mais pas là où on l'attendait</h3>
+  <p>Premier constat : en cliquant sur le vrai bouton "max", le montant proposé tombe dans la tranche à 100% dans les deux banques, mais la mensualité affichée pour ce montant ne colle plus à la formule — elle est <strong>exactement 10 fois trop élevée</strong>, vérifié à huit chiffres significatifs sur Régentor et Nationale.</p>
+  <p>Deuxième constat, plus surprenant : le bug n'a rien à voir avec le bouton "max" en tant que tel. Un montant <em>rond</em> (5 ZØ, 5,2 ZØ, 52 ZØ...), peu importe sa taille, calcule toujours correctement. C'est uniquement quand le montant a beaucoup de chiffres non-nuls d'affilée — comme ceux que le bouton "max" génère automatiquement — que le calcul dérape. On a donc fait une recherche par dichotomie, chiffre par chiffre, pour trouver la limite exacte.</p>
+
+  <table>
+    <tr><th>Montant testé</th><th>Chiffres significatifs</th><th class="num">Résultat</th></tr>
+    <tr class="ok"><td>75 YØ (rond)</td><td>2</td><td class="num res">✓ correct</td></tr>
+    <tr class="ok"><td>1 ZØ, 3 ZØ, 4 ZØ, 4,5 ZØ, 5 ZØ, 5,1 ZØ, 5,2 ZØ, 52 ZØ (ronds)</td><td>1 à 2</td><td class="num res">✓ correct</td></tr>
+    <tr class="ok"><td>5 201 485 958 228 <strong>732</strong> 000 000</td><td>16</td><td class="num res">✓ correct</td></tr>
+    <tr class="bad"><td>5 201 485 958 228 <strong>732 300</strong> 000</td><td>17</td><td class="num res">✗ buggé (×10)</td></tr>
+    <tr class="bad"><td>5 201 485 958 228 <strong>732 303</strong> 000 → 476 (montant exact du bouton max)</td><td>19 à 22</td><td class="num res">✗ buggé (×10)</td></tr>
+  </table>
+
+  <div class="keybox">
+    <div class="big">16 chiffres significatifs = calcul fiable<br>17 chiffres ou plus = calcul buggé (×10)</div>
+    <div class="cap">Limite trouvée par test direct, chiffre par chiffre, sur la Banque de Régentor</div>
+  </div>
+
+  <h4 class="sub">L'explication technique la plus probable</h4>
+  <p>Cette limite n'est pas un hasard : c'est exactement la limite de précision des nombres entiers en JavaScript, le langage de programmation le plus utilisé pour les sites web. Un entier ne peut y être représenté de façon garantie exacte qu'en dessous de 9 007 199 254 740 991 (2⁵³−1) — un nombre à <strong>16 chiffres</strong>. Au-delà, le type de variable standard ("Number") perd sa précision, et les calculs faits avec deviennent imprévisibles.</p>
+  <p>Les montants d'Empire Immo dépassent couramment cette limite (on manipule couramment des ZØ et des YØ, soit 21 à 24 chiffres). Il existe des types de variables conçus pour gérer ça sans perte de précision (comme BigInt), mais si la partie du code qui calcule la mensualité du bouton "max" utilise le mauvais type de variable, elle va systématiquement mal calculer dès qu'un montant dépasse 16 chiffres significatifs — exactement ce qu'on observe. <strong>C'est l'explication la plus logique et la mieux appuyée par nos tests, mais ça reste une hypothèse</strong> : le Journal n'a pas accès au code du jeu, seulement aux résultats observables.</p>
+
+  <h3 class="section">4️⃣ Une deuxième anomalie, distincte : le montant max lui-même</h3>
+  <p>Le montant que choisit le bouton "max" pose sa propre question, séparée du bug de mensualité. Avec des revenus mensuels vérifiés de 1 358,37 ZØ, un plafond de 50% (Régentor) permettrait en théorie d'emprunter environ 7,98 ZØ à 100% sur 48 mois — mais le bouton "max" ne propose que 5,20 ZØ, bien en dessous. Le montant ne semble donc pas calculé à partir de la capacité de remboursement du joueur ; il est plafonné par autre chose, peut-être les capitaux propres propres à chaque banque — une piste qu'on n'a pas pu confirmer, faute de données publiques sur les bilans des banques.</p>
+  <div class="callout warn">Deux bugs distincts semblent donc coexister : un problème de précision qui fait afficher une mensualité 10 fois trop élevée dès 17 chiffres significatifs, et un montant maximal qui ne suit pas la logique de capacité annoncée par le jeu.</div>
+
+  <h3 class="section">📌 Ce que ça veut dire pour vous</h3>
+  <p>Si vous utilisez le bouton "max" pour un emprunt de plusieurs ZØ ou plus, ne vous fiez pas à la mensualité affichée : elle est probablement dix fois trop élevée, à cause d'une limite de précision numérique plutôt que d'un vrai dépassement de votre capacité. Le calcul reste fiable pour tout montant que vous tapez vous-même, tant qu'il ne dépasse pas 16 chiffres significatifs.</p>
+
+  <div class="resume">
+    <ul>
+      <li><strong>Formule confirmée</strong> : l'amortissement standard fonctionne parfaitement pour tout montant rond, peu importe sa taille.</li>
+      <li><strong>Limite exacte trouvée</strong> : le calcul reste juste jusqu'à 16 chiffres significatifs, et devient 10 fois trop élevé dès le 17e.</li>
+      <li><strong>Cause probable</strong> : une variable mal déclarée dans le code (précision limitée à 2⁵³−1, la limite classique de JavaScript) plutôt qu'un vrai dépassement de capacité.</li>
+      <li><strong>Bug distinct</strong> : le montant "max" lui-même reste bien en dessous du plafond théorique basé sur les revenus, pour une raison encore inconnue.</li>
+    </ul>
+  </div>
+
+  <p style="font-size:13px;color:var(--ink-dim);">Merci à El Capit pour le signalement initial qui a lancé cette vérification — ce dossier prolonge leur travail avec des tests indépendants, sans remettre en question la qualité de leur article original.</p>
+
+  <div class="sources">Tests effectués le 30 juillet 2026 sur la Banque Municipale de Regentor et la Banque Nationale, à partir de captures d'écran en jeu — près de vingt montants testés individuellement. Toutes les formules sont reproductibles à partir des paliers de taux affichés publiquement dans chaque banque.</div>
+
+  <div class="footer">Le Journal du Marché · Monde 8 · Série guides</div>
+
+</div>
+</body>
+</html>
