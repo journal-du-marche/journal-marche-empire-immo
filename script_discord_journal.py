@@ -108,14 +108,14 @@ def envoyer(titre_edition, embeds):
         print("⚠️ Aucune section détectée dans le fichier HTML — vérifie le parsing.")
         return
 
-    # Discord accepte jusqu'à 10 embeds par message -> on envoie par paquets de 5
-    # pour rester lisible (un message = quelques sections groupées).
-    for i in range(0, len(embeds), 5):
-        paquet = embeds[i:i + 5]
-        r = requests.post(WEBHOOK_JOURNAL, json={"embeds": paquet})
-        print(f"Envoi paquet {i} ({len(paquet)} embeds) -> statut {r.status_code} : {r.text[:300]}")
+    # Discord limite la taille TOTALE d'un message à 6000 caractères, tous embeds
+    # combinés (pas juste 4096 par description) -> on envoie 1 embed par message
+    # pour ne jamais dépasser cette limite, même sur les plus grosses sections.
+    for i, embed in enumerate(embeds):
+        r = requests.post(WEBHOOK_JOURNAL, json={"embeds": [embed]})
+        print(f"Envoi section {i} ({embed['title']}) -> statut {r.status_code} : {r.text[:300]}")
         if r.status_code >= 300:
-            raise SystemExit(f"❌ Erreur envoi paquet {i}: {r.status_code} {r.text}")
+            raise SystemExit(f"❌ Erreur envoi section {i}: {r.status_code} {r.text}")
         time.sleep(1)  # évite le rate-limit Discord
 
 
