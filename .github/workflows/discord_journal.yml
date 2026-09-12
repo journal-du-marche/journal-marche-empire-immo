@@ -28,3 +28,11 @@ jobs:
           WEBHOOK_JOURNAL: ${{ secrets.WEBHOOK_JOURNAL }}
           EDITION_FILE: ${{ inputs.edition_file }}
         run: python script_discord_journal.py
+
+      - name: Sauvegarder les IDs de messages (discord_message_ids.json)
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add discord_message_ids.json
+          git diff --cached --quiet || git commit -m "Mise à jour des IDs de messages Discord"
+          git push
