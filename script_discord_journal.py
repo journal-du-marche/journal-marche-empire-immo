@@ -11,11 +11,13 @@ Usage :
 
 import os
 import re
+import json
 import time
 import requests
 
 WEBHOOK_JOURNAL = os.environ["WEBHOOK_JOURNAL"]
 EDITION_FILE = os.environ["EDITION_FILE"]
+ETAT_FILE = "discord_message_ids.json"  # mémoire des IDs de messages postés la veille
 
 # Discord limite un embed à 4096 caractères de description et 25 embeds par message.
 MAX_DESC = 4000
@@ -110,29 +112,85 @@ def construire_embeds(html: str):
     return titre_edition, embeds
 
 
+def charger_etat():
+    if os.path.exists(ETAT_FILE):
+        with open(ETAT_FILE, encoding="utf-8") as f:
+            return json.load(f)
+    return {"entete_id": None, "section_ids": []}
+
+
+def sauver_etat(etat):
+    with open(ETAT_FILE, "w", encoding="utf-8") as f:
+        json.dump(etat, f, ensure_ascii=False, indent=2)
+
+
+def poster(payload):
+    """Poste un nouveau message et retourne son ID (?wait=true renvoie le message créé)."""
+    r = requests.post(f"{WEBHOOK_JOURNAL}?wait=true", json=payload)
+    if r.status_code >= 300:
+        raise SystemExit(f"❌ Erreur à la création : {r.status_code} {r.text}")
+    return r.json()["id"]
+
+
+def editer(message_id, payload):
+    """Édite un message existant du webhook. Retourne False si le message n'existe plus."""
+    r = requests.patch(f"{WEBHOOK_JOURNAL}/messages/{message_id}", json=payload)
+    if r.status_code == 404:
+        return False
+    if r.status_code >= 300:
+        raise SystemExit(f"❌ Erreur à l'édition de {message_id} : {r.status_code} {r.text}")
+    return True
+
+
+def supprimer(message_id):
+    requests.delete(f"{WEBHOOK_JOURNAL}/messages/{message_id}")
+
+
 def envoyer(titre_edition, embeds):
     print(f"Webhook utilisé (début) : {WEBHOOK_JOURNAL[:50]}...")
+    etat = charger_etat()
 
-    # Message d'en-tête
-    r = requests.post(WEBHOOK_JOURNAL, json={"content": f"📰 **{titre_edition}**"})
-    print(f"Envoi en-tête -> statut {r.status_code} : {r.text[:300]}")
-    if r.status_code >= 300:
-        raise SystemExit(f"❌ Échec de l'envoi du message d'en-tête : {r.status_code} {r.text}")
+    # 1. Message d'en-tête : édité en place si on a déjà un ID, sinon créé.
+    payload_entete = {"content": f"📰 **{titre_edition}**"}
+    entete_id = etat.get("entete_id")
+    if not (entete_id and editer(entete_id, payload_entete)):
+        entete_id = poster(payload_entete)
+        print(f"En-tête créé : {entete_id}")
+    else:
+        print(f"En-tête édité : {entete_id}")
     time.sleep(1)
 
     if not embeds:
         print("⚠️ Aucune section détectée dans le fichier HTML — vérifie le parsing.")
+        sauver_etat({"entete_id": entete_id, "section_ids": etat.get("section_ids", [])})
         return
 
-    # Discord limite la taille TOTALE d'un message à 6000 caractères, tous embeds
-    # combinés (pas juste 4096 par description) -> on envoie 1 embed par message
-    # pour ne jamais dépasser cette limite, même sur les plus grosses sections.
+    anciens_ids = etat.get("section_ids", [])
+    nouveaux_ids = []
+
+    # 2. Chaque section : édite le message correspondant de la veille (même position),
+    # sinon en crée un nouveau. Discord limite un message à 6000 caractères tous
+    # embeds combinés -> un embed par message pour ne jamais dépasser la limite.
     for i, embed in enumerate(embeds):
-        r = requests.post(WEBHOOK_JOURNAL, json={"embeds": [embed]})
-        print(f"Envoi section {i} ({embed['title']}) -> statut {r.status_code} : {r.text[:300]}")
-        if r.status_code >= 300:
-            raise SystemExit(f"❌ Erreur envoi section {i}: {r.status_code} {r.text}")
+        payload = {"embeds": [embed]}
+        ancien_id = anciens_ids[i] if i < len(anciens_ids) else None
+        if ancien_id and editer(ancien_id, payload):
+            print(f"Section {i} ({embed['title']}) éditée : {ancien_id}")
+            nouveaux_ids.append(ancien_id)
+        else:
+            nouveau_id = poster(payload)
+            print(f"Section {i} ({embed['title']}) créée : {nouveau_id}")
+            nouveaux_ids.append(nouveau_id)
         time.sleep(1)  # évite le rate-limit Discord
+
+    # 3. S'il y a moins de sections ce soir que la veille, on supprime le surplus.
+    for id_en_trop in anciens_ids[len(embeds):]:
+        supprimer(id_en_trop)
+        print(f"Ancien message en trop supprimé : {id_en_trop}")
+        time.sleep(1)
+
+    sauver_etat({"entete_id": entete_id, "section_ids": nouveaux_ids})
+    print(f"État sauvegardé dans {ETAT_FILE}")
 
 
 if __name__ == "__main__":
