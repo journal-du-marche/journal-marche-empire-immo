@@ -1,0 +1,30 @@
+name: Publier édition du Journal sur Discord
+
+on:
+  workflow_dispatch:
+    inputs:
+      edition_file:
+        description: "Chemin du fichier HTML de l'édition (ex: edition-81.html)"
+        required: true
+        type: string
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloner le repo
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Installer les dépendances
+        run: pip install requests
+
+      - name: Publier sur Discord
+        env:
+          WEBHOOK_JOURNAL: ${{ secrets.WEBHOOK_JOURNAL }}
+          EDITION_FILE: ${{ inputs.edition_file }}
+        run: python script_discord_journal.py
