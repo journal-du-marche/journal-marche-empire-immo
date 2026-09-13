@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Archives — Interviews & Portraits — Le Journal du Marché</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 1.6em; margin-bottom: 4px; }
+  .sub { color: #9aa0a6; margin-bottom: 24px; }
+  input#recherche { width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 1em; border-radius: 8px; border: 1px solid #333; background: #1a1d24; color: #e6e6e6; margin-bottom: 20px; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li { margin: 0; }
+  a.edition-link { display: block; padding: 10px; border-radius: 6px; color: #8ab4f8; text-decoration: none; }
+  a.edition-link:hover { background: #1a1d24; }
+  .num { color: #e6e6e6; font-weight: 600; }
+  .date { color: #9aa0a6; font-size: 0.85em; margin-left: 6px; }
+  .count { color: #6b7078; font-size: 0.85em; margin-top: 4px; }
+</style>
+</head>
+<body>
+  <h1>🎙️ Archives — Interviews & Portraits</h1>
+  <div class="sub">Toutes les interviews et portraits du Journal du Marché, liés directement à la publication réelle en jeu.</div>
+
+  <input id="recherche" type="text" placeholder="Rechercher un titre...">
+
+  <ul id="liste"></ul>
+  <div class="count" id="compteur"></div>
+
+<script>
+// Chaque entrée : titre, date, id de l'article réel en jeu (press/article.php?id=...)
+const ITEMS = [
+  { titre: "Interview de Vincent", date: "31 juillet 2026", id: 834 },
+  { titre: "Interview d'Elmut (complément)", date: "7 août 2026", id: 901 },
+  { titre: "Portrait — Modérateur flo51", date: "1er juillet 2026", id: 685 },
+  { titre: "Portrait — Barmen (ElDiablO & Sarko1)", date: "28 juin 2026", id: 664 },
+  { titre: "Portrait — Aurelion", date: "29 juin 2026", id: 667 },
+  { titre: "Portrait — Holdenor (municipal)", date: "2 juillet 2026", id: 688 },
+  { titre: "Portrait — Regentor (RuiX & DrakeEos)", date: "28 juin 2026", id: 659 },
+  { titre: "Portrait — Brice, journaliste et conseiller municipal", date: "10 juillet 2026", id: 740 },
+  { titre: "Portrait — PrinceOfDarkLions54, maire de Baselis", date: "7 juillet 2026", id: 714 },
+  { titre: "Élections à Regentor — folipe (rupture)", date: "12 août 2026", id: 930 },
+  { titre: "Élections à Regentor — DrakeEos (continuité)", date: "12 août 2026", id: 935 },
+  { titre: "Regentor : le maire sortant dresse le bilan de son mandat", date: "11 août 2026", id: 925 },
+  { titre: "FIPS : Ysra dévoile les coulisses du fonds solidaire", date: "17 août 2026", id: 977 },
+];
+
+function lien(id) {
+  return "https://monde8.empireimmo.com/press/article.php?id=" + id;
+}
+
+const liste = document.getElementById("liste");
+const compteur = document.getElementById("compteur");
+
+function afficher(filtre) {
+  liste.innerHTML = "";
+  const f = filtre.trim().toLowerCase();
+  const filtres = ITEMS.filter(item => item.titre.toLowerCase().includes(f));
+  filtres.forEach(item => {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.className = "edition-link";
+    a.href = lien(item.id);
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.innerHTML = '<span class="num">' + item.titre + '</span><span class="date">' + item.date + '</span>';
+    li.appendChild(a);
+    liste.appendChild(li);
+  });
+  compteur.textContent = filtres.length + " article(s)";
+}
+
+afficher("");
+document.getElementById("recherche").addEventListener("input", (e) => afficher(e.target.value));
+</script>
+</body>
+</html>

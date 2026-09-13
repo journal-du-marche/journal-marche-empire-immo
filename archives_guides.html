@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Archives — Guides, Dossiers & Interviews — Le Journal du Marché</title>
+<title>Archives — Guides & Dossiers — Le Journal du Marché</title>
 <style>
   body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; background: #0f1115; color: #e6e6e6; }
   h1 { font-size: 1.6em; margin-bottom: 4px; }
@@ -15,15 +15,14 @@
   a.edition-link:hover { background: #1a1d24; }
   .num { color: #e6e6e6; font-weight: 600; }
   .date { color: #9aa0a6; font-size: 0.85em; margin-left: 6px; }
-  .accroche { display: block; color: #b8bcc4; font-size: 0.88em; margin-top: 2px; font-weight: 400; }
   .count { color: #6b7078; font-size: 0.85em; margin-top: 4px; }
   section.categorie { display: none; }
   section.categorie.a-du-contenu { display: block; }
 </style>
 </head>
 <body>
-  <h1>📚 Archives — Guides, Dossiers & Interviews</h1>
-  <div class="sub">Tous les guides, dossiers et interviews du Journal du Marché, liés directement à la publication réelle en jeu.</div>
+  <h1>🎓 Archives — Guides & Dossiers</h1>
+  <div class="sub">Tous les guides et dossiers du Journal du Marché, liés directement à la publication réelle en jeu.</div>
 
   <input id="recherche" type="text" placeholder="Rechercher un titre...">
 
@@ -32,12 +31,6 @@
 <script>
 // Chaque entrée : titre, date, id de l'article réel en jeu (press/article.php?id=...)
 const DONNEES = {
-  "📊 Bilans hebdomadaires": [
-    { titre: "Bilan — Semaine 1", date: "27 juin 2026", id: 658 },
-    { titre: "Bilan — Semaine 2", date: "5 juillet 2026", id: 707 },
-    { titre: "Bilan — Semaine 3", date: "12 juillet 2026", id: 752 },
-    { titre: "Bilan — Semaine 4", date: "26 juillet 2026", id: 825 },
-  ],
   "🎓 Guides": [
     { titre: "Guide — Les 6 classements du jeu, expliqués", date: "22 juillet 2026", id: 785 },
     { titre: "Comment on calcule tout dans le Journal du Marché", date: "23 juillet 2026", id: 809 },
@@ -91,21 +84,6 @@ const DONNEES = {
     { titre: "Le grand ménage du dimanche", date: "2 août 2026", id: 871 },
     { titre: "Trois nouveaux devis, les prix matières sur 6 mois, et vos questions", date: "25 juillet 2026", id: 817 },
     { titre: "An 2030 : bienvenue dans le cockpit de votre holding", date: "8 juillet 2026", id: 723 },
-  ],
-  "🎙️ Interviews & portraits": [
-    { titre: "Interview de Vincent", date: "31 juillet 2026", id: 834 },
-    { titre: "Interview d'Elmut (complément)", date: "7 août 2026", id: 901 },
-    { titre: "Portrait — Modérateur flo51", date: "1er juillet 2026", id: 685 },
-    { titre: "Portrait — Barmen (ElDiablO & Sarko1)", date: "28 juin 2026", id: 664 },
-    { titre: "Portrait — Aurelion", date: "29 juin 2026", id: 667 },
-    { titre: "Portrait — Holdenor (municipal)", date: "2 juillet 2026", id: 688 },
-    { titre: "Portrait — Regentor (RuiX & DrakeEos)", date: "28 juin 2026", id: 659 },
-    { titre: "Portrait — Brice, journaliste et conseiller municipal", date: "10 juillet 2026", id: 740 },
-    { titre: "Portrait — PrinceOfDarkLions54, maire de Baselis", date: "7 juillet 2026", id: 714 },
-    { titre: "Élections à Regentor — folipe (rupture)", date: "12 août 2026", id: 930 },
-    { titre: "Élections à Regentor — DrakeEos (continuité)", date: "12 août 2026", id: 935 },
-    { titre: "Regentor : le maire sortant dresse le bilan de son mandat", date: "11 août 2026", id: 925 },
-    { titre: "FIPS : Ysra dévoile les coulisses du fonds solidaire", date: "17 août 2026", id: 977 },
   ],
 };
 
