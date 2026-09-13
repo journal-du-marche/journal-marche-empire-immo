@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur de rentabilité locative — Empire Immo</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: #f4f4f4; color: #1a1a1a; min-height: 100vh; padding: 2rem 1rem; }
+  .container { max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; color: #1a1a1a; }
+  .subtitle { font-size: 14px; color: #666; margin-bottom: 2rem; }
+  .card { background: #fff; border-radius: 12px; border: 1px solid #e0e0e0; padding: 1.5rem; margin-bottom: 1.5rem; }
+  .card h2 { font-size: 14px; font-weight: 600; color: #444; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+  .input-group { display: flex; flex-direction: column; gap: 5px; }
+  label { font-size: 12px; color: #666; font-weight: 500; }
+  input[type=number] { border: 1px solid #ddd; border-radius: 8px; padding: 8px 10px; font-size: 14px; color: #1a1a1a; background: #fafafa; width: 100%; transition: border-color 0.15s; }
+  input[type=number]:focus { outline: none; border-color: #4A6CF7; background: #fff; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+  .metric { background: #f8f8f8; border-radius: 8px; padding: 12px; text-align: center; border: 1px solid #eee; }
+  .metric-label { font-size: 11px; color: #888; margin-bottom: 4px; }
+  .metric-value { font-size: 18px; font-weight: 600; }
+  .green { color: #1a9e6e; }
+  .orange { color: #d97706; }
+  .red { color: #dc2626; }
+  .gray { color: #555; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+  th { background: #f4f4f4; color: #666; font-weight: 600; padding: 9px 12px; text-align: left; border-bottom: 1px solid #e0e0e0; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+  td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; color: #1a1a1a; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafafa; }
+  .td-label { color: #555; }
+  .td-pos { color: #1a9e6e; font-weight: 600; }
+  .footer { font-size: 12px; color: #aaa; text-align: center; margin-top: 1.5rem; }
+  .badge { display: inline-block; font-size: 11px; padding: 3px 8px; border-radius: 20px; font-weight: 600; margin-left: 6px; }
+  .badge-green { background: #d1fae5; color: #065f46; }
+  .badge-orange { background: #fef3c7; color: #92400e; }
+  .badge-red { background: #fee2e2; color: #991b1b; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Calculateur de rentabilité locative</h1>
+  <p class="subtitle">Empire Immo — Monde 8</p>
+
+  <div class="card">
+    <h2>Données du bien</h2>
+    <div class="input-grid">
+      <div class="input-group">
+        <label>Prix d'achat (Ø)</label>
+        <input type="number" id="prix" value="13897629729" min="0" step="1">
+      </div>
+      <div class="input-group">
+        <label>Loyer brut (Ø / mois)</label>
+        <input type="number" id="loyer" value="873601716" min="0" step="1">
+      </div>
+      <div class="input-group">
+        <label>Charges (Ø / mois)</label>
+        <input type="number" id="charges" value="111172712" min="0" step="1">
+      </div>
+      <div class="input-group">
+        <label>Impôts (Ø / mois)</label>
+        <input type="number" id="impots" value="93385078" min="0" step="1">
+      </div>
+      <div class="input-group">
+        <label>Nombre d'unités achetées</label>
+        <input type="number" id="unites" value="1" min="1" step="1">
+      </div>
+    </div>
+  </div>
+
+  <div class="metrics-grid" id="metrics"></div>
+
+  <div class="card">
+    <h2>Détail du calcul</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:40%">Indicateur</th>
+          <th style="width:30%">Par unité</th>
+          <th style="width:30%">Total (x unités)</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <p class="footer">Les prix varient à chaque reset quotidien. Recalculer après chaque mise à jour du marché.</p>
+</div>
+
+<script>
+function fmt(n) {
+  const abs = Math.abs(n);
+  if (abs >= 1e21) return (n/1e21).toFixed(2) + ' Z Ø';
+  if (abs >= 1e18) return (n/1e18).toFixed(2) + ' E Ø';
+  if (abs >= 1e15) return (n/1e15).toFixed(2) + ' P Ø';
+  if (abs >= 1e12) return (n/1e12).toFixed(2) + ' T Ø';
+  if (abs >= 1e9)  return (n/1e9).toFixed(2)  + ' G Ø';
+  if (abs >= 1e6)  return (n/1e6).toFixed(2)  + ' M Ø';
+  return Math.round(n).toLocaleString('fr-CA') + ' Ø';
+}
+
+function calc() {
+  const prix    = parseFloat(document.getElementById('prix').value)    || 0;
+  const loyer   = parseFloat(document.getElementById('loyer').value)   || 0;
+  const charges = parseFloat(document.getElementById('charges').value) || 0;
+  const impots  = parseFloat(document.getElementById('impots').value)  || 0;
+  const unites  = parseFloat(document.getElementById('unites').value)  || 1;
+
+  const net_mois   = loyer - charges - impots;
+  const net_annuel = net_mois * 12;
+  const rend_mois  = prix > 0 ? (net_mois / prix) * 100 : 0;
+  const rend_an    = rend_mois * 12;
+  const roi_mois   = net_mois > 0 ? prix / net_mois : 0;
+  const roi_ans    = roi_mois > 0 ? roi_mois / 12 : 0;
+
+  const colorRend = rend_mois >= 3 ? 'green' : rend_mois >= 1 ? 'orange' : 'red';
+  const badgeRend = rend_mois >= 3
+    ? '<span class="badge badge-green">Excellent</span>'
+    : rend_mois >= 1
+    ? '<span class="badge badge-orange">Correct</span>'
+    : '<span class="badge badge-red">Faible</span>';
+
+  document.getElementById('metrics').innerHTML = `
+    <div class="metric">
+      <div class="metric-label">Loyer net / mois (total)</div>
+      <div class="metric-value ${net_mois*unites >= 0 ? 'green' : 'red'}">${fmt(net_mois * unites)}</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Rendement mensuel</div>
+      <div class="metric-value ${colorRend}">${rend_mois.toFixed(3)} %${badgeRend}</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Rendement annuel</div>
+      <div class="metric-value ${colorRend}">${rend_an.toFixed(2)} %</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Retour sur invest. (ROI)</div>
+      <div class="metric-value gray">${roi_mois > 0 ? Math.round(roi_mois) + ' mois' : '—'}</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">ROI en années</div>
+      <div class="metric-value gray">${roi_ans > 0 ? roi_ans.toFixed(1) + ' ans' : '—'}</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Coût total achat</div>
+      <div class="metric-value gray">${fmt(prix * unites)}</div>
+    </div>
+  `;
+
+  const rows = [
+    ['Loyer brut / mois',      loyer,      loyer * unites,      false],
+    ['Charges / mois',         charges,    charges * unites,    false],
+    ['Impôts / mois',          impots,     impots * unites,     false],
+    ['Loyer net / mois',       net_mois,   net_mois * unites,   true],
+    ['Loyer net / an',         net_annuel, net_annuel * unites, true],
+    ['Prix d\'achat unitaire', prix,       prix * unites,       false],
+  ];
+
+  document.getElementById('tbody').innerHTML = rows.map(([label, v1, v2, isPos]) => `
+    <tr>
+      <td class="td-label">${label}</td>
+      <td class="${isPos ? 'td-pos' : ''}">${fmt(v1)}</td>
+      <td class="${isPos ? 'td-pos' : ''}">${fmt(v2)}</td>
+    </tr>
+  `).join('');
+}
+
+document.querySelectorAll('input').forEach(i => i.addEventListener('input', calc));
+calc();
+</script>
+</body>
+</html>

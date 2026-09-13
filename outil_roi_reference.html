@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROI Empire Immo — Monde 8 (données du jour)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f1117; color: #e8eaf0; padding: 1.5rem 1rem 3rem; }
+  .wrap { max-width: 1500px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; font-weight: 600; color: #fff; margin-bottom: 2px; }
+  .subtitle { font-size: 0.85rem; color: #666880; margin-bottom: 1.5rem; }
+  .maj { font-size: 0.8rem; color: #4a6cf7; margin-top: 4px; }
+  .card { background: #1a1d27; border: 1px solid #2a2d3e; border-radius: 12px; padding: 1.25rem; margin-bottom: 1.25rem; }
+  .card h2 { font-size: 0.78rem; color: #8890b0; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.9rem; font-weight: 600; }
+  .load-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 900px) { .load-grid { grid-template-columns: 1fr; } }
+  .load-box label { display: block; font-size: 0.75rem; color: #8890b0; margin-bottom: 6px; }
+  .load-box a { color: #4a6cf7; font-size: 0.78rem; text-decoration: none; }
+  .load-box a:hover { text-decoration: underline; }
+  textarea { width: 100%; min-height: 70px; background: #0f1117; border: 1px solid #2a2d3e; border-radius: 8px; color: #cfd2e0; font-family: 'Courier New', monospace; font-size: 0.72rem; padding: 8px; resize: vertical; }
+  .load-actions { display: flex; gap: 8px; margin-top: 8px; align-items: center; flex-wrap: wrap; }
+  button, .file-btn { background: #4a6cf7; border: none; color: #fff; padding: 7px 14px; border-radius: 7px; font-size: 0.8rem; cursor: pointer; font-weight: 600; }
+  button:hover, .file-btn:hover { background: #3a5ce0; }
+  .file-btn { display: inline-block; position: relative; overflow: hidden; }
+  .file-btn input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .status { font-size: 0.75rem; margin-top: 6px; }
+  .status.ok { color: #86efac; }
+  .status.err { color: #fca5a5; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; border-bottom: 1px solid #2a2d3e; padding-bottom: 10px; }
+  .tab-btn { background: #1a1d27; border: 1px solid #2a2d3e; color: #8890b0; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; font-weight: 600; }
+  .tab-btn.active { background: #4a6cf7; color: #fff; border-color: #4a6cf7; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  .controls input[type=text], .controls select, .controls input[type=number] { background: #0f1117; border: 1px solid #2a2d3e; border-radius: 7px; padding: 7px 10px; color: #e8eaf0; font-size: 0.82rem; }
+  .controls .search { min-width: 220px; }
+  .controls label { font-size: 0.75rem; color: #8890b0; margin-right: 4px; }
+  .table-wrap { overflow: auto; border: 1px solid #2a2d3e; border-radius: 10px; max-height: 70vh; }
+  .table-wrap::-webkit-scrollbar { width: 14px; height: 14px; }
+  .table-wrap::-webkit-scrollbar-track { background: #0f1117; }
+  .table-wrap::-webkit-scrollbar-thumb { background: #4a6cf7; border-radius: 8px; border: 3px solid #0f1117; }
+  .table-wrap::-webkit-scrollbar-thumb:hover { background: #3a5ce0; }
+  .table-wrap::-webkit-scrollbar-corner { background: #0f1117; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.78rem; white-space: nowrap; }
+  th { background: #14161f; color: #8890b0; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.68rem; padding: 9px 10px; text-align: left; cursor: pointer; user-select: none; position: sticky; top: 0; border-bottom: 1px solid #2a2d3e; }
+  th:hover { color: #4a6cf7; }
+  th .arrow { opacity: 0.5; margin-left: 3px; }
+  td { padding: 8px 10px; border-bottom: 1px solid #1f2230; color: #cfd2e0; }
+  tr:hover td { background: #14161f; }
+  .pos { color: #4ade80; font-weight: 600; }
+  .neg { color: #f87171; font-weight: 600; }
+  .badge { display: inline-block; font-size: 0.72rem; padding: 2px 8px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
+  .b-exc { background: #052e16; color: #86efac; }
+  .b-bon { background: #052e2a; color: #6ee7d4; }
+  .b-cor { background: #2b2410; color: #fcd34d; }
+  .b-fai { background: #2d1a0a; color: #fdba74; }
+  .b-def { background: #2d0a0a; color: #fca5a5; }
+  .b-non { background: #1a1d27; color: #666880; }
+  .empty-msg { padding: 2rem; text-align: center; color: #666880; font-size: 0.85rem; }
+  .footer { text-align: center; font-size: 0.72rem; color: #3a3d52; margin-top: 1.5rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ROI Empire Immo — Monde 8</h1>
+  <p class="subtitle">Outil interne — données rafraîchies chaque jour via l'API du jeu (après reset 21h25 QC)</p>
+
+  <div class="card">
+    <h2>Charger les données du jour</h2>
+    <div class="load-grid">
+      <div class="load-box">
+        <label>1) Bâtiments (buildings.json)</label>
+        <a href="https://monde8.empireimmo.com/api/buildings.json?key=eiK8_6c48e904d26ac7f82ae621875a03e1bd" target="_blank">Ouvrir le lien buildings.json →</a>
+        <textarea id="buildingsInput" placeholder="Colle ici tout le contenu JSON de buildings.json (Ctrl+A puis Ctrl+C sur la page, puis colle ici)"></textarea>
+        <div class="load-actions">
+          <button onclick="loadBuildingsFromTextarea()">Analyser le texte collé</button>
+          <span class="file-btn">Ou charger un fichier .json
+            <input type="file" accept=".json" onchange="loadBuildingsFromFile(event)">
+          </span>
+        </div>
+        <div class="status" id="statusBuildings"></div>
+      </div>
+      <div class="load-box">
+        <label>2) Matériaux (materials.json) — optionnel</label>
+        <a href="https://monde8.empireimmo.com/api/materials.json?key=eiK8_6c48e904d26ac7f82ae621875a03e1bd" target="_blank">Ouvrir le lien materials.json →</a>
+        <textarea id="materialsInput" placeholder="Colle ici tout le contenu JSON de materials.json"></textarea>
+        <div class="load-actions">
+          <button onclick="loadMaterialsFromTextarea()">Analyser le texte collé</button>
+          <span class="file-btn">Ou charger un fichier .json
+            <input type="file" accept=".json" onchange="loadMaterialsFromFile(event)">
+          </span>
+        </div>
+        <div class="status" id="statusMaterials"></div>
+      </div>
+    </div>
+    <p class="maj" id="majDate"></p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="openTab('terrains')">Terrains</button>
+    <button class="tab-btn" onclick="openTab('perso')">Biens personnels</button>
+    <button class="tab-btn" onclick="openTab('entreprise')">Biens entreprise</button>
+    <button class="tab-btn" onclick="openTab('materiaux')">Matériaux</button>
+  </div>
+
+  <div id="tab-terrains" class="tab-panel active">
+    <div class="controls">
+      <input type="text" class="search" placeholder="Rechercher un terrain..." oninput="renderTerrains()" id="searchTerrains">
+      <button onclick="exporterCSV('tableTerrains','terrains.csv')">⬇ Exporter en CSV</button>
+    </div>
+    <div class="table-wrap"><table id="tableTerrains"><thead></thead><tbody></tbody></table></div>
+  </div>
+
+  <div id="tab-perso" class="tab-panel">
+    <div class="controls">
+      <input type="text" class="search" placeholder="Rechercher (type, nom)..." oninput="renderPerso()" id="searchPerso">
+      <label>Assurance</label>
+      <select id="assurancePerso" onchange="renderPerso()"></select>
+      <label>Majoration loyer %</label>
+      <input type="number" id="majPerso" value="15" step="1" style="width:70px" oninput="renderPerso()">
+      <button onclick="exporterCSV('tablePerso','biens_personnels.csv')">⬇ Exporter en CSV</button>
+    </div>
+    <div class="table-wrap"><table id="tablePerso"><thead></thead><tbody></tbody></table></div>
+  </div>
+
+  <div id="tab-entreprise" class="tab-panel">
+    <div class="controls">
+      <input type="text" class="search" placeholder="Rechercher (type, nom)..." oninput="renderEntreprise()" id="searchEntreprise">
+      <label>Assurance</label>
+      <select id="assuranceEntreprise" onchange="renderEntreprise()"></select>
+      <label>Majoration loyer %</label>
+      <input type="number" id="majEntreprise" value="15" step="1" style="width:70px" oninput="renderEntreprise()">
+      <button onclick="exporterCSV('tableEntreprise','biens_entreprise.csv')">⬇ Exporter en CSV</button>
+    </div>
+    <div class="table-wrap"><table id="tableEntreprise"><thead></thead><tbody></tbody></table></div>
+  </div>
+
+  <div id="tab-materiaux" class="tab-panel">
+    <div class="controls">
+      <input type="text" class="search" placeholder="Rechercher un matériau/usine..." oninput="renderMateriaux()" id="searchMateriaux">
+      <button onclick="exporterCSV('tableMateriaux','materiaux.csv')">⬇ Exporter en CSV</button>
+    </div>
+    <div class="table-wrap"><table id="tableMateriaux"><thead></thead><tbody></tbody></table></div>
+  </div>
+
+  <p class="footer">Formule officielle (Constitution/FAQ) : ROI annuel = (Loyer − Charges − Impôt − Assurance) × 12 ÷ Valeur × 100. Assurance = Valeur × (taux du contrat ÷ 100), taux mensuel. Classement : ⭐⭐⭐ ≥5% · ⭐⭐ 2-5% · ⭐ 1-2% · ⚠ 0-1% · ❌ &lt;0% (seuils en attente de confirmation).</p>
+</div>
+
+<script>
+const ASSURANCES = [
+  {nom:"Protection civile", taux:0.05},
+  {nom:"Classique", taux:0.12},
+  {nom:"Sérénité", taux:0.18},
+  {nom:"Confort Plus", taux:0.26},
+  {nom:"Prestige", taux:0.31},
+  {nom:"Rapide Plus", taux:0.30},
+  {nom:"Premium", taux:0.30},
+];
+
+const state = { buildings: null, materials: null,
+  sort: { terrains:{key:null,dir:1}, perso:{key:'roi_base',dir:-1}, entreprise:{key:'roi_base',dir:-1}, materiaux:{key:null,dir:1} } };
+
+function fmt(n) {
+  if (n === null || n === undefined || isNaN(n)) return '—';
+  const abs = Math.abs(n);
+  if (abs >= 1e21) return (n/1e21).toFixed(2) + ' Z Ø';
+  if (abs >= 1e18) return (n/1e18).toFixed(2) + ' E Ø';
+  if (abs >= 1e15) return (n/1e15).toFixed(2) + ' P Ø';
+  if (abs >= 1e12) return (n/1e12).toFixed(2) + ' T Ø';
+  if (abs >= 1e9)  return (n/1e9).toFixed(2)  + ' G Ø';
+  if (abs >= 1e6)  return (n/1e6).toFixed(2)  + ' M Ø';
+  return Math.round(n).toLocaleString('fr-CA') + ' Ø';
+}
+function fmtPct(n) { return (n === null || n === undefined || isNaN(n)) ? '—' : n.toFixed(2) + '%'; }
+
+function classement(roi, niveau) {
+  if (niveau === 0) return {label:'Non loué', cls:'b-non'};
+  if (roi === null || isNaN(roi)) return {label:'Non calculable', cls:'b-non'};
+  if (roi < 0) return {label:'❌ Déficitaire', cls:'b-def'};
+  if (roi < 1) return {label:'⚠ Faible', cls:'b-fai'};
+  if (roi < 2) return {label:'⭐ Correct', cls:'b-cor'};
+  if (roi < 5) return {label:'⭐⭐ Bon', cls:'b-bon'};
+  return {label:'⭐⭐⭐ Excellent', cls:'b-exc'};
+}
+
+function populateAssuranceSelects() {
+  ['assurancePerso','assuranceEntreprise'].forEach(id => {
+    const sel = document.getElementById(id);
+    sel.innerHTML = ASSURANCES.map((a,i) => `<option value="${i}" ${a.nom==='Prestige'?'selected':''}>${a.nom} (${a.taux}%/mois)</option>`).join('');
+  });
+}
+populateAssuranceSelects();
+
+function openTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+function setStatus(id, msg, ok) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'status ' + (ok ? 'ok' : 'err');
+}
+
+function loadBuildingsFromTextarea() {
+  const txt = document.getElementById('buildingsInput').value.trim();
+  parseBuildingsJson(txt);
+}
+function loadBuildingsFromFile(evt) {
+  const file = evt.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => parseBuildingsJson(e.target.result);
+  reader.readAsText(file);
+}
+// Extrait uniquement le premier objet JSON valide { ... } d'un texte, en
+// ignorant tout ce qui suit (utile si le copier-coller depuis le navigateur
+// ramène du texte en trop après le JSON, ce qui casse JSON.parse normal).
+function extraireJsonValide(txt) {
+  const debut = txt.indexOf('{');
+  if (debut === -1) throw new Error("Aucun objet JSON trouvé (pas de '{')");
+  let profondeur = 0, dansChaine = false, echappement = false;
+  for (let i = debut; i < txt.length; i++) {
+    const c = txt[i];
+    if (dansChaine) {
+      if (echappement) echappement = false;
+      else if (c === '\\') echappement = true;
+      else if (c === '"') dansChaine = false;
+      continue;
+    }
+    if (c === '"') { dansChaine = true; continue; }
+    if (c === '{') profondeur++;
+    else if (c === '}') {
+      profondeur--;
+      if (profondeur === 0) return JSON.parse(txt.slice(debut, i + 1));
+    }
+  }
+  throw new Error('JSON incomplet (accolade fermante manquante)');
+}
+
+const LS_KEY_BUILDINGS = 'roi_reference_buildings_v1';
+const LS_KEY_MATERIALS = 'roi_reference_materials_v1';
+
+function parseBuildingsJson(txt) {
+  try {
+    const d = extraireJsonValide(txt);
+    if (!d.batiments_perso || !d.batiments_entreprise) throw new Error('Structure inattendue (batiments_perso / batiments_entreprise manquants)');
+    state.buildings = d;
+    try { localStorage.setItem(LS_KEY_BUILDINGS, JSON.stringify(d)); } catch (e) { console.warn('Mémorisation impossible :', e); }
+    setStatus('statusBuildings', '✅ Chargé — ' + d.batiments_perso.length + ' biens perso, ' + d.batiments_entreprise.length + ' biens entreprise, ' + (d.batiments_terrain||[]).length + ' terrains.', true);
+    updateMajDate();
+    renderTerrains(); renderPerso(); renderEntreprise();
+  } catch (e) {
+    setStatus('statusBuildings', '❌ Erreur : ' + e.message, false);
+  }
+}
+
+function loadMaterialsFromTextarea() {
+  const txt = document.getElementById('materialsInput').value.trim();
+  parseMaterialsJson(txt);
+}
+function loadMaterialsFromFile(evt) {
+  const file = evt.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => parseMaterialsJson(e.target.result);
+  reader.readAsText(file);
+}
+function parseMaterialsJson(txt) {
+  try {
+    const d = extraireJsonValide(txt);
+    if (!d.materiaux || !d.usines) throw new Error('Structure inattendue (materiaux / usines manquants)');
+    state.materials = d;
+    try { localStorage.setItem(LS_KEY_MATERIALS, JSON.stringify(d)); } catch (e) { console.warn('Mémorisation impossible :', e); }
+    setStatus('statusMaterials', '✅ Chargé — ' + d.materiaux.length + ' matériaux, ' + d.usines.length + ' usines.', true);
+    updateMajDate();
+    renderMateriaux();
+  } catch (e) {
+    setStatus('statusMaterials', '❌ Erreur : ' + e.message, false);
+  }
+}
+
+function updateMajDate() {
+  const d = (state.buildings && state.buildings.mise_a_jour) || (state.materials && state.materials.mise_a_jour);
+  document.getElementById('majDate').textContent = d ? ('Dernière mise à jour (source jeu) : ' + d) : '';
+}
+
+function sortRows(rows, sortState, keyFn) {
+  if (!sortState.key) return rows;
+  const arr = rows.slice();
+  arr.sort((a,b) => {
+    const va = keyFn(a, sortState.key), vb = keyFn(b, sortState.key);
+    if (va === null || va === undefined) return 1;
+    if (vb === null || vb === undefined) return -1;
+    if (typeof va === 'string') return va.localeCompare(vb) * sortState.dir;
+    return (va - vb) * sortState.dir;
+  });
+  return arr;
+}
+
+function headerCell(label, key, sortState, tabName, renderFn) {
+  const active = sortState.key === key;
+  const arrow = active ? (sortState.dir === 1 ? '▲' : '▼') : '';
+  return `<th onclick="toggleSort('${tabName}','${key}')">${label} <span class="arrow">${arrow}</span></th>`;
+}
+function toggleSort(tabName, key) {
+  const s = state.sort[tabName];
+  if (s.key === key) s.dir *= -1; else { s.key = key; s.dir = 1; }
+  ({terrains:renderTerrains, perso:renderPerso, entreprise:renderEntreprise, materiaux:renderMateriaux})[tabName]();
+}
+
+function renderTerrains() {
+  const wrap = document.getElementById('tableTerrains');
+  if (!state.buildings) { wrap.innerHTML = '<thead></thead><tbody><tr><td class="empty-msg">Charge d\'abord buildings.json ci-dessus.</td></tr></tbody>'; return; }
+  const q = document.getElementById('searchTerrains').value.toLowerCase();
+  let rows = (state.buildings.batiments_terrain || []).filter(r => r.nom.toLowerCase().includes(q));
+  const s = state.sort.terrains;
+  rows = sortRows(rows, s, (r,k) => r[k]);
+  const thead = `<tr>${headerCell('Terrain','nom',s,'terrains')}${headerCell('Valeur (Ø)','valeur',s,'terrains')}${headerCell('Charge (Ø)','charge',s,'terrains')}${headerCell('Impôt (Ø)','impot',s,'terrains')}</tr>`;
+  const tbody = rows.map(r => `<tr><td>${r.nom}</td><td>${fmt(r.valeur)}</td><td>${fmt(r.charge)}</td><td>${fmt(r.impot)}</td></tr>`).join('') || '<tr><td class="empty-msg" colspan="4">Aucun résultat</td></tr>';
+  wrap.querySelector('thead').innerHTML = thead;
+  wrap.querySelector('tbody').innerHTML = tbody;
+}
+
+function computeBienRow(r, assuranceTaux, majPct) {
+  const assurance = r.valeur * (assuranceTaux/100);
+  const net_base = r.loyer - r.charge - r.impot - assurance;
+  const loyer_maj = r.loyer * (1 + majPct/100);
+  const net_maj = loyer_maj - r.charge - r.impot - assurance;
+  const roi_base = r.valeur > 0 ? (net_base * 12 / r.valeur) * 100 : null;
+  const roi_maj = r.valeur > 0 ? (net_maj * 12 / r.valeur) * 100 : null;
+  return Object.assign({}, r, { assurance, net_base, net_maj, loyer_maj, roi_base: r.niveau===0?null:roi_base, roi_maj: r.niveau===0?null:roi_maj });
+}
+
+function renderBiensTab(key, tableId, searchId, assuranceId, majId, sortKey) {
+  const wrap = document.getElementById(tableId);
+  if (!state.buildings) { wrap.innerHTML = '<thead></thead><tbody><tr><td class="empty-msg">Charge d\'abord buildings.json ci-dessus.</td></tr></tbody>'; return; }
+  const q = document.getElementById(searchId).value.toLowerCase();
+  const assuranceIdx = parseInt(document.getElementById(assuranceId).value || 4, 10);
+  const assuranceTaux = ASSURANCES[assuranceIdx].taux;
+  const majPct = parseFloat(document.getElementById(majId).value) || 0;
+  let rows = (state.buildings[key] || []).filter(r => (r.type + ' ' + r.nom).toLowerCase().includes(q));
+  rows = rows.map(r => computeBienRow(r, assuranceTaux, majPct));
+  const s = state.sort[sortKey];
+  rows = sortRows(rows, s, (r,k) => r[k]);
+  const cols = [
+    ['Type','type'], ['Bâtiment','nom'], ['Niveau','niveau'], ['Valeur (Ø)','valeur'],
+    ['Loyer base (Ø)','loyer'], ['Loyer majoré (Ø)','loyer_maj'], ['Charges (Ø)','charge'], ['Impôt (Ø)','impot'],
+    ['Assurance (Ø)','assurance'], ['Coût construction (Ø)','construction'], ['Coût embellissement (Ø)','embellissement'],
+    ['Net base (Ø)','net_base'], ['Net majoré (Ø)','net_maj'], ['ROI base (%)','roi_base'], ['ROI majoré (%)','roi_maj'], ['Classement', null]
+  ];
+  const thead = '<tr>' + cols.map(([label,k]) => k ? headerCell(label,k,s,sortKey) : `<th>${label}</th>`).join('') + '</tr>';
+  const tbody = rows.map(r => {
+    const cl = classement(r.roi_base, r.niveau);
+    return `<tr>
+      <td>${r.type}</td><td>${r.nom}</td><td>${r.niveau}</td><td>${fmt(r.valeur)}</td>
+      <td>${fmt(r.loyer)}</td><td>${fmt(r.loyer_maj)}</td><td>${fmt(r.charge)}</td><td>${fmt(r.impot)}</td>
+      <td>${fmt(r.assurance)}</td><td>${fmt(r.construction)}</td><td>${fmt(r.embellissement)}</td>
+      <td class="${r.net_base>=0?'pos':'neg'}">${fmt(r.net_base)}</td><td class="${r.net_maj>=0?'pos':'neg'}">${fmt(r.net_maj)}</td>
+      <td class="${r.roi_base>=0?'pos':(r.roi_base<0?'neg':'')}">${fmtPct(r.roi_base)}</td>
+      <td class="${r.roi_maj>=0?'pos':(r.roi_maj<0?'neg':'')}">${fmtPct(r.roi_maj)}</td>
+      <td><span class="badge ${cl.cls}">${cl.label}</span></td>
+    </tr>`;
+  }).join('') || '<tr><td class="empty-msg" colspan="16">Aucun résultat</td></tr>';
+  wrap.querySelector('thead').innerHTML = thead;
+  wrap.querySelector('tbody').innerHTML = tbody;
+}
+function renderPerso() { renderBiensTab('batiments_perso','tablePerso','searchPerso','assurancePerso','majPerso','perso'); }
+function renderEntreprise() { renderBiensTab('batiments_entreprise','tableEntreprise','searchEntreprise','assuranceEntreprise','majEntreprise','entreprise'); }
+
+function renderMateriaux() {
+  const wrap = document.getElementById('tableMateriaux');
+  if (!state.materials) { wrap.innerHTML = '<thead></thead><tbody><tr><td class="empty-msg">Charge materials.json ci-dessus (optionnel).</td></tr></tbody>'; return; }
+  const q = document.getElementById('searchMateriaux').value.toLowerCase();
+  const prixParMateriau = {};
+  state.materials.materiaux.forEach(m => prixParMateriau[m.nom] = m.prix);
+  let rows = state.materials.usines.filter(u => (u.matiere + ' ' + u.usine).toLowerCase().includes(q)).map(u => {
+    const prix = prixParMateriau[u.matiere] || 0;
+    const revenu_brut_jour = u.production * prix;
+    const profit_jour = revenu_brut_jour - u.charge - u.impot;
+    return Object.assign({}, u, { prix, revenu_brut_jour, profit_jour });
+  });
+  const s = state.sort.materiaux;
+  rows = sortRows(rows, s, (r,k) => r[k]);
+  const cols = [['Matière','matiere'],['Usine','usine'],['Valeur (Ø)','valeur'],['Charge (Ø)','charge'],['Impôt (Ø)','impot'],['Production/j','production'],['Prix matière','prix'],['Revenu brut/j (Ø)','revenu_brut_jour'],['Profit/j (Ø)','profit_jour']];
+  const thead = '<tr>' + cols.map(([label,k]) => headerCell(label,k,s,'materiaux')).join('') + '</tr>';
+  const tbody = rows.map(r => `<tr>
+    <td>${r.matiere}</td><td>${r.usine}</td><td>${fmt(r.valeur)}</td><td>${fmt(r.charge)}</td><td>${fmt(r.impot)}</td>
+    <td>${r.production.toLocaleString('fr-CA')}</td><td>${r.prix.toFixed(2)} Ø</td><td>${fmt(r.revenu_brut_jour)}</td>
+    <td class="${r.profit_jour>=0?'pos':'neg'}">${fmt(r.profit_jour)}</td>
+  </tr>`).join('') || '<tr><td class="empty-msg" colspan="9">Aucun résultat</td></tr>';
+  wrap.querySelector('thead').innerHTML = thead;
+  wrap.querySelector('tbody').innerHTML = tbody;
+}
+
+// Exporte le tableau actuellement affiché (avec recherche/tri appliqués) en
+// fichier CSV téléchargeable — lisible dans Excel/Google Sheets. Le BOM en
+// début de fichier force Excel à bien afficher les accents.
+function exporterCSV(tableId, nomFichier) {
+  const table = document.getElementById(tableId);
+  const lignes = [];
+  table.querySelectorAll('tr').forEach(tr => {
+    const cellules = tr.querySelectorAll('th,td');
+    const valeurs = Array.from(cellules).map(c => {
+      const texte = c.textContent.replace(/[▲▼]/g, '').trim();
+      return '"' + texte.replace(/"/g, '""') + '"';
+    });
+    if (valeurs.length) lignes.push(valeurs.join(';'));
+  });
+  const csv = '﻿' + lignes.join('\r\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = nomFichier;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// Recharge automatiquement les dernières données valides (mémorisées dans
+// ce navigateur) au chargement de la page, pour ne pas avoir à recoller le
+// JSON à chaque ouverture — seulement à recoller quand tu veux du plus frais.
+(function chargerDepuisMemoire() {
+  try {
+    const b = localStorage.getItem(LS_KEY_BUILDINGS);
+    if (b) {
+      state.buildings = JSON.parse(b);
+      setStatus('statusBuildings', '📦 Données mémorisées reprises (du ' + (state.buildings.mise_a_jour || '?') + ') — recolle le JSON pour du plus frais.', true);
+    }
+  } catch (e) { console.warn('Reprise buildings impossible :', e); }
+  try {
+    const m = localStorage.getItem(LS_KEY_MATERIALS);
+    if (m) {
+      state.materials = JSON.parse(m);
+      setStatus('statusMaterials', '📦 Données mémorisées reprises (du ' + (state.materials.mise_a_jour || '?') + ') — recolle le JSON pour du plus frais.', true);
+    }
+  } catch (e) { console.warn('Reprise materials impossible :', e); }
+  updateMajDate();
+})();
+
+renderTerrains(); renderPerso(); renderEntreprise(); renderMateriaux();
+</script>
+</body>
+</html>

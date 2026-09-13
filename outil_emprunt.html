@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Calculateur d'emprunt — Empire Immo</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 520px; margin: 0 auto; padding: 24px 16px 64px; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 1.4em; margin-bottom: 4px; }
+  h2 { font-size: 1.05em; margin-top: 32px; border-bottom: 1px solid #2a2d34; padding-bottom: 6px; }
+  .sub { color: #9aa0a6; margin-bottom: 20px; font-size: 0.9em; }
+  label { display: block; margin-top: 14px; font-size: 0.9em; color: #c8ccd2; }
+  input, select { width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 1em; border-radius: 8px; border: 1px solid #333; background: #1a1d24; color: #e6e6e6; margin-top: 4px; }
+  .resultat { margin-top: 20px; padding: 18px; border-radius: 10px; background: #1a1d24; border: 1px solid #2a2d34; }
+  .compare { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+  .cellule { flex: 1; min-width: 130px; text-align: center; padding: 12px; border-radius: 8px; background: #12141a; }
+  .cellule .val { font-size: 1.2em; font-weight: 700; color: #8ab4f8; }
+  .cellule .label { font-size: 0.78em; color: #9aa0a6; margin-top: 4px; }
+  .verdict { margin-top: 12px; font-size: 0.88em; padding: 10px; border-radius: 6px; }
+  .verdict.warn { background: #2b2416; color: #d4a94a; }
+  .note { color: #6b7078; font-size: 0.8em; margin-top: 32px; }
+</style>
+</head>
+<body>
+  <h1>🏦 Calculateur d'emprunt</h1>
+  <div class="sub">Mensualité plafonnée à 1% du capital de l'entreprise/holding (minimum 20 000 Ø). Durée : 6 à 48 mois.</div>
+
+  <label>Capital de l'entreprise/holding (Ø)</label>
+  <input id="capital" type="number" placeholder="ex: 50000000">
+
+  <label>Durée souhaitée (mois, 6 à 48)</label>
+  <input id="duree" type="number" placeholder="ex: 48" value="48" min="6" max="48">
+
+  <label>Taux d'intérêt annuel (%) *</label>
+  <input id="taux" type="number" placeholder="ex: 5" value="5" step="0.1">
+
+  <div class="resultat">
+    <div class="compare">
+      <div class="cellule">
+        <div class="val" id="mensualite-max">—</div>
+        <div class="label">Mensualité maximale</div>
+      </div>
+      <div class="cellule">
+        <div class="val" id="montant-empruntable">—</div>
+        <div class="label">Montant empruntable estimé</div>
+      </div>
+    </div>
+    <div class="verdict warn" id="verdict-seuil"></div>
+  </div>
+
+  <h2>Détail du remboursement</h2>
+  <div class="resultat">
+    <div class="compare">
+      <div class="cellule">
+        <div class="val" id="total-rembourse">—</div>
+        <div class="label">Total remboursé sur la durée</div>
+      </div>
+      <div class="cellule">
+        <div class="val" id="cout-interet">—</div>
+        <div class="label">Coût total des intérêts</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">* Le taux de base (5%) s'applique en dessous de 300 T Ø de capital. Au-dessus de ce seuil, des paliers de taux officiels s'appliquent — je n'ai pas la table exacte de ces paliers, ajuste le taux manuellement si ton capital dépasse ce seuil. Montant empruntable calculé avec la formule standard d'amortissement (mensualité constante).</div>
+
+<script>
+function formatOffre(n) {
+  return n.toLocaleString("fr-FR", {maximumFractionDigits: 0}) + " Ø";
+}
+
+const SEUIL_PALIER = 300_000_000_000_000; // 300 T Ø
+
+function calculer() {
+  const capital = parseFloat(document.getElementById("capital").value) || 0;
+  let duree = parseFloat(document.getElementById("duree").value) || 0;
+  const tauxAnnuel = parseFloat(document.getElementById("taux").value) || 0;
+
+  duree = Math.min(Math.max(duree, 6), 48);
+
+  const mensualiteMax = Math.max(capital * 0.01, 20000);
+  const tauxMensuel = tauxAnnuel / 100 / 12;
+
+  let montantEmpruntable = 0;
+  if (tauxMensuel > 0) {
+    // Formule d'amortissement standard : Montant = Mensualité x (1 - (1+i)^-n) / i
+    montantEmpruntable = mensualiteMax * (1 - Math.pow(1 + tauxMensuel, -duree)) / tauxMensuel;
+  } else {
+    montantEmpruntable = mensualiteMax * duree;
+  }
+
+  const totalRembourse = mensualiteMax * duree;
+  const coutInteret = totalRembourse - montantEmpruntable;
+
+  document.getElementById("mensualite-max").textContent = capital > 0 ? formatOffre(mensualiteMax) : "—";
+  document.getElementById("montant-empruntable").textContent = capital > 0 ? formatOffre(montantEmpruntable) : "—";
+  document.getElementById("total-rembourse").textContent = capital > 0 ? formatOffre(totalRembourse) : "—";
+  document.getElementById("cout-interet").textContent = capital > 0 ? formatOffre(coutInteret) : "—";
+
+  const verdictEl = document.getElementById("verdict-seuil");
+  if (capital > SEUIL_PALIER) {
+    verdictEl.textContent = "⚠️ Capital au-dessus de 300 T Ø — un palier de taux officiel s'applique probablement, le taux saisi manuellement peut être incorrect.";
+    verdictEl.style.display = "block";
+  } else {
+    verdictEl.textContent = "";
+    verdictEl.style.display = "none";
+  }
+}
+
+["capital", "duree", "taux"].forEach(id => {
+  document.getElementById(id).addEventListener("input", calculer);
+});
+</script>
+</body>
+</html>

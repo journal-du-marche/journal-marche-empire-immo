@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vérificateur Vente +15%</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f1117; color: #e8eaf0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem; }
+  .container { background: #1a1d27; border: 1px solid #2a2d3e; border-radius: 16px; padding: 2rem; width: 100%; max-width: 480px; }
+  .header { text-align: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #2a2d3e; }
+  .flag { font-size: 2rem; margin-bottom: 0.5rem; }
+  .header h1 { font-size: 1.3rem; font-weight: 600; color: #ffffff; margin-bottom: 0.25rem; }
+  .header p { font-size: 0.8rem; color: #666880; text-transform: uppercase; letter-spacing: 0.08em; }
+  .section-title { font-size: 0.72rem; color: #4a6cf7; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; margin-bottom: 0.75rem; }
+  .field { margin-bottom: 1.25rem; }
+  .field-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+  label { display: block; font-size: 0.78rem; color: #8890b0; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.5rem; font-weight: 500; }
+  .hint { font-size: 0.72rem; color: #3a4060; margin-top: 0.3rem; font-style: italic; }
+  input[type="text"] { width: 100%; background: #0f1117; border: 1px solid #2a2d3e; border-radius: 8px; padding: 0.75rem 1rem; font-size: 1.1rem; font-family: 'Courier New', monospace; color: #e8eaf0; transition: border-color 0.15s; outline: none; }
+  input[type="text"]:focus { border-color: #4a6cf7; }
+  input[type="text"]::placeholder { color: #3a3d52; }
+  .divider { border: none; border-top: 1px solid #2a2d3e; margin: 1.5rem 0; }
+  .result-big { border-radius: 12px; padding: 1.75rem; text-align: center; margin-bottom: 12px; border: 1px solid #2a2d3e; transition: all 0.2s; }
+  .result-big.vide { background: #0f1117; }
+  .result-big.ok { background: #052e16; border-color: #166534; }
+  .result-big.non { background: #2d0a0a; border-color: #7f1d1d; }
+  .result-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+  .result-label { font-size: 0.78rem; color: #666880; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
+  .result-msg { font-size: 1rem; font-weight: 600; margin-top: 0.5rem; }
+  .result-msg.ok { color: #86efac; }
+  .result-msg.non { color: #fca5a5; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .card { background: #0f1117; border: 1px solid #2a2d3e; border-radius: 10px; padding: 1rem; text-align: center; }
+  .card-label { font-size: 0.72rem; color: #666880; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+  .card-value { font-size: 1.4rem; font-weight: 700; font-family: 'Courier New', monospace; color: #4a6cf7; }
+  .card-value.muted { color: #3a3d52; }
+  .card-value.green { color: #22c55e; }
+  .card-value.amber { color: #f59e0b; }
+  .card-value.red { color: #f87171; }
+  .ref-table { background: #0f1117; border: 1px solid #2a2d3e; border-radius: 10px; padding: 1rem; margin-bottom: 12px; }
+  .ref-title { font-size: 0.72rem; color: #666880; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+  .ref-row { display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0; border-bottom: 1px solid #1a1d27; font-size: 0.85rem; }
+  .ref-row:last-child { border-bottom: none; }
+  .ref-promo { color: #8890b0; }
+  .ref-arrow { color: #3a3d52; }
+  .ref-pct { color: #4a6cf7; font-weight: 600; font-family: 'Courier New', monospace; }
+  .btn-reset { width: 100%; margin-top: 1.25rem; background: transparent; border: 1px solid #2a2d3e; border-radius: 8px; padding: 0.6rem; color: #666880; font-size: 0.85rem; cursor: pointer; transition: all 0.15s; }
+  .btn-reset:hover { border-color: #4a6cf7; color: #4a6cf7; }
+  .footer { text-align: center; margin-top: 1.5rem; font-size: 0.72rem; color: #3a3d52; padding-top: 1rem; border-top: 1px solid #2a2d3e; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="flag">🧮</div>
+    <h1>Vérificateur Vente +15%</h1>
+    <p>Empire Immo — Monde 8</p>
+  </div>
+
+  <div class="section-title">Informations du bien</div>
+  <div class="field-row2">
+    <div>
+      <label>Promo à l'achat %</label>
+      <input type="text" id="promo" placeholder="ex: 11" oninput="calcul()" autocomplete="off" />
+      <div class="hint">% de rabais à l'achat</div>
+    </div>
+    <div>
+      <label>% affiché dans la liste</label>
+      <input type="text" id="pctliste" placeholder="ex: 12.4" oninput="calcul()" autocomplete="off" />
+      <div class="hint">% vert dans la liste</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="result-big vide" id="result-big">
+    <div class="result-icon" id="res-icon">—</div>
+    <div class="result-label">Résultat de la vérification</div>
+    <div class="result-msg" id="res-msg"></div>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <div class="card-label">% attendu</div>
+      <div class="card-value muted" id="res-attendu">—</div>
+    </div>
+    <div class="card">
+      <div class="card-label">% affiché</div>
+      <div class="card-value muted" id="res-reel">—</div>
+    </div>
+  </div>
+
+  <div class="ref-table">
+    <div class="ref-title">Table de référence — Promo → % liste attendu à +15%</div>
+    <div class="ref-row"><span class="ref-promo">Promo -5%</span><span class="ref-arrow">→</span><span class="ref-pct">+9.5%</span></div>
+    <div class="ref-row"><span class="ref-promo">Promo -9%</span><span class="ref-arrow">→</span><span class="ref-pct">+12.0%</span></div>
+    <div class="ref-row"><span class="ref-promo">Promo -11%</span><span class="ref-arrow">→</span><span class="ref-pct">+12.4%</span></div>
+    <div class="ref-row"><span class="ref-promo">Promo -15%</span><span class="ref-arrow">→</span><span class="ref-pct">+13.0%</span></div>
+    <div class="ref-row"><span class="ref-promo">Promo 0%</span><span class="ref-arrow">→</span><span class="ref-pct">+15.0%</span></div>
+  </div>
+
+  <button class="btn-reset" onclick="reset()">Réinitialiser</button>
+
+  <div class="footer">Outil interne — vérifie tes propres calculs avant de t'y fier</div>
+
+</div>
+
+<script>
+// Table de référence basée sur observations réelles du jeu
+// Promo -11% → +12.4% dans la liste = +15% sur le marché ✅
+// Formule observée : % liste = (prix marché / prix achat) - 1 = (1/(1-promo)) - 1
+// MAIS le jeu arrondit différemment — on utilise la tolérance de 0.5%
+
+function calcul() {
+  const promoRaw = document.getElementById('promo').value.trim().replace(',', '.');
+  const pctListeRaw = document.getElementById('pctliste').value.trim().replace(',', '.');
+
+  const resBig = document.getElementById('result-big');
+  const resIcon = document.getElementById('res-icon');
+  const resMsg = document.getElementById('res-msg');
+  const resAttendu = document.getElementById('res-attendu');
+  const resReel = document.getElementById('res-reel');
+
+  if (!promoRaw) {
+    resBig.className = 'result-big vide'; resIcon.textContent = '—'; resMsg.textContent = '';
+    resAttendu.textContent = '—'; resAttendu.className = 'card-value muted';
+    resReel.textContent = '—'; resReel.className = 'card-value muted';
+    return;
+  }
+
+  const promo = Math.abs(parseFloat(promoRaw));
+  if (isNaN(promo)) return;
+
+  // % attendu dans la liste = (1/(1-promo/100) - 1) * 100
+  // Exemple promo 11% : 1/0.89 - 1 = 12.36% ≈ 12.4%
+  const pctAttendu = (1 / (1 - promo / 100) - 1) * 100;
+  resAttendu.textContent = '+' + pctAttendu.toFixed(1) + '%';
+  resAttendu.className = 'card-value';
+
+  if (!pctListeRaw) {
+    resBig.className = 'result-big vide'; resIcon.textContent = '—'; resMsg.textContent = '';
+    resReel.textContent = '—'; resReel.className = 'card-value muted';
+    return;
+  }
+
+  const pctListe = parseFloat(pctListeRaw);
+  if (isNaN(pctListe)) return;
+
+  resReel.textContent = '+' + pctListe.toFixed(1) + '%';
+
+  const ok = Math.abs(pctListe - pctAttendu) < 0.5;
+
+  if (ok) {
+    resBig.className = 'result-big ok'; resIcon.textContent = '✅';
+    resMsg.className = 'result-msg ok';
+    resMsg.textContent = 'Conforme — vendu à +15% sur le marché';
+    resAttendu.className = 'card-value green';
+    resReel.className = 'card-value green';
+  } else {
+    resBig.className = 'result-big non'; resIcon.textContent = '❌';
+    resMsg.className = 'result-msg non';
+    resMsg.textContent = 'Non conforme — correction requise';
+    resAttendu.className = 'card-value amber';
+    resReel.className = 'card-value red';
+  }
+}
+
+function reset() {
+  ['promo','pctliste'].forEach(id => document.getElementById(id).value = '');
+  calcul();
+}
+</script>
+</body>
+</html>

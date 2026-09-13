@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Calculateur de dividendes — Empire Immo</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 520px; margin: 0 auto; padding: 24px 16px 64px; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 1.4em; margin-bottom: 4px; }
+  h2 { font-size: 1.05em; margin-top: 32px; border-bottom: 1px solid #2a2d34; padding-bottom: 6px; }
+  .sub { color: #9aa0a6; margin-bottom: 20px; font-size: 0.9em; }
+  label { display: block; margin-top: 14px; font-size: 0.9em; color: #c8ccd2; }
+  input { width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 1em; border-radius: 8px; border: 1px solid #333; background: #1a1d24; color: #e6e6e6; margin-top: 4px; font-family: 'Courier New', monospace; }
+  .resultat { margin-top: 20px; padding: 18px; border-radius: 10px; background: #1a1d24; border: 1px solid #2a2d34; }
+  .compare { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+  .cellule { flex: 1; min-width: 120px; text-align: center; padding: 12px; border-radius: 8px; background: #12141a; }
+  .cellule .val { font-size: 1.1em; font-weight: 700; color: #8ab4f8; word-break: break-word; }
+  .cellule .label { font-size: 0.78em; color: #9aa0a6; margin-top: 4px; }
+  .verdict { margin-top: 12px; font-size: 0.88em; padding: 10px; border-radius: 6px; }
+  .verdict.ok { background: #16281c; color: #7ba05b; }
+  .verdict.bad { background: #2b1616; color: #e07a7a; }
+  .note { color: #6b7078; font-size: 0.8em; margin-top: 32px; }
+  .bareme-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.8em; }
+  .bareme-table th, .bareme-table td { padding: 6px 8px; text-align: right; border-bottom: 1px solid #2a2d34; }
+  .bareme-table th { color: #9aa0a6; font-weight: 600; text-align: right; }
+  .bareme-table td:first-child, .bareme-table th:first-child { text-align: left; }
+</style>
+</head>
+<body>
+  <h1>💰 Calculateur de dividendes</h1>
+  <div class="sub">Plafond légal : le total versé ne peut pas dépasser 15% du patrimoine de l'entreprise. Impôt progressif prélevé au moment du versement.</div>
+
+  <h2>1. Plafond et vérification</h2>
+  <label>Patrimoine total de l'entreprise/holding (Ø)</label>
+  <input id="patrimoine" type="text" inputmode="decimal" placeholder="ex: 500000000">
+
+  <label>Nombre total d'actions émises</label>
+  <input id="actions-totales" type="text" inputmode="decimal" placeholder="ex: 1000000">
+
+  <label>Dividende proposé par action (Ø, jusqu'à 4 décimales)</label>
+  <input id="dividende-action" type="text" inputmode="decimal" placeholder="ex: 0,0500">
+
+  <div class="resultat">
+    <div class="compare">
+      <div class="cellule">
+        <div class="val" id="montant-total">—</div>
+        <div class="label">Montant total à verser</div>
+      </div>
+      <div class="cellule">
+        <div class="val" id="plafond-15">—</div>
+        <div class="label">Plafond 15% du patrimoine</div>
+      </div>
+    </div>
+    <div class="verdict" id="verdict-plafond"></div>
+  </div>
+
+  <h2>2. Ce que touche un actionnaire (avant impôt)</h2>
+  <label>Nombre d'actions détenues par cet actionnaire</label>
+  <input id="actions-detenues" type="text" inputmode="decimal" placeholder="ex: 10000">
+
+  <div class="resultat">
+    <div class="cellule">
+      <div class="val" id="montant-brut">—</div>
+      <div class="label">Montant brut reçu (avant impôt)</div>
+    </div>
+  </div>
+
+  <h2>3. Impôt sur dividendes (barème officiel confirmé)</h2>
+  <div class="resultat">
+    <div class="compare">
+      <div class="cellule">
+        <div class="val" id="taux-impot">—</div>
+        <div class="label">Taux de la tranche</div>
+      </div>
+      <div class="cellule">
+        <div class="val" id="montant-impot">—</div>
+        <div class="label">Impôt prélevé</div>
+      </div>
+      <div class="cellule">
+        <div class="val" id="montant-net">—</div>
+        <div class="label">Montant net après impôt</div>
+      </div>
+    </div>
+    <table class="bareme-table">
+      <thead><tr><th>À partir de (Ø)</th><th>Taux</th><th>Abattement (Ø)</th></tr></thead>
+      <tbody id="bareme-body"></tbody>
+    </table>
+  </div>
+
+  <div class="note">Formule officielle : Impôt = Montant versé × Taux de la tranche − Abattement de la tranche. La tranche applicable est celle du plus haut seuil ne dépassant pas le montant versé. Même barème pour l'impôt sur les primes.</div>
+
+<script>
+const SCALE = 10000n; // précision à 4 décimales pour le dividende/action
+
+// Barème officiel confirmé (impôt sur primes ET dividendes, même formule)
+const BAREME = [
+  { seuil: 1n,                     taux: 2n,  abattement: 0n },
+  { seuil: 150000n,                taux: 4n,  abattement: 2999n },
+  { seuil: 9000000n,               taux: 6n,  abattement: 182998n },
+  { seuil: 540000000n,             taux: 8n,  abattement: 10982997n },
+  { seuil: 32400000000n,           taux: 10n, abattement: 658982996n },
+  { seuil: 1944000000000n,         taux: 12n, abattement: 39538982995n },
+  { seuil: 116640000000000n,       taux: 14n, abattement: 2372338982994n },
+  { seuil: 6998400000000000n,      taux: 16n, abattement: 142340338982994n },
+  { seuil: 419904000000000000n,    taux: 18n, abattement: 8540420338982990n },
+  { seuil: 25194240000000000000n,  taux: 20n, abattement: 512425220338982000n },
+];
+
+function remplirBaremeTable() {
+  const tbody = document.getElementById("bareme-body");
+  tbody.innerHTML = BAREME.map(b =>
+    `<tr><td>${b.seuil.toLocaleString('fr-CA')} Ø</td><td>${b.taux}%</td><td>${b.abattement.toLocaleString('fr-CA')} Ø</td></tr>`
+  ).join("");
+}
+remplirBaremeTable();
+
+// Convertit une chaîne (avec virgule/point/espaces) en BigInt mis à l'échelle
+// (par défaut x10000, soit 4 décimales) — évite toute perte de précision sur
+// les très grands montants du jeu (au-delà de ce qu'un Number JS supporte).
+function parseScaled(str, decimals) {
+  if (!str) return 0n;
+  let s = str.replace(/\s/g, "").replace(",", ".").trim();
+  if (!s || s === "-") return 0n;
+  let neg = false;
+  if (s[0] === "-") { neg = true; s = s.slice(1); }
+  let [intPart, fracPart = ""] = s.split(".");
+  intPart = intPart.replace(/\D/g, "") || "0";
+  fracPart = fracPart.replace(/\D/g, "");
+  fracPart = (fracPart + "0".repeat(decimals)).slice(0, decimals);
+  let combined = (intPart + fracPart).replace(/^0+(?=\d)/, "");
+  let val;
+  try { val = BigInt(combined || "0"); } catch (e) { return 0n; }
+  return neg ? -val : val;
+}
+
+// Formate une valeur BigInt mise à l'échelle (scale) en texte "12 345,6789 Ø"
+// (décimales nulles finales retirées).
+function formatScaled(v, scale, unite) {
+  const neg = v < 0n;
+  if (neg) v = -v;
+  const intPart = v / scale;
+  const frac = v % scale;
+  const decimals = scale.toString().length - 1;
+  let fracStr = frac.toString().padStart(decimals, "0").replace(/0+$/, "");
+  let text = intPart.toLocaleString("fr-CA") + (fracStr ? "," + fracStr : "");
+  return (neg ? "-" : "") + text + (unite ? " " + unite : "");
+}
+
+function trancheApplicable(montantScaled) {
+  let choisie = BAREME[0];
+  for (const b of BAREME) {
+    if (montantScaled >= b.seuil * SCALE) choisie = b;
+    else break;
+  }
+  return choisie;
+}
+
+function calculer() {
+  const patrimoine = parseScaled(document.getElementById("patrimoine").value, 0);
+  const actionsTotales = parseScaled(document.getElementById("actions-totales").value, 0);
+  const dividendeAction = parseScaled(document.getElementById("dividende-action").value, 4); // scale 10000
+  const actionsDetenues = parseScaled(document.getElementById("actions-detenues").value, 0);
+
+  const patrimoineOk = document.getElementById("patrimoine").value.trim() !== "";
+  const actionsTotalesOk = document.getElementById("actions-totales").value.trim() !== "";
+  const actionsDetenuesOk = document.getElementById("actions-detenues").value.trim() !== "";
+
+  const montantTotalScaled = actionsTotales * dividendeAction; // scale 10000
+  const plafondScaled = (patrimoine * 15n * SCALE) / 100n; // scale 10000
+
+  document.getElementById("montant-total").textContent = actionsTotalesOk ? formatScaled(montantTotalScaled, SCALE, "Ø") : "—";
+  document.getElementById("plafond-15").textContent = patrimoineOk ? formatScaled(plafondScaled, SCALE, "Ø") : "—";
+
+  const verdictEl = document.getElementById("verdict-plafond");
+  if (patrimoineOk && actionsTotalesOk) {
+    if (montantTotalScaled > plafondScaled) {
+      verdictEl.textContent = "⚠️ Dépasse le plafond de 15% — ce dividende par action devrait être réduit.";
+      verdictEl.className = "verdict bad";
+    } else {
+      verdictEl.textContent = "✅ Dans le plafond légal (15% du patrimoine).";
+      verdictEl.className = "verdict ok";
+    }
+  } else {
+    verdictEl.textContent = "";
+    verdictEl.className = "verdict";
+  }
+
+  const montantBrutScaled = actionsDetenues * dividendeAction; // scale 10000
+  document.getElementById("montant-brut").textContent = actionsDetenuesOk ? formatScaled(montantBrutScaled, SCALE, "Ø") : "—";
+
+  if (actionsDetenuesOk && montantBrutScaled > 0n) {
+    const tranche = trancheApplicable(montantBrutScaled);
+    const impotScaled = (montantBrutScaled * tranche.taux) / 100n - tranche.abattement * SCALE;
+    const impotFinalScaled = impotScaled > 0n ? impotScaled : 0n;
+    const netScaled = montantBrutScaled - impotFinalScaled;
+
+    document.getElementById("taux-impot").textContent = tranche.taux + " %";
+    document.getElementById("montant-impot").textContent = formatScaled(impotFinalScaled, SCALE, "Ø");
+    document.getElementById("montant-net").textContent = formatScaled(netScaled, SCALE, "Ø");
+  } else {
+    document.getElementById("taux-impot").textContent = "—";
+    document.getElementById("montant-impot").textContent = "—";
+    document.getElementById("montant-net").textContent = "—";
+  }
+}
+
+["patrimoine", "actions-totales", "dividende-action", "actions-detenues"].forEach(id => {
+  document.getElementById(id).addEventListener("input", calculer);
+});
+</script>
+</body>
+</html>

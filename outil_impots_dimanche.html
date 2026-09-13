@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimisateur Fiscal — Samedi</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #0f1117; color: #e8eaf0; padding: 1.5rem 1rem 3rem; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 1.4rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .subtitle { font-size: 0.82rem; color: #666880; margin-bottom: 1.5rem; }
+
+  .countdown-bar { background: #1a1d27; border: 1px solid #2a2d3e; border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .cd-label { font-size: 0.75rem; color: #8890b0; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .cd-value { font-family: 'Courier New', monospace; font-size: 1.8rem; font-weight: 700; letter-spacing: 0.03em; }
+  .cd-value.safe { color: #4ade80; }
+  .cd-value.warn { color: #f59e0b; }
+  .cd-value.urgent { color: #f87171; }
+  .cd-sub { font-size: 0.72rem; color: #666880; margin-top: 3px; }
+  .cd-badge { padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+  .badge-safe { background: #052e16; color: #86efac; border: 1px solid #166534; }
+  .badge-warn { background: #2b2410; color: #fcd34d; border: 1px solid #92400e; }
+  .badge-urgent { background: #2d0a0a; color: #fca5a5; border: 1px solid #7f1d1d; }
+
+  .card { background: #1a1d27; border: 1px solid #2a2d3e; border-radius: 12px; padding: 1.25rem; margin-bottom: 1.25rem; }
+  .card h2 { font-size: 0.78rem; color: #8890b0; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.9rem; font-weight: 600; padding-bottom: 8px; border-bottom: 1px solid #2a2d3e; }
+
+  .formula-box { background: #0f1e2d; border: 1px solid #1a3a5c; border-radius: 10px; padding: 14px 18px; margin-bottom: 14px; font-size: 0.82rem; color: #80b0d4; text-align: center; }
+  .formula-box strong { color: #a0c8e8; font-size: 0.95rem; display: block; margin-top: 6px; letter-spacing: 0.02em; font-family: 'Courier New', monospace; }
+
+  .filiale-table { width: 100%; min-width: 1100px; border-collapse: collapse; font-size: 0.78rem; }
+  .filiale-table th { font-size: 0.68rem; color: #8890b0; text-align: left; padding: 8px; border-bottom: 1px solid #2a2d3e; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+  .filiale-table td { padding: 7px 8px; border-bottom: 1px solid #1f2230; vertical-align: middle; }
+  .filiale-table tr:last-child td { border-bottom: none; }
+  .filiale-table tr.done-row td { background: #052e16; }
+  .filiale-table tr.total-row td { background: #14161f; font-weight: 600; font-size: 0.82rem; border-top: 2px solid #2a2d3e; }
+  .filiale-table tr.group-header td { background: #14161f; font-size: 0.7rem; font-weight: 600; color: #8890b0; text-transform: uppercase; letter-spacing: 0.06em; padding: 6px 8px; }
+
+  .num-input { width: 100%; min-width: 260px; font-size: 0.78rem; padding: 6px 8px; border: 1px solid #2a2d3e; border-radius: 6px; background: #0f1117; color: #e8eaf0; outline: none; font-family: 'Courier New', monospace; white-space: nowrap; }
+  .num-input:focus { border-color: #4a6cf7; }
+  .num-input::placeholder { color: #3a3d52; }
+
+  .result-val { font-family: 'Courier New', monospace; font-size: 0.78rem; font-weight: 700; white-space: nowrap; }
+  .result-neg { color: #f87171; }
+  .result-zero { color: #4ade80; }
+  .result-empty { color: #3a3d52; font-style: italic; font-weight: 400; }
+
+  .pill { display: inline-block; font-size: 0.68rem; padding: 2px 8px; border-radius: 12px; font-weight: 600; white-space: nowrap; }
+  .pill-red { background: #2d0a0a; color: #fca5a5; border: 1px solid #7f1d1d; }
+  .pill-green { background: #052e16; color: #86efac; border: 1px solid #166534; }
+  .pill-gray { background: #14161f; color: #8890b0; border: 1px solid #2a2d3e; }
+
+  .filiale-name { font-weight: 600; font-size: 0.82rem; }
+  .holding-tag { font-size: 0.68rem; color: #666880; }
+
+  .btn-group { display: flex; gap: 4px; flex-wrap: wrap; }
+  .copy-btn, .done-btn, .del-btn { background: #14161f; border: 1px solid #2a2d3e; color: #8890b0; font-size: 0.68rem; padding: 3px 8px; border-radius: 5px; cursor: pointer; transition: all 0.15s; }
+  .copy-btn:hover { background: #0f1e2d; border-color: #1a3a5c; color: #4a6cf7; }
+  .copy-btn.copied { background: #052e16; border-color: #166534; color: #86efac; }
+  .done-btn:hover, .done-btn.active { background: #052e16; border-color: #166534; color: #86efac; }
+  .del-btn:hover { background: #2d0a0a; border-color: #7f1d1d; color: #fca5a5; }
+
+  .alert { border-radius: 8px; padding: 12px 16px; font-size: 0.78rem; margin-bottom: 10px; display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
+  .alert-r { background: #2d0a0a; border: 1px solid #7f1d1d; color: #e08080; }
+  .alert-o { background: #2b2410; border: 1px solid #92400e; color: #d4a870; }
+  .alert-g { background: #052e16; border: 1px solid #166534; color: #80c880; }
+  .alert-b { background: #0f1e2d; border: 1px solid #1a3a5c; color: #80b0d4; }
+  .alert-icon { font-size: 1rem; flex-shrink: 0; }
+
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step { display: flex; gap: 14px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #2a2d3e; }
+  .step:last-child { border-bottom: none; }
+  .step-dot { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; background: #14161f; border: 1px solid #2a2d3e; }
+  .step-title { font-size: 0.82rem; font-weight: 600; margin-bottom: 3px; }
+  .step-desc { font-size: 0.76rem; color: #8890b0; line-height: 1.5; }
+  .step-tag { display: inline-block; font-size: 0.7rem; padding: 3px 8px; border-radius: 6px; margin-top: 5px; font-weight: 600; }
+  .tag-r { background: #2d0a0a; color: #fca5a5; }
+  .tag-o { background: #2b2410; color: #fcd34d; }
+  .tag-g { background: #052e16; color: #86efac; }
+
+  .checklist { display: flex; flex-direction: column; gap: 8px; }
+  .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px; border: 1px solid #2a2d3e; border-radius: 8px; cursor: pointer; transition: background 0.15s; }
+  .check-item:hover { background: #14161f; }
+  .check-item.done { background: #052e16; border-color: #166534; }
+  .check-item input { margin-top: 2px; flex-shrink: 0; width: 15px; height: 15px; cursor: pointer; }
+  .check-text { font-size: 0.82rem; }
+  .check-sub { font-size: 0.7rem; color: #8890b0; margin-top: 3px; }
+
+  .progress-bar-wrap { margin-top: 14px; }
+  .progress-label { font-size: 0.7rem; color: #8890b0; margin-bottom: 5px; display: flex; justify-content: space-between; }
+  .progress-bg { background: #14161f; border-radius: 8px; height: 8px; overflow: hidden; }
+  .progress-fill { height: 100%; background: #4ade80; border-radius: 8px; transition: width 0.4s; }
+
+  .add-filiale-bar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 14px; padding-top: 12px; border-top: 1px solid #2a2d3e; }
+  .add-input, .add-select { font-size: 0.78rem; padding: 6px 10px; border: 1px solid #2a2d3e; border-radius: 6px; background: #0f1117; color: #e8eaf0; outline: none; }
+  .add-input { width: 180px; }
+  .add-select { cursor: pointer; }
+  .add-input:focus, .add-select:focus { border-color: #4a6cf7; }
+  .add-btn { background: #4a6cf7; border: none; color: #fff; font-size: 0.78rem; padding: 7px 14px; border-radius: 7px; cursor: pointer; font-weight: 600; }
+  .add-btn:hover { background: #3a5ce0; }
+
+  .footer { text-align: center; margin-top: 1.5rem; font-size: 0.72rem; color: #3a3d52; }
+
+  @media (max-width: 600px) {
+    body { padding: 12px; }
+    .num-input { font-size: 0.72rem; }
+    .filiale-table th, .filiale-table td { padding: 5px 4px; }
+    .add-input { width: 130px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>🏛️ Optimisateur Fiscal — Samedi</h1>
+<p class="subtitle">Empire Immo — Monde 8 · Outil interne · Taux d'imposition : 31,93%</p>
+
+<!-- COMPTE À REBOURS -->
+<div class="countdown-bar">
+  <div>
+    <div class="cd-label">⏱️ Deadline frais de gestion</div>
+    <div class="cd-value safe" id="cd">--:--:--</div>
+    <div class="cd-sub">Samedi 21h00 heure Québec (EDT)</div>
+  </div>
+  <div id="cd-badge" class="cd-badge badge-safe">Calcul en cours...</div>
+</div>
+
+<!-- INFO -->
+<div class="card">
+  <h2>🧮 Objectif — NET négatif garanti</h2>
+  <div class="alert alert-b"><span class="alert-icon">ℹ️</span><span>Entre les chiffres <strong>exacts</strong> du bilan de chaque filiale. Le montant de frais à entrer se calcule automatiquement. Agis <strong>immédiatement</strong> après lecture — le résultat d'exploitation peut bouger entre-temps !</span></div>
+</div>
+
+<!-- GUIDE POUR TROUVER LES CHIFFRES -->
+<div class="card">
+  <h2>🧭 Où trouver ces chiffres dans le jeu</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-dot">📄</div>
+      <div>
+        <div class="step-title">Résultat avant impôts &amp; Frais de gestion actuels</div>
+        <div class="step-desc">Dans la fiche de la filiale : onglet <strong>Finances → Résultat</strong>. Active bien l'affichage des <strong>comptes prévisionnels</strong> (souvent un bouton/lien en haut de la page) pour voir les chiffres à jour. Les deux valeurs apparaissent l'une sous l'autre sur cette page.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">🏦</div>
+      <div>
+        <div class="step-title">Ventes 24h (indicatif)</div>
+        <div class="step-desc">Dans la fiche de la filiale : onglet <strong>Banque</strong>. Additionne les montants des lignes marquées "Vente" des dernières 24 heures. Ce chiffre est indicatif seulement (échelle différente) — il ne sert pas au calcul, juste à voir le rythme des ventes.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">💰</div>
+      <div>
+        <div class="step-title">Montant estimé dimanche</div>
+        <div class="step-desc">Toujours sur <strong>Finances → Résultat</strong> : note la ligne "Plus-values sur ventes immo." (cumul depuis le début de la période affichée) et divise-la par le nombre de jours écoulés depuis le début de cette période. Ça donne une estimation d'une journée de ventes (dimanche). Tu peux laisser ce champ vide si tu ne veux pas en tenir compte.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">✅</div>
+      <div>
+        <div class="step-title">Où entrer le résultat calculé</div>
+        <div class="step-desc">Une fois les chiffres entrés ci-dessous, copie le montant affiché dans "Frais à entrer" et colle-le dans le jeu : <strong>Entreprises → Gestion Ressources → Frais de gestion</strong>, pour cette filiale.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALCULATEUR FILIALES -->
+<div class="card">
+  <h2>📊 Calculateur par filiale</h2>
+  <div style="overflow-x:auto">
+  <table class="filiale-table">
+    <thead>
+      <tr>
+        <th>Filiale</th>
+        <th>Rés. avant impôts (Ø)</th>
+        <th>Frais gestion actuels (Ø)</th>
+        <th>💰 Montant estimé dimanche (Ø)</th>
+        <th>✅ Frais à entrer (Ø)</th>
+        <th></th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      <tr class="total-row">
+        <td colspan="4">FILIALES TRAITÉES</td>
+        <td colspan="3"><span id="progress-count">0 / 0</span></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-label"><span>Progression</span><span id="pct-label">0%</span></div>
+    <div class="progress-bg"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+
+  <div class="add-filiale-bar">
+    <span style="font-size:0.78rem;color:#8890b0;font-weight:600;">➕ Ajouter une filiale :</span>
+    <input class="add-input" id="new-filiale-name" placeholder="Nom de la filiale"/>
+    <input class="add-input" id="new-filiale-holding" placeholder="Nom du holding" list="holdings-existants"/>
+    <datalist id="holdings-existants"></datalist>
+    <button class="add-btn" onclick="addFiliale()">Ajouter</button>
+  </div>
+</div>
+
+<!-- SÉQUENCE -->
+<div class="card">
+  <h2>⏰ Séquence d'actions samedi</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-dot">🌅</div>
+      <div>
+        <div class="step-title">Samedi matin — Ouvrir le bilan de chaque filiale</div>
+        <div class="step-desc">Onglet Finances → Résultat. Noter le <strong>Résultat avant impôts</strong> et les <strong>Frais de gestion actuels</strong>. Les entrer immédiatement dans cet outil.</div>
+        <span class="step-tag tag-g">Agir vite — le résultat bouge en temps réel !</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">🔢</div>
+      <div>
+        <div class="step-title">Samedi après-midi — Entrer les frais de gestion calculés</div>
+        <div class="step-desc">Entreprises → Gestion Ressources → Frais de gestion → entrer le montant exact affiché dans la colonne "Frais à entrer". Cliquer ✓ Fait après chaque filiale traitée.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">⚠️</div>
+      <div>
+        <div class="step-title">Samedi 20h45 QC (= Dimanche 02h45 France) — Vérification finale (15 min avant)</div>
+        <div class="step-desc">Confirmer que tous les NETs sont négatifs. Corriger si nécessaire. Dernière chance !</div>
+        <span class="step-tag tag-r">Deadline absolue : 21h00 QC (03h00 France)</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">🔒</div>
+      <div>
+        <div class="step-title">Samedi 21h05 QC — Cycle loyers (inévitable)</div>
+        <div class="step-desc">Un résiduel s'accumule automatiquement à ce moment. Impossible à éviter.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">✅</div>
+      <div>
+        <div class="step-title">Dimanche 17h50 QC — Prélèvement impôt</div>
+        <div class="step-desc">Impôt prélevé uniquement sur le résiduel. Objectif atteint !</div>
+        <span class="step-tag tag-g">Économie maximale d'impôt ✅</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RAPPELS -->
+<div class="card">
+  <h2>📌 Rappels importants</h2>
+  <div class="alert alert-g"><span class="alert-icon">✅</span><span><strong>Méthode validée :</strong> le calcul garantit un NET négatif automatiquement.</span></div>
+  <div class="alert alert-r"><span class="alert-icon">⚡</span><span><strong>Agir immédiatement après lecture !</strong> Le résultat avant impôts change en temps réel. Ne pas attendre entre la lecture du bilan et l'entrée des frais.</span></div>
+  <div class="alert alert-b"><span class="alert-icon">💡</span><span><strong>Cliquer ✓ Fait</strong> après avoir entré les frais dans le jeu — le statut passe en vert pour suivre ta progression.</span></div>
+</div>
+
+<p class="footer">Outil interne — Empire Immo Monde 8 · Formule × 1,006657 · Les filiales ajoutées ici restent mémorisées dans ce navigateur.</p>
+</div>
+
+<script>
+const results = {};
+const doneState = {};
+const STORAGE_KEY = 'empire_immo_filiales_dynamiques';
+
+const FIXED_IDS = [];
+let dynamicIds = [];
+let dynamicData = {};
+
+function getAllIds() { return [...FIXED_IDS, ...dynamicIds]; }
+
+// Les montants du jeu (Ø) dépassent largement ce qu'un Number JS peut
+// représenter avec précision (au-delà d'environ 15-17 chiffres, un Number
+// devient imprécis et se termine par des zéros erronés). On utilise donc
+// BigInt (précision arbitraire) pour tous les calculs sur ces montants.
+const MULT_NUM = 1006657n;
+const MULT_DEN = 1000000n;
+
+function toBigIntSafe(str) {
+  if (!str) return 0n;
+  const cleaned = str.replace(/[\s,]/g, '').trim();
+  if (cleaned === '' || cleaned === '-') return 0n;
+  try { return BigInt(cleaned); } catch (e) { return null; }
+}
+
+// Calcule round(x * 1,006657) en gardant une precision exacte, peu importe
+// la grosseur de x (arrondi au plus proche, comme Math.round).
+function mulByMult(x) {
+  const num = x * MULT_NUM;
+  const half = MULT_DEN / 2n;
+  if (num >= 0n) return (num + half) / MULT_DEN;
+  return -(((-num) + half) / MULT_DEN);
+}
+
+function calc(id) {
+  const raiEl = document.getElementById('rai-' + id);
+  const fdgEl = document.getElementById('fdg-' + id);
+  const montantEl = document.getElementById('montant-' + id);
+  const resEl = document.getElementById('res-' + id);
+  const stEl  = document.getElementById('st-' + id);
+  const btnEl = document.getElementById('btn-' + id);
+  const doneEl = document.getElementById('done-' + id);
+  if (!raiEl) return;
+
+  const raiStr = raiEl.value.trim();
+  const fdgStr = fdgEl ? fdgEl.value.trim() : '';
+  const montantStr = montantEl ? montantEl.value.trim() : '';
+
+  if (!raiStr) {
+    resEl.textContent = '—';
+    resEl.className = 'result-val result-empty';
+    if (!doneState[id]) stEl.innerHTML = '<span class="pill pill-gray">En attente</span>';
+    btnEl.style.display = 'none';
+    if (doneEl) doneEl.style.display = 'none';
+    results[id] = null;
+    updateProgress();
+    return;
+  }
+
+  try {
+    const rai = toBigIntSafe(raiStr);
+    const fdg = toBigIntSafe(fdgStr) || 0n;
+    const montantEstime = toBigIntSafe(montantStr) || 0n;
+    if (rai === null) throw new Error('valeur invalide');
+    const raiTotal = rai + montantEstime;
+
+    if (raiTotal <= 0n) {
+      resEl.textContent = '0 Ø (déjà négatif, aucun frais requis)';
+      resEl.className = 'result-val result-zero';
+      if (!doneState[id]) stEl.innerHTML = '<span class="pill pill-green">Aucun frais requis</span>';
+      btnEl.style.display = 'none';
+      if (doneEl) doneEl.style.display = 'inline-block';
+      results[id] = '0';
+      updateProgress();
+      return;
+    }
+
+    const frais = mulByMult(raiTotal) + fdg;
+    const fraisStr = frais.toLocaleString('fr-CA');
+
+    resEl.textContent = fraisStr + ' Ø';
+    resEl.className = 'result-val result-neg';
+    if (!doneState[id]) stEl.innerHTML = '<span class="pill pill-red">À entrer</span>';
+    btnEl.style.display = 'inline-block';
+    if (doneEl) doneEl.style.display = 'inline-block';
+    results[id] = fraisStr;
+  } catch (e) {
+    resEl.textContent = 'Erreur';
+    resEl.className = 'result-val result-empty';
+    results[id] = null;
+  }
+  updateProgress();
+}
+
+function copyResult(id) {
+  if (!results[id]) return;
+  const val = results[id].replace(/\s/g, '');
+  navigator.clipboard.writeText(val).then(() => {
+    const btn = document.getElementById('btn-' + id);
+    btn.textContent = '✅ Copié !';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copier'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function toggleDone(id) {
+  const stEl = document.getElementById('st-' + id);
+  const doneEl = document.getElementById('done-' + id);
+  const rowEl = document.getElementById('row-' + id);
+  if (!doneState[id]) {
+    doneState[id] = true;
+    stEl.innerHTML = '<span class="pill pill-green">✅ Fait</span>';
+    doneEl.textContent = '↩ Défaire';
+    doneEl.classList.add('active');
+    if (rowEl) rowEl.classList.add('done-row');
+  } else {
+    doneState[id] = false;
+    stEl.innerHTML = results[id] ? '<span class="pill pill-red">À entrer</span>' : '<span class="pill pill-gray">En attente</span>';
+    doneEl.textContent = '✓ Fait';
+    doneEl.classList.remove('active');
+    if (rowEl) rowEl.classList.remove('done-row');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const ids = getAllIds();
+  let done = 0;
+  ids.forEach(id => { if (doneState[id]) done++; });
+  document.getElementById('progress-count').textContent = done + ' / ' + ids.length;
+  const p = ids.length > 0 ? Math.round(done / ids.length * 100) : 0;
+  document.getElementById('prog-fill').style.width = p + '%';
+  document.getElementById('pct-label').textContent = p + '%';
+}
+
+let dynCounter = 0;
+
+function saveDynamicFiliales() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      dynCounter,
+      filiales: dynamicIds.map(id => ({ id, name: dynamicData[id].name, holding: dynamicData[id].holding }))
+    }));
+  } catch (e) { console.warn('Impossible de sauvegarder les filiales :', e); }
+}
+
+function creerLigneFiliale(id, name, holding) {
+  const tr = document.createElement('tr');
+  tr.id = 'row-' + id;
+  tr.innerHTML = `
+    <td><div class="filiale-name">${name}</div><div class="holding-tag">${holding}</div></td>
+    <td><input class="num-input" id="rai-${id}" placeholder="Résultat avant impôts" oninput="calc('${id}')"/></td>
+    <td><input class="num-input" id="fdg-${id}" placeholder="Frais actuels" oninput="calc('${id}')"/></td>
+    <td><input class="num-input" id="montant-${id}" placeholder="Montant estimé dimanche" oninput="calc('${id}')"/></td>
+    <td><span class="result-val result-empty" id="res-${id}">—</span></td>
+    <td>
+      <div class="btn-group">
+        <button class="copy-btn" id="btn-${id}" onclick="copyResult('${id}')" style="display:none">Copier</button>
+        <button class="done-btn" id="done-${id}" onclick="toggleDone('${id}')" style="display:none">✓ Fait</button>
+        <button class="del-btn" onclick="removeFiliale('${id}')" title="Supprimer">✕</button>
+      </div>
+    </td>
+    <td id="st-${id}"><span class="pill pill-gray">En attente</span></td>
+  `;
+  insererDansHolding(tr, holding);
+}
+
+function insererDansHolding(tr, holding) {
+  const tbody = document.getElementById('tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  let derniereLigneDuHolding = null;
+  let enTeteDuHolding = null;
+  for (const row of rows) {
+    const tag = row.querySelector('.holding-tag');
+    if (tag && tag.textContent.trim() === holding) derniereLigneDuHolding = row;
+    if (row.classList.contains('group-header') && row.textContent.includes(holding)) enTeteDuHolding = row;
+  }
+  if (derniereLigneDuHolding) { derniereLigneDuHolding.after(tr); return; }
+  if (enTeteDuHolding) { enTeteDuHolding.after(tr); return; }
+  const nouvelEnTete = document.createElement('tr');
+  nouvelEnTete.className = 'group-header';
+  nouvelEnTete.innerHTML = `<td colspan="8">🏢 ${holding}</td>`;
+  const ligneTotale = tbody.querySelector('tr.total-row');
+  ligneTotale.before(nouvelEnTete, tr);
+}
+
+function updateHoldingsDatalist() {
+  const list = document.getElementById('holdings-existants');
+  const holdings = [...new Set(Object.values(dynamicData).map(d => d.holding).filter(Boolean))];
+  list.innerHTML = holdings.map(h => `<option value="${h}"></option>`).join('');
+}
+
+function addFiliale() {
+  const nameInput = document.getElementById('new-filiale-name');
+  const holdingInput = document.getElementById('new-filiale-holding');
+  const name = nameInput.value.trim();
+  const holding = holdingInput.value.trim() || 'Sans holding';
+  if (!name) { nameInput.focus(); return; }
+  dynCounter++;
+  const id = 'dyn-' + dynCounter;
+  dynamicIds.push(id);
+  dynamicData[id] = { name, holding };
+  creerLigneFiliale(id, name, holding);
+  saveDynamicFiliales();
+  updateHoldingsDatalist();
+  nameInput.value = '';
+  holdingInput.value = holding;
+  nameInput.focus();
+  updateProgress();
+}
+
+function removeFiliale(id) {
+  const row = document.getElementById('row-' + id);
+  if (row) row.remove();
+  dynamicIds = dynamicIds.filter(d => d !== id);
+  delete dynamicData[id];
+  delete results[id];
+  delete doneState[id];
+  saveDynamicFiliales();
+  updateHoldingsDatalist();
+  updateProgress();
+}
+
+function chargerDynamicFiliales() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    dynCounter = data.dynCounter || 0;
+    (data.filiales || []).forEach(f => {
+      dynamicIds.push(f.id);
+      dynamicData[f.id] = { name: f.name, holding: f.holding };
+      creerLigneFiliale(f.id, f.name, f.holding);
+    });
+    updateHoldingsDatalist();
+  } catch (e) { console.warn('Impossible de recharger les filiales :', e); }
+}
+
+function toggleCheck(label) {
+  setTimeout(() => {
+    const cb = label.querySelector('input');
+    if (cb.checked) label.classList.add('done'); else label.classList.remove('done');
+  }, 10);
+}
+
+function updateCountdown() {
+  const now = new Date();
+  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+  const qcNow = new Date(utc + (-4 * 60 * 60000));
+  const day = qcNow.getDay();
+  let daysUntilSat = (6 - day + 7) % 7;
+  if (day === 6 && (qcNow.getHours() > 21 || (qcNow.getHours() === 21 && qcNow.getMinutes() > 0))) daysUntilSat = 7;
+  const deadline = new Date(qcNow);
+  deadline.setDate(deadline.getDate() + daysUntilSat);
+  deadline.setHours(21, 0, 0, 0);
+  const diff = deadline - qcNow;
+  const el = document.getElementById('cd');
+  const badge = document.getElementById('cd-badge');
+  if (diff <= 0) {
+    el.textContent = 'DEADLINE PASSÉE';
+    el.className = 'cd-value urgent';
+    badge.textContent = 'Trop tard cette semaine';
+    badge.className = 'cd-badge badge-urgent';
+    return;
+  }
+  const totalH = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const d = Math.floor(totalH / 24);
+  const h = totalH % 24;
+  el.textContent = d > 0 ? `${d}j ${h}h ${m}m` : `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  if (totalH < 6) {
+    el.className = 'cd-value urgent'; badge.textContent = '🚨 URGENT — Agir maintenant'; badge.className = 'cd-badge badge-urgent';
+  } else if (totalH < 24) {
+    el.className = 'cd-value warn'; badge.textContent = '⚠️ Moins de 24h restantes'; badge.className = 'cd-badge badge-warn';
+  } else {
+    el.className = 'cd-value safe'; badge.textContent = `${d} jour${d > 1 ? 's' : ''} restant${d > 1 ? 's' : ''} — Tu as le temps`; badge.className = 'cd-badge badge-safe';
+  }
+}
+
+chargerDynamicFiliales();
+updateProgress();
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>

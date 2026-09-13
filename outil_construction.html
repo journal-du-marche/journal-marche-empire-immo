@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Calculateur de devis — Empire Immo</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 520px; margin: 0 auto; padding: 24px 16px 64px; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 1.4em; margin-bottom: 4px; }
+  h2 { font-size: 1.05em; margin-top: 36px; border-bottom: 1px solid #2a2d34; padding-bottom: 6px; }
+  .sub { color: #9aa0a6; margin-bottom: 20px; font-size: 0.9em; }
+  label { display: block; margin-top: 14px; font-size: 0.9em; color: #c8ccd2; }
+  input[type=number] { width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 1em; border-radius: 8px; border: 1px solid #333; background: #1a1d24; color: #e6e6e6; margin-top: 4px; }
+  input[type=range] { width: 100%; margin-top: 10px; }
+  .slider-val { color: #8ab4f8; font-weight: 600; }
+  .resultat { margin-top: 20px; padding: 18px; border-radius: 10px; background: #1a1d24; border: 1px solid #2a2d34; }
+  .grille { display: flex; gap: 16px; margin-top: 8px; }
+  .cellule { flex: 1; text-align: center; }
+  .cellule .val { font-size: 1.3em; font-weight: 700; color: #8ab4f8; }
+  .cellule .label { font-size: 0.78em; color: #9aa0a6; margin-top: 2px; }
+  .verdict { margin-top: 12px; font-size: 0.9em; padding: 10px; border-radius: 6px; }
+  .verdict.ok { background: #16281c; color: #7ba05b; }
+  .verdict.bad { background: #2b1616; color: #e07a7a; }
+  .note { color: #6b7078; font-size: 0.8em; margin-top: 32px; }
+</style>
+</head>
+<body>
+  <h1>🧮 Calculateur de devis de construction</h1>
+  <div class="sub">Fourchette officielle : ±30% autour du prix de marché.</div>
+
+  <h2>1. Fourchette de devis</h2>
+  <label>Prix de marché du bien (Ø)</label>
+  <input id="prix-marche" type="number" placeholder="ex: 18544005">
+
+  <label>Marge appliquée : <span class="slider-val" id="marge-val">15%</span></label>
+  <input id="marge" type="range" min="-30" max="30" value="15" step="1">
+
+  <div class="resultat">
+    <div class="grille">
+      <div class="cellule">
+        <div class="val" id="devis-min">—</div>
+        <div class="label">Min (−30%)</div>
+      </div>
+      <div class="cellule">
+        <div class="val" id="devis-marge">—</div>
+        <div class="label">À la marge choisie</div>
+      </div>
+      <div class="cellule">
+        <div class="val" id="devis-max">—</div>
+        <div class="label">Max (+30%)</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>2. Vérifier un devis reçu</h2>
+  <label>Prix de marché du bien (Ø)</label>
+  <input id="prix-marche-2" type="number" placeholder="ex: 18544005">
+
+  <label>Montant du devis reçu (Ø)</label>
+  <input id="devis-recu" type="number" placeholder="ex: 21000000">
+
+  <div class="resultat">
+    <div class="cellule">
+      <div class="val" id="marge-calculee">—</div>
+      <div class="label">Marge appliquée</div>
+    </div>
+    <div class="verdict" id="verdict-devis"></div>
+  </div>
+
+  <h2>3. Coût d'opportunité — loyer perdu pendant la construction</h2>
+  <label>Loyer net quotidien attendu une fois construit (Ø/jour)</label>
+  <input id="loyer-jour" type="number" placeholder="ex: 500000">
+
+  <label>Durée de construction (jours)</label>
+  <input id="duree-construction" type="number" placeholder="ex: 112" value="112">
+
+  <div class="resultat">
+    <div class="cellule">
+      <div class="val" id="loyer-perdu">—</div>
+      <div class="label">Loyer total non perçu pendant la construction</div>
+    </div>
+  </div>
+
+  <div class="note">Outil interne — vérifie tes propres calculs avant de t'y fier pour une décision de construction.</div>
+
+<script>
+function formatOffre(n) {
+  return n.toLocaleString("fr-FR", {maximumFractionDigits: 0}) + " Ø";
+}
+
+function calc1() {
+  const prix = parseFloat(document.getElementById("prix-marche").value) || 0;
+  const marge = parseFloat(document.getElementById("marge").value);
+  document.getElementById("marge-val").textContent = marge + "%";
+  if (prix <= 0) {
+    document.getElementById("devis-min").textContent = "—";
+    document.getElementById("devis-marge").textContent = "—";
+    document.getElementById("devis-max").textContent = "—";
+    return;
+  }
+  document.getElementById("devis-min").textContent = formatOffre(prix * 0.70);
+  document.getElementById("devis-marge").textContent = formatOffre(prix * (1 + marge / 100));
+  document.getElementById("devis-max").textContent = formatOffre(prix * 1.30);
+}
+
+function calc2() {
+  const prix = parseFloat(document.getElementById("prix-marche-2").value) || 0;
+  const devis = parseFloat(document.getElementById("devis-recu").value) || 0;
+  const verdictEl = document.getElementById("verdict-devis");
+  if (prix <= 0 || devis <= 0) {
+    document.getElementById("marge-calculee").textContent = "—";
+    verdictEl.textContent = "";
+    verdictEl.className = "verdict";
+    return;
+  }
+  const marge = (devis / prix - 1) * 100;
+  document.getElementById("marge-calculee").textContent = marge.toFixed(1) + "%";
+  if (marge < -30 || marge > 30) {
+    verdictEl.textContent = "⚠️ Hors des clous (±30%) — ce devis serait automatiquement refusé par le système.";
+    verdictEl.className = "verdict bad";
+  } else {
+    verdictEl.textContent = "✅ Devis dans la fourchette officielle.";
+    verdictEl.className = "verdict ok";
+  }
+}
+
+function calc3() {
+  const loyer = parseFloat(document.getElementById("loyer-jour").value) || 0;
+  const duree = parseFloat(document.getElementById("duree-construction").value) || 0;
+  document.getElementById("loyer-perdu").textContent = formatOffre(loyer * duree);
+}
+
+["prix-marche", "marge"].forEach(id => document.getElementById(id).addEventListener("input", calc1));
+["prix-marche-2", "devis-recu"].forEach(id => document.getElementById(id).addEventListener("input", calc2));
+["loyer-jour", "duree-construction"].forEach(id => document.getElementById(id).addEventListener("input", calc3));
+calc1();
+</script>
+</body>
+</html>

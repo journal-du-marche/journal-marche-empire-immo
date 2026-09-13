@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>ROI sur capital construit — Empire Immo</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 520px; margin: 0 auto; padding: 24px 16px 64px; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 1.4em; margin-bottom: 4px; }
+  h2 { font-size: 1.05em; margin-top: 32px; border-bottom: 1px solid #2a2d34; padding-bottom: 6px; }
+  .sub { color: #9aa0a6; margin-bottom: 20px; font-size: 0.9em; }
+  label { display: block; margin-top: 14px; font-size: 0.9em; color: #c8ccd2; }
+  input { width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 1em; border-radius: 8px; border: 1px solid #333; background: #1a1d24; color: #e6e6e6; margin-top: 4px; }
+  .resultat { margin-top: 20px; padding: 18px; border-radius: 10px; background: #1a1d24; border: 1px solid #2a2d34; }
+  .compare { display: flex; gap: 16px; margin-top: 8px; }
+  .cellule { flex: 1; text-align: center; padding: 12px; border-radius: 8px; background: #12141a; }
+  .cellule .val { font-size: 1.4em; font-weight: 700; color: #8ab4f8; }
+  .cellule .label { font-size: 0.78em; color: #9aa0a6; margin-top: 4px; }
+  .verdict { margin-top: 14px; font-size: 0.92em; padding: 12px; border-radius: 6px; text-align: center; font-weight: 600; }
+  .verdict.construire { background: #16281c; color: #7ba05b; }
+  .verdict.acheter { background: #1a2333; color: #8ab4f8; }
+  .note { color: #6b7078; font-size: 0.8em; margin-top: 32px; }
+</style>
+</head>
+<body>
+  <h1>🏗️ ROI sur capital construit</h1>
+  <div class="sub">Compare le rendement si tu achètes le bien déjà construit au prix marché, vs si tu le construis toi-même (terrain + devis + assurance construction).</div>
+
+  <label>Loyer net quotidien attendu (Ø/jour)</label>
+  <input id="loyer" type="number" placeholder="ex: 500000">
+
+  <h2>Option A — Acheter déjà construit</h2>
+  <label>Prix d'achat sur le marché (Ø)</label>
+  <input id="prix-achat" type="number" placeholder="ex: 15800000">
+
+  <h2>Option B — Construire soi-même</h2>
+  <label>Prix du terrain (Ø)</label>
+  <input id="prix-terrain" type="number" placeholder="ex: 70000">
+
+  <label>Devis de construction (Ø)</label>
+  <input id="devis" type="number" placeholder="ex: 12000000">
+
+  <label>Assurance de construction / embellissement (Ø, optionnel)</label>
+  <input id="assurance-construction" type="number" placeholder="ex: 500000" value="0">
+
+  <label>Durée de construction (jours, revenu perdu)</label>
+  <input id="duree" type="number" placeholder="ex: 112" value="0">
+
+  <div class="resultat">
+    <div class="compare">
+      <div class="cellule">
+        <div class="val" id="roi-achat">—</div>
+        <div class="label">ROI — Achat direct</div>
+      </div>
+      <div class="cellule">
+        <div class="val" id="roi-construction">—</div>
+        <div class="label">ROI — Construction</div>
+      </div>
+    </div>
+    <div class="verdict" id="verdict"></div>
+  </div>
+
+  <div class="note">ROI simplifié = loyer net annuel ÷ capital investi × 100. Outil interne — vérifie tes propres calculs avant de trancher.</div>
+
+<script>
+function formatPct(n) {
+  return n.toFixed(2) + " %";
+}
+
+function calculer() {
+  const loyer = parseFloat(document.getElementById("loyer").value) || 0;
+  const prixAchat = parseFloat(document.getElementById("prix-achat").value) || 0;
+  const prixTerrain = parseFloat(document.getElementById("prix-terrain").value) || 0;
+  const devis = parseFloat(document.getElementById("devis").value) || 0;
+  const assuranceConstruction = parseFloat(document.getElementById("assurance-construction").value) || 0;
+  const duree = parseFloat(document.getElementById("duree").value) || 0;
+
+  const loyerAnnuel = loyer * 365;
+  const capitalConstruit = prixTerrain + devis + assuranceConstruction;
+  const loyerPerduConstruction = loyer * duree;
+
+  const roiAchatEl = document.getElementById("roi-achat");
+  const roiConstructionEl = document.getElementById("roi-construction");
+  const verdictEl = document.getElementById("verdict");
+
+  if (prixAchat <= 0 && capitalConstruit <= 0) {
+    roiAchatEl.textContent = "—";
+    roiConstructionEl.textContent = "—";
+    verdictEl.textContent = "";
+    verdictEl.className = "verdict";
+    return;
+  }
+
+  const roiAchat = prixAchat > 0 ? (loyerAnnuel / prixAchat) * 100 : 0;
+  // Le capital construit "coûte" aussi le loyer non perçu pendant la construction,
+  // traité ici comme un coût d'opportunité ajouté au capital investi.
+  const capitalTotalConstruction = capitalConstruit + loyerPerduConstruction;
+  const roiConstruction = capitalTotalConstruction > 0 ? (loyerAnnuel / capitalTotalConstruction) * 100 : 0;
+
+  roiAchatEl.textContent = prixAchat > 0 ? formatPct(roiAchat) : "—";
+  roiConstructionEl.textContent = capitalTotalConstruction > 0 ? formatPct(roiConstruction) : "—";
+
+  if (prixAchat > 0 && capitalTotalConstruction > 0) {
+    if (roiConstruction > roiAchat) {
+      verdictEl.textContent = "🏗️ Construire est plus rentable (+" + (roiConstruction - roiAchat).toFixed(2) + " pts)";
+      verdictEl.className = "verdict construire";
+    } else {
+      verdictEl.textContent = "🏠 Acheter direct est plus rentable (+" + (roiAchat - roiConstruction).toFixed(2) + " pts)";
+      verdictEl.className = "verdict acheter";
+    }
+  }
+}
+
+["loyer", "prix-achat", "prix-terrain", "devis", "assurance-construction", "duree"].forEach(id => {
+  document.getElementById(id).addEventListener("input", calculer);
+});
+</script>
+</body>
+</html>

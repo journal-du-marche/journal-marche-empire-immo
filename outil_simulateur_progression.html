@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Simulateur de progression — Empire Immo</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+  :root {
+    --color-text-primary: #e6e6e6;
+    --color-text-secondary: #9aa0a6;
+    --color-text-tertiary: #6b7078;
+    --color-text-success: #7ba05b;
+    --color-text-warning: #d4a94a;
+    --color-background-secondary: #1a1d24;
+    --color-background-success: #16281c;
+    --color-background-warning: #2b2416;
+    --color-border-tertiary: #2a2d34;
+    --border-radius-md: 8px;
+    --border-radius-lg: 10px;
+  }
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; background: #0f1115; color: var(--color-text-primary); }
+  input { background: #12141a; border: 1px solid #333; color: var(--color-text-primary); border-radius: 6px; padding: 8px 10px; width: 100%; box-sizing: border-box; }
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.section-title{font-size:16px;font-weight:500;color:var(--color-text-primary);margin:0 0 12px}
+.config-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:12px;color:var(--color-text-secondary)}
+.field input{font-size:14px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.5rem}
+.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px}
+.metric-label{font-size:12px;color:var(--color-text-secondary);margin-bottom:4px}
+.metric-value{font-size:18px;font-weight:500;color:var(--color-text-primary)}
+.metric-sub{font-size:11px;color:var(--color-text-tertiary);margin-top:2px}
+.table-wrap{overflow-x:auto;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:1.5rem}
+table{width:100%;border-collapse:collapse;font-size:13px;table-layout:fixed}
+th{background:var(--color-background-secondary);color:var(--color-text-secondary);font-weight:500;padding:8px 10px;text-align:right;border-bottom:0.5px solid var(--color-border-tertiary)}
+th:first-child{text-align:center;width:50px}
+td{padding:7px 10px;text-align:right;border-bottom:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary)}
+td:first-child{text-align:center;color:var(--color-text-secondary)}
+tr:last-child td{border-bottom:none}
+tr.highlight td{background:var(--color-background-success);color:var(--color-text-success);font-weight:500}
+.objective-row{display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;flex-wrap:wrap}
+.objective-row label{font-size:13px;color:var(--color-text-secondary);white-space:nowrap}
+.objective-row input{width:200px}
+.obj-result{font-size:13px;font-weight:500;color:var(--color-text-success);background:var(--color-background-success);padding:6px 12px;border-radius:var(--border-radius-md)}
+.chart-legend{display:flex;gap:16px;font-size:12px;color:var(--color-text-secondary);margin-bottom:6px}
+.legend-dot{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:4px}
+.growth-badge{font-size:11px;background:var(--color-background-success);color:var(--color-text-success);padding:2px 7px;border-radius:var(--border-radius-md);margin-left:6px}
+</style>
+</head>
+<body>
+
+<h2 class="sr-only">Simulateur de progression Empire Immo — calcule ton évolution de propriétés et revenus sur 31 jours</h2>
+
+<p style="font-size:18px;font-weight:500;color:var(--color-text-primary);margin:0 0 1.5rem;padding-top:1rem">
+  <i class="ti ti-building-skyscraper" aria-hidden="true" style="font-size:20px;vertical-align:-3px;margin-right:8px"></i>
+  Simulateur de progression — Empire Immo
+</p>
+
+<p class="section-title"><i class="ti ti-settings" aria-hidden="true" style="font-size:16px;vertical-align:-2px;margin-right:6px"></i>Configuration</p>
+<div class="config-grid">
+  <div class="field" style="grid-column:1/-1">
+    <label>Nom du bien</label>
+    <input type="text" id="nom" value="Complexe résidentiel palacium luxueux" style="font-size:13px">
+  </div>
+  <div class="field">
+    <label>Unités actuelles possédées</label>
+    <input type="number" id="unites" value="8580" min="0" step="1" oninput="recalc()">
+  </div>
+  <div class="field">
+    <label>Revenu par unité / mois (Ø)</label>
+    <input type="number" id="revUnit" value="19755682781" min="1" step="1" oninput="recalc()">
+  </div>
+  <div class="field">
+    <label>Achats quotidiens initiaux (J1)</label>
+    <input type="number" id="achats" value="500" min="1" step="1" oninput="recalc()">
+  </div>
+  <div class="field">
+    <label>Croissance des achats / jour (%)</label>
+    <input type="number" id="croissance" value="5.8" min="0" max="100" step="0.1" oninput="recalc()">
+  </div>
+  <div class="field">
+    <label>Nombre de jours à simuler</label>
+    <input type="number" id="jours" value="31" min="7" max="365" step="1" oninput="recalc()">
+  </div>
+</div>
+
+<p class="section-title"><i class="ti ti-target" aria-hidden="true" style="font-size:16px;vertical-align:-2px;margin-right:6px"></i>Objectif</p>
+<div class="objective-row">
+  <label>Atteindre un revenu mensuel de</label>
+  <input type="number" id="objectif" value="1000000000000000" min="0" step="1" style="width:220px" oninput="recalc()">
+  <label>Ø</label>
+  <span class="obj-result" id="obj-result">Calcul...</span>
+</div>
+
+<p class="section-title"><i class="ti ti-chart-bar" aria-hidden="true" style="font-size:16px;vertical-align:-2px;margin-right:6px"></i>Résumé au dernier jour</p>
+<div class="metrics" id="metrics"></div>
+
+<div class="chart-legend">
+  <span><span class="legend-dot" style="background:#185FA5"></span>Revenu mensuel (Ø)</span>
+  <span><span class="legend-dot" style="background:#1D9E75"></span>Total propriétés</span>
+</div>
+<div style="position:relative;width:100%;height:260px;margin-bottom:1.5rem">
+  <canvas id="chart" role="img" aria-label="Graphique de progression des revenus et propriétés sur la période simulée"></canvas>
+</div>
+
+<p class="section-title"><i class="ti ti-table" aria-hidden="true" style="font-size:16px;vertical-align:-2px;margin-right:6px"></i>Tableau de progression</p>
+<div class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Jour</th>
+        <th>Achats</th>
+        <th>Total unités</th>
+        <th>Revenu mensuel (Ø)</th>
+        <th>Revenu quotidien (Ø)</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+let myChart = null;
+
+function fmt(n){
+  if(n>=1e15) return (n/1e15).toFixed(2)+' Qa';
+  if(n>=1e12) return (n/1e12).toFixed(2)+' T';
+  if(n>=1e9) return (n/1e9).toFixed(2)+' G';
+  if(n>=1e6) return (n/1e6).toFixed(2)+' M';
+  return Math.round(n).toLocaleString('fr-CA');
+}
+
+function recalc(){
+  const unites = parseFloat(document.getElementById('unites').value)||0;
+  const revUnit = parseFloat(document.getElementById('revUnit').value)||0;
+  const achatInit = parseFloat(document.getElementById('achats').value)||0;
+  const croissance = parseFloat(document.getElementById('croissance').value)||0;
+  const jours = Math.min(365, Math.max(1, parseInt(document.getElementById('jours').value)||31));
+  const objectif = parseFloat(document.getElementById('objectif').value)||0;
+
+  const rows = [];
+  let total = unites;
+  let achatsDuJour = achatInit;
+  let objAtteint = null;
+
+  for(let j=1; j<=jours; j++){
+    const a = j===1 ? Math.round(achatsDuJour) : Math.round(achatsDuJour);
+    total += a;
+    const revMensuel = total * revUnit;
+    const revQuotidien = revMensuel / 30;
+    rows.push({j, a, total, revMensuel, revQuotidien});
+    if(objAtteint === null && objectif > 0 && revMensuel >= objectif) objAtteint = j;
+    achatsDuJour *= (1 + croissance/100);
+  }
+
+  const last = rows[rows.length-1];
+
+  document.getElementById('metrics').innerHTML = `
+    <div class="metric">
+      <div class="metric-label">Total unités (J${jours})</div>
+      <div class="metric-value">${Math.round(last.total).toLocaleString('fr-CA')}</div>
+      <div class="metric-sub">+${Math.round(last.total - unites).toLocaleString('fr-CA')} acquis</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Revenu mensuel (J${jours})</div>
+      <div class="metric-value">${fmt(last.revMensuel)} Ø</div>
+      <div class="metric-sub">x${(last.revMensuel/(unites*revUnit||1)).toFixed(1)} vs départ</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Revenu quotidien (J${jours})</div>
+      <div class="metric-value">${fmt(last.revQuotidien)} Ø</div>
+      <div class="metric-sub">par jour</div>
+    </div>
+  `;
+
+  const objEl = document.getElementById('obj-result');
+  if(objectif<=0){
+    objEl.textContent = 'Entrez un objectif';
+    objEl.style.background='var(--color-background-secondary)';
+    objEl.style.color='var(--color-text-secondary)';
+  } else if(objAtteint){
+    objEl.textContent = `Atteint au jour ${objAtteint}`;
+    objEl.style.background='var(--color-background-success)';
+    objEl.style.color='var(--color-text-success)';
+  } else {
+    objEl.textContent = `Non atteint en ${jours} jours`;
+    objEl.style.background='var(--color-background-warning)';
+    objEl.style.color='var(--color-text-warning)';
+  }
+
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = rows.map(r=>{
+    const isObj = objAtteint && r.j===objAtteint;
+    return `<tr class="${isObj?'highlight':''}">
+      <td>${r.j}</td>
+      <td>${Math.round(r.a).toLocaleString('fr-CA')}</td>
+      <td>${Math.round(r.total).toLocaleString('fr-CA')}</td>
+      <td>${fmt(r.revMensuel)} Ø</td>
+      <td>${fmt(r.revQuotidien)} Ø</td>
+    </tr>`;
+  }).join('');
+
+  const labels = rows.map(r=>'J'+r.j);
+  const revData = rows.map(r=>r.revMensuel);
+  const unitData = rows.map(r=>r.total);
+
+  if(myChart) myChart.destroy();
+  myChart = new Chart(document.getElementById('chart'),{
+    data:{
+      labels,
+      datasets:[
+        {type:'line',label:'Revenu mensuel',data:revData,borderColor:'#185FA5',backgroundColor:'rgba(24,95,165,0.08)',yAxisID:'yRev',tension:0.3,pointRadius:rows.length>60?0:3,fill:true,borderWidth:2},
+        {type:'bar',label:'Total unités',data:unitData,backgroundColor:'rgba(29,158,117,0.25)',borderColor:'#1D9E75',borderWidth:1,yAxisID:'yUnit'}
+      ]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:(c)=>c.dataset.label+': '+fmt(c.parsed.y)+(c.dataset.yAxisID==='yRev'?' Ø':'')}}},
+      scales:{
+        x:{ticks:{font:{size:11},autoSkip:true,maxTicksLimit:12},grid:{display:false}},
+        yRev:{type:'linear',position:'left',ticks:{font:{size:11},callback:v=>fmt(v)},grid:{color:'rgba(128,128,128,0.1)'}},
+        yUnit:{type:'linear',position:'right',ticks:{font:{size:11},callback:v=>Math.round(v).toLocaleString('fr-CA')},grid:{display:false}}
+      }
+    }
+  });
+}
+
+recalc();
+</script>
+</body>
+</html>

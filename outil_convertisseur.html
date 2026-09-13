@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Convertisseur d'unités Ø — Empire Immo</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 24px 16px 64px; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 1.4em; margin-bottom: 4px; }
+  .sub { color: #9aa0a6; margin-bottom: 24px; font-size: 0.9em; }
+  label { display: block; margin-top: 14px; font-size: 0.9em; color: #c8ccd2; }
+  input, select { width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 1em; border-radius: 8px; border: 1px solid #333; background: #1a1d24; color: #e6e6e6; margin-top: 4px; }
+  .ligne { display: flex; gap: 10px; align-items: flex-end; }
+  .ligne > div { flex: 1; }
+  .resultat { margin-top: 24px; padding: 18px; border-radius: 10px; background: #1a1d24; border: 1px solid #2a2d34; text-align: center; }
+  .valeur-brute { font-size: 1.15em; font-weight: 700; color: #8ab4f8; word-break: break-all; }
+  .label { font-size: 0.78em; color: #9aa0a6; margin-top: 6px; }
+  table { width: 100%; margin-top: 28px; border-collapse: collapse; font-size: 0.85em; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #2a2d34; }
+  th { color: #9aa0a6; font-weight: 500; }
+  .note { color: #6b7078; font-size: 0.8em; margin-top: 24px; }
+</style>
+</head>
+<body>
+  <h1>🔢 Convertisseur d'unités Ø</h1>
+  <div class="sub">Échelle officielle : Ø → K → M → G → T → P → E → Z → Y → R → Q → U → S → X → N → D</div>
+
+  <div class="ligne">
+    <div>
+      <label>Montant</label>
+      <input id="montant" type="number" placeholder="ex: 14.11" value="1">
+    </div>
+    <div>
+      <label>Unité</label>
+      <select id="unite">
+        <option value="0">Ø (unité)</option>
+        <option value="1">K (mille)</option>
+        <option value="2">M (million)</option>
+        <option value="3">G (milliard)</option>
+        <option value="4">T (billion)</option>
+        <option value="5">P (billiard)</option>
+        <option value="6">E (trillion)</option>
+        <option value="7">Z (trilliard)</option>
+        <option value="8" selected>Y (quadrillion)</option>
+        <option value="9">R (quadrilliard)</option>
+        <option value="10">Q (quintillion)</option>
+        <option value="11">U (quintilliard)</option>
+        <option value="12">S (sextillion)</option>
+        <option value="13">X (10^39)</option>
+        <option value="14">N (10^42)</option>
+        <option value="15">D (10^45)</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="resultat">
+    <div class="valeur-brute" id="valeur-brute">—</div>
+    <div class="label">Valeur brute en Ø</div>
+  </div>
+
+  <div class="resultat" style="margin-top: 14px;">
+    <div class="valeur-brute" id="valeur-lisible">—</div>
+    <div class="label">Reconverti automatiquement dans l'unité la plus lisible</div>
+  </div>
+
+  <table>
+    <tr><th>Symbole</th><th>Nom</th><th>Puissance de 1000</th></tr>
+    <tr><td>Ø</td><td>Unité</td><td>1000⁰</td></tr>
+    <tr><td>K</td><td>Mille</td><td>1000¹</td></tr>
+    <tr><td>M</td><td>Million</td><td>1000²</td></tr>
+    <tr><td>G</td><td>Milliard</td><td>1000³</td></tr>
+    <tr><td>T</td><td>Billion</td><td>1000⁴</td></tr>
+    <tr><td>P</td><td>Billiard</td><td>1000⁵</td></tr>
+    <tr><td>E</td><td>Trillion</td><td>1000⁶</td></tr>
+    <tr><td>Z</td><td>Trilliard</td><td>1000⁷</td></tr>
+    <tr><td>Y</td><td>Quadrillion</td><td>1000⁸</td></tr>
+    <tr><td>R</td><td>Quadrilliard</td><td>1000⁹</td></tr>
+    <tr><td>Q</td><td>Quintillion</td><td>1000¹⁰</td></tr>
+    <tr><td>U</td><td>Quintilliard</td><td>1000¹¹</td></tr>
+    <tr><td>S</td><td>Sextillion</td><td>1000¹²</td></tr>
+    <tr><td>X</td><td>—</td><td>1000¹³</td></tr>
+    <tr><td>N</td><td>Septillion</td><td>1000¹⁴</td></tr>
+    <tr><td>D</td><td>—</td><td>1000¹⁵</td></tr>
+  </table>
+
+  <div class="note">Calcul en précision BigInt pour les montants entiers ronds ; les décimales utilisent une approximation en virgule flottante. Vérifie les montants critiques avant une transaction.</div>
+
+<script>
+const SUFFIXES = ["Ø", "K", "M", "G", "T", "P", "E", "Z", "Y", "R", "Q", "U", "S", "X", "N", "D"];
+
+function calculer() {
+  const montant = parseFloat(document.getElementById("montant").value);
+  const unite = parseInt(document.getElementById("unite").value);
+
+  if (isNaN(montant)) {
+    document.getElementById("valeur-brute").textContent = "—";
+    document.getElementById("valeur-lisible").textContent = "—";
+    return;
+  }
+
+  const valeurBrute = montant * Math.pow(1000, unite);
+  document.getElementById("valeur-brute").textContent = valeurBrute.toLocaleString("fr-FR", {maximumFractionDigits: 6}) + " Ø";
+
+  // Reconversion vers l'unité la plus lisible (entre 1 et 999.999)
+  let val = Math.abs(valeurBrute);
+  let idx = 0;
+  while (val >= 1000 && idx < SUFFIXES.length - 1) {
+    val /= 1000;
+    idx++;
+  }
+  const signe = valeurBrute < 0 ? "-" : "";
+  document.getElementById("valeur-lisible").textContent = signe + val.toLocaleString("fr-FR", {maximumFractionDigits: 2}) + " " + SUFFIXES[idx] + " Ø";
+}
+
+document.getElementById("montant").addEventListener("input", calculer);
+document.getElementById("unite").addEventListener("change", calculer);
+calculer();
+</script>
+</body>
+</html>
