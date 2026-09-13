@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Le Punch du samedi — 12 septembre 2026</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:36px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  h4.subsection{color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;font-size:13px;margin-top:22px;margin-bottom:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:460px;}
+  .keybox .num{color:var(--gold);font-size:28px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo · Édition spéciale hebdomadaire</div>
+    <h1 class="title">LE PUNCH DU SAMEDI</h1>
+    <div class="tagline">L'éditorial mordant du Journal du Marché, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">12 SEPTEMBRE 2026 — HORS-SÉRIE, EN COMPLÉMENT DE L'ÉDITION QUOTIDIENNE N°83</div>
+
+  <h3 class="section">📰 Le principe</h3>
+  <p>Quatrième numéro du Punch du samedi, rattrapé un jour en retard (rédigé dimanche 13 septembre, mais daté du samedi 12 septembre visé — le cycle hebdomadaire compte, pas le jour de rédaction). Retour sur l'angle du tout premier numéro (22 août) : les usines de production structurellement déficitaires. Trois semaines et demie plus tard, où en est le trio de tête des pertes ?</p>
+
+  <h3 class="section">🏭 Le même trio en tête des pertes depuis au moins 3 semaines</h3>
+  <p>Comparaison sur quatre relevés (22 août, 29 août, 6 septembre, 12 septembre) plus les données de ce soir (13 septembre, édition 83) : le podium des pertes n'a pas bougé une seule fois. <b>Acierie</b>, <b>Acierie avancée</b> et <b>Complexe sidérurgique automatisé</b> occupent invariablement les trois pires ROI depuis le tout premier relevé — aucune surprise, aucun changement de hiérarchie, malgré le passage de 15 à 20 usines avec le patch v4.46.0 (ajout du niveau 4 « industrielle ») entre-temps.</p>
+
+  <table>
+    <tr><th>Usine</th><th class="num">22 août</th><th class="num">29 août</th><th class="num">6 sept.</th><th class="num">12 sept.</th><th class="num">13 sept. (ce soir)</th></tr>
+    <tr><td>Acierie</td><td class="num neg">-3,13%</td><td class="num neg">-2,93%</td><td class="num neg">-2,76%</td><td class="num neg">-2,86%</td><td class="num neg">-2,82%</td></tr>
+    <tr><td>Acierie avancée</td><td class="num neg">-1,83%</td><td class="num neg">-1,69%</td><td class="num neg">-1,56%</td><td class="num neg">-1,64%</td><td class="num neg">-1,61%</td></tr>
+    <tr><td>Complexe sidérurgique automatisé</td><td class="num neg">-1,44%</td><td class="num neg">-1,28%</td><td class="num neg">-1,15%</td><td class="num neg">-1,23%</td><td class="num neg">-1,20%</td></tr>
+    <tr><td>Petite usine de verre</td><td class="num neg">-1,08%</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num neg">-0,06%</td></tr>
+    <tr><td>Complexe sidérurgique industriel</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num neg">-0,52%</td><td class="num neg">-0,49%</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">« — » : usine pas encore suivie à ce relevé (15 usines seulement avant le patch v4.46.0 du 7 septembre, qui a ajouté le niveau 4 « industrielle » et fait passer le total de 15 à 20).</p>
+
+  <h3 class="section">📉 Un écart qui se resserre, pas qui se creuse</h3>
+  <p>Bonne nouvelle relative pour le trio de tête : la tendance de fond est à l'amélioration, pas à l'aggravation. <b>Acierie</b> est passée de <span class="neg">-3,13%</span> le 22 août à <span class="neg">-2,82%</span> ce soir — un gain d'environ <b>31 points de base</b> en trois semaines. Même mouvement, plus modeste, pour Acierie avancée (<span class="neg">-1,83%</span> → <span class="neg">-1,61%</span>, +22 pts de base) et Complexe sidérurgique automatisé (<span class="neg">-1,44%</span> → <span class="neg">-1,20%</span>, +24 pts de base). Le trio reste dans le rouge, mais un peu moins profondément chaque semaine.</p>
+
+  <h3 class="section">🏆 La vraie success story : la Petite usine de verre</h3>
+  <div class="callout"><b>Petite usine de verre</b> : nettement déficitaire à <span class="neg">-1,08%</span> le 22 août, elle affiche ce soir un ROI de seulement <span class="neg">-0,06%</span> — à un cheveu de basculer en territoire positif. Si la tendance se maintient, elle pourrait devenir la première des usines actuellement déficitaires à repasser dans le vert, peut-être dès la prochaine édition du Journal de la Construction.</div>
+
+  <h3 class="section">📊 Le tableau complet des 20 usines ce soir</h3>
+  <table>
+    <tr><th>Usine</th><th>Matière</th><th class="num">Profit/jour</th><th class="num">ROI</th></tr>
+<tr><td>Fabrique de briques</td><td>Brique</td><td class="num">31,42KØ/j</td><td class="num pos">8,16%</td></tr>
+<tr><td>Petite scierie</td><td>Bois</td><td class="num">8,27KØ/j</td><td class="num pos">6,89%</td></tr>
+<tr><td>Usine de traitement du bois industrielle</td><td>Bois</td><td class="num">18,41MØ/j</td><td class="num pos">6,23%</td></tr>
+<tr><td>Usine de béton industrielle</td><td>Béton</td><td class="num">80,43MØ/j</td><td class="num pos">5,62%</td></tr>
+<tr><td>Usine de briques industrielle</td><td>Brique</td><td class="num">71,17MØ/j</td><td class="num pos">5,60%</td></tr>
+<tr><td>Usine de traitement du bois automatisée</td><td>Bois</td><td class="num">1,45MØ/j</td><td class="num pos">5,41%</td></tr>
+<tr><td>Usine de béton automatisée</td><td>Béton</td><td class="num">6,25MØ/j</td><td class="num pos">4,80%</td></tr>
+<tr><td>Scierie avancée</td><td>Bois</td><td class="num">69,77KØ/j</td><td class="num pos">4,25%</td></tr>
+<tr><td>Centrale à béton avancée</td><td>Béton</td><td class="num">267,25KØ/j</td><td class="num pos">4,19%</td></tr>
+<tr><td>Usine de briques automatisée</td><td>Brique</td><td class="num">4,29MØ/j</td><td class="num pos">3,71%</td></tr>
+<tr><td>Grande usine de verre industrielle</td><td>Verre</td><td class="num">25,13MØ/j</td><td class="num pos">3,36%</td></tr>
+<tr><td>Presse à briques</td><td>Brique</td><td class="num">168,82KØ/j</td><td class="num pos">3,28%</td></tr>
+<tr><td>Centrale à béton</td><td>Béton</td><td class="num">13,9KØ/j</td><td class="num pos">2,17%</td></tr>
+<tr><td>Grande usine de verre automatisée</td><td>Verre</td><td class="num">1,41MØ/j</td><td class="num pos">2,08%</td></tr>
+<tr><td>Usine de verre moyenne</td><td>Verre</td><td class="num">37,74KØ/j</td><td class="num pos">1,09%</td></tr>
+<tr><td>Petite usine de verre</td><td>Verre</td><td class="num">-184 Ø/j</td><td class="num neg">-0,06%</td></tr>
+<tr><td>Complexe sidérurgique industriel</td><td>Acier</td><td class="num">-37,28MØ/j</td><td class="num neg">-0,49%</td></tr>
+<tr><td>Complexe sidérurgique automatisé</td><td>Acier</td><td class="num">-8,28MØ/j</td><td class="num neg">-1,20%</td></tr>
+<tr><td>Acierie avancée</td><td>Acier</td><td class="num">-455,85KØ/j</td><td class="num neg">-1,61%</td></tr>
+<tr><td>Acierie</td><td>Acier</td><td class="num">-69,06KØ/j</td><td class="num neg">-2,82%</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Triées par ROI décroissant. <span class="neg">5 usines sur 20 restent déficitaires ce soir</span> : les 4 tiers d'Acierie (Acierie, Acierie avancée, Complexe sidérurgique automatisé, Complexe sidérurgique industriel) et la Petite usine de verre — même hiérarchie qu'à l'édition 82, sans changement de composition depuis l'apparition du niveau 4.</p>
+
+  <h3 class="section">🔁 La suite du format</h3>
+  <p>Le Punch du samedi change d'angle à chaque parution, en rotation entre trois formats : les usines déficitaires (22 août, aujourd'hui), la rentabilité la plus faible du classement (29 août), et les pièges de promo sur les biens niveau 0 (5 septembre). Prochain numéro : retour probable sur la lanterne rouge du classement, pour voir si Res. 24 T2 habitables conserve sa place après 10 éditions consécutives au Journal quotidien.</p>
+
+  <h3 class="section">🧾 Méthodologie et sources</h3>
+  <p style="font-size:13px;color:var(--ink-dim);">ROI usines = (Production × Prix du matériau du jour − Charges − Impôts) ÷ Valeur × 100 — méthode maison du Journal (non officielle) utilisée depuis l'édition 60. Historique comparatif tiré de <code>usines_historique.json</code> (éditions 62, 69, 76, 82) et des données de l'édition 83 (13 septembre 2026, taux promoteur 75, export post-reset 03h22). Aucun nouvel export de jeu n'a été demandé spécifiquement pour cet éditorial — l'analyse s'appuie sur les données déjà suivies au moment de la rédaction.</p>
+
+  <div class="sources">
+    Le Punch du samedi — 12 septembre 2026 (rédigé le 13). Données : usines_historique.json, édition 83 du Journal du Marché.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>
