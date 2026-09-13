@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Archives — Guides, Dossiers & Interviews — Le Journal du Marché</title>
+<style>
+  body { font-family: -apple-system, Segoe UI, Arial, sans-serif; max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 1.6em; margin-bottom: 4px; }
+  .sub { color: #9aa0a6; margin-bottom: 24px; }
+  input#recherche { width: 100%; box-sizing: border-box; padding: 10px 12px; font-size: 1em; border-radius: 8px; border: 1px solid #333; background: #1a1d24; color: #e6e6e6; margin-bottom: 20px; }
+  h2 { font-size: 1.1em; border-bottom: 1px solid #2a2d34; padding-bottom: 6px; margin-top: 32px; }
+  ul { list-style: none; padding: 0; margin: 0; }
+  li { margin: 0; }
+  a.edition-link { display: block; padding: 10px; border-radius: 6px; color: #8ab4f8; text-decoration: none; }
+  a.edition-link:hover { background: #1a1d24; }
+  .num { color: #e6e6e6; font-weight: 600; }
+  .date { color: #9aa0a6; font-size: 0.85em; margin-left: 6px; }
+  .accroche { display: block; color: #b8bcc4; font-size: 0.88em; margin-top: 2px; font-weight: 400; }
+  .count { color: #6b7078; font-size: 0.85em; margin-top: 4px; }
+  section.categorie { display: none; }
+  section.categorie.a-du-contenu { display: block; }
+</style>
+</head>
+<body>
+  <h1>📚 Archives — Guides, Dossiers & Interviews</h1>
+  <div class="sub">Tous les guides, dossiers et interviews du Journal du Marché, liés directement à la publication réelle en jeu.</div>
+
+  <input id="recherche" type="text" placeholder="Rechercher un titre...">
+
+  <div id="categories"></div>
+
+<script>
+// Chaque entrée : titre, date, id de l'article réel en jeu (press/article.php?id=...)
+const DONNEES = {
+  "📊 Bilans hebdomadaires": [
+    { titre: "Bilan — Semaine 1", date: "27 juin 2026", id: 658 },
+    { titre: "Bilan — Semaine 2", date: "5 juillet 2026", id: 707 },
+    { titre: "Bilan — Semaine 3", date: "12 juillet 2026", id: 752 },
+    { titre: "Bilan — Semaine 4", date: "26 juillet 2026", id: 825 },
+  ],
+  "🎓 Guides": [
+    { titre: "Guide — Les 6 classements du jeu, expliqués", date: "22 juillet 2026", id: 785 },
+    { titre: "Comment on calcule tout dans le Journal du Marché", date: "23 juillet 2026", id: 809 },
+    { titre: "Guide de l'investisseur — Reconnaître un holding gonflé", date: "21 juillet 2026", id: 784 },
+    { titre: "Guide — Comment lire une fiche entreprise", date: "20 juillet 2026", id: 765 },
+    { titre: "Guide — Le Fonds de Soutien, ce qu'il faut savoir", date: "19 juillet 2026", id: 783 },
+    { titre: "Guide — Les 12 médailles et les Tokens Chance", date: "18 juillet 2026", id: 771 },
+    { titre: "Guide — Comment fonctionnent les bâtiments municipaux", date: "17 juillet 2026", id: 766 },
+    { titre: "Guide — Créer ou acheter une entreprise?", date: "16 juillet 2026", id: 770 },
+    { titre: "Guide — Votre entreprise commerciale : les bons réflexes", date: "15 juillet 2026", id: 761 },
+    { titre: "Guide — Marketing, capital et dividendes", date: "14 juillet 2026", id: 749 },
+    { titre: "Guide — Individu ou entreprise : qui est le plus rentable?", date: "13 juillet 2026", id: 744 },
+    { titre: "Guide — Six failles à connaître avant d'investir", date: "11 juillet 2026", id: 741 },
+    { titre: "Guide — Les postes de direction", date: "9 juillet 2026", id: 731 },
+    { titre: "Guide — La banque sur Monde 8", date: "8 juillet 2026", id: 720 },
+    { titre: "Guide — Jouer en bourse sur Monde 8", date: "7 juillet 2026", id: 715 },
+    { titre: "Guide Holdings — Dividendes, Primes et Votes", date: "5 juillet 2026", id: 705 },
+    { titre: "Guide du Débutant — Que faire avec 250 000 Ø?", date: "4 juillet 2026", id: 702 },
+    { titre: "Guide Assurances — Quel contrat choisir?", date: "3 juillet 2026", id: 697 },
+    { titre: "Spécial ROI (1/2) — Les formules expliquées", date: "3 juillet 2026", id: 699 },
+    { titre: "Spécial ROI (2/2) — Le marché du 3 juillet", date: "3 juillet 2026", id: 700 },
+    { titre: "Édition Spéciale — Guide des 10 niveaux", date: "26 juin 2026", id: 642 },
+    { titre: "Garder ou vendre : quand une propriété n'est plus rentable", date: "16 août 2026", id: 965 },
+    { titre: "Journal du Marché — L'index complet de nos 32 guides", date: "13 août 2026", id: 949 },
+  ],
+  "🔍 Dossiers": [
+    { titre: "Construction (1/4) — Comprendre le métier", date: "30 juin 2026", id: 674 },
+    { titre: "Construction (2/4) — L'état du marché", date: "30 juin 2026", id: 675 },
+    { titre: "Construction (3/4) — Théorie vs réalité", date: "1er juillet 2026", id: 676 },
+    { titre: "Construction (4/4) — Calculer son devis", date: "2 juillet 2026", id: 677 },
+    { titre: "Comment calculer le vrai coût de revient d'un chantier", date: "23 juillet 2026", id: 804 },
+    { titre: "Dossier Événements — Ce que dit la Constitution", date: "6 juillet 2026", id: 709 },
+    { titre: "Le marché des cessions : une journée qui dit tout", date: "6 juillet 2026", id: 711 },
+    { titre: "Dossier DG — Akira93, Thim, Pilote & Actarius", date: "29 juin 2026", id: 669 },
+    { titre: "Dossier DG — LeCurly & Isabelle62", date: "4 juillet 2026", id: 691 },
+    { titre: "Vente à soi-même : le classement qui ment", date: "27 juillet 2026", id: 832 },
+    { titre: "Comment grimper dans le classement : 4 leviers", date: "28 juillet 2026", id: 838 },
+    { titre: "Juridiction du TES", date: "30 août 2026", id: 1035 },
+    { titre: "VIP, Saphir, Gold : ce qui vaut le coût", date: "24 juillet 2026", id: 812 },
+    { titre: "Dossier — Bug des emprunts", date: "30 juillet 2026", id: 851 },
+    { titre: "Frais de gestion vs dividendes", date: "2 août 2026", id: 867 },
+    { titre: "Simulation Empire (1/4)", date: "19 août 2026", id: 987 },
+    { titre: "Simulation Empire (2/4)", date: "19 août 2026", id: 988 },
+    { titre: "Simulation Empire (3/4)", date: "20 août 2026", id: 994 },
+    { titre: "Simulation Empire (4/4)", date: "21 août 2026", id: 998 },
+    { titre: "Le vrai poids des holdings : top 20 en valeur réelle (Ø)", date: "6 août 2026", id: 894 },
+    { titre: "Historique des transactions : 3 mois d'attente", date: "5 août 2026", id: 888 },
+    { titre: "Le plafond fiscal qui n'existe plus vraiment", date: "30 juin 2026", id: 673 },
+    { titre: "Fusion holdings/entreprises : comment ça pourrait marcher", date: "4 août 2026", id: 860 },
+    { titre: "Les Potins de la Bourse #1 : P&S SylPom", date: "29 juillet 2026", id: 843 },
+    { titre: "Le grand ménage du dimanche", date: "2 août 2026", id: 871 },
+    { titre: "Trois nouveaux devis, les prix matières sur 6 mois, et vos questions", date: "25 juillet 2026", id: 817 },
+    { titre: "An 2030 : bienvenue dans le cockpit de votre holding", date: "8 juillet 2026", id: 723 },
+  ],
+  "🎙️ Interviews & portraits": [
+    { titre: "Interview de Vincent", date: "31 juillet 2026", id: 834 },
+    { titre: "Interview d'Elmut (complément)", date: "7 août 2026", id: 901 },
+    { titre: "Portrait — Modérateur flo51", date: "1er juillet 2026", id: 685 },
+    { titre: "Portrait — Barmen (ElDiablO & Sarko1)", date: "28 juin 2026", id: 664 },
+    { titre: "Portrait — Aurelion", date: "29 juin 2026", id: 667 },
+    { titre: "Portrait — Holdenor (municipal)", date: "2 juillet 2026", id: 688 },
+    { titre: "Portrait — Regentor (RuiX & DrakeEos)", date: "28 juin 2026", id: 659 },
+    { titre: "Portrait — Brice, journaliste et conseiller municipal", date: "10 juillet 2026", id: 740 },
+    { titre: "Portrait — PrinceOfDarkLions54, maire de Baselis", date: "7 juillet 2026", id: 714 },
+    { titre: "Élections à Regentor — folipe (rupture)", date: "12 août 2026", id: 930 },
+    { titre: "Élections à Regentor — DrakeEos (continuité)", date: "12 août 2026", id: 935 },
+    { titre: "Regentor : le maire sortant dresse le bilan de son mandat", date: "11 août 2026", id: 925 },
+    { titre: "FIPS : Ysra dévoile les coulisses du fonds solidaire", date: "17 août 2026", id: 977 },
+  ],
+};
+
+function lien(id) {
+  return "https://monde8.empireimmo.com/press/article.php?id=" + id;
+}
+
+const conteneur = document.getElementById("categories");
+
+function construire() {
+  conteneur.innerHTML = "";
+  Object.keys(DONNEES).forEach(cat => {
+    const section = document.createElement("section");
+    section.className = "categorie";
+    section.dataset.cat = cat;
+    const h2 = document.createElement("h2");
+    h2.textContent = cat;
+    const ul = document.createElement("ul");
+    DONNEES[cat].forEach(item => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.className = "edition-link";
+      a.href = lien(item.id);
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.innerHTML = '<span class="num">' + item.titre + '</span><span class="date">' + item.date + '</span>';
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    section.appendChild(h2);
+    section.appendChild(ul);
+    conteneur.appendChild(section);
+  });
+}
+
+function filtrer(filtre) {
+  const f = filtre.trim().toLowerCase();
+  document.querySelectorAll("section.categorie").forEach(section => {
+    let compte = 0;
+    section.querySelectorAll("li").forEach(li => {
+      const visible = li.textContent.toLowerCase().includes(f);
+      li.style.display = visible ? "" : "none";
+      if (visible) compte++;
+    });
+    section.classList.toggle("a-du-contenu", compte > 0);
+  });
+}
+
+construire();
+filtrer("");
+document.getElementById("recherche").addEventListener("input", (e) => filtrer(e.target.value));
+</script>
+</body>
+</html>
