@@ -25,7 +25,7 @@
 
   <input id="recherche" type="text" placeholder="Rechercher un numéro d'édition (ex: 81)...">
 
-  <h2>📚 Éditions (2 à 82)</h2>
+  <h2>📚 Éditions (2 à 83)</h2>
   <ul id="liste-editions"></ul>
   <div class="count" id="compteur"></div>
 
@@ -49,6 +49,28 @@ function fichierPour(n) {
   return null;
 }
 
+// Mapping édition -> id de l'article réel publié dans le jeu (press/article.php?id=...).
+// Permet de lier vers la vraie publication en jeu (étoiles = revenus pour le Journal)
+// plutôt que vers la copie GitHub. Éditions 2, 3, 4 : jamais publiées en jeu, donc
+// absentes d'ici — elles retombent sur le lien GitHub (fichier local).
+const ARTICLE_IDS = {
+  5: 626, 6: 628, 7: 634, 8: 641, 9: 657, 10: 663,
+  11: 670, 12: 680, 13: 686, 14: 693, 15: 706, 16: 712, 17: 718, 18: 724, 19: 730, 20: 742,
+  21: 747, 22: 753, 23: 755, 24: 760, 25: 764, 26: 774, 27: 775, 28: 782, 29: 792, 30: 795,
+  31: 800, 32: 808, 33: 811, 34: 818, 35: 824, 36: 833, 37: 839, 38: 844, 39: 852, 40: 859,
+  41: 866, 42: 872, 43: 879, 44: 883, 45: 889, 46: 895, 47: 904, 48: 909, 49: 915, 50: 922,
+  51: 927, 52: 941, 53: 951, 54: 958, 55: 963, 56: 971, 57: 981, 58: 986, 59: 989, 60: 996,
+  61: 999, 62: 1002, 63: 1005, 64: 1007, 65: 1009, 66: 1014, 67: 1019, 68: 1024, 69: 1032, 70: 1036,
+  71: 1040, 72: 1044, 73: 1048, 74: 1052, 75: 1055, 76: 1060, 77: 1064, 78: 1070, 79: 1072, 80: 1076,
+  81: 1082, 82: 1087, 83: 1091
+};
+
+function lienPour(n, f) {
+  const id = ARTICLE_IDS[n];
+  if (id) return "https://monde8.empireimmo.com/press/article.php?id=" + id;
+  return f;
+}
+
 // Accroches ajoutées au fur et à mesure (titre/date + résumé de l'intro).
 // Éditions non encore renseignées : affichage du numéro seul.
 const ACCROCHES = {
@@ -57,25 +79,91 @@ const ACCROCHES = {
   4: { date: "23 juin 2026", texte: "Retour au calme après le reset agité de l'édition précédente." },
   5: { date: "24 juin 2026", texte: "Un nouveau leader côté entreprise : le Centre de recherche national bondit à 4,95% de ROI." },
   6: { date: "25 juin 2026", texte: "Record historique : le Centre de recherche régional atteint 5,88% de ROI." },
-  7: { date: "26 juin 2026", texte: "Le retour du pendule : ce qui descend fort remonte fort, et inversement." },
-  8: { date: "27 juin 2026", texte: "Deux nouveaux entrants dans les Top 5 entreprise et personnel." },
-  9: { date: "28 juin 2026", texte: "Alerte séisme : un tremblement de terre frappe M8, coûts de réparation en hausse." },
+  7: { date: "26 juin 2026", texte: "Le Centre de recherche régional redescend à 4,72% après son record de 5,88%. 7 semaines révèlent un cycle d'oscillation." },
+  8: { date: "27 juin 2026", texte: "Deux nouveaux entrants cette semaine : Centre de recherche international au Top 5 entreprise, Complexe millenium habitable au #4 perso." },
+  9: { date: "28 juin 2026", texte: "Un séisme a frappé M8 cette nuit. Coûts de réparation : 15 664 T Ø pour le Technopôle palacium international." },
+  10: { date: "29 juin 2026", texte: "136 biens sur 204 en mouvement — reset le plus actif depuis l'édition #3. Nouvelle taxe ImmoState en cours." },
+  11: { date: "30 juin 2026", texte: "Le T2 simple habitable confirme son titre de champion absolu avec 9,74% de rendement sur capital construit." },
+  12: { date: "30 juin 2026", texte: "Marché stable cette semaine — les classements bougent peu." },
+  13: { date: "1er juillet 2026", texte: "Correction méthodologique : le ROI est désormais calculé sur la valeur marché du bien, pas sur les coûts de travaux." },
+  14: { date: "2 juillet 2026", texte: "Cette édition inaugure le Top 10 ROI complet — personnel et entreprise." },
+  15: { date: "5 juillet 2026", texte: "Nouveau record entreprise : la Plate-forme pétrolière améliorée atteint 5,16% de ROI." },
+  16: { date: "6 juillet 2026", texte: "La pétrolière améliorée prend le sommet à 5,32%, le palacium perso bat son record à 7,73%." },
+  17: { date: "7 juillet 2026", texte: "La fenêtre pétrolière signalée hier a rapporté 13,4% en 24 heures." },
+  18: { date: "8 juillet 2026", texte: "Deux fenêtres signalées, deux fenêtres vérifiées : +13,4% puis +14,1% en 24 heures chacune." },
+  19: { date: "9 juillet 2026", texte: "La fenêtre palacium habitable signalée hier a rapporté +15%. Trois signaux, trois fenêtres vérifiées." },
+  20: { date: "10 juillet 2026", texte: "Premiers chiffres propres depuis l'expiration de la taxe pauvreté. Marché stable, classements figés." },
+  21: { date: "11 juillet 2026", texte: "Le palacium tout confort bondit à 7,36%. Le Top 20 s'enrichit d'un classement par niveau de bâtiment." },
+  22: { date: "12 juillet 2026", texte: "Le CRR rebondit de 18,5%. Le palacium tout confort suit avec +19,5%." },
+  23: { date: "13 juillet 2026", texte: "Le palacium habitable grimpe de 19,1%, confirmant le motif de la semaine." },
+  24: { date: "14 juillet 2026", texte: "Le palacium habitable atteint un nouveau record à 6,56%. Vague de promotions à -19% côté personnel." },
+  25: { date: "15 juillet 2026", texte: "Le palacium habitable grimpe de 23,5%, un record absolu pour la rubrique." },
+  26: { date: "16 juillet 2026", texte: "Le palacium tout confort reprend la tête à 6,84%. Chaque ligne du Top 20 affiche maintenant sa variation sur 24h." },
+  27: { date: "17 juillet 2026", texte: "Le palacium habitable chute de 17,2%, ROI à 6,44%. Dixième confirmation du motif en deux semaines." },
+  28: { date: "18 juillet 2026", texte: "La pétrolière aménagée prend la tête à 5,03%." },
+  29: { date: "19 juillet 2026", texte: "Le palacium habitable reprend son souffle, confirmant la fenêtre signalée hier." },
+  30: { date: "20 juillet 2026", texte: "Nouveauté du jour : un nouveau type de bâtiment fait son apparition — la Tour résidentielle prestige." },
+  31: { date: "21 juillet 2026", texte: "Le palacium tout confort grimpe à 6,15%, en promotion. Le Réseau de métro entre dans le Top 20 entreprise." },
+  32: { date: "22 juillet 2026", texte: "Une promotion officielle de -16% propulse la Plate-forme pétrolière améliorée en tête du classement entreprise." },
+  33: { date: "24 juillet 2026", texte: "Le Centre de recherche régional prend la tête du classement entreprise avec 53,76%." },
+  34: { date: "25 juillet 2026", texte: "Taux promoteur record à 94, un Complexe résidentiel palacium tout confort à 66,79% de Rentabilité." },
+  35: { date: "26 juillet 2026", texte: "Promotions record à -12% et -11%, le palacium tout confort reste en tête à 57,54% même sans remise." },
+  36: { date: "27 juillet 2026", texte: "Le palier palacium bat un nouveau record de Rentabilité officielle à 62,53%, en promotion -10%." },
+  37: { date: "28 juillet 2026", texte: "Le palier palacium domine encore, sans promo. Promotions -13% entreprise et -10% personnel." },
+  38: { date: "29 juillet 2026", texte: "Le palier palacium domine encore, sans promo. Le titanium habitable sort de promo (+11,10%)." },
+  39: { date: "30 juillet 2026", texte: "Rentabilités du jour, taux promoteur en hausse (81/78), un nouveau venu au Top 20 entreprise en pleine promo." },
+  40: { date: "31 juillet 2026", texte: "Promotions généreuses (-19%/-14%), première confirmation de la Liste de surveillance : +9,86% comme prévu." },
+  41: { date: "1er août 2026", texte: "Le Top 20 complet revient ce soir. La Zone portuaire régionale sort de promo et bondit de +23,52%." },
+  42: { date: "2 août 2026", texte: "Les 8 biens suivis depuis l'édition 41 sont tous sortis de promo — et les 8 ont bondi en valeur." },
+  43: { date: "3 août 2026", texte: "Le palacium tout confort reprend sa couronne dès le lendemain de sa destitution." },
+  44: { date: "4 août 2026", texte: "Le Technopôle régional reste en promo une 2e édition d'affilée, une première." },
+  45: { date: "5 août 2026", texte: "8 biens restent en promotion sans aucune sortie cette nuit — une première depuis le lancement du suivi." },
+  46: { date: "6 août 2026", texte: "Après le blocage inédit de l'édition 45, 7 biens sur 8 sortent de promo avec des rebonds de +9% à +15%." },
+  47: { date: "7 août 2026", texte: "Le Technopôle régional sort enfin après 4 éditions (+10,75%)." },
+  48: { date: "8 août 2026", texte: "Complexe résidentiel palacium habitable, n°1 du Top 20 personnel à 61,73%, en promo à -8%." },
+  49: { date: "9 août 2026", texte: "Complexe résidentiel palacium tout confort, n°1 du Top 20 personnel à 72,35%, en promo à -19%." },
+  50: { date: "10 août 2026", texte: "Complexe résidentiel titanium habitable, n°1 du Top 20 perso à 49,34%. Reset total des promos : 8 sorties d'un coup." },
+  51: { date: "11 août 2026", texte: "Aucune promo ne figure dans un Top 20 ce soir, une première. Deux biens niveau 0 en rentabilité négative." },
+  52: { date: "12 août 2026", texte: "La Plate-forme pétrolière améliorée (-13%) grimpe à la 1ère place du Top 20 entreprise, 70,39% de rentabilité." },
+  53: { date: "13 août 2026", texte: "Le Complexe résidentiel palacium tout confort (-13%) décroche la 1ère place du Top 20 personnel, 62,59%." },
+  54: { date: "14 août 2026", texte: "Le Complexe résidentiel titanium habitable (-18%) grimpe en 1ère place du Top 20 personnel avec 48,90%." },
+  55: { date: "15 août 2026", texte: "Le Titanium habitable reste seul survivant. Rentabilité en tête : 53,54% entreprise, 48,28% personnel." },
+  56: { date: "16 août 2026", texte: "Complexe résidentiel palacium habitable en achat du jour à 50,55%, 1re place du Top 20 personnel." },
+  57: { date: "17 août 2026", texte: "Un record de -13% sur 4 biens à rentabilité négative — le palacium habitable reste en tête à 48,60%." },
+  58: { date: "18 août 2026", texte: "8 biens en promo ce soir : 2 reviennent le lendemain de leur sortie, le titanium non-aménagé piège une 2e fois." },
+  59: { date: "19 août 2026", texte: "BODABA 1 vendue 233,58 Y Ø, un record qui écrase toutes les autres transactions du jour." },
+  60: { date: "20 août 2026", texte: "Phénix Zénith-04 cédée pour 496,23 YØ, plus du double du record de la veille." },
+  61: { date: "21 août 2026", texte: "Complexe résidentiel palacium luxueux atteint 68,88%, un record dans le Top 20." },
+  62: { date: "22 août 2026", texte: "Phénix-Céleste consolide trois filiales pour 1 894 YØ, record absolu de cession." },
   63: { date: "23 août 2026", texte: "Imperial compagny rachète 18 sociétés pour 58,27 YØ — titanium tout confort en tête à 49,73%." },
-  64: { date: "24-25 août 2026", texte: "Phénix-Céleste absorbe ses 4 filiales Le petit Québécois pour 72,51 YØ — Tour prestige aménagée à 46,68%." },
-  65: { date: "25-26 août 2026", texte: "Zone aérospatiale nationale explose à 53,50%, un record toutes catégories confondues." },
-  66: { date: "26-27 août 2026", texte: "Rotation totale des promos : Complexe palacium luxueux atteint 62,03%, record de la saison." },
-  67: { date: "27-28 août 2026", texte: "Escura dépasse Killian17320 et prend la 1ère place mondiale." },
-  68: { date: "28-29 août 2026", texte: "2100m² de bureaux aménagés mène à 53,99% — Skull Private Asset bondit de 64 rangs." },
-  69: { date: "28-29 août 2026", texte: "Centre de recherche international mène à 54,83% — calme en tête, mouvement chez les holdings." },
-  70: { date: "29-30 août 2026", texte: "Le top 8 mondial stable pour la 3e édition consécutive — Skyline By Escura Group prend la tête des holdings." },
+  64: { date: "24 août 2026", texte: "Phénix-Céleste absorbe 4 filiales « Le petit Québécois » pour 72,51 YØ — Tour prestige aménagée à 46,68%." },
+  65: { date: "25 août 2026", texte: "Zone aérospatiale nationale explose à 53,50%, un record toutes catégories confondues." },
+  66: { date: "26 août 2026", texte: "Rotation totale des promos : Complexe palacium luxueux atteint 62,03%, record de la saison." },
+  67: { date: "27 août 2026", texte: "Escura détrône Killian17320 et prend la 1ère place mondiale. La pétrolière améliorée mène à 52,50%." },
+  68: { date: "28 août 2026", texte: "2100m² de bureaux aménagés mène à 53,99% — Skull Private Asset bondit de 64 rangs." },
+  69: { date: "29 août 2026", texte: "Centre de recherche international mène à 54,83% — calme en tête, mouvement chez les holdings." },
+  70: { date: "30 août 2026", texte: "Le top 8 mondial stable pour la 3e édition consécutive — Skyline By Escura Group prend la tête des holdings." },
+  71: { date: "31 août 2026", texte: "Rotation des promotions avec deux taux inédits (-9% et -20%). Atelier high-tech décolle à 63,02%." },
+  72: { date: "1er septembre 2026", texte: "Course serrée entre secteur entreprise et personnel ; Technopôle millenium régional, pire calcul du secteur entreprise." },
+  73: { date: "2 septembre 2026", texte: "Plate-forme pétrolière améliorée signe un 4e sacre à 51,91% de rentabilité." },
+  74: { date: "3 septembre 2026", texte: "Complexe résidentiel titanium habitable bondit à 49,05% grâce à une promo -16% surprise." },
+  75: { date: "4 septembre 2026", texte: "Les huit promos d'hier disparaissent, remplacées par un lot à -8% et -11%." },
+  76: { date: "5 septembre 2026", texte: "Six des huit promotions de la veille rebondissent, pendant que la pétrolière améliorée reste imbattable pour la 7e fois." },
+  77: { date: "6 septembre 2026", texte: "Plate-forme pétrolière améliorée cède la tête après 7 éditions, dépassée par Réseau de bus 50 arrêts (51,09%)." },
+  78: { date: "7 septembre 2026", texte: "Plate-forme pétrolière améliorée reprend la 1ère place après une seule édition d'absence, désormais en promo." },
+  79: { date: "8 septembre 2026", texte: "Plate-forme pétrolière améliorée conserve la 1ère place, sa promo passant de -5% à -15% (rentabilité 59,41%)." },
+  80: { date: "9 septembre 2026", texte: "Nouvelle promo -18% : le Centre de recherche international grimpe à 56,09% et prend la 1ère place." },
+  81: { date: "10 septembre 2026", texte: "Rotation complète des promos : Centre de recherche retombe à 45,89%, dépassé par Réseau de bus 50 arrêts (51,10%)." },
+  82: { date: "11 septembre 2026", texte: "7 nouvelles promotions remplacent les 8 d'hier. Réseau de bus 50 arrêts reste en tête (50,87%) sans promo." },
+  83: { date: "12 septembre 2026", texte: "Rotation complète des promotions ce soir. Réseau de bus 50 arrêts recule un peu (50,69%) mais reste 1er toutes catégories." },
 };
 
 const liste = document.getElementById("liste-editions");
 const compteur = document.getElementById("compteur");
 const editions = [];
-for (let n = 82; n >= 2; n--) {
+for (let n = 83; n >= 2; n--) {
   const f = fichierPour(n);
-  if (f) editions.push({ n, f });
+  if (f || ARTICLE_IDS[n]) editions.push({ n, f });
 }
 
 function afficher(filtre) {
@@ -85,7 +173,9 @@ function afficher(filtre) {
     const li = document.createElement("li");
     const a = document.createElement("a");
     a.className = "edition-link";
-    a.href = e.f;
+    a.href = lienPour(e.n, e.f);
+    a.target = "_blank";
+    a.rel = "noopener";
     const info = ACCROCHES[e.n];
     if (info) {
       a.innerHTML = '<span class="num">Édition ' + e.n + '</span><span class="date">' + info.date + '</span><span class="accroche">' + info.texte + '</span>';
