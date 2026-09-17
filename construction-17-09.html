@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal de la Construction — 17 septembre 2026</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:36px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  h4.subsection{color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;font-size:13px;margin-top:22px;margin-bottom:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:10.5px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  td.action{color:var(--gold-dim);font-size:11px;text-transform:uppercase;letter-spacing:0.5px;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .t-appartement{color:#e0b15c;}
+  .t-chambre{color:#7fb3d5;}
+  .t-complexe{color:#b489c9;}
+  .t-maison{color:#d5876a;}
+  .t-quartier{color:#7fd5b8;}
+  .t-bureaux{color:#8aa9c9;}
+  .t-commerciaux{color:#d5a37f;}
+  .t-industriels{color:#b0b0b0;}
+  .t-transport{color:#7fd5c0;}
+  .t-zones{color:#c9c46a;}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo</div>
+    <h1 class="title">LE JOURNAL DE LA CONSTRUCTION</h1>
+    <div class="tagline">Matières premières, chantiers et usines, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">17 SEPTEMBRE 2026</div>
+
+  <h3 class="section">📰 Introduction</h3>
+  <p>Ce soir, la sélection "à la loupe" complète un cycle : avec Tours résidentielles jumelles non-aménagées, les huit variantes du type quartier (Tour résidentielle prestige et Tours résidentielles jumelles, tous niveaux) ont désormais toutes été couvertes au moins une fois depuis le lancement de cette rubrique. Côté usines, la Fabrique de briques bat de nouveau son propre record de ROI (8,86%), toujours porté par la hausse du prix de la Brique ; les 4 tiers d'Acierie restent les seules usines déficitaires sur 20.</p>
+
+  <h3 class="section">💰 Prix courant des matériaux ce soir</h3>
+  <p style="font-size:13px;color:var(--ink-dim);">Prix marché de la matière produite (Ø/unité) — à ne pas confondre avec le "Prix du marché" affiché sur un devis complet en jeu, qui inclut en plus la main d'œuvre et le coût pondéré des usines/CUMP (voir explication en fin d'article).</p>
+  <table>
+    <tr><th>Matière</th><th class="num">Prix marché de la matière produite (Ø/unité)</th></tr>
+    <tr><td>🏗️ Béton</td><td class="num">247,30&nbsp;Ø / m³</td></tr>
+    <tr><td>🔩 Acier</td><td class="num">943,95&nbsp;Ø / tonne</td></tr>
+    <tr><td>🪵 Bois</td><td class="num">51,18&nbsp;Ø / m²</td></tr>
+    <tr><td>🧱 Brique</td><td class="num">722,70&nbsp;Ø / m³</td></tr>
+    <tr><td>🪟 Verre</td><td class="num">224,78&nbsp;Ø / m²</td></tr>
+  </table>
+
+  <h3 class="section">🧱 Bâtiments à la loupe, par type</h3>
+  <p style="font-size:13px;color:var(--ink-dim);">Un exemple par type de bâtiment (5 personnel + 5 entreprise), pour ses 3 actions possibles — construction, embellir, réparation. Quantités de matières nécessaires (fixes) ET le vrai <b>Prix du marché</b> de ce soir tel qu'exporté par le jeu (pas une estimation). "—" = action non disponible pour ce bâtiment (déjà au niveau maximal).</p>
+
+  <h4 class="subsection">🏠 Biens personnel</h4>
+  <table>
+    <tr><th>Type</th><th>Exemple</th><th>Action</th><th class="num">🏗️</th><th class="num">🔩</th><th class="num">🪵</th><th class="num">🧱</th><th class="num">🪟</th><th class="num">Prix du marché</th></tr>
+    <tr><td rowspan="3" class="t-appartement">🏢 Appartement</td><td rowspan="3">Res. 24 T2 non-aménagés</td><td class="action">Construction</td><td class="num">172</td><td class="num">38</td><td class="num">756</td><td class="num">130</td><td class="num">65</td><td class="num">225,66K&nbsp;Ø</td></tr>
+    <tr><td class="action">Embellir</td><td class="num">126</td><td class="num">28</td><td class="num">547</td><td class="num">94</td><td class="num">48</td><td class="num">164,31K&nbsp;Ø</td></tr>
+    <tr><td class="action">Réparation</td><td class="num">85</td><td class="num">19</td><td class="num">372</td><td class="num">64</td><td class="num">33</td><td class="num">111,67K&nbsp;Ø</td></tr>
+
+    <tr><td rowspan="3" class="t-chambre">🛏️ Chambre</td><td rowspan="3">Res. 24 chambres vides</td><td class="action">Construction</td><td class="num">33</td><td class="num">9</td><td class="num">181</td><td class="num">36</td><td class="num">18</td><td class="num">55,98K&nbsp;Ø</td></tr>
+    <tr><td class="action">Embellir</td><td class="num">20</td><td class="num">7</td><td class="num">107</td><td class="num">22</td><td class="num">11</td><td class="num">35,40K&nbsp;Ø</td></tr>
+    <tr><td class="action">Réparation</td><td class="num">21</td><td class="num">6</td><td class="num">111</td><td class="num">23</td><td class="num">11</td><td class="num">35,63K&nbsp;Ø</td></tr>
+
+    <tr><td rowspan="3" class="t-complexe">🏘️ Complexe</td><td rowspan="3">Quadruple complexe résidentiel géant habitable</td><td class="action">Construction</td><td class="num">36,29K</td><td class="num">8,61K</td><td class="num">49,02K</td><td class="num">47,80K</td><td class="num">27,50K</td><td class="num">60,34M&nbsp;Ø</td></tr>
+    <tr><td class="action">Embellir</td><td class="num">6,60K</td><td class="num">1,56K</td><td class="num">8,91K</td><td class="num">8,69K</td><td class="num">5,00K</td><td class="num">10,97M&nbsp;Ø</td></tr>
+    <tr><td class="action">Réparation</td><td class="num">16,39K</td><td class="num">3,89K</td><td class="num">22,14K</td><td class="num">21,59K</td><td class="num">12,42K</td><td class="num">27,25M&nbsp;Ø</td></tr>
+
+    <tr><td rowspan="3" class="t-maison">🏠 Maison</td><td rowspan="3">Petite maison abandonnée</td><td class="action">Construction</td><td class="num">12</td><td class="num">3</td><td class="num">54</td><td class="num">17</td><td class="num">4</td><td class="num">21,75K&nbsp;Ø</td></tr>
+    <tr><td class="action">Embellir</td><td class="num">7</td><td class="num">2</td><td class="num">26</td><td class="num">9</td><td class="num">2</td><td class="num">11,90K&nbsp;Ø</td></tr>
+    <tr><td class="action">Réparation</td><td class="num">7</td><td class="num">2</td><td class="num">28</td><td class="num">9</td><td class="num">2</td><td class="num">12,01K&nbsp;Ø</td></tr>
+
+    <!-- Quartier : valeurs très grandes — coller nombre+abréviation SANS espace -->
+    <tr><td rowspan="3" class="t-quartier">🌆 Quartier</td><td rowspan="3">Tours résidentielles jumelles non-aménagées</td><td class="action">Construction</td><td class="num">3,16P</td><td class="num">750,49T</td><td class="num">4,27P</td><td class="num">4,17P</td><td class="num">2,40P</td><td class="num">5,26E&nbsp;Ø</td></tr>
+    <tr><td class="action">Embellir</td><td class="num">474,66T</td><td class="num">112,57T</td><td class="num">641,21T</td><td class="num">625,21T</td><td class="num">359,73T</td><td class="num">789,17P&nbsp;Ø</td></tr>
+    <tr><td class="action">Réparation</td><td class="num">527,40T</td><td class="num">125,08T</td><td class="num">712,46T</td><td class="num">694,68T</td><td class="num">399,70T</td><td class="num">876,85P&nbsp;Ø</td></tr>
+  </table>
+
+  <h4 class="subsection">🏭 Biens entreprise</h4>
+  <table>
+    <tr><th>Type</th><th>Exemple</th><th>Action</th><th class="num">🏗️</th><th class="num">🔩</th><th class="num">🪵</th><th class="num">🧱</th><th class="num">🪟</th><th class="num">Prix du marché</th></tr>
+    <tr><td rowspan="3" class="t-bureaux">💼 Bureaux</td><td rowspan="3">Immeuble d'entreprise aménagé</td><td class="action">Construction</td><td class="num">6,39K</td><td class="num">1,35K</td><td class="num">10,39K</td><td class="num">2,00K</td><td class="num">10,09K</td><td class="num">7,10M&nbsp;Ø</td></tr>
+    <tr><td class="action">Embellir</td><td class="num">5,83K</td><td class="num">1,23K</td><td class="num">9,47K</td><td class="num">1,83K</td><td class="num">9,20K</td><td class="num">6,47M&nbsp;Ø</td></tr>
+    <tr><td class="action">Réparation</td><td class="num">3,56K</td><td class="num">750</td><td class="num">5,78K</td><td class="num">1,12K</td><td class="num">5,62K</td><td class="num">3,95M&nbsp;Ø</td></tr>
+
+    <tr><td rowspan="3" class="t-commerciaux">🏬 Commerciaux</td><td rowspan="3">Grand local vide</td><td class="action">Construction</td><td class="num">153</td><td class="num">97</td><td class="num">132</td><td class="num">52</td><td class="num">97</td><td class="num">195,54K&nbsp;Ø</td></tr>
+    <tr><td class="action">Embellir</td><td class="num">38</td><td class="num">25</td><td class="num">33</td><td class="num">14</td><td class="num">25</td><td class="num">50,42K&nbsp;Ø</td></tr>
+    <tr><td class="action">Réparation</td><td class="num">42</td><td class="num">27</td><td class="num">36</td><td class="num">15</td><td class="num">27</td><td class="num">54,63K&nbsp;Ø</td></tr>
+
+    <tr><td rowspan="3" class="t-industriels">🏭 Industriels</td><td rowspan="3">Atelier utilisable</td><td class="action">Construction</td><td class="num">46</td><td class="num">18</td><td class="num">31</td><td class="num">12</td><td class="num">6</td><td class="num">39,97K&nbsp;Ø</td></tr>
+    <tr><td class="action">Embellir</td><td class="num">16</td><td class="num">7</td><td class="num">11</td><td class="num">5</td><td class="num">2</td><td class="num">15,19K&nbsp;Ø</td></tr>
+    <tr><td class="action">Réparation</td><td class="num">30</td><td class="num">12</td><td class="num">20</td><td class="num">8</td><td class="num">4</td><td class="num">26,45K&nbsp;Ø</td></tr>
+
+    <tr><td rowspan="3" class="t-transport">🚌 Transport</td><td rowspan="3">Réseau de métro 1 ligne</td><td class="action">Construction</td><td class="num">525,19K</td><td class="num">199,29K</td><td class="num">419,23K</td><td class="num">98,82K</td><td class="num">71,07K</td><td class="num">426,85M&nbsp;Ø</td></tr>
+    <tr><td class="action">Embellir</td><td class="num">1,82M</td><td class="num">691,62K</td><td class="num">1,45M</td><td class="num">342,95K</td><td class="num">246,66K</td><td class="num">1,48G&nbsp;Ø</td></tr>
+    <tr><td class="action">Réparation</td><td class="num">291,79K</td><td class="num">110,72K</td><td class="num">232,92K</td><td class="num">54,91K</td><td class="num">39,49K</td><td class="num">237,16M&nbsp;Ø</td></tr>
+
+    <tr><td rowspan="3" class="t-zones">🌐 Zones</td><td rowspan="3">Zone aérospatiale régionale</td><td class="action">Construction</td><td class="num">3,93G</td><td class="num">1,04G</td><td class="num">1,92G</td><td class="num">616,21M</td><td class="num">620,46M</td><td class="num">2,63T&nbsp;Ø</td></tr>
+    <tr><td class="action">Embellir</td><td class="num">2,21G</td><td class="num">582,51M</td><td class="num">1,08G</td><td class="num">346,62M</td><td class="num">349,01M</td><td class="num">1,48T&nbsp;Ø</td></tr>
+    <tr><td class="action">Réparation</td><td class="num">2,18G</td><td class="num">575,32M</td><td class="num">1,07G</td><td class="num">342,34M</td><td class="num">344,70M</td><td class="num">1,46T&nbsp;Ø</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">🏗️ Béton · 🔩 Acier · 🪵 Bois · 🧱 Brique · 🪟 Verre (quantités). Prix du marché = valeur de référence du soir (export à taux promoteur 78%) — le montant réel d'un devis peut varier jusqu'à ±30% autour de cette valeur, et votre coût de revient personnel dépend en plus du CUMP de votre entreprise (voir explication en fin d'article). Aucun des dix bâtiments ci-dessus n'est en promotion au Journal du Marché ce soir.</p>
+
+  <h3 class="section">🏭 Coût de production, par usine (20 usines)</h3>
+  <p style="font-size:13px;color:var(--ink-dim);">⚠️ Toutes les valeurs ci-dessous sont un coût PAR UNITÉ produite (m³/tonne/m²), pas un total.<br>
+  <b class="pos">Sans l'usine</b> = (Charges + Impôts du jour) ÷ Production — le coût récurrent quotidien seul, l'usine étant déjà achetée (un investissement passé, pas une dépense du jour).<br>
+  <b style="color:var(--gold-dim);">Avec l'usine</b> = (Prix d'achat + Charges + Impôts) ÷ Production — traite l'achat de l'usine comme s'il devait être remboursé en une seule production, ce qui gonfle fortement le chiffre (l'achat n'est pas amorti sur sa durée de vie réelle).</p>
+  <table>
+    <tr><th>Usine</th><th>Matière</th><th class="num">Sans l'usine (Ø/unité)</th><th class="num">Avec l'usine (Ø/unité)</th><th class="num">Prix marché matière (Ø/unité)</th></tr>
+    <tr><td>Usine de traitement du bois industrielle</td><td>Bois</td><td class="num pos">39,33&nbsp;Ø</td><td class="num">220,40&nbsp;Ø</td><td class="num">51,18&nbsp;Ø</td></tr>
+    <tr><td>Usine de traitement du bois automatisée</td><td>Bois</td><td class="num pos">40,52&nbsp;Ø</td><td class="num">227,08&nbsp;Ø</td><td class="num">51,18&nbsp;Ø</td></tr>
+    <tr><td>Petite scierie</td><td>Bois</td><td class="num pos">40,83&nbsp;Ø</td><td class="num">182,84&nbsp;Ø</td><td class="num">51,18&nbsp;Ø</td></tr>
+    <tr><td>Scierie avancée</td><td>Bois</td><td class="num pos">42,53&nbsp;Ø</td><td class="num">232,64&nbsp;Ø</td><td class="num">51,18&nbsp;Ø</td></tr>
+    <tr><td>Usine de béton industrielle</td><td>Béton</td><td class="num pos">195,13&nbsp;Ø</td><td class="num">1&nbsp;071,69&nbsp;Ø</td><td class="num">247,30&nbsp;Ø</td></tr>
+    <tr><td>Grande usine de verre industrielle</td><td>Verre</td><td class="num pos">200,38&nbsp;Ø</td><td class="num">849,21&nbsp;Ø</td><td class="num">224,78&nbsp;Ø</td></tr>
+    <tr><td>Usine de béton automatisée</td><td>Béton</td><td class="num pos">201,04&nbsp;Ø</td><td class="num">1&nbsp;104,17&nbsp;Ø</td><td class="num">247,30&nbsp;Ø</td></tr>
+    <tr><td>Centrale à béton avancée</td><td>Béton</td><td class="num pos">207,29&nbsp;Ø</td><td class="num">1&nbsp;092,71&nbsp;Ø</td><td class="num">247,30&nbsp;Ø</td></tr>
+    <tr><td>Grande usine de verre automatisée</td><td>Verre</td><td class="num pos">208,18&nbsp;Ø</td><td class="num">882,29&nbsp;Ø</td><td class="num">224,78&nbsp;Ø</td></tr>
+    <tr><td>Usine de verre moyenne</td><td>Verre</td><td class="num pos">214,70&nbsp;Ø</td><td class="num">902,20&nbsp;Ø</td><td class="num">224,78&nbsp;Ø</td></tr>
+    <tr><td>Petite usine de verre</td><td>Verre</td><td class="num pos">222,53&nbsp;Ø</td><td class="num">825,88&nbsp;Ø</td><td class="num">224,78&nbsp;Ø</td></tr>
+    <tr><td>Centrale à béton</td><td>Béton</td><td class="num pos">229,17&nbsp;Ø</td><td class="num">930,92&nbsp;Ø</td><td class="num">247,30&nbsp;Ø</td></tr>
+    <tr><td>Usine de briques industrielle</td><td>Brique</td><td class="num pos">574,39&nbsp;Ø</td><td class="num">3&nbsp;071,44&nbsp;Ø</td><td class="num">722,70&nbsp;Ø</td></tr>
+    <tr><td>Usine de briques automatisée</td><td>Brique</td><td class="num pos">615,00&nbsp;Ø</td><td class="num">3&nbsp;288,61&nbsp;Ø</td><td class="num">722,70&nbsp;Ø</td></tr>
+    <tr><td>Fabrique de briques</td><td>Brique</td><td class="num pos">615,14&nbsp;Ø</td><td class="num">1&nbsp;829,65&nbsp;Ø</td><td class="num">722,70&nbsp;Ø</td></tr>
+    <tr><td>Presse à briques</td><td>Brique</td><td class="num pos">636,11&nbsp;Ø</td><td class="num">3&nbsp;021,53&nbsp;Ø</td><td class="num">722,70&nbsp;Ø</td></tr>
+    <tr><td>Complexe sidérurgique industriel</td><td>Acier</td><td class="num neg">962,55&nbsp;Ø</td><td class="num">6&nbsp;710,40&nbsp;Ø</td><td class="num">943,95&nbsp;Ø</td></tr>
+    <tr><td>Complexe sidérurgique automatisé</td><td>Acier</td><td class="num neg">1&nbsp;006,30&nbsp;Ø</td><td class="num">7&nbsp;015,42&nbsp;Ø</td><td class="num">943,95&nbsp;Ø</td></tr>
+    <tr><td>Acierie avancée</td><td>Acier</td><td class="num neg">1&nbsp;039,93&nbsp;Ø</td><td class="num">7&nbsp;602,43&nbsp;Ø</td><td class="num">943,95&nbsp;Ø</td></tr>
+    <tr><td>Acierie</td><td>Acier</td><td class="num neg">1&nbsp;071,43&nbsp;Ø</td><td class="num">5&nbsp;922,62&nbsp;Ø</td><td class="num">943,95&nbsp;Ø</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">"Sans l'usine" en vert = sous le prix marché (produire est avantageux ce soir). En rouge = au-dessus. "Avec l'usine" est toujours bien au-dessus du marché pour les 20 usines — normal, il inclut le remboursement complet de l'investissement en un seul cycle, à ne pas confondre avec un coût récurrent.</p>
+
+  <h3 class="section">📊 ROI des 20 usines ce soir</h3>
+  <p style="font-size:13px;color:var(--ink-dim);">Profit = Production × prix de la matière ce soir − Charges − Impôts. ROI% = Profit ÷ Valeur × 100 — même méthode que le suivi des usines du Journal du Marché principal depuis l'édition 60 (méthode maison, pas une formule officielle du jeu).</p>
+  <table>
+    <tr><th>Usine</th><th>Matière</th><th class="num">Valeur</th><th class="num">Profit / soir</th><th class="num">ROI</th></tr>
+    <tr><td>Fabrique de briques</td><td>Brique</td><td class="num">385&nbsp;000&nbsp;Ø</td><td class="num">34&nbsp;096&nbsp;Ø</td><td class="num pos">8,86%</td></tr>
+    <tr><td>Petite scierie</td><td>Bois</td><td class="num">120&nbsp;000&nbsp;Ø</td><td class="num">8&nbsp;747&nbsp;Ø</td><td class="num pos">7,29%</td></tr>
+    <tr><td>Usine de traitement du bois industrielle</td><td>Bois</td><td class="num">295&nbsp;515&nbsp;000&nbsp;Ø</td><td class="num">19&nbsp;340&nbsp;760&nbsp;Ø</td><td class="num pos">6,54%</td></tr>
+    <tr><td>Usine de béton industrielle</td><td>Béton</td><td class="num">1&nbsp;430&nbsp;550&nbsp;000&nbsp;Ø</td><td class="num">85&nbsp;143&nbsp;600&nbsp;Ø</td><td class="num pos">5,95%</td></tr>
+    <tr><td>Usine de briques industrielle</td><td>Brique</td><td class="num">1&nbsp;270&nbsp;500&nbsp;000&nbsp;Ø</td><td class="num">75&nbsp;461&nbsp;760&nbsp;Ø</td><td class="num pos">5,94%</td></tr>
+    <tr><td>Usine de traitement du bois automatisée</td><td>Bois</td><td class="num">26&nbsp;865&nbsp;000&nbsp;Ø</td><td class="num">1&nbsp;534&nbsp;920&nbsp;Ø</td><td class="num pos">5,71%</td></tr>
+    <tr><td>Usine de béton automatisée</td><td>Béton</td><td class="num">130&nbsp;050&nbsp;000&nbsp;Ø</td><td class="num">6&nbsp;661&nbsp;200&nbsp;Ø</td><td class="num pos">5,12%</td></tr>
+    <tr><td>Scierie avancée</td><td>Bois</td><td class="num">1&nbsp;642&nbsp;500&nbsp;Ø</td><td class="num">74&nbsp;695&nbsp;Ø</td><td class="num pos">4,55%</td></tr>
+    <tr><td>Centrale à béton avancée</td><td>Béton</td><td class="num">6&nbsp;375&nbsp;000&nbsp;Ø</td><td class="num">288&nbsp;060&nbsp;Ø</td><td class="num pos">4,52%</td></tr>
+    <tr><td>Usine de briques automatisée</td><td>Brique</td><td class="num">115&nbsp;500&nbsp;000&nbsp;Ø</td><td class="num">4&nbsp;652&nbsp;640&nbsp;Ø</td><td class="num pos">4,03%</td></tr>
+    <tr><td>Grande usine de verre industrielle</td><td>Verre</td><td class="num">747&nbsp;450&nbsp;000&nbsp;Ø</td><td class="num">28&nbsp;111&nbsp;560&nbsp;Ø</td><td class="num pos">3,76%</td></tr>
+    <tr><td>Presse à briques</td><td>Brique</td><td class="num">5&nbsp;152&nbsp;500&nbsp;Ø</td><td class="num">187&nbsp;032&nbsp;Ø</td><td class="num pos">3,63%</td></tr>
+    <tr><td>Centrale à béton</td><td>Béton</td><td class="num">640&nbsp;000&nbsp;Ø</td><td class="num">16&nbsp;538&nbsp;Ø</td><td class="num pos">2,58%</td></tr>
+    <tr><td>Grande usine de verre automatisée</td><td>Verre</td><td class="num">67&nbsp;950&nbsp;000&nbsp;Ø</td><td class="num">1&nbsp;672&nbsp;824&nbsp;Ø</td><td class="num pos">2,46%</td></tr>
+    <tr><td>Usine de verre moyenne</td><td>Verre</td><td class="num">3&nbsp;465&nbsp;000&nbsp;Ø</td><td class="num">50&nbsp;791&nbsp;Ø</td><td class="num pos">1,47%</td></tr>
+    <tr><td>Petite usine de verre</td><td>Verre</td><td class="num">324&nbsp;000&nbsp;Ø</td><td class="num">1&nbsp;207&nbsp;Ø</td><td class="num pos">0,37%</td></tr>
+    <tr><td>Complexe sidérurgique industriel</td><td>Acier</td><td class="num">7&nbsp;614&nbsp;750&nbsp;000&nbsp;Ø</td><td class="num">-24&nbsp;641&nbsp;040&nbsp;Ø</td><td class="num neg">-0,32%</td></tr>
+    <tr><td>Complexe sidérurgique automatisé</td><td>Acier</td><td class="num">692&nbsp;250&nbsp;000&nbsp;Ø</td><td class="num">-7&nbsp;182&nbsp;960&nbsp;Ø</td><td class="num neg">-1,04%</td></tr>
+    <tr><td>Acierie avancée</td><td>Acier</td><td class="num">28&nbsp;350&nbsp;000&nbsp;Ø</td><td class="num">-414&nbsp;636&nbsp;Ø</td><td class="num neg">-1,46%</td></tr>
+    <tr><td>Acierie</td><td>Acier</td><td class="num">2&nbsp;445&nbsp;000&nbsp;Ø</td><td class="num">-64&nbsp;249&nbsp;Ø</td><td class="num neg">-2,63%</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Même portrait que dans l'édition 87 du Journal du Marché principal (même soir) : 4 usines sur 20 restent déficitaires — les 4 tailles d'Acierie, seul segment matière encore dans le rouge. La Fabrique de briques signe un nouveau record de ROI observé depuis le début du suivi (8,86%), portée par la nouvelle hausse du prix de la Brique.</p>
+
+  <h3 class="section">🔧 Conseils pratiques</h3>
+  <div class="callout">Pas besoin de plusieurs usines du même matériau : une seule usine par matière (5 au total) suffit à couvrir vos 5 matières premières.</div>
+  <div class="callout">La limite globale est de 100&nbsp;000&nbsp;000 usines au total, à répartir entre vos 5 usines — environ 20&nbsp;000&nbsp;000 chacune si réparti également.</div>
+  <div class="callout">Si une matière ne produit pas assez pour vos besoins, une solution consiste à créer une 2e entreprise de construction dédiée à cette matière et à vous la revendre en interne, sans descendre sous le prix plancher.</div>
+
+  <h3 class="section">📌 Comprendre : Prix du marché vs coût de revient</h3>
+  <p>Sur un devis en jeu, le <b>Prix du marché</b> est une valeur de référence unique par demande (identique pour toutes les entreprises qui répondent, qu'elles aient une usine ou non) : il pondère le coût de production moyen des usines du serveur, le CUMP moyen des entreprises de construction, et le prix promoteur. C'est cette valeur que le Journal publie ce soir dans le tableau ci-dessus. Le <b>coût de revient</b>, lui, dépend du CUMP personnel de votre entreprise (le coût moyen pondéré de vos propres achats de matières) : deux entreprises peuvent donc avoir un coût de revient différent pour le même devis, même si le Prix du marché affiché est identique. Le Journal ne peut pas reproduire le coût de revient (propre à chaque entreprise) — et rappel : le montant final d'un devis peut s'écarter jusqu'à ±30% du Prix du marché affiché ici, à la discrétion du constructeur.</p>
+
+  <div class="sources">
+    Données du 17 septembre 2026, export post-reset (taux promoteur 78%). Prix des matériaux et Prix du marché par bâtiment relevés directement dans l'export du jeu. Statistiques des usines issues des tables de référence du jeu. Coût de production et ROI des usines calculés selon la méthode du Journal (non-officielle) — voir explication ci-dessus.
+  </div>
+
+  <div class="footer">Le Journal de la Construction · Monde 8</div>
+
+</div>
+</body>
+</html>
