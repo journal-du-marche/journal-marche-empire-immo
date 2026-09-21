@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Le Journal du Marché — Édition 91</title>
+<style>
+  :root{
+    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
+    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b; --danger:#c96a5a; --ok:#7ba05b;
+  }
+  body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
+  .paper{max-width:880px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
+  .masthead{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:18px 0;margin-bottom:18px;position:relative;}
+  .masthead .mascotte{position:absolute;top:8px;right:8px;height:56px;width:auto;border-radius:4px;}
+  .kicker{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--gold-dim);}
+  h1.title{color:var(--gold);font-size:40px;margin:8px 0;letter-spacing:1px;}
+  .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
+  .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
+  h4.subsection{color:var(--gold-dim);text-transform:uppercase;letter-spacing:1px;font-size:13px;margin-top:22px;margin-bottom:4px;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;}
+  th{color:var(--gold-dim);text-align:left;text-transform:uppercase;font-size:11px;letter-spacing:1px;border-bottom:1px solid var(--line);padding:6px 8px;}
+  td{padding:6px 8px;border-bottom:1px solid var(--line);}
+  td.num, th.num{text-align:right;font-variant-numeric:tabular-nums;}
+  .pos{color:var(--ok);}
+  .neg{color:var(--danger);}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
+  .callout.warn{border-left-color:var(--danger);}
+  .keybox{border:1px solid var(--gold);text-align:center;padding:18px;margin:20px auto;max-width:400px;}
+  .keybox .num{color:var(--gold);font-size:32px;}
+  .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
+  .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
+  p{line-height:1.6;font-size:15px;}
+  .bar-cell{display:flex;align-items:center;gap:8px;justify-content:flex-end;}
+  .bar-track{width:70px;height:8px;background:var(--line);border-radius:4px;overflow:hidden;}
+  .bar-fill{height:100%;background:var(--ok);border-radius:4px;}
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <div class="masthead">
+    <img src="mascotte-1-0.jpg" alt="Mascotte du 1 et du 0" class="mascotte">
+    <div class="kicker">Monde 8 · Empire Immo</div>
+    <h1 class="title">LE JOURNAL DU MARCHÉ</h1>
+    <div class="tagline">L'information immobilière, chiffres à l'appui</div>
+  </div>
+  <div class="dateline">ÉDITION N°91 — 21 SEPTEMBRE 2026</div>
+
+  <div class="callout" style="background:rgba(201,163,90,0.09);">
+    <div style="color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:12px;margin-bottom:8px;"><b>🗞️ L'essentiel en 30 secondes</b></div>
+    <p style="margin:4px 0;font-size:14px;">• <b>Nouveau leader :</b> Réseau de bus 50 arrêts reprend la 1ère place toutes catégories à <span class="pos">50,53%</span>, 100% organique, après 7 éditions de règne de Centre de recherche régional (retombé 4e à 49,03%).</p>
+    <p style="margin:4px 0;font-size:14px;">• <b>Promos en légère hausse :</b> 7 biens en promotion ce soir (contre 6 hier) — 5 nouveaux, 2 survivants, et l'un des promus (2100m² de bureaux tout équipés) se hisse même dans un Top 3 par niveau.</p>
+    <p style="margin:4px 0;font-size:14px;">• <b>Usines :</b> la Fabrique de briques conserve la tête du ROI usines à <span class="pos">9,67%</span> (9,44% hier), toujours 4 usines sur 20 déficitaires.</p>
+    <p style="margin:4px 0;font-size:14px;">• <b>Piège du jour :</b> Res. 24 T2 habitables reste la pire rentabilité du marché pour la 18e édition consécutive (10,82%).</p>
+  </div>
+
+  <h3 class="section">📰 Introduction</h3>
+  <p>Édition n°91, basée sur l'export post-reset du 21 septembre 2026 (03h24, taux promoteur 75). Grand fait du soir : après 7 éditions consécutives en tête (édition 84 à 90), Centre de recherche régional cède sa couronne — non pas à cause d'une promotion perdue (il n'en avait aucune), mais d'un simple repli organique de son loyer, qui le fait retomber à la 4e place (49,03%, contre 51,59% hier). Réseau de bus 50 arrêts, égal à lui-même depuis des semaines et toujours sans la moindre promotion, repasse devant à 50,53%. Autre nouvelle du jour, extérieure au marché : le gouverneur a annoncé le 20 septembre la fermeture TEMPORAIRE du Fonds de Soutien (FDS) avec la version 4.47.0 — les FDS déjà créés restent actifs et les remboursements restent possibles, mais les nouvelles conversions de GOLD en trésorerie d'entreprise sont suspendues le temps d'une refonte. La voie recommandée en attendant : la levée de fonds classique (actions proportionnelles à l'investissement).</p>
+
+  <h3 class="section">🎯 Suivi de recommandation</h3>
+  <p>Suivi de recommandation : 30 signaux publiés, 29 vérifiés depuis le lancement de la rubrique — 100% de réussite. Nouveau signal ce soir : Réseau de bus 50 arrêts, qui reprend la tête du classement toutes catégories après 7 éditions passées derrière Centre de recherche régional — signal encore à confirmer la nuit prochaine. Derniers signaux : édition 89 — confirmé, organique ; édition 90 — confirmé, organique en hausse ; édition 91 — nouveau signal, Réseau de bus 50 arrêts.</p>
+  <p style="font-size:13px;color:var(--ink-dim);"><i>Tableau retiré depuis l'édition 85 — le texte ci-dessus couvre déjà toute l'info utile.</i></p>
+
+  <h3 class="section">💎 Achat du jour</h3>
+  <div class="keybox">
+    <div style="color:var(--gold-dim);font-size:13px;text-transform:uppercase;letter-spacing:1px;">Réseau de bus 50 arrêts</div>
+    <div class="num" style="font-size:20px;">13 156 516 Ø</div>
+    <div style="font-size:14px;margin-top:6px;">Rentabilité 50,53% · retour en 722 jours · écart secteur +18,59 pts · pas de promo</div>
+    <svg class="sparkline" width="180" height="40" viewBox="0 0 180 40" style="display:block;margin:10px auto 4px;">
+      <polyline points="0,5.0 30,15.4 60,25.4 90,35.0 120,31.3 150,25.4 180,23.8" fill="none" stroke="#7ba05b" stroke-width="2"/>
+      <circle cx="180" cy="23.8" r="3" fill="#7ba05b"/>
+    </svg>
+    <div style="font-size:11px;color:var(--ink-dim);text-transform:uppercase;letter-spacing:1px;">Rentabilité, éditions 85 → 91</div>
+  </div>
+  <p>Le nouveau leader toutes catégories, et sans le moindre coup de pouce promotionnel : sa lente progression organique sur les 3 dernières éditions (50,32% à 50,53%) lui a suffi à redépasser Centre de recherche régional cette nuit.</p>
+
+  <h3 class="section">💰 Le plus rentable sous 200 000 Ø</h3>
+  <div class="keybox">
+    <div style="color:var(--gold-dim);font-size:13px;text-transform:uppercase;letter-spacing:1px;">Res. 6 chambres habitables</div>
+    <div class="num" style="font-size:20px;">53 946 Ø</div>
+    <div style="font-size:14px;margin-top:6px;">Rentabilité 35,39% · niveau 1 · secteur personnel · pas de promo</div>
+  </div>
+  <p>Devant Grande maison équipée (33,93%, niveau 2, en promo -9%) et Maison moyenne luxueuse (32,16%, niveau 3, sans promo). Le podium reste 100% personnel pour une 5e édition consécutive, mais rompt sa série 100% organique : la 2e place est cette fois portée par une promotion.</p>
+
+  <h3 class="section">🔔 Alerte marché — promotions officielles du jour</h3>
+  <table>
+    <tr><th>Secteur</th><th>Bien</th><th class="num">Valeur effective</th><th class="num">Promo</th></tr>
+    <tr><td>Entreprise</td><td>Technopôle régional, niv. 1</td><td class="num">134 620 538 855 151 Ø</td><td class="num neg">-15%</td></tr>
+    <tr><td>Entreprise</td><td>2100m² de bureaux tout équipés, niv. 2</td><td class="num">515 027 Ø</td><td class="num neg">-15%</td></tr>
+    <tr><td>Entreprise</td><td>Réseau de métro 4 lignes, niv. 3</td><td class="num">3 968 550 271 Ø</td><td class="num neg">-15%</td></tr>
+    <tr><td>Entreprise</td><td>Mégapôle titanium international, niv. 3</td><td class="num">319 223 683 053 443 165 978 624 Ø</td><td class="num neg">-15%</td></tr>
+    <tr><td>Personnel</td><td>Complexe résidentiel millenium luxueux, niv. 3</td><td class="num">72 863 918 820 Ø</td><td class="num neg">-9%</td></tr>
+    <tr><td>Personnel</td><td>Grande maison équipée, niv. 2</td><td class="num">138 888 Ø</td><td class="num neg">-9%</td></tr>
+    <tr><td>Personnel</td><td>Tour résidentielle prestige tout confort, niv. 2</td><td class="num">317 861 339 253 385 598 Ø</td><td class="num neg">-9%</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Détail loyer/charges/impôts retiré depuis l'édition 85 — disponible sur la page promotions du jeu. Rotation partielle par rapport à hier : 4 des 6 biens promus à l'édition 90 sont sortis, remplacés par 5 nouveaux (3 entreprise à -15%, 2 personnel à -9%), avec deux survivants qui poursuivent leur promo à taux modifié : Technopôle régional (5%→15%, 2e édition) et Complexe résidentiel millenium luxueux (13%→9%, 3e édition). Fait notable : 2100m² de bureaux tout équipés, malgré sa promo, se classe quand même 3e du Top 3 niveau 2 entreprise ci-dessous.</p>
+
+  <h3 class="section">🏢 Secteur entreprise</h3>
+  <p style="font-size:13px;color:var(--ink-dim);">Rentabilité moyenne toutes catégories : <b>31,94%</b> (commerciaux en tête, zones en retrait). Rentabilité = (Loyer − Charges − Impôts − Assurance min.) × 12 ÷ Valeur × 100 ; moyennes calculées sur biens à rentabilité positive uniquement.</p>
+
+  <h4 class="subsection">Top 3 par niveau — ce que vous pouvez acheter maintenant</h4>
+  <table>
+    <tr><th>Niveau</th><th>Bien</th><th class="num">Rentabilité</th></tr>
+    <tr><td>1</td><td>Centre de recherche régional</td><td class="num pos"><div class="bar-cell">49,03%<div class="bar-track"><div class="bar-fill" style="width:57.2px;"></div></div></div></td></tr>
+    <tr><td>1</td><td>Plate-forme pétrolière aménagée</td><td class="num pos"><div class="bar-cell">48,04%<div class="bar-track"><div class="bar-fill" style="width:56.1px;"></div></div></div></td></tr>
+    <tr><td>1</td><td>Réseau FreeCycl' 10 arrêts</td><td class="num pos"><div class="bar-cell">43,71%<div class="bar-track"><div class="bar-fill" style="width:51.0px;"></div></div></div></td></tr>
+    <tr><td>2</td><td>Réseau de bus 50 arrêts</td><td class="num pos"><div class="bar-cell">50,53%<div class="bar-track"><div class="bar-fill" style="width:59.0px;"></div></div></div></td></tr>
+    <tr><td>2</td><td>Plate-forme pétrolière améliorée</td><td class="num pos"><div class="bar-cell">49,51%<div class="bar-track"><div class="bar-fill" style="width:57.8px;"></div></div></div></td></tr>
+    <tr><td>2</td><td>2100m² de bureaux tout équipés (promo -15%)</td><td class="num pos"><div class="bar-cell">47,50%<div class="bar-track"><div class="bar-fill" style="width:55.4px;"></div></div></div></td></tr>
+    <tr><td>3</td><td>Plate-forme pétrolière high-tech</td><td class="num pos"><div class="bar-cell">46,16%<div class="bar-track"><div class="bar-fill" style="width:53.9px;"></div></div></div></td></tr>
+    <tr><td>3</td><td>Centre de recherche international</td><td class="num pos"><div class="bar-cell">45,20%<div class="bar-track"><div class="bar-fill" style="width:52.7px;"></div></div></div></td></tr>
+    <tr><td>3</td><td>2100m² de bureaux grand standing</td><td class="num pos"><div class="bar-cell">43,40%<div class="bar-track"><div class="bar-fill" style="width:50.6px;"></div></div></div></td></tr>
+  </table>
+
+  <h3 class="section">🏠 Secteur personnel</h3>
+  <p style="font-size:13px;color:var(--ink-dim);">Rentabilité moyenne toutes catégories : <b>28,14%</b> (quartier en tête, chambre en retrait).</p>
+
+  <h4 class="subsection">Top 3 par niveau — ce que vous pouvez acheter maintenant</h4>
+  <table>
+    <tr><th>Niveau</th><th>Bien</th><th class="num">Rentabilité</th></tr>
+    <tr><td>1</td><td>Tours résidentielles jumelles aménagées</td><td class="num pos"><div class="bar-cell">49,95%<div class="bar-track"><div class="bar-fill" style="width:58.3px;"></div></div></div></td></tr>
+    <tr><td>1</td><td>Complexe résidentiel titanium habitable</td><td class="num pos"><div class="bar-cell">39,29%<div class="bar-track"><div class="bar-fill" style="width:45.8px;"></div></div></div></td></tr>
+    <tr><td>1</td><td>Complexe résidentiel palacium habitable</td><td class="num pos"><div class="bar-cell">38,01%<div class="bar-track"><div class="bar-fill" style="width:44.3px;"></div></div></div></td></tr>
+    <tr><td>2</td><td>Tours résidentielles jumelles tout confort</td><td class="num pos"><div class="bar-cell">41,42%<div class="bar-track"><div class="bar-fill" style="width:48.3px;"></div></div></div></td></tr>
+    <tr><td>2</td><td>Complexe résidentiel géant tout confort</td><td class="num pos"><div class="bar-cell">41,37%<div class="bar-track"><div class="bar-fill" style="width:48.3px;"></div></div></div></td></tr>
+    <tr><td>2</td><td>Complexe résidentiel palacium tout confort</td><td class="num pos"><div class="bar-cell">38,69%<div class="bar-track"><div class="bar-fill" style="width:45.1px;"></div></div></div></td></tr>
+    <tr><td>3</td><td>Tours résidentielles jumelles luxueuses</td><td class="num pos"><div class="bar-cell">37,53%<div class="bar-track"><div class="bar-fill" style="width:43.8px;"></div></div></div></td></tr>
+    <tr><td>3</td><td>Complexe résidentiel palacium luxueux (promo -9%)</td><td class="num pos"><div class="bar-cell">37,30%<div class="bar-track"><div class="bar-fill" style="width:43.5px;"></div></div></div></td></tr>
+    <tr><td>3</td><td>Res. 6 T2 grand luxe</td><td class="num pos"><div class="bar-cell">36,59%<div class="bar-track"><div class="bar-fill" style="width:42.7px;"></div></div></div></td></tr>
+  </table>
+
+  <h3 class="section">🏗️ Construction</h3>
+  <h4 class="subsection">🌍 Terrains</h4>
+  <p style="font-size:13px;color:var(--ink-dim);">Charges/impôts stables d'un jour à l'autre — Petit terrain 76 506 Ø, Terrain moyen 57 462 Ø, Grand terrain 63 541 Ø, Parc 60 635 Ø, Grand parc 180 009 Ø.</p>
+
+  <h4 class="subsection">🏭 Matières premières et usines</h4>
+  <table>
+    <tr><th>Matière</th><th class="num">Prix unitaire</th></tr>
+    <tr><td>Béton</td><td class="num">250,12 Ø / m³</td></tr>
+    <tr><td>Acier</td><td class="num">952,99 Ø / tonne</td></tr>
+    <tr><td>Bois</td><td class="num">51,76 Ø / m²</td></tr>
+    <tr><td>Brique</td><td class="num">732,55 Ø / m³</td></tr>
+    <tr><td>Verre</td><td class="num">227,18 Ø / m²</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Fait notable ce soir : la Fabrique de briques bat un nouveau record de ROI à <span class="pos">9,67%</span> (9,44% hier), toujours portée par la hausse du prix de la Brique — elle reste en tête du classement ROI usines. <span class="neg">⚠️ 4 usines sur 20 restent déficitaires ce soir</span> (identique à hier), les 4 tiers d'Acierie. Détail complet des 20 usines dans le Journal de la Construction du jour.</p>
+
+  <h3 class="section">🚫 À éviter — le piège du jour</h3>
+  <div class="callout warn">Res. 24 T2 habitables reste la pire rentabilité du marché pour la <b>18e édition consécutive</b> : <span class="neg">10,82%</span> pour une valeur de 1 699 955 Ø, sans aucune promotion pour se rattraper. Un loyer qui ne suit toujours pas la valeur du bien.</div>
+
+  <h3 class="section">👀 Liste de surveillance — promotions longue durée</h3>
+  <p>Deux biens à surveiller ce soir : Technopôle régional, en promotion pour la 2e édition consécutive (taux relevé de 5% à 15%), et Complexe résidentiel millenium luxueux, pour une 3e édition consécutive (taux réduit de 13% à 9%). Les 5 autres biens promus ce soir en sont à leur première nuit. Surveillez leur sortie de promo : la valeur bondit souvent à la fin.</p>
+
+  <h3 class="section">🏆 Champions de la semaine</h3>
+  <p>Comparaison avec l'édition 84 (14 septembre, exactement 7 jours en arrière). Côté entreprise, les trois plus fortes progressions sont toutes promo-portées ; côté personnel, deux des trois sont 100% organiques.</p>
+  <table>
+    <tr><th>Secteur</th><th>Bien</th><th class="num">Il y a 7 jours</th><th class="num">Ce soir</th><th class="num">Progression</th></tr>
+    <tr><td>Entreprise</td><td>2100m² de bureaux tout équipés</td><td class="num">39,46%</td><td class="num pos">47,50%</td><td class="num pos">+8,04 pts</td></tr>
+    <tr><td>Entreprise</td><td>Réseau de métro 4 lignes</td><td class="num">33,49%</td><td class="num pos">38,72%</td><td class="num pos">+5,23 pts</td></tr>
+    <tr><td>Entreprise</td><td>Technopôle régional</td><td class="num">21,31%</td><td class="num pos">25,79%</td><td class="num pos">+4,48 pts</td></tr>
+    <tr><td>Personnel</td><td>Grande maison équipée</td><td class="num">30,33%</td><td class="num pos">33,93%</td><td class="num pos">+3,60 pts</td></tr>
+    <tr><td>Personnel</td><td>Res. 12 chambres habitables</td><td class="num">16,53%</td><td class="num pos">19,64%</td><td class="num pos">+3,11 pts</td></tr>
+    <tr><td>Personnel</td><td>Res. 6 chambres habitables</td><td class="num">32,34%</td><td class="num pos">35,39%</td><td class="num pos">+3,05 pts</td></tr>
+  </table>
+
+  <h3 class="section">📊 Activité boursière du jour</h3>
+  <table>
+    <tr><th>Indicateur</th><th class="num">Total</th></tr>
+    <tr><td>Entreprises et holdings vendus</td><td class="num">85</td></tr>
+    <tr><td>Montant total des cessions</td><td class="num">103 800 337 628 495 794 601 970 380 528 Ø</td></tr>
+    <tr><td>Levées de fonds et introductions en bourse</td><td class="num">22</td></tr>
+  </table>
+  <p style="font-size:13px;color:var(--ink-dim);">Calculé à partir des Actualités du 19 septembre 20h49 au 20 septembre 21h17. La plus grosse cession "classique" du jour : IMP TP, cédée à ARES pour 1 300 000 000 000 000 000 000 000 000 Ø. Côté levées, L.V.H se distingue avec 3 000,00 R Ø visés — largement devant IGMAX (1 000,00 R Ø) et Mutualis By Escura Group. (800,00 R Ø).</p>
+
+  <h3 class="section">🧮 Repère devis du jour</h3>
+  <p style="font-size:13px;color:var(--ink-dim);">Chaque devis reste plafonné à ±30% du "Prix du marché" affiché par le jeu — voir le guide "Coût de revient d'un chantier".</p>
+
+  <h3 class="section">📰 À lire aussi dans le Journal</h3>
+  <p>Le Journal de la Construction, publié séparément chaque jour, détaille les matières premières et les 20 usines de production — dernière parution le 20 septembre. À découvrir aussi, les toutes premières éditions de deux nouvelles rubriques sœurs du Journal : le Journal des affaires (portraits d'entreprises) et Portraits de joueurs.</p>
+
+  <h3 class="section">📌 Pour les nouveaux joueurs</h3>
+  <p>Un changement de leader toutes catégories, comme ce soir, ne veut pas forcément dire qu'un bien s'est effondré : ici, Centre de recherche régional recule simplement par une évolution organique de son loyer, sans avoir perdu la moindre promotion. Rappel : Rentabilité annuelle % = (Loyer − Charges − Impôts − Assurance min.) × 12 ÷ Valeur × 100, où Assurance min. = Valeur × 0,05%/mois.</p>
+
+  <h3 class="section">🤝 Rejoindre la communauté</h3>
+  <p>Nouveau sur le monde 8 ? N'hésitez pas à rejoindre le Discord de votre ville : la communauté y est accueillante et prête à répondre aux questions des débutants. Participer à la vie locale (municipalité, projets communs) est aussi un excellent moyen de progresser plus vite, et les guides factuels du Journal restent là pour approfondir les mécaniques à votre rythme.</p>
+
+  <h3 class="section">📣 Envie d'en parler ?</h3>
+  <p>L'histoire ne s'arrête pas ici — rejoignez le Discord du Journal du Marché pour prolonger la discussion.<br>
+  🔥 Le Fonds de Soutien ferme temporairement ses portes : bonne ou mauvaise nouvelle pour l'équité du classement ? Venez en débattre.<br>
+  👉 <a href="https://discord.gg/XUdTTQdCSq" style="color:var(--gold);">https://discord.gg/XUdTTQdCSq</a></p>
+
+  <h3 class="section">⚡ Coin des petits chiffres</h3>
+  <p style="font-style:italic;">Ce soir, le 1 de Centre de recherche régional a cédé sa place sur le podium au 1 de Réseau de bus 50 arrêts, en marmonnant que 7 nuits au sommet, "ça use les organiques".</p>
+
+  <div class="sources">
+    Données du 21 septembre 2026 — export post-reset 03h24. Tous les calculs sont reproductibles à partir des exports CSV officiels du jeu.
+  </div>
+
+  <div class="footer">Le Journal du Marché · Monde 8</div>
+
+</div>
+</body>
+</html>
