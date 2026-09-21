@@ -25,7 +25,7 @@
 
   <input id="recherche" type="text" placeholder="Rechercher un numéro d'édition (ex: 81)...">
 
-  <h2>📚 Éditions (2 à 89)</h2>
+  <h2>📚 Éditions (2 à 91)</h2>
   <ul id="liste-editions"></ul>
   <div class="count" id="compteur"></div>
 
@@ -45,13 +45,15 @@ function fichierPour(n) {
   if (n >= 3 && n <= 37) return "journal_marche_edition_" + String(n).padStart(2, "0") + ".html";
   if (n >= 38 && n <= 52) return "edition-" + n + ".html";
   if (n >= 53 && n <= 55) return "journal_marche_edition_" + n + ".html";
-  if (n >= 56 && n <= 89) return "edition-" + n + ".html";
+  if (n >= 56 && n <= 91) return "edition-" + n + ".html";
   return null;
 }
 
 // Accroches ajoutées au fur et à mesure (titre/date + résumé de l'intro).
 // Éditions non encore renseignées : affichage du numéro seul.
 const ACCROCHES = {
+  91: { date: "21 septembre 2026", texte: "Après 7 éditions au sommet, Centre de recherche régional cède sa couronne à Réseau de bus 50 arrêts (50,53%), qui reprend la tête sans la moindre promotion. Le Fonds de Soutien ferme temporairement ses portes." },
+  90: { date: "20 septembre 2026", texte: "Le leader tient sa 7e édition d'affilée en tête (51,59%), toujours sans promo. Les promotions se raréfient : seulement 6 biens ce soir, contre 8 hier." },
   2: { date: "21 juin 2026", texte: "Semaine calme : le marché bouge peu d'un reset à l'autre." },
   3: { date: "22 juin 2026", texte: "Le marché se réveille : 204 biens sur 204 ont varié cette nuit, le reset le plus actif à ce jour." },
   4: { date: "23 juin 2026", texte: "Retour au calme après le reset agité de l'édition précédente." },
@@ -145,7 +147,7 @@ const ACCROCHES = {
 const liste = document.getElementById("liste-editions");
 const compteur = document.getElementById("compteur");
 const editions = [];
-for (let n = 89; n >= 2; n--) {
+for (let n = 90; n >= 2; n--) {
   const f = fichierPour(n);
   if (f) editions.push({ n, f });
 }
