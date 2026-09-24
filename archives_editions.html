@@ -25,9 +25,50 @@
 
   <input id="recherche" type="text" placeholder="Rechercher un numéro d'édition (ex: 81)...">
 
-  <h2>📚 Éditions (2 à 91)</h2>
+  <h2>📚 Éditions (2 à 94)</h2>
   <ul id="liste-editions"></ul>
   <div class="count" id="compteur"></div>
+
+  <h2>🏗️ Le Journal de la Construction</h2>
+  <ul>
+    <li><a class="edition-link" href="construction-21-09.html">Construction — 21 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-20-09.html">Construction — 20 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-19-09.html">Construction — 19 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-18-09.html">Construction — 18 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-17-09.html">Construction — 17 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-16-09.html">Construction — 16 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-15-09.html">Construction — 15 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-14-09.html">Construction — 14 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-12-09.html">Construction — 12 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-11-09.html">Construction — 11 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-10-09.html">Construction — 10 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-09-09.html">Construction — 9 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-08-09.html">Construction — 8 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-07-09.html">Construction — 7 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-05-09.html">Construction — 5 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-04-09.html">Construction — 4 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-03-09.html">Construction — 3 septembre 2026</a></li>
+    <li><a class="edition-link" href="construction-02-09.html">Construction — 2 septembre 2026</a></li>
+  </ul>
+
+  <h2>💼 Le Journal des Affaires</h2>
+  <ul>
+    <li><a class="edition-link" href="affaires-01.html"><span class="num">Affaires — Édition 1</span><span class="date">20 septembre 2026</span><span class="accroche">Liostaire, DG de liostaire empirgroup (44e mondial), raconte comment il a bâti 25 filiales en trois mois après avoir repris une holding au ralenti — gouvernance à neuf DG, système de référents, et erreurs assumées.</span></a></li>
+  </ul>
+
+  <h2>🎤 Portraits de joueurs</h2>
+  <ul>
+    <li><a class="edition-link" href="portrait-01.html"><span class="num">Portrait — Édition 1 — Djeb</span><span class="date">20 septembre 2026</span><span class="accroche">Du rang 1363 au rang 963, et du niveau 7 au niveau 10, en seize jours : Djeb raconte sa progression, son style opportuniste et agressif, et ce qu'il doit à l'entraide de la communauté.</span></a></li>
+  </ul>
+
+  <h2>🥊 Le Punch du samedi</h2>
+  <ul>
+    <li><a class="edition-link" href="punch-lanterne-rouge-19-09.html">Punch — 19 septembre 2026</a></li>
+    <li><a class="edition-link" href="punch-usines-deficitaires-12-09.html">Punch — 12 septembre 2026</a></li>
+    <li><a class="edition-link" href="punch-pieges-promo-niveau-0-05-09.html">Punch — 5 septembre 2026</a></li>
+    <li><a class="edition-link" href="punch-lanterne-rouge-29-08.html">Punch — 29 août 2026</a></li>
+    <li><a class="edition-link" href="punch-usines-deficitaires-22-08.html">Punch — 22 août 2026</a></li>
+  </ul>
 
   <h2>📊 Bilans hebdomadaires</h2>
   <ul>
@@ -45,13 +86,16 @@ function fichierPour(n) {
   if (n >= 3 && n <= 37) return "journal_marche_edition_" + String(n).padStart(2, "0") + ".html";
   if (n >= 38 && n <= 52) return "edition-" + n + ".html";
   if (n >= 53 && n <= 55) return "journal_marche_edition_" + n + ".html";
-  if (n >= 56 && n <= 91) return "edition-" + n + ".html";
+  if (n >= 56 && n <= 94) return "edition-" + n + ".html";
   return null;
 }
 
 // Accroches ajoutées au fur et à mesure (titre/date + résumé de l'intro).
 // Éditions non encore renseignées : affichage du numéro seul.
 const ACCROCHES = {
+  94: { date: "24 septembre 2026", texte: "La Fabrique de briques bat son propre record 2 soirs de suite (10,44%). Réseau de bus 50 arrêts reste imbattable pour une 4e édition. Rotation complète des promos, 4 nouveaux biens entreprise à -18%." },
+  93: { date: "23 septembre 2026", texte: "Fabrique de briques franchit pour la 1re fois la barre des 10% de ROI. Rotation quasi complète des promos (7 nouveaux biens) et Res. 24 T2 habitables, piège du jour pour la 20e nuit consécutive." },
+  92: { date: "22 septembre 2026", texte: "Réseau de bus 50 arrêts conserve la tête pour une 2e édition d\u2019affilée (50,61%), toujours sans promo. Quatre promotions ce soir, toutes côté personnel à -16%, aucune côté entreprise." },
   91: { date: "21 septembre 2026", texte: "Après 7 éditions au sommet, Centre de recherche régional cède sa couronne à Réseau de bus 50 arrêts (50,53%), qui reprend la tête sans la moindre promotion. Le Fonds de Soutien ferme temporairement ses portes." },
   90: { date: "20 septembre 2026", texte: "Le leader tient sa 7e édition d'affilée en tête (51,59%), toujours sans promo. Les promotions se raréfient : seulement 6 biens ce soir, contre 8 hier." },
   2: { date: "21 juin 2026", texte: "Semaine calme : le marché bouge peu d'un reset à l'autre." },
