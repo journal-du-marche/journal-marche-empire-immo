@@ -25,7 +25,7 @@
 
   <input id="recherche" type="text" placeholder="Rechercher un numéro d'édition (ex: 81)...">
 
-  <h2>📚 Éditions (2 à 94)</h2>
+  <h2>📚 Éditions (2 à 95)</h2>
   <ul id="liste-editions"></ul>
   <div class="count" id="compteur"></div>
 
@@ -86,7 +86,7 @@ function fichierPour(n) {
   if (n >= 3 && n <= 37) return "journal_marche_edition_" + String(n).padStart(2, "0") + ".html";
   if (n >= 38 && n <= 52) return "edition-" + n + ".html";
   if (n >= 53 && n <= 55) return "journal_marche_edition_" + n + ".html";
-  if (n >= 56 && n <= 94) return "edition-" + n + ".html";
+  if (n >= 56 && n <= 95) return "edition-" + n + ".html";
   return null;
 }
 
@@ -94,6 +94,7 @@ function fichierPour(n) {
 // Éditions non encore renseignées : affichage du numéro seul.
 const ACCROCHES = {
   94: { date: "24 septembre 2026", texte: "La Fabrique de briques bat son propre record 2 soirs de suite (10,44%). Réseau de bus 50 arrêts reste imbattable pour une 4e édition. Rotation complète des promos, 4 nouveaux biens entreprise à -18%." },
+  95: { date: "25 septembre 2026", texte: "Le Complexe sidérurgique industriel repasse en positif : les usines déficitaires tombent à 3/20, une première depuis le début du suivi. Fabrique de briques bat un nouveau record (10,61%), Réseau de bus 50 arrêts reste en tête pour une 5e nuit." },
   93: { date: "23 septembre 2026", texte: "Fabrique de briques franchit pour la 1re fois la barre des 10% de ROI. Rotation quasi complète des promos (7 nouveaux biens) et Res. 24 T2 habitables, piège du jour pour la 20e nuit consécutive." },
   92: { date: "22 septembre 2026", texte: "Réseau de bus 50 arrêts conserve la tête pour une 2e édition d\u2019affilée (50,61%), toujours sans promo. Quatre promotions ce soir, toutes côté personnel à -16%, aucune côté entreprise." },
   91: { date: "21 septembre 2026", texte: "Après 7 éditions au sommet, Centre de recherche régional cède sa couronne à Réseau de bus 50 arrêts (50,53%), qui reprend la tête sans la moindre promotion. Le Fonds de Soutien ferme temporairement ses portes." },
