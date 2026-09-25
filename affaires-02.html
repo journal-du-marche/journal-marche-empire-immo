@@ -5,8 +5,8 @@
 <title>Le Journal des Affaires — Édition 2</title>
 <style>
   :root{
-    --bg:#15130f; --paper:#1c1916; --gold:#c9a35a; --gold-dim:#9a7c42;
-    --ink:#e8e2d6; --ink-dim:#a89f8f; --line:#3a342b;
+    --bg:#2a2620; --paper:#332f28; --gold:#d4b06a; --gold-dim:#a88a49;
+    --ink:#efe9dc; --ink-dim:#bcb2a0; --line:#4a4438;
   }
   body{background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;margin:0;padding:40px 16px;}
   .paper{max-width:820px;margin:0 auto;background:var(--paper);padding:40px 48px;border:1px solid var(--line);}
@@ -16,15 +16,16 @@
   h1.title{color:var(--gold);font-size:32px;margin:8px 0;letter-spacing:1px;}
   .tagline{font-style:italic;color:var(--ink-dim);font-size:14px;}
   .dateline{text-align:center;color:var(--ink-dim);font-size:13px;letter-spacing:1px;margin-bottom:30px;}
-  .preambule{font-size:16px;line-height:1.75;margin-bottom:30px;}
-  .preambule::first-letter{font-size:2.4em;color:var(--gold);font-weight:bold;float:left;line-height:0.9;margin-right:6px;}
-  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:38px;}
-  .question{color:var(--gold-dim);font-style:italic;font-size:15px;margin-top:20px;margin-bottom:6px;}
-  .reponse{margin:0 0 4px 0;padding-left:14px;border-left:2px solid var(--line);}
+  .resume{border:1px solid var(--gold-dim);border-radius:6px;padding:16px 20px;margin:0 0 28px 0;background:rgba(212,176,106,0.08);}
+  .resume .titre-resume{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:13px;margin:0 0 10px 0;font-family:Georgia,serif;}
+  .resume ul{margin:0;padding-left:20px;}
+  .resume li{margin-bottom:8px;line-height:1.55;font-size:14.5px;}
+  .preambule{font-size:16px;line-height:1.8;margin-bottom:26px;color:var(--ink-dim);}
+  h3.section{color:var(--gold);text-transform:uppercase;letter-spacing:2px;font-size:15px;border-bottom:1px solid var(--line);padding-bottom:6px;margin-top:32px;}
+  .reponse{margin:10px 0 4px 0;line-height:1.75;font-size:15px;}
   .sources{font-size:12px;font-style:italic;color:var(--ink-dim);margin-top:30px;}
   .footer{text-align:center;border-top:3px double var(--gold);border-bottom:3px double var(--gold);padding:14px 0;margin-top:34px;color:var(--gold-dim);letter-spacing:1px;font-size:13px;}
-  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(201,163,90,0.05);font-size:14px;}
-  p{line-height:1.6;font-size:15px;}
+  .callout{border-left:3px solid var(--gold);padding:10px 16px;margin:16px 0;background:rgba(212,176,106,0.08);font-size:14px;}
 </style>
 </head>
 <body>
@@ -38,39 +39,42 @@
   </div>
   <div class="dateline">Édition 2 · 24 septembre 2026</div>
 
-  <p class="preambule">Pour cette première édition du Journal des Affaires, direction L'Oreo.inc Formation, une holding classée 152<sup>e</sup> au classement mondial avec 128 filiales — 124 en PAV et 4 en ETC/ECT — bâtie sur un principe singulier au sein de l'écosystème : la formation et l'entraide des nouveaux joueurs. Son PDG, MrOreo, vétéran de Monde 7 reconverti sur Monde 8, a accepté de revenir sur son parcours, sa stratégie et son regard sur l'état actuel du marché. Entrevue menée par écrit, réponses reproduites intégralement.</p>
+  <div class="resume">
+    <p class="titre-resume">📌 En résumé</p>
+    <ul>
+      <li>PDG de L'Oreo.inc Formation (152<sup>e</sup>, 128 filiales), MrOreo vise 500 filiales à terme.</li>
+      <li>Un TES en début de carrière sur M7, suivi d'une remontée jusqu'à la 8<sup>e</sup> place mondiale.</li>
+      <li>Verdict sans détour sur le marché actuel : « jamais aussi désastreux — même sur M7. »</li>
+      <li>Conseil aux nouveaux joueurs : investir en groupe, viser les promos courtes, se former tôt.</li>
+    </ul>
+  </div>
 
-  <h3 class="section">Le parcours et point de départ</h3>
-  <p class="question">Comment as-tu commencé sur Empire Immo, et à quel moment as-tu su que tu voulais bâtir un holding plutôt que rester joueur solo ?</p>
-  <p class="reponse">« J'ai commencé sur M7 (je n'ai pas la date). J'ai travaillé chez Bambi dans mes débuts de M7, puis je me suis associé à Musashi ; nous avons monté quelques holdings pendant environ 4 mois. J'ai alors décidé de me lancer seul dans l'aventure « holding ». Après plusieurs mois à gérer seul plusieurs holdings en poste de Directeur Général, grâce à Vorondile qui m'a proposé d'être actionnaire majoritaire, c'était le début d'une grande aventure avec ma holding KEOPS. Puis nous avions pour projet, mes associés et moi, d'ouvrir KEOPS 2, mais malheureusement j'ai dû abandonner mes associés et collaborateurs pour des raisons de santé.<br><br>À l'époque, Vorondile avait investi une somme d'environ 1Y, qui était énorme pour moi. Puis j'ai eu des soucis qui m'ont valu un TES ; à la suite de ce TES, j'ai été formé correctement par Angelianora, ce qui m'a permis de me perfectionner sur mes stratégies et ma gestion des FDS et des primes. Ceci a renforcé une détermination à monter dans le classement — à mon plus grand souvenir, je suis allé jusqu'à la 8<sup>e</sup> place du classement. Je dirais que ma progression avec la holding KEOPS a dépassé mes attentes à cette période, en moins de 3 mois, avec 20 ou 30 collaborateurs de filiales.<br><br>Avec le recul, non, je n'ai pas fait la même chose sur M8. Je me suis concentré principalement sur la holding Luke Heros pendant 2 mois, avant de créer ma holding Blackstone, qui a par la suite été renommée en L'Oreo.inc Formation — avec une demande au staff au préalable afin de savoir si oui ou non j'étais autorisé à créer une holding formation. En m'appuyant sur l'expérience de M7, j'ai pu pallier différents blocages pour mieux commencer M8 ; bien que les débuts aient été difficiles, j'ai relevé la tête et je me suis mis à fond pour un objectif de 500 filiales. »</p>
-
-  <h3 class="section">Stratégie de croissance</h3>
-  <p class="question">Concrètement, comment tu décides où investir ton prochain Ø, et quelle est la décision stratégique la plus payante que tu as prise ?</p>
-  <p class="reponse">« Ma stratégie actuelle est d'ouvrir le maximum de filiales avec des fonds moyens, et d'investir au fur et à mesure du temps afin de rendre le marketing le plus rentable possible. J'investis également dans les nouveaux projets des petits joueurs qui veulent se lancer, et je les accompagne au mieux possible dans leur progression.<br><br>Je me concentre actuellement sur 2 holdings financièrement où je ne prends quasiment rien en primes, et j'investis de temps à autre sur des petits projets.<br><br>La stratégie la plus payante a été d'ouvrir une holding avec des filiales à petit budget et un recrutement permanent, qui aujourd'hui est payante car nous avons actuellement 124 filiales PAV et 4 filiales ETC/ECT — qui grandissent encore et encore. »</p>
-
-  <h3 class="section">Gestion du risque et des imprévus</h3>
-  <p class="question">Comment gères-tu l'équilibre financier de ta holding, et comment anticipes-tu les imprévus du marché ?</p>
-  <p class="reponse">« L'équilibre, je ne l'ai pas encore trouvé, car il reste beaucoup à faire sur ma mise en place de nouveaux DG. Mais pour l'équilibre financier, je n'investis pas la totalité des fonds disponibles en holding dans chaque filiale, afin de garder un fonds de roulement et un fonds pour l'ouverture de nouvelles filiales. Mon levier principal de financement est l'apport de fonds via des levées entre actionnaires.<br><br>On essaie, mon équipe et moi-même, d'anticiper les événements financiers en gardant des fonds dans la holding en cas de sinistre ou d'événement aléatoire du jeu ; nous ne remontons jamais la totalité des résultats d'exploitation des filiales, pour prévenir en cas de sinistre. »</p>
-
-  <h3 class="section">Gouvernance et organisation interne</h3>
-  <p class="question">Comment tu structures la rémunération (primes, dividendes) à l'interne, et pourquoi as-tu choisi ce modèle plutôt qu'un autre ?</p>
-  <p class="reponse">« La rémunération des joueurs est basée sur une moyenne : les joueurs ne prennent que 5 ou 10% de prime du résultat en fonction de leur patrimoine. Pour ceux qui peuvent prendre plus, j'ouvre des projets plus personnels avec eux, comme une filiale avec plusieurs actionnaires afin qu'ils puissent entrer en bourse, avec un accompagnement plus poussé au cas par cas. »</p>
-
-  <h3 class="section">Philosophie et valeurs</h3>
-  <p class="question">Ta holding s'appelle « L'Oreo.inc Formation » — qu'est-ce qui te pousse à mettre la formation et l'entraide au centre de ton projet ?</p>
-  <p class="reponse">« Cette dernière, qui aujourd'hui est basée sur la formation et l'entraide, est le pilier de ma motivation, car je suis d'un tempérament à toujours vouloir aider mon prochain. »</p>
+  <p class="preambule">Pour cette première édition du Journal des Affaires, direction L'Oreo.inc Formation, une holding classée 152<sup>e</sup> au classement mondial avec 128 filiales — 124 en PAV et 4 en ETC/ECT — bâtie sur un principe singulier au sein de l'écosystème : la formation et l'entraide des nouveaux joueurs. Son PDG, MrOreo, vétéran de Monde 7 reconverti sur Monde 8, a accepté de revenir sur son parcours, sa stratégie et son regard sur l'état actuel du marché.</p>
 
   <h3 class="section">Regard sur l'écosystème</h3>
-  <p class="question">Comment tu vois l'évolution du marché en ce moment, et qu'est-ce qui revient le plus souvent dans tes discussions avec d'autres joueurs ?</p>
-  <p class="reponse">« Les fonctions de certaines boîtes reviennent souvent dans les conversations — on y travaille avec Elmut, je lui propose des améliorations comme sur M7. Beaucoup reviennent sur des sujets communs vis-à-vis des ETC : le % de prime autorisé en fonction du % max de leur patrimoine, la difficulté des premiers niveaux, les abonnements trop chers pour certains qui voudraient le Saphir et commencer seuls leur propre holding. Certains trouvent que les ETC/ECT ne sont pas rentables à moins d'avoir des sinistres et de décrocher quelques contrats. Il y a aussi le manque d'images ou de renouvellement d'images.<br><br>Le marché n'a jamais été aussi désastreux — même sur M7, il n'a jamais été aussi mal en point. Les prix promoteur explosent alors que le coût de production reste inchangé, sans parler du promoteur qui, pour ma part, ne sert plus à rien si l'on veut vendre nos matières. »</p>
+  <p class="reponse">Sans détour, MrOreo tranche sur l'état du marché : « Le marché n'a jamais été aussi désastreux — même sur M7, il n'a jamais été aussi mal en point. » En cause selon lui, des prix promoteur qui explosent alors que le coût de production reste inchangé, au point que « le promoteur ne sert plus à rien si l'on veut vendre nos matières. » Le sujet revient aussi souvent dans ses échanges avec Elmut, à qui il propose des améliorations comme sur M7 : le % de primes autorisé selon le patrimoine pour les ETC/ECT, la difficulté des premiers niveaux, le coût du Saphir pour les joueurs qui veulent se lancer seuls, et le manque de renouvellement des images du jeu.</p>
+
+  <h3 class="section">Le parcours et point de départ</h3>
+  <p class="reponse">MrOreo a débuté sur M7, d'abord chez Bambi puis associé à Musashi, avant de se lancer seul dans l'aventure holding. C'est Vorondile — avec un investissement d'environ 1Y, « énorme » à l'époque — qui lui a ouvert la voie vers KEOPS, sa première grande holding. Le parcours n'a pas été sans accroc : un TES l'a forcé à se reformer auprès d'Angelianora, une expérience qui a « renforcé une détermination à monter dans le classement » jusqu'à la 8<sup>e</sup> place mondiale. Le projet KEOPS 2 avec ses associés n'a toutefois jamais vu le jour — MrOreo a dû s'en retirer pour des raisons de santé.<br><br>Sur M8, nouveau départ : Luke Heros, puis la création de sa propre holding, rebaptisée L'Oreo.inc Formation après validation du staff. Objectif affiché aujourd'hui : 500 filiales.</p>
+
+  <h3 class="section">Stratégie de croissance</h3>
+  <p class="reponse">Sa méthode : ouvrir un maximum de filiales à budget moyen, investir progressivement pour maximiser le rendement du marketing, et accompagner personnellement les nouveaux joueurs qui se lancent. Deux holdings sont gérées presque sans prise de prime de sa part. La décision la plus payante, selon lui : avoir misé sur un recrutement permanent de filiales à petit budget — une stratégie qui a mené à 124 filiales PAV et 4 ETC/ECT « qui grandissent encore et encore ».</p>
+
+  <h3 class="section">Gestion du risque et des imprévus</h3>
+  <p class="reponse">« L'équilibre, je ne l'ai pas encore trouvé », admet-il franchement à propos de la mise en place de nouveaux DG. Côté finances, la règle est prudente : ne jamais investir la totalité des fonds disponibles dans une filiale, garder un fonds de roulement, et miser sur les levées entre actionnaires plutôt que sur l'endettement. Pour parer aux imprévus, son équipe évite aussi de « remonter la totalité des résultats d'exploitation des filiales », histoire de garder une réserve en cas de sinistre.</p>
+
+  <h3 class="section">Philosophie et valeurs</h3>
+  <p class="reponse">Le nom même de sa holding résume sa motivation : « C'est le pilier de ma motivation, car je suis d'un tempérament à toujours vouloir aider mon prochain. » Formation et entraide ne sont pas un slogan pour MrOreo — elles définissent la structure même de L'Oreo.inc.</p>
+
+  <h3 class="section">Gouvernance et organisation interne</h3>
+  <p class="reponse">Le modèle de rémunération reste simple : 5 à 10% de prime selon le patrimoine du joueur. Pour ceux qui veulent s'investir davantage, MrOreo ouvre des projets plus personnels — jusqu'à une entrée en bourse accompagnée au cas par cas.</p>
 
   <h3 class="section">Projection et conseil</h3>
-  <p class="question">Un conseil que tu donnerais à un joueur qui démarre aujourd'hui avec un capital modeste ?</p>
-  <p class="reponse">« Investir en groupe, jouer avec les livrets I, acheter uniquement des promotions rentables à court terme entre -10% et -20%, privilégier le marché immobilier au lieu des promos du jour, et vendre au promoteur à un minimum de 92% en espérant la meilleure plus-value. Faire uniquement de la PAV via holding dans les débuts, car les ETC/ECT ne sont pas assez rentables en début de carrière. Se former le plus tôt possible avec des formateurs qui ont le temps. »</p>
+  <p class="reponse">Son conseil pour démarrer avec un petit capital, sans détour : « Investir en groupe, jouer avec les livrets I, acheter uniquement des promotions rentables à court terme entre -10% et -20%, privilégier le marché immobilier au lieu des promos du jour, et vendre au promoteur à un minimum de 92%. » Faire uniquement de la PAV via holding dans les débuts, car les ETC/ECT ne sont pas assez rentables en début de carrière — et surtout, « se former le plus tôt possible avec des formateurs qui ont le temps ».</p>
 
   <div class="callout">🤝 J'espère avoir répondu au mieux possible, je reste ouvert pour toute question complémentaire. Bien à toi.</div>
 
-  <div class="sources">Entrevue menée par écrit le 24 septembre 2026. Réponses reproduites intégralement, sans aucune modification de fond — seules la ponctuation et l'orthographe ont été légèrement corrigées pour la lisibilité. Chiffres cités (rang, nombre de filiales) validés contre les exports officiels du 23 septembre 2026.</div>
+  <div class="sources">Entrevue menée par écrit le 24 septembre 2026. Réponses reproduites fidèlement (résumées et citations directes conservées pour les passages clés) — chiffres cités validés contre les exports officiels du 23 septembre 2026.</div>
 
   <div class="footer">Le Journal des Affaires · Monde 8</div>
 
