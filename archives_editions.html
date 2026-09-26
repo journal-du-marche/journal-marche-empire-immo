@@ -25,7 +25,7 @@
 
   <input id="recherche" type="text" placeholder="Rechercher un numéro d'édition (ex: 81)...">
 
-  <h2>📚 Éditions (2 à 95)</h2>
+  <h2>📚 Éditions (2 à 96)</h2>
   <ul id="liste-editions"></ul>
   <div class="count" id="compteur"></div>
 
@@ -93,6 +93,7 @@ function fichierPour(n) {
 // Accroches ajoutées au fur et à mesure (titre/date + résumé de l'intro).
 // Éditions non encore renseignées : affichage du numéro seul.
 const ACCROCHES = {
+  96: { date: "26 septembre 2026", texte: "Rotation quasi totale des promos : 4 sorties, 5 entrées. Le palacium luxueux (-16%) signe le meilleur bond de rentabilité de la semaine. Fabrique de briques bat un 4e record de ROI, Réseau de bus 50 arrêts en tête pour une 6e nuit." },
   94: { date: "24 septembre 2026", texte: "La Fabrique de briques bat son propre record 2 soirs de suite (10,44%). Réseau de bus 50 arrêts reste imbattable pour une 4e édition. Rotation complète des promos, 4 nouveaux biens entreprise à -18%." },
   95: { date: "25 septembre 2026", texte: "Le Complexe sidérurgique industriel repasse en positif : les usines déficitaires tombent à 3/20, une première depuis le début du suivi. Fabrique de briques bat un nouveau record (10,61%), Réseau de bus 50 arrêts reste en tête pour une 5e nuit." },
   93: { date: "23 septembre 2026", texte: "Fabrique de briques franchit pour la 1re fois la barre des 10% de ROI. Rotation quasi complète des promos (7 nouveaux biens) et Res. 24 T2 habitables, piège du jour pour la 20e nuit consécutive." },
@@ -192,7 +193,7 @@ const ACCROCHES = {
 const liste = document.getElementById("liste-editions");
 const compteur = document.getElementById("compteur");
 const editions = [];
-for (let n = 90; n >= 2; n--) {
+for (let n = 96; n >= 2; n--) {
   const f = fichierPour(n);
   if (f) editions.push({ n, f });
 }
